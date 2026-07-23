@@ -1,0 +1,254 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Statements API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Statements
+paths:
+  /public/banking-documents/v1/entities/{entityId}/connections/{connectionId}/statements:
+    get:
+      operationId: Statements_ListStatements
+      parameters:
+      - description: Agicap entity identifier
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Connection identifier
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Bank file format
+        in: query
+        name: format
+        schema:
+          items:
+            type: string
+          type: array
+      - description: Will return only statements created **after** this date
+        in: query
+        name: createdSince
+        schema:
+          format: date-time
+          type: string
+      - description: Will return only statements created **before** this date
+        in: query
+        name: createdUntil
+        schema:
+          format: date-time
+          type: string
+      - description: Include duplicate statements in response. If not specified, considered `false`
+        in: query
+        name: includeDuplicates
+        schema:
+          type: boolean
+      - description: Will return only statements extracted from this file
+        in: query
+        name: fileId
+        schema:
+          format: uuid
+          type: string
+      - description: Will return only statements of this account number
+        in: query
+        name: accountNumber
+        schema:
+          type: string
+      - in: query
+        name: PageNumber
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: PageSize
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatementSummaryPagedResult'
+          description: Your request has been successfully processed.
+        '400':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Your request is invalid.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: List statements
+      tags:
+      - Statements
+  /public/banking-documents/v1/entities/{entityId}/connections/{connectionId}/statements/{statementId}:
+    get:
+      operationId: Statements_DownloadStatement
+      parameters:
+      - description: Agicap entity identifier
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Connection identifier
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Statement identifier
+        in: path
+        name: statementId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                format: binary
+                type: string
+          description: Your request has been successfully processed.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Download a statement
+      tags:
+      - Statements
+components:
+  schemas:
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    StatementSummary:
+      additionalProperties: false
+      properties:
+        AccountNumber:
+          description: Account number of the statement
+          nullable: true
+          type: string
+        ConnectionId:
+          description: Connection identifier
+          format: uuid
+          type: string
+        CreatedAt:
+          description: Creation date (UTC) of the file
+          format: date-time
+          type: string
+        FileId:
+          description: File identifier
+          format: uuid
+          type: string
+        Filename:
+          description: File name
+          type: string
+        Format:
+          description: Bank file format
+          nullable: true
+          type: string
+        Id:
+          description: Statement identifier
+          format: uuid
+          type: string
+        IsDuplicate:
+          description: '`False` by default. `True` if the bank statement has already been imported.'
+          format: boolean
+          type: boolean
+      type: object
+    Pagination:
+      additionalProperties: false
+      properties:
+        CurrentPageItemsCount:
+          format: int32
+          type: integer
+        CurrentPageNumber:
+          format: int32
+          type: integer
+        PageSize:
+          format: int32
+          type: integer
+        PagesCount:
+          format: int32
+          type: integer
+        TotalItemsCount:
+          format: int32
+          type: integer
+      type: object
+    StatementSummaryPagedResult:
+      additionalProperties: false
+      properties:
+        Items:
+          items:
+            $ref: '#/components/schemas/StatementSummary'
+          nullable: true
+          type: array
+        Pagination:
+          $ref: '#/components/schemas/Pagination'
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

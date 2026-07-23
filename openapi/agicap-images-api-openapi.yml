@@ -1,0 +1,111 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Images API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Images
+paths:
+  /public/httpbin/v1/image:
+    get:
+      responses:
+        '200':
+          description: An image.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns a simple image of the type suggest by the Accept header.
+      tags:
+      - Images
+  /public/httpbin/v1/image/jpeg:
+    get:
+      responses:
+        '200':
+          description: A JPEG image.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns a simple JPEG image.
+      tags:
+      - Images
+  /public/httpbin/v1/image/png:
+    get:
+      responses:
+        '200':
+          description: A PNG image.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns a simple PNG image.
+      tags:
+      - Images
+  /public/httpbin/v1/image/svg:
+    get:
+      responses:
+        '200':
+          description: An SVG image.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns a simple SVG image.
+      tags:
+      - Images
+  /public/httpbin/v1/image/webp:
+    get:
+      responses:
+        '200':
+          description: A WEBP image.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns a simple WEBP image.
+      tags:
+      - Images
+components:
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

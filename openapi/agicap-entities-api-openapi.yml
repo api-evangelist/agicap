@@ -1,0 +1,203 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Entities API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Entities
+paths:
+  /public/organizations/v1:
+    get:
+      description: Retrieve all organizations accessible with the provided access token.
+      operationId: Organizations_ListOrganizations
+      parameters:
+      - in: query
+        name: pageNumber
+        schema:
+          format: int32
+          maximum: 21474836
+          minimum: 1
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          maximum: 100
+          minimum: 2
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationsPresentation'
+          description: All accessible organizations.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: List organizations
+      tags:
+      - Entities
+  /public/organizations/v1/{organizationId}/entities:
+    get:
+      description: Retrieve all entities belonging to the organizationId specified in the url.
+      operationId: Organizations_ListEntities
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: pageNumber
+        schema:
+          format: int32
+          maximum: 21474836
+          minimum: 1
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          maximum: 100
+          minimum: 2
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationEntitiesPresentation'
+          description: All entities belonging to the specified organization.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: List organization's entities
+      tags:
+      - Entities
+components:
+  schemas:
+    OrganizationPresentation:
+      additionalProperties: false
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+    OrganizationEntityPresentation:
+      additionalProperties: false
+      properties:
+        country:
+          nullable: true
+          type: string
+        id:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    PaginationResponse:
+      additionalProperties: false
+      properties:
+        currentPageItemsCount:
+          format: int32
+          type: integer
+        currentPageNumber:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pagesCount:
+          format: int32
+          readOnly: true
+          type: integer
+        totalItemsCount:
+          format: int32
+          type: integer
+      type: object
+    OrganizationsPresentation:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/OrganizationPresentation'
+          nullable: true
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+      type: object
+    OrganizationEntitiesPresentation:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/OrganizationEntityPresentation'
+          nullable: true
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

@@ -1,0 +1,1583 @@
+{
+ "components": {
+  "schemas": {
+   "AccountReportSummary": {
+    "additionalProperties": false,
+    "properties": {
+     "AccountNumber": {
+      "description": "Account number of the report",
+      "nullable": true,
+      "type": "string"
+     },
+     "ConnectionId": {
+      "description": "Connection identifier",
+      "format": "uuid",
+      "type": "string"
+     },
+     "CreatedAt": {
+      "description": "Creation date (UTC) of the file",
+      "format": "date-time",
+      "type": "string"
+     },
+     "FileId": {
+      "description": "File identifier",
+      "format": "uuid",
+      "type": "string"
+     },
+     "Filename": {
+      "description": "File name",
+      "type": "string"
+     },
+     "Format": {
+      "description": "Bank file format",
+      "nullable": true,
+      "type": "string"
+     },
+     "Id": {
+      "description": "Account report identifier",
+      "format": "uuid",
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "AccountReportSummaryPagedResult": {
+    "additionalProperties": false,
+    "properties": {
+     "Items": {
+      "items": {
+       "$ref": "#/components/schemas/AccountReportSummary"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "Pagination": {
+      "$ref": "#/components/schemas/Pagination"
+     }
+    },
+    "type": "object"
+   },
+   "AccountSummary": {
+    "additionalProperties": false,
+    "properties": {
+     "AccountNumber": {
+      "description": "Account number",
+      "type": "string"
+     },
+     "ConnectionId": {
+      "description": "Connection identifier",
+      "format": "uuid",
+      "type": "string"
+     },
+     "CreatedAt": {
+      "description": "Creation date of the bank account in Agicap",
+      "format": "date-time",
+      "type": "string"
+     },
+     "EntityId": {
+      "description": "Agicap entity identifier",
+      "format": "int32",
+      "type": "integer"
+     }
+    },
+    "type": "object"
+   },
+   "AccountSummaryPagedResult": {
+    "additionalProperties": false,
+    "properties": {
+     "Items": {
+      "items": {
+       "$ref": "#/components/schemas/AccountSummary"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "Pagination": {
+      "$ref": "#/components/schemas/Pagination"
+     }
+    },
+    "type": "object"
+   },
+   "BankFileSummary": {
+    "additionalProperties": false,
+    "properties": {
+     "ConnectionId": {
+      "description": "Connection identifier",
+      "format": "uuid",
+      "type": "string"
+     },
+     "CreatedAt": {
+      "description": "Creation date (UTC) of the file",
+      "format": "date-time",
+      "type": "string"
+     },
+     "Format": {
+      "description": "Bank file format",
+      "type": "string"
+     },
+     "Id": {
+      "description": "File identifier",
+      "format": "uuid",
+      "type": "string"
+     },
+     "Name": {
+      "description": "File name",
+      "type": "string"
+     },
+     "Type": {
+      "description": "Bank file type. Possible value are STATEMENT, ACCOUNT_REPORT, OTHER, UNKNOWN",
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "BankFileSummaryPagedResult": {
+    "additionalProperties": false,
+    "properties": {
+     "Items": {
+      "items": {
+       "$ref": "#/components/schemas/BankFileSummary"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "Pagination": {
+      "$ref": "#/components/schemas/Pagination"
+     }
+    },
+    "type": "object"
+   },
+   "ConnectionSummary": {
+    "additionalProperties": false,
+    "properties": {
+     "Id": {
+      "description": "Connection identifier",
+      "format": "uuid",
+      "type": "string"
+     },
+     "Name": {
+      "description": "Connection name",
+      "type": "string"
+     },
+     "Type": {
+      "description": "Type of the connection. Possible values are PUBLIC_API, SWIFT, EBICS, EDITRAN",
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "ConnectionSummaryPagedResult": {
+    "additionalProperties": false,
+    "properties": {
+     "Items": {
+      "items": {
+       "$ref": "#/components/schemas/ConnectionSummary"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "Pagination": {
+      "$ref": "#/components/schemas/Pagination"
+     }
+    },
+    "type": "object"
+   },
+   "ConnectionToCreate": {
+    "additionalProperties": false,
+    "properties": {
+     "Name": {
+      "description": "Connection name",
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "Pagination": {
+    "additionalProperties": false,
+    "properties": {
+     "CurrentPageItemsCount": {
+      "format": "int32",
+      "type": "integer"
+     },
+     "CurrentPageNumber": {
+      "format": "int32",
+      "type": "integer"
+     },
+     "PageSize": {
+      "format": "int32",
+      "type": "integer"
+     },
+     "PagesCount": {
+      "format": "int32",
+      "type": "integer"
+     },
+     "TotalItemsCount": {
+      "format": "int32",
+      "type": "integer"
+     }
+    },
+    "type": "object"
+   },
+   "ProblemDetails": {
+    "additionalProperties": false,
+    "properties": {
+     "detail": {
+      "nullable": true,
+      "type": "string"
+     },
+     "instance": {
+      "nullable": true,
+      "type": "string"
+     },
+     "status": {
+      "format": "int32",
+      "nullable": true,
+      "type": "integer"
+     },
+     "title": {
+      "nullable": true,
+      "type": "string"
+     },
+     "type": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "StatementSummary": {
+    "additionalProperties": false,
+    "properties": {
+     "AccountNumber": {
+      "description": "Account number of the statement",
+      "nullable": true,
+      "type": "string"
+     },
+     "ConnectionId": {
+      "description": "Connection identifier",
+      "format": "uuid",
+      "type": "string"
+     },
+     "CreatedAt": {
+      "description": "Creation date (UTC) of the file",
+      "format": "date-time",
+      "type": "string"
+     },
+     "FileId": {
+      "description": "File identifier",
+      "format": "uuid",
+      "type": "string"
+     },
+     "Filename": {
+      "description": "File name",
+      "type": "string"
+     },
+     "Format": {
+      "description": "Bank file format",
+      "nullable": true,
+      "type": "string"
+     },
+     "Id": {
+      "description": "Statement identifier",
+      "format": "uuid",
+      "type": "string"
+     },
+     "IsDuplicate": {
+      "description": "`False` by default. `True` if the bank statement has already been imported.",
+      "format": "boolean",
+      "type": "boolean"
+     }
+    },
+    "type": "object"
+   },
+   "StatementSummaryPagedResult": {
+    "additionalProperties": false,
+    "properties": {
+     "Items": {
+      "items": {
+       "$ref": "#/components/schemas/StatementSummary"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "Pagination": {
+      "$ref": "#/components/schemas/Pagination"
+     }
+    },
+    "type": "object"
+   }
+  },
+  "securitySchemes": {
+   "bearerAuth": {
+    "bearerFormat": "OPAQUE",
+    "scheme": "bearer",
+    "type": "http"
+   },
+   "bearer_client_credentials": {
+    "description": "Client credentials: bearer",
+    "flows": {
+     "clientCredentials": {
+      "scopes": {
+       "agicap:public-api": ""
+      },
+      "tokenUrl": "https://myaccount.agicap.com/connect/token"
+     }
+    },
+    "type": "oauth2"
+   }
+  }
+ },
+ "info": {
+  "contact": {},
+  "description": "# Getting Started:\n\nWelcome to the Banking Document API documentation. This guide is designed to help you seamlessly import and export bank files into Agicap.\n\n⚠️ This API cannot be used to export banking data that is retrieved in Agicap via an Open Banking / PSD2 connection.\n\n## Import Your Bank Files into Agicap\n\nYou would like to import your bank files into Agicap in order to synchronize your bank balances and paid transactions.\n\n### Step 1: Generate Client Credentials\n\nTo get started, you’ll need to generate client credentials. These credentials will authenticate your API requests. For detailed instructions, please refer to our [Introduction Guide](/guides/introduction).\n\n### Step 2: Retrieve Entity\n\nEach banking connection must be associated with an entity. You’ll need the `entity id` to create a connection.\n- If you already have the `entity id`, skip to Step 3.\n- To retrieve the `entity id`:\n    1. **List Organizations**: Use the following request ([Get Organizations](/api-details/organizations-v1#tag/Entities/operation/Organizations_ListOrganizations))\n    2. **List Entities**: Use the following request ([Get Entities](/api-details/organizations-v1#tag/Entities)) to find the entities associated with your organization\n    3. **Select the Entity Owner**: Choose the entity that will be the owner of the banking connection.\n\n### Step 3: Create a Banking Connection\n\nWe recommend creating a separate connection for each bank to keep data sources distinct and maintain clarity within Agicap.\nTo create a banking connection, make the following API call: [Create a Banking Connection](#tag/Connections/operation/Connections_CreateConnection)\n\n### Step 4: Push Bank Files\n\nOnce your connection is established, you can start importing bank files.\nTo push bank files, use the following API request: [Push Bank Files](#tag/Bank-files/operation/BankFiles_PushBankFile).\n\n**Supported File Formats**\n- **Bank files**: CAMT.053, CAMT.052, N43, CFONB120, MT940, CBI, BAI2\n- **ZIP files:** Containing multiple bank files\n\n<br>\n\n---\n\n## Export Your Bank Files from Agicap\n\nAgicap synchronizes your bank files with EBICS, EDITRAN, SWIFT or Host to Host protocol and you would like to retrieve them from Agicap to import them into another tool such as your ERP. It's possible, and here's how to do it.\n\n### Context\n\nDuring the configuration phase, we set up your banking connections (via EBICS, EDITRAN, SWIFT, Host to Host) on an Agicap entity within your organization. This entity becomes the owner of the banking connection. To retrieve your bank files, you need the id of this banking connection (=`connectionId`), which is associated with the entity owner.\n\n⚠️ Please note that the entity owner of a banking connection is not the entity on which the bank account is activated. The entity owner is the entity on which the banking connection was set up.\n\n### Step 1: Generate Client Credentials\n\nTo get started, you’ll need to generate client credentials. These credentials will authenticate your API requests. For detailed instructions, please refer to our [Introduction Guide](/guides/introduction).\n\n### Step 2: Get the Entity Owner\n\n1. **List Organizations**: Use the following request ([Get Organizations](/api-details/organizations-v1#tag/Entities/operation/Organizations_ListOrganizations))\n2. **List Entities**: Use the following request ([Get Entities](/api-details/organizations-v1#tag/Entities)) to find the entity owner of the banking connection\n\nTo find out the id of the entity owner (=`entityId`)\n- List the connections for each of your entities until you find the entity owner. To do this, use the request: [Get Connections](/api-details/banking-documents-v1#tag/Connections/operation/Connections_ListConnections)\n- Use the request ([Get bank accounts](/api-details/banking-documents-v1#tag/Accounts/operation/Accounts_ListAccounts)) to list the bank accounts synchronized within your organization and retrieve the connection id associated with the bank accounts.\n- Request the id of the entity owner directly to support\n\n### Step 3: Identify the Banking Connection\n\nUse the following request ([Get Connections](/api-details/banking-documents-v1#tag/Connections/operation/Connections_ListConnections)) to list the connections associated to the entity\n\n### Step 4: Retrieve Bank Files\n\nRefer to the section [Download a Bank Statement](/api-details/banking-documents-v1#section/Getting-Started:/Download-a-Statement)\n\n<br>\n\n---\n\n## Download a Statement\n\n### Step 1: Identify the Statement\n\nTo download a statement, you need its ID. Retrieve the list of statements with their IDs using the following request: [List Statements](#tag/Statements/operation/Statements_ListStatements).\n**Handling Duplicates**\nFor undesirable reasons, the same statement may be imported several times into Agicap. These duplicate statements are identified, flagged, and filtered in Agicap to ensure data reliability.\nBy default, duplicate statements are filtered out. To include duplicates, set the query parameter `includeDuplicates = TRUE`.\n\n### Step 2 : Download the Statement\n\nUse the following request to download a specific statement: [Download Statement](#tag/Statements/operation/Statements_DownloadStatement).\n**File format**\nThe format of the downloaded file will match the format of the imported file.\n\n---\n\n## Delete a Bank File\n\n### Step 1: Retrieve the Bank File ID\n\nTo delete a bank file, you need its ID. Retrieve the list of bank files and their IDs using the following request: [List Bank Files](#tag/Bank-files/operation/BankFiles_ListBankFilesOfConnection).\n\n### Step 2: Delete the Bank File\n\nTo delete a bank file, use the following request: [Delete Bank File](#tag/Bank-files/operation/BankFiles_DeleteConnection).\n⚠️ Warning: This action is irreversible\n**Deletion Effects**\nDeleting a bank file will automatically remove the associated statements and transactions.\n\n---\n\n## Delete a Banking Connection\n\n### Step 1: Retrieve the Connection ID\n\nTo delete a banking connection, you need its ID. Retrieve the list of connections and their IDs using the following request: [List Connections](#tag/Connections/operation/Connections_ListConnections).\n\n### Step 2: Delete the Banking Connection\n\nTo delete a banking connection, use the following request: [Delete Banking Connection](#tag/Bank-files/operation/BankFiles_DeleteConnection).\n⚠️ Warning: This action is irreversible\n\n**Deletion Effects**\n\nDeleting a banking connection will also remove:\n- All associated statements\n- All transactions linked to those statements\n",
+  "title": "Banking Documents",
+  "version": "v1"
+ },
+ "openapi": "3.0.0",
+ "paths": {
+  "/public/banking-documents/v1/entities/{entityId}/connections": {
+   "get": {
+    "operationId": "Connections_ListConnections",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Type of the connection. Possible values are PUBLIC_API, SWIFT, EBICS, EDITRAN, KONFIPAY",
+      "in": "query",
+      "name": "type",
+      "schema": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      }
+     },
+     {
+      "in": "query",
+      "name": "PageNumber",
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "PageSize",
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ConnectionSummaryPagedResult"
+        }
+       }
+      },
+      "description": "Your request has been successfully processed."
+     },
+     "400": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "Your request is invalid."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "List connections",
+    "tags": [
+     "Connections"
+    ]
+   },
+   "post": {
+    "operationId": "Connections_CreateConnection",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/*+json": {
+       "schema": {
+        "$ref": "#/components/schemas/ConnectionToCreate"
+       }
+      },
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ConnectionToCreate"
+       }
+      },
+      "text/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ConnectionToCreate"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ConnectionSummary"
+        }
+       }
+      },
+      "description": "Your entity has been created."
+     },
+     "400": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "Your request is invalid."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Create a connection",
+    "tags": [
+     "Connections"
+    ]
+   }
+  },
+  "/public/banking-documents/v1/entities/{entityId}/connections/{connectionId}": {
+   "delete": {
+    "operationId": "Connections_DisableConnection",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Connection identifier",
+      "in": "path",
+      "name": "connectionId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "content": {
+       "text/plain": {}
+      },
+      "description": "The connection has been successfully disabled"
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "404": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "The targeted entity has not been found."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Delete a connection",
+    "tags": [
+     "Connections"
+    ]
+   }
+  },
+  "/public/banking-documents/v1/entities/{entityId}/connections/{connectionId}/account-reports": {
+   "get": {
+    "operationId": "AccountReports_ListAccountReports",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Connection identifier",
+      "in": "path",
+      "name": "connectionId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     },
+     {
+      "description": "Bank file format",
+      "in": "query",
+      "name": "format",
+      "schema": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      }
+     },
+     {
+      "description": "Will return only account reports created **after** this date",
+      "in": "query",
+      "name": "createdSince",
+      "schema": {
+       "format": "date-time",
+       "type": "string"
+      }
+     },
+     {
+      "description": "Will return only account reports created **before** this date",
+      "in": "query",
+      "name": "createdUntil",
+      "schema": {
+       "format": "date-time",
+       "type": "string"
+      }
+     },
+     {
+      "description": "File identifier",
+      "in": "query",
+      "name": "fileId",
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     },
+     {
+      "description": "Will return only account reports of this account number",
+      "in": "query",
+      "name": "accountNumber",
+      "schema": {
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "PageNumber",
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "PageSize",
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AccountReportSummaryPagedResult"
+        }
+       }
+      },
+      "description": "Your request has been successfully processed."
+     },
+     "400": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "Your request is invalid."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "List account reports",
+    "tags": [
+     "Account reports"
+    ]
+   }
+  },
+  "/public/banking-documents/v1/entities/{entityId}/connections/{connectionId}/account-reports/{accountReportId}": {
+   "get": {
+    "operationId": "AccountReports_DownloadAccountReport",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Connection identifier",
+      "in": "path",
+      "name": "connectionId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     },
+     {
+      "description": "Account report identifier",
+      "in": "path",
+      "name": "accountReportId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "format": "binary",
+         "type": "string"
+        }
+       }
+      },
+      "description": "Your request has been successfully processed."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Download an account report",
+    "tags": [
+     "Account reports"
+    ]
+   }
+  },
+  "/public/banking-documents/v1/entities/{entityId}/connections/{connectionId}/files": {
+   "get": {
+    "operationId": "BankFiles_ListBankFilesOfConnection",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Connection identifier",
+      "in": "path",
+      "name": "connectionId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     },
+     {
+      "description": "Bank file format",
+      "in": "query",
+      "name": "format",
+      "schema": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      }
+     },
+     {
+      "description": "Bank file type. Possible value are STATEMENT, ACCOUNT_REPORT, OTHER, UNKNOWN",
+      "in": "query",
+      "name": "type",
+      "schema": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      }
+     },
+     {
+      "description": "Will return only bank files created **after** this date",
+      "in": "query",
+      "name": "createdSince",
+      "schema": {
+       "format": "date-time",
+       "type": "string"
+      }
+     },
+     {
+      "description": "Will return only bank files created **before** this date",
+      "in": "query",
+      "name": "createdUntil",
+      "schema": {
+       "format": "date-time",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "PageNumber",
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "PageSize",
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/BankFileSummaryPagedResult"
+        }
+       }
+      },
+      "description": "Your request has been successfully processed."
+     },
+     "400": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "Your request is invalid."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "List bank files",
+    "tags": [
+     "Bank files"
+    ]
+   },
+   "post": {
+    "operationId": "BankFiles_PushBankFile",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Connection identifier",
+      "in": "path",
+      "name": "connectionId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "encoding": {
+        "file": {
+         "style": "form"
+        }
+       },
+       "schema": {
+        "properties": {
+         "file": {
+          "format": "binary",
+          "type": "string"
+         }
+        },
+        "type": "object"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "text/plain": {}
+      },
+      "description": "Your entity has been created."
+     },
+     "400": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "Your request is invalid."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Push a bank file",
+    "tags": [
+     "Bank files"
+    ]
+   }
+  },
+  "/public/banking-documents/v1/entities/{entityId}/connections/{connectionId}/files/{fileId}": {
+   "delete": {
+    "operationId": "BankFiles_DeleteConnection",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Connection identifier",
+      "in": "path",
+      "name": "connectionId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     },
+     {
+      "description": "File identifier",
+      "in": "path",
+      "name": "fileId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "content": {
+       "text/plain": {}
+      },
+      "description": "The file has been successfully deleted"
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "404": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "The targeted entity has not been found."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Delete a file",
+    "tags": [
+     "Bank files"
+    ]
+   },
+   "get": {
+    "operationId": "BankFiles_GetNormalizedFile",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Connection identifier",
+      "in": "path",
+      "name": "connectionId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     },
+     {
+      "description": "File identifier",
+      "in": "path",
+      "name": "fileId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "format": "binary",
+         "type": "string"
+        }
+       }
+      },
+      "description": "Your request has been successfully processed."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Download a bank file",
+    "tags": [
+     "Bank files"
+    ]
+   }
+  },
+  "/public/banking-documents/v1/entities/{entityId}/connections/{connectionId}/statements": {
+   "get": {
+    "operationId": "Statements_ListStatements",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Connection identifier",
+      "in": "path",
+      "name": "connectionId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     },
+     {
+      "description": "Bank file format",
+      "in": "query",
+      "name": "format",
+      "schema": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      }
+     },
+     {
+      "description": "Will return only statements created **after** this date",
+      "in": "query",
+      "name": "createdSince",
+      "schema": {
+       "format": "date-time",
+       "type": "string"
+      }
+     },
+     {
+      "description": "Will return only statements created **before** this date",
+      "in": "query",
+      "name": "createdUntil",
+      "schema": {
+       "format": "date-time",
+       "type": "string"
+      }
+     },
+     {
+      "description": "Include duplicate statements in response. If not specified, considered `false`",
+      "in": "query",
+      "name": "includeDuplicates",
+      "schema": {
+       "type": "boolean"
+      }
+     },
+     {
+      "description": "Will return only statements extracted from this file",
+      "in": "query",
+      "name": "fileId",
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     },
+     {
+      "description": "Will return only statements of this account number",
+      "in": "query",
+      "name": "accountNumber",
+      "schema": {
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "PageNumber",
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "PageSize",
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/StatementSummaryPagedResult"
+        }
+       }
+      },
+      "description": "Your request has been successfully processed."
+     },
+     "400": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "Your request is invalid."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "List statements",
+    "tags": [
+     "Statements"
+    ]
+   }
+  },
+  "/public/banking-documents/v1/entities/{entityId}/connections/{connectionId}/statements/{statementId}": {
+   "get": {
+    "operationId": "Statements_DownloadStatement",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Connection identifier",
+      "in": "path",
+      "name": "connectionId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     },
+     {
+      "description": "Statement identifier",
+      "in": "path",
+      "name": "statementId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "format": "binary",
+         "type": "string"
+        }
+       }
+      },
+      "description": "Your request has been successfully processed."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Download a statement",
+    "tags": [
+     "Statements"
+    ]
+   }
+  },
+  "/public/banking-documents/v1/organizations/{organizationId}/bank-accounts": {
+   "get": {
+    "operationId": "Accounts_ListAccounts",
+    "parameters": [
+     {
+      "description": "Agicap organization identifier",
+      "in": "path",
+      "name": "organizationId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "PageNumber",
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "PageSize",
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "example": {
+         "Items": [
+          {
+           "AccountNumber": "FR3317569000309529965673W34",
+           "ConnectionId": "fe8c099b-f80c-4d75-aa76-de0252203745",
+           "CreatedAt": "2024-03-07T14:30:10+00:00",
+           "EntityId": 12345
+          }
+         ],
+         "Pagination": {
+          "CurrentPageItemsCount": 10,
+          "CurrentPageNumber": 1,
+          "PageSize": 1,
+          "PagesCount": 1,
+          "TotalItemsCount": 1
+         }
+        },
+        "schema": {
+         "$ref": "#/components/schemas/AccountSummaryPagedResult"
+        }
+       }
+      },
+      "description": "Your request has been successfully processed."
+     },
+     "400": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "Your request is invalid."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "List bank accounts",
+    "tags": [
+     "Bank accounts"
+    ]
+   }
+  }
+ },
+ "servers": [
+  {
+   "url": "https://api.agicap.com"
+  },
+  {
+   "url": "https://api.agicap.internal"
+  }
+ ]
+}

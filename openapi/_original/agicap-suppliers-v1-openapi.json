@@ -1,0 +1,788 @@
+{
+ "components": {
+  "schemas": {
+   "ContactDto": {
+    "additionalProperties": false,
+    "description": "A contact attached to a supplier.",
+    "properties": {
+     "email": {
+      "description": "Email address of the contact.",
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "description": "Full name of the contact.",
+      "nullable": true,
+      "type": "string"
+     },
+     "phone": {
+      "description": "Phone number of the contact.",
+      "nullable": true,
+      "type": "string"
+     },
+     "role": {
+      "description": "Role of the contact within the supplier organization.",
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "ContactResponse": {
+    "additionalProperties": false,
+    "description": "A contact attached to a supplier, as returned by the suppliers endpoints.",
+    "properties": {
+     "email": {
+      "description": "Email address of the contact.",
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "description": "Full name of the contact.",
+      "nullable": true,
+      "type": "string"
+     },
+     "phone": {
+      "description": "Phone number of the contact.",
+      "nullable": true,
+      "type": "string"
+     },
+     "role": {
+      "description": "Role of the contact within the supplier organization.",
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "CursorDto": {
+    "additionalProperties": false,
+    "description": "Opaque-token pagination cursor.",
+    "properties": {
+     "after": {
+      "description": "Opaque token to pass as the `after` query parameter to fetch the next page.",
+      "nullable": true,
+      "type": "string"
+     },
+     "isLastPage": {
+      "description": "Whether the current page is the last one.",
+      "example": false,
+      "type": "boolean"
+     },
+     "size": {
+      "description": "Number of errors per page.",
+      "example": 50,
+      "format": "int32",
+      "type": "integer"
+     }
+    },
+    "type": "object"
+   },
+   "LegalAddressDto": {
+    "additionalProperties": false,
+    "description": "Legal address of a supplier.",
+    "properties": {
+     "city": {
+      "description": "City of the address.",
+      "nullable": true,
+      "type": "string"
+     },
+     "country": {
+      "description": "Country of the address (ISO 3166 2-letter code).",
+      "nullable": true,
+      "type": "string"
+     },
+     "number": {
+      "description": "Building / street number of the address (ISO 20022).",
+      "nullable": true,
+      "type": "string"
+     },
+     "postalCode": {
+      "description": "Postal / ZIP code of the address.",
+      "nullable": true,
+      "type": "string"
+     },
+     "state": {
+      "description": "State or region of the address.",
+      "nullable": true,
+      "type": "string"
+     },
+     "streetName": {
+      "description": "Street name of the address (ISO 20022).",
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "required": [
+     "country"
+    ],
+    "type": "object"
+   },
+   "LegalAddressResponse": {
+    "additionalProperties": false,
+    "description": "Legal address of a supplier, as returned by the suppliers endpoints.",
+    "properties": {
+     "city": {
+      "description": "City of the address.",
+      "nullable": true,
+      "type": "string"
+     },
+     "country": {
+      "description": "Country of the address (ISO 3166 2-letter code).",
+      "nullable": true,
+      "type": "string"
+     },
+     "number": {
+      "description": "Building / street number of the address (ISO 20022).",
+      "nullable": true,
+      "type": "string"
+     },
+     "postalCode": {
+      "description": "Postal / ZIP code of the address.",
+      "nullable": true,
+      "type": "string"
+     },
+     "state": {
+      "description": "State or region of the address.",
+      "nullable": true,
+      "type": "string"
+     },
+     "streetName": {
+      "description": "Street name of the address (ISO 20022).",
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "required": [
+     "country"
+    ],
+    "type": "object"
+   },
+   "ListSuppliersResponse": {
+    "additionalProperties": false,
+    "description": "A cursor-paginated page of suppliers.",
+    "properties": {
+     "items": {
+      "description": "Suppliers of the current page.",
+      "items": {
+       "$ref": "#/components/schemas/SupplierResponse"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "nextCursor": {
+      "description": "Opaque cursor to pass back to fetch the next page, or null when the last page is reached.",
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "ProblemDetails": {
+    "additionalProperties": false,
+    "properties": {
+     "detail": {
+      "nullable": true,
+      "type": "string"
+     },
+     "instance": {
+      "nullable": true,
+      "type": "string"
+     },
+     "status": {
+      "format": "int32",
+      "nullable": true,
+      "type": "integer"
+     },
+     "title": {
+      "nullable": true,
+      "type": "string"
+     },
+     "type": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "SupplierResponse": {
+    "additionalProperties": false,
+    "description": "A supplier as returned by the suppliers endpoints.",
+    "properties": {
+     "contacts": {
+      "description": "Contacts of the supplier.",
+      "items": {
+       "$ref": "#/components/schemas/ContactResponse"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "createdAt": {
+      "description": "Date and time at which the supplier was first created in Agicap.",
+      "format": "date-time",
+      "nullable": true,
+      "type": "string"
+     },
+     "erpId": {
+      "description": "Identifier of the supplier in the client's ERP.",
+      "nullable": true,
+      "type": "string"
+     },
+     "id": {
+      "description": "Stable Agicap identifier of the supplier.",
+      "example": "1660e6c3-54fd-402f-be8e-7748efd94791",
+      "format": "uuid",
+      "type": "string"
+     },
+     "language": {
+      "description": "Preferred language of the supplier (ISO 639-1 code).",
+      "nullable": true,
+      "type": "string"
+     },
+     "legalAddress": {
+      "$ref": "#/components/schemas/LegalAddressResponse"
+     },
+     "legalCompanyId": {
+      "description": "Legal company identifier of the supplier.",
+      "nullable": true,
+      "type": "string"
+     },
+     "legalName": {
+      "description": "Legal name of the supplier.",
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "description": "Display name of the supplier.",
+      "nullable": true,
+      "type": "string"
+     },
+     "primaryContact": {
+      "$ref": "#/components/schemas/ContactResponse"
+     },
+     "status": {
+      "description": "Lifecycle status of the supplier.",
+      "nullable": true,
+      "type": "string"
+     },
+     "tags": {
+      "description": "Free-form tags associated with the supplier.",
+      "items": {
+       "type": "string"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "thirdPartyCode": {
+      "description": "Third-party accounting code of the supplier.",
+      "nullable": true,
+      "type": "string"
+     },
+     "updatedAt": {
+      "description": "Date and time at which the supplier was last updated in Agicap.",
+      "format": "date-time",
+      "nullable": true,
+      "type": "string"
+     },
+     "vatCode": {
+      "description": "VAT code of the supplier.",
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "SupplierSyncErrorItem": {
+    "additionalProperties": false,
+    "properties": {
+     "erpId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "reason": {
+      "nullable": true,
+      "type": "string"
+     },
+     "rowNumber": {
+      "format": "int32",
+      "type": "integer"
+     }
+    },
+    "type": "object"
+   },
+   "SupplierSyncErrorsResponse": {
+    "additionalProperties": false,
+    "description": "Cursor-paginated row-by-row errors of a previous supplier synchronization.",
+    "properties": {
+     "cursor": {
+      "$ref": "#/components/schemas/CursorDto"
+     },
+     "items": {
+      "description": "Errors of the current page, one entry per failed row.",
+      "items": {
+       "$ref": "#/components/schemas/SupplierSyncErrorItem"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "status": {
+      "description": "Overall progress status of the synchronization.",
+      "example": "CompletedWithErrors",
+      "nullable": true,
+      "type": "string"
+     },
+     "syncId": {
+      "description": "Identifier of the synchronization the errors belong to.",
+      "example": "1660e6c3-54fd-402f-be8e-7748efd94791",
+      "format": "uuid",
+      "type": "string"
+     },
+     "totalCount": {
+      "description": "Total number of errors across all pages.",
+      "example": 3,
+      "format": "int32",
+      "type": "integer"
+     }
+    },
+    "type": "object"
+   },
+   "SupplierSyncItem": {
+    "additionalProperties": false,
+    "description": "A single supplier to create, update or delete within a synchronization batch.",
+    "properties": {
+     "contacts": {
+      "description": "Contacts of the supplier.",
+      "items": {
+       "$ref": "#/components/schemas/ContactDto"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "erpId": {
+      "description": "Identifier of the supplier in the client's ERP. Used to match the supplier on subsequent syncs.",
+      "nullable": true,
+      "type": "string"
+     },
+     "language": {
+      "description": "Preferred language of the supplier (ISO 639-1 code).",
+      "nullable": true,
+      "type": "string"
+     },
+     "legalAddress": {
+      "$ref": "#/components/schemas/LegalAddressDto"
+     },
+     "legalCompanyId": {
+      "description": "Legal company identifier of the supplier (e.g. SIREN / VAT-free registration number).",
+      "nullable": true,
+      "type": "string"
+     },
+     "legalName": {
+      "description": "Legal name of the supplier, when it differs from the display name.",
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "description": "Display name of the supplier.",
+      "nullable": true,
+      "type": "string"
+     },
+     "primaryContact": {
+      "$ref": "#/components/schemas/ContactDto"
+     },
+     "status": {
+      "description": "Lifecycle status of the supplier as pushed by the ERP.",
+      "nullable": true,
+      "type": "string"
+     },
+     "tags": {
+      "description": "Free-form tags associated with the supplier.",
+      "items": {
+       "type": "string"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "thirdPartyCode": {
+      "description": "Third-party accounting code of the supplier.",
+      "nullable": true,
+      "type": "string"
+     },
+     "vatCode": {
+      "description": "VAT code of the supplier.",
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "SyncSuppliersRequest": {
+    "additionalProperties": false,
+    "description": "Payload of a supplier synchronization batch.",
+    "properties": {
+     "suppliers": {
+      "description": "Suppliers to create, update or delete in this batch (up to 1000 items).",
+      "items": {
+       "$ref": "#/components/schemas/SupplierSyncItem"
+      },
+      "nullable": true,
+      "type": "array"
+     }
+    },
+    "required": [
+     "suppliers"
+    ],
+    "type": "object"
+   },
+   "SyncSuppliersResponse": {
+    "additionalProperties": false,
+    "description": "Result of a supplier synchronization batch.",
+    "properties": {
+     "syncId": {
+      "description": "Identifier of the synchronization, used to fetch its row-by-row errors.",
+      "example": "1660e6c3-54fd-402f-be8e-7748efd94791",
+      "format": "uuid",
+      "type": "string"
+     }
+    },
+    "type": "object"
+   }
+  },
+  "securitySchemes": {
+   "bearerAuth": {
+    "bearerFormat": "OPAQUE",
+    "scheme": "bearer",
+    "type": "http"
+   },
+   "bearer_client_credentials": {
+    "description": "Client credentials: bearer",
+    "flows": {
+     "clientCredentials": {
+      "scopes": {
+       "agicap:public-api": "",
+       "public-api:manage-suppliers": ""
+      },
+      "tokenUrl": "https://myaccount.agicap.com/connect/token"
+     }
+    },
+    "type": "oauth2"
+   }
+  }
+ },
+ "info": {
+  "contact": {},
+  "description": "# Introduction\n\nWelcome to the Agicap Supplier API documentation. This API is designed to help you synchronise your supplier referential from a third-party source of truth into Agicap.\n\n### Suppliers overview\n\nA **supplier** represents the business entity that issues invoices to your company — a service provider, contractor, or any third party you purchase from. It carries the supplier's identity (legal name, legal ID, address, contacts) and serves as the reference object for supplier invoice management and pre-accounting workflows.\n\nSuppliers are **distinct from beneficiaries**. A beneficiary represents a bank account to which a payment is sent. The same supplier may have several beneficiaries (multiple bank accounts), and a single beneficiary may be shared across suppliers (e.g. a factoring company collecting on behalf of multiple suppliers). To synchronise beneficiaries and link them to their suppliers, refer to the Agicap Payment API documentation.\n\n### Use case covered by this API\n\n#### Synchronise your supplier referential from your ERP\n\nAgicap provides a supplier referential that enables finance teams to centralise supplier master data, and use it for their P2P workflow. If your source of truth lives in a third-party system (ERP, procurement tool, accounting software), this API lets you push your supplier data into Agicap and keep it in sync.\n\nThe synchronisation endpoint lets you bulk-upsert your full supplier list in a single call. The sync key is the **supplier identifier in your ERP** (`erpId`): if a supplier already exists for a given `erpId`, it is updated rather than duplicated; otherwise a new supplier is created. Suppliers absent from the synchronisation payload are automatically deleted from Agicap.\n\n**Linking suppliers to beneficiaries** — in Agicap, a supplier and its beneficiaries are two distinct objects. Linking them is what enables the full P2P workflow: supplier invoice management, payment preparation and execution, and pre-accounting rely on knowing which bank account belongs to which supplier. The link is established at beneficiary sync time via the `supplierErpId` field. The recommended call order is therefore:\n\n1. Sync suppliers first using this API.\n2. Sync beneficiaries and establish the links using the Agicap Payment API — refer to its documentation for details.\n\n### Prerequisites for using this API\n\n**Activate the right module.** You need to activate the Accounts Payable module on your entity. Contact your Account Manager to activate the appropriate solution depending on your needs.\n\n### Authentication\n\nTo call this API, you need API credentials with a specific scope. Each route in the Agicap Supplier API documentation will specify the required scope.\n\nSteps to obtain the right scope for your credentials:\n\n1. **Generate API Credentials.** Follow the [Authentication guidelines](https://api.agicap.com/guides/authentication) to generate your API credentials.\n2. **Select the Required Scope.** Ensure you select the necessary scope when generating these credentials.\n3. **Generate your Access Token.** Use the Authentication API to generate your access token. Be sure to specify the required scope in your request.\n4. **Use the Authentication Token.** Include this authentication token in your requests to the Supplier API.\n\nThis documentation aims to guide you through the process of integrating and using the Agicap Supplier API effectively. If you have any questions or need further assistance, feel free to reach out to our support team.\n",
+  "title": "Suppliers",
+  "version": "v1"
+ },
+ "openapi": "3.0.0",
+ "paths": {
+  "/public/suppliers/v1/entities/{entityId}": {
+   "get": {
+    "description": "Returns the suppliers of an entity using cursor-based pagination, so ERP Connectivity can\ndiff its catalog against Agicap. Pass the nextCursor of a previous page to fetch the next one.\nUse the optional erpId filter to look up a single supplier.",
+    "operationId": "2_Suppliers_List",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier.",
+      "example": 123456,
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Optional filter on a single ERP identifier.",
+      "in": "query",
+      "name": "erpId",
+      "schema": {
+       "type": "string"
+      }
+     },
+     {
+      "description": "Opaque cursor returned as nextCursor by the previous page.",
+      "in": "query",
+      "name": "cursor",
+      "schema": {
+       "type": "string"
+      }
+     },
+     {
+      "description": "Maximum number of suppliers per page (1 to 1000, default 1000).",
+      "example": 1000,
+      "in": "query",
+      "name": "limit",
+      "schema": {
+       "default": 1000,
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ListSuppliersResponse"
+        }
+       }
+      },
+      "description": "Your request has been successfully processed."
+     },
+     "400": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "Your request is invalid."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "List the suppliers of an entity",
+    "tags": [
+     "Suppliers"
+    ]
+   }
+  },
+  "/public/suppliers/v1/entities/{entityId}/sync": {
+   "post": {
+    "description": "Pushes up to 1000 suppliers (create / update / delete) for an entity in a single call.\nProcessing is synchronous and returns a syncId usable to fetch the row-by-row errors.\nIf the same erpId appears more than once in a batch, all of its occurrences are rejected and reported as row errors.",
+    "operationId": "1_Suppliers_Sync",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier.",
+      "example": 123456,
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/*+json": {
+       "schema": {
+        "$ref": "#/components/schemas/SyncSuppliersRequest"
+       }
+      },
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SyncSuppliersRequest"
+       }
+      },
+      "text/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SyncSuppliersRequest"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SyncSuppliersResponse"
+        }
+       }
+      },
+      "description": "Your request has been successfully processed."
+     },
+     "400": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "Your request is invalid."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api",
+       "public-api:manage-suppliers"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Synchronize a batch of suppliers",
+    "tags": [
+     "Suppliers"
+    ]
+   }
+  },
+  "/public/suppliers/v1/entities/{entityId}/sync/{syncId}": {
+   "get": {
+    "description": "Returns the row-by-row errors of a previous synchronization, paginated.\nThe syncId is the one returned by the synchronize endpoint.",
+    "operationId": "3_Suppliers_SyncErrors",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier.",
+      "example": 123456,
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Synchronization identifier returned by the synchronize endpoint.",
+      "example": "1660e6c3-54fd-402f-be8e-7748efd94791",
+      "in": "path",
+      "name": "syncId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     },
+     {
+      "description": "Opaque cursor returned as cursor.after by the previous page. Omit to fetch the first page.",
+      "in": "query",
+      "name": "after",
+      "schema": {
+       "type": "string"
+      }
+     },
+     {
+      "description": "Page size (1 to 200, default 50).",
+      "example": 50,
+      "in": "query",
+      "name": "size",
+      "schema": {
+       "default": 50,
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SupplierSyncErrorsResponse"
+        }
+       }
+      },
+      "description": "Your request has been successfully processed."
+     },
+     "400": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "Your request is invalid."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api",
+       "public-api:manage-suppliers"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Get the synchronization errors of a batch",
+    "tags": [
+     "Suppliers"
+    ]
+   }
+  }
+ },
+ "servers": [
+  {
+   "url": "https://api.agicap.com"
+  },
+  {
+   "url": "https://api.agicap.internal"
+  }
+ ]
+}

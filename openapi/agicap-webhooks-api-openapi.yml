@@ -1,0 +1,256 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports webhooks API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: webhooks
+paths:
+  /public/events/v1/webhooks:
+    post:
+      description: Register a new webhook for the authenticated organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWebhookRequest'
+        required: true
+        x-originalParamName: webhook
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+          description: Created
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - OAuth2:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Create a webhook
+      tags:
+      - webhooks
+  /public/events/v1/webhooks/{id}:
+    delete:
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - OAuth2:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Delete a webhook
+      tags:
+      - webhooks
+    get:
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+          description: OK
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - OAuth2:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Get a webhook
+      tags:
+      - webhooks
+  /public/events/v1/webhooks/{id}/disable:
+    post:
+      description: Pauses delivery to this webhook. Idempotent on an already-disabled webhook (existing disabled_reason is preserved).
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '404':
+          description: Webhook not found
+        '409':
+          description: Webhook application is not active for the organization
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - OAuth2:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Disable a webhook
+      tags:
+      - webhooks
+  /public/events/v1/webhooks/{id}/enable:
+    post:
+      description: Re-enables a webhook that was previously disabled (manually, by the platform after repeated failures, or by org-wide deactivation). Idempotent on an already-active webhook.
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '404':
+          description: Webhook not found
+        '409':
+          description: Webhook application is not active for the organization
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - OAuth2:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Enable a webhook
+      tags:
+      - webhooks
+  /public/events/v1/webhooks/{id}/send-example:
+    post:
+      description: Delivers a synthetic example payload of the given event type to the webhook. Useful for integration validation.
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendExampleRequest'
+        required: true
+        x-originalParamName: request
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '404':
+          description: Webhook not found
+        '409':
+          description: Webhook application is not active for the organization
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - OAuth2:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Send a test event to the webhook
+      tags:
+      - webhooks
+components:
+  schemas:
+    WebhookResponse:
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        description:
+          type: string
+        eventTypes:
+          items:
+            type: string
+          type: array
+        id:
+          type: string
+        status:
+          enum:
+          - active
+          - disabled_by_organization
+          - disabled_manually
+          - disabled_for_errors
+          type: string
+        url:
+          type: string
+      type: object
+    CreateWebhookRequest:
+      properties:
+        description:
+          type: string
+        enabled:
+          default: false
+          description: When true the webhook is created in the active state, skipping the usual disabled_manually initial state.
+          type: boolean
+        eventTypes:
+          items:
+            type: string
+          type: array
+        secret:
+          description: Plain-text HMAC-SHA256 signing secret (minimum 24 characters). Keep it on your side to verify message signatures. Required at creation; rotate later via the dedicated rotate-secret endpoint.
+          example: my-plain-text-signing-secret-value
+          minLength: 24
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - url
+      - secret
+      type: object
+    SendExampleRequest:
+      properties:
+        eventType:
+          description: The event type to deliver as a synthetic example payload
+          type: string
+      required:
+      - eventType
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

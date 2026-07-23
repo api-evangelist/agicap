@@ -1,0 +1,637 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Analytical Plan API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Analytical Plan
+paths:
+  /public/chart-of-accounts/v1/entities/{entityId}/analytical-plan/axes:
+    get:
+      description: Returns all analytical axes and their codes for the given entity.
+      operationId: AnalyticalPlanPublicApi_GetAnalyticalAxes
+      parameters:
+      - description: Agicap entity identifier
+        example: 54
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                axes:
+                - codes:
+                  - code: CC001
+                    description: Marketing department
+                    id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                  - code: CC002
+                    description: Engineering department
+                    id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  name: Cost Center
+                - codes:
+                  - code: PRJ01
+                    description: Website redesign
+                    id: 5fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                  id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  name: Project
+              schema:
+                $ref: '#/components/schemas/AnalyticalAxesResponsePublicApiDto'
+            text/json:
+              example:
+                axes:
+                - codes:
+                  - code: CC001
+                    description: Marketing department
+                    id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                  - code: CC002
+                    description: Engineering department
+                    id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  name: Cost Center
+                - codes:
+                  - code: PRJ01
+                    description: Website redesign
+                    id: 5fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                  id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  name: Project
+              schema:
+                $ref: '#/components/schemas/AnalyticalAxesResponsePublicApiDto'
+            text/plain:
+              example:
+                axes:
+                - codes:
+                  - code: CC001
+                    description: Marketing department
+                    id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                  - code: CC002
+                    description: Engineering department
+                    id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  name: Cost Center
+                - codes:
+                  - code: PRJ01
+                    description: Website redesign
+                    id: 5fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                  id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  name: Project
+              schema:
+                $ref: '#/components/schemas/AnalyticalAxesResponsePublicApiDto'
+          description: OK
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Get the analytical plan axes for an entity.
+      tags:
+      - Analytical Plan
+  /public/chart-of-accounts/v1/entities/{entityId}/analytical-plan/axes/bulk-create:
+    post:
+      description: 'Create multiple analytical axes with their codes in a single call.
+
+
+        Each axe is processed independently: if one fails, the others are still created.
+
+
+        The response contains a per-item report indicating success or failure for each axe.'
+      operationId: AnalyticalPlanPublicApi_BulkCreate
+      parameters:
+      - description: Agicap entity identifier
+        example: 54
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/*+json:
+            example:
+              analyticalAxes:
+              - codes:
+                - code: CC001
+                  description: Marketing department
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                name: Cost Center
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/BulkCreateAnalyticalAxesPublicApiRequest'
+              description: Request to bulk create analytical axes.
+          application/json:
+            example:
+              analyticalAxes:
+              - codes:
+                - code: CC001
+                  description: Marketing department
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                name: Cost Center
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/BulkCreateAnalyticalAxesPublicApiRequest'
+              description: Request to bulk create analytical axes.
+          text/json:
+            example:
+              analyticalAxes:
+              - codes:
+                - code: CC001
+                  description: Marketing department
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                name: Cost Center
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/BulkCreateAnalyticalAxesPublicApiRequest'
+              description: Request to bulk create analytical axes.
+        description: Request body containing the analytical axes to create
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                results:
+                - errorMessage: null
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: true
+                - errorMessage: Failed to create analytical axe 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: false
+              schema:
+                $ref: '#/components/schemas/BulkAnalyticalAxesReportPublicApiDto'
+            text/json:
+              example:
+                results:
+                - errorMessage: null
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: true
+                - errorMessage: Failed to create analytical axe 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: false
+              schema:
+                $ref: '#/components/schemas/BulkAnalyticalAxesReportPublicApiDto'
+            text/plain:
+              example:
+                results:
+                - errorMessage: null
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: true
+                - errorMessage: Failed to create analytical axe 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: false
+              schema:
+                $ref: '#/components/schemas/BulkAnalyticalAxesReportPublicApiDto'
+          description: OK
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Bulk create analytical axes for an entity.
+      tags:
+      - Analytical Plan
+  /public/chart-of-accounts/v1/entities/{entityId}/analytical-plan/axes/bulk-delete:
+    post:
+      description: 'Delete multiple analytical axes in a single call.
+
+
+        Each axe is processed independently: if one fails, the others are still deleted.
+
+
+        The response contains a per-item report indicating success or failure for each axe.'
+      operationId: AnalyticalPlanPublicApi_BulkDelete
+      parameters:
+      - description: Agicap entity identifier
+        example: 54
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/*+json:
+            example:
+              analyticalAxeIds:
+              - 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+              - 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/BulkDeleteAnalyticalAxesPublicApiRequest'
+              description: Request to bulk delete analytical axes.
+          application/json:
+            example:
+              analyticalAxeIds:
+              - 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+              - 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/BulkDeleteAnalyticalAxesPublicApiRequest'
+              description: Request to bulk delete analytical axes.
+          text/json:
+            example:
+              analyticalAxeIds:
+              - 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+              - 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/BulkDeleteAnalyticalAxesPublicApiRequest'
+              description: Request to bulk delete analytical axes.
+        description: Request body containing the analytical axe ids to delete
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                results:
+                - errorMessage: null
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: true
+                - errorMessage: Failed to create analytical axe 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: false
+              schema:
+                $ref: '#/components/schemas/BulkAnalyticalAxesReportPublicApiDto'
+            text/json:
+              example:
+                results:
+                - errorMessage: null
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: true
+                - errorMessage: Failed to create analytical axe 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: false
+              schema:
+                $ref: '#/components/schemas/BulkAnalyticalAxesReportPublicApiDto'
+            text/plain:
+              example:
+                results:
+                - errorMessage: null
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: true
+                - errorMessage: Failed to create analytical axe 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: false
+              schema:
+                $ref: '#/components/schemas/BulkAnalyticalAxesReportPublicApiDto'
+          description: OK
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Bulk delete analytical axes for an entity.
+      tags:
+      - Analytical Plan
+  /public/chart-of-accounts/v1/entities/{entityId}/analytical-plan/axes/bulk-update:
+    put:
+      description: 'Update multiple analytical axes and their codes in a single call.
+
+
+        Each axe is processed independently: if one fails, the others are still updated.
+
+
+        The response contains a per-item report indicating success or failure for each axe.'
+      operationId: AnalyticalPlanPublicApi_BulkUpdate
+      parameters:
+      - description: Agicap entity identifier
+        example: 54
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/*+json:
+            example:
+              analyticalAxes:
+              - codes:
+                - code: CC001
+                  description: Marketing and Sales department
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                name: Cost Center Updated
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/BulkUpdateAnalyticalAxesPublicApiRequest'
+              description: Request to bulk update analytical axes.
+          application/json:
+            example:
+              analyticalAxes:
+              - codes:
+                - code: CC001
+                  description: Marketing and Sales department
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                name: Cost Center Updated
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/BulkUpdateAnalyticalAxesPublicApiRequest'
+              description: Request to bulk update analytical axes.
+          text/json:
+            example:
+              analyticalAxes:
+              - codes:
+                - code: CC001
+                  description: Marketing and Sales department
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f17
+                id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                name: Cost Center Updated
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/BulkUpdateAnalyticalAxesPublicApiRequest'
+              description: Request to bulk update analytical axes.
+        description: Request body containing the analytical axes to update
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                results:
+                - errorMessage: null
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: true
+                - errorMessage: Failed to create analytical axe 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: false
+              schema:
+                $ref: '#/components/schemas/BulkAnalyticalAxesReportPublicApiDto'
+            text/json:
+              example:
+                results:
+                - errorMessage: null
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: true
+                - errorMessage: Failed to create analytical axe 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: false
+              schema:
+                $ref: '#/components/schemas/BulkAnalyticalAxesReportPublicApiDto'
+            text/plain:
+              example:
+                results:
+                - errorMessage: null
+                  id: 3fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: true
+                - errorMessage: Failed to create analytical axe 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  id: 4fa54182-a6e2-4f36-a9d7-1d2016dd0f16
+                  success: false
+              schema:
+                $ref: '#/components/schemas/BulkAnalyticalAxesReportPublicApiDto'
+          description: OK
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Bulk update analytical axes for an entity.
+      tags:
+      - Analytical Plan
+components:
+  schemas:
+    AnalyticalAxeResponsePublicApiDto:
+      additionalProperties: false
+      description: An analytical axe with its codes.
+      properties:
+        codes:
+          description: The list of analytical codes for this axe.
+          items:
+            $ref: '#/components/schemas/AnalyticalCodeResponsePublicApiDto'
+          type: array
+        id:
+          description: The unique identifier of the analytical axe.
+          format: uuid
+          type: string
+        name:
+          description: The name of the analytical axe.
+          type: string
+      required:
+      - codes
+      - id
+      - name
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    BulkUpdateAnalyticalAxesPublicApiRequest:
+      additionalProperties: false
+      description: Request to bulk update analytical axes.
+      properties:
+        analyticalAxes:
+          description: The list of analytical axes to update.
+          items:
+            $ref: '#/components/schemas/AnalyticalAxePublicApiDto'
+          type: array
+      required:
+      - analyticalAxes
+      type: object
+    AnalyticalAxesResponsePublicApiDto:
+      additionalProperties: false
+      description: Response containing the analytical plan axes for an entity.
+      properties:
+        axes:
+          description: The list of analytical axes.
+          items:
+            $ref: '#/components/schemas/AnalyticalAxeResponsePublicApiDto'
+          type: array
+      required:
+      - axes
+      type: object
+    BulkCreateAnalyticalAxesPublicApiRequest:
+      additionalProperties: false
+      description: Request to bulk create analytical axes.
+      properties:
+        analyticalAxes:
+          description: The list of analytical axes to create.
+          items:
+            $ref: '#/components/schemas/AnalyticalAxePublicApiDto'
+          type: array
+      required:
+      - analyticalAxes
+      type: object
+    AnalyticalCodeResponsePublicApiDto:
+      additionalProperties: false
+      description: An analytical code belonging to an axe.
+      properties:
+        code:
+          description: The code value.
+          type: string
+        description:
+          description: The description of the code.
+          nullable: true
+          type: string
+        id:
+          description: The unique identifier of the analytical code.
+          format: uuid
+          type: string
+      required:
+      - code
+      - id
+      type: object
+    AnalyticalAxePublicApiDto:
+      additionalProperties: false
+      description: An analytical axe specification for create or update operations.
+      properties:
+        codes:
+          description: The list of analytical codes for this axe.
+          items:
+            $ref: '#/components/schemas/AnalyticalCodePublicApiDto'
+          type: array
+        id:
+          description: The unique identifier of the analytical axe.
+          format: uuid
+          type: string
+        name:
+          description: The name of the analytical axe.
+          type: string
+      required:
+      - codes
+      - id
+      - name
+      type: object
+    BulkDeleteAnalyticalAxesPublicApiRequest:
+      additionalProperties: false
+      description: Request to bulk delete analytical axes.
+      properties:
+        analyticalAxeIds:
+          description: The list of analytical axe identifiers to delete.
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - analyticalAxeIds
+      type: object
+    AnalyticalAxeOperationResultPublicApiDto:
+      additionalProperties: false
+      description: Result of a single analytical axe operation within a bulk operation.
+      properties:
+        errorMessage:
+          description: The error message when the operation failed, null when successful.
+          nullable: true
+          type: string
+        id:
+          description: The identifier of the analytical axe that was processed.
+          format: uuid
+          type: string
+        success:
+          description: Whether the operation succeeded for this axe.
+          type: boolean
+      required:
+      - id
+      - success
+      type: object
+    AnalyticalCodePublicApiDto:
+      additionalProperties: false
+      description: An analytical code specification for create or update operations.
+      properties:
+        code:
+          description: The code value.
+          type: string
+        description:
+          description: The description of the code.
+          nullable: true
+          type: string
+        id:
+          description: The unique identifier of the analytical code.
+          format: uuid
+          type: string
+      required:
+      - code
+      - id
+      type: object
+    BulkAnalyticalAxesReportPublicApiDto:
+      additionalProperties: false
+      description: Report of a bulk operation on analytical axes.
+      properties:
+        results:
+          description: The per-item results of the bulk operation.
+          items:
+            $ref: '#/components/schemas/AnalyticalAxeOperationResultPublicApiDto'
+          type: array
+      required:
+      - results
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

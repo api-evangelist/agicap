@@ -1,0 +1,114 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Cookies API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Cookies
+paths:
+  /public/httpbin/v1/cookies:
+    get:
+      responses:
+        '200':
+          description: Set cookies.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns cookie data.
+      tags:
+      - Cookies
+  /public/httpbin/v1/cookies/delete:
+    get:
+      parameters:
+      - in: query
+        name: freeform
+        schema:
+          allowEmptyValue: true
+      responses:
+        '200':
+          description: Redirect to cookie list
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Deletes cookie(s) as provided by the query string and redirects to cookie list.
+      tags:
+      - Cookies
+  /public/httpbin/v1/cookies/set:
+    get:
+      parameters:
+      - in: query
+        name: freeform
+        schema:
+          allowEmptyValue: true
+      responses:
+        '200':
+          description: Redirect to cookie list
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Sets cookie(s) as provided by the query string and redirects to cookie list.
+      tags:
+      - Cookies
+  /public/httpbin/v1/cookies/set/{name}/{value}:
+    get:
+      parameters:
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Set cookies and redirects to cookie list.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Sets a cookie and redirects to cookie list.
+      tags:
+      - Cookies
+components:
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

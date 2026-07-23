@@ -1,0 +1,43 @@
+generated: '2026-07-17'
+method: searched
+spec_type: Webhooks
+source: openapi/agicap-events-v1-openapi.json
+docs: https://api.agicap.com/api-details/events-v1
+summary: >-
+  Agicap exposes a Webhooks (Events) API that lets integrators subscribe HTTPS endpoints
+  to events raised across Agicap products. There is no published AsyncAPI document; the
+  webhook surface is defined by the events-v1 OpenAPI management API. Deliveries are signed
+  with an HMAC-SHA256 secret (minimum 24 characters) that the subscriber supplies at
+  creation and can rotate.
+lifecycle: beta
+delivery:
+  transport: https-webhook
+  signature: HMAC-SHA256
+  signature_note: >-
+    Subscriber provides a plain-text signing secret (>= 24 chars) at webhook creation
+    and verifies message signatures on their side; secret is rotatable.
+subscription_model:
+  event_types: >-
+    Subscriptions target one or more event types (eventTypes string array). The concrete
+    event-type catalog is not enumerated in the OpenAPI; a synthetic example payload for a
+    given eventType can be requested via the send-example endpoint.
+  webhook_states: [active, disabled_manually, disabled_by_organization, disabled_for_errors]
+operations:
+  - method: POST
+    path: /public/events/v1/webhooks
+    summary: Create a webhook subscription
+  - method: GET
+    path: /public/events/v1/webhooks/{id}
+    summary: Get a webhook
+  - method: DELETE
+    path: /public/events/v1/webhooks/{id}
+    summary: Delete a webhook
+  - method: POST
+    path: /public/events/v1/webhooks/{id}/enable
+    summary: Enable a webhook
+  - method: POST
+    path: /public/events/v1/webhooks/{id}/disable
+    summary: Disable a webhook
+  - method: POST
+    path: /public/events/v1/webhooks/{id}/send-example
+    summary: Send a synthetic test event to the webhook

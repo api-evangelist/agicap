@@ -1,0 +1,728 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Connections API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Connections
+paths:
+  /public/banking-documents/v1/entities/{entityId}/connections:
+    get:
+      operationId: Connections_ListConnections
+      parameters:
+      - description: Agicap entity identifier
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Type of the connection. Possible values are PUBLIC_API, SWIFT, EBICS, EDITRAN, KONFIPAY
+        in: query
+        name: type
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: PageNumber
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: PageSize
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSummaryPagedResult'
+          description: Your request has been successfully processed.
+        '400':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Your request is invalid.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: List connections
+      tags:
+      - Connections
+    post:
+      operationId: Connections_CreateConnection
+      parameters:
+      - description: Agicap entity identifier
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ConnectionToCreate'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionToCreate'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionToCreate'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSummary'
+          description: Your entity has been created.
+        '400':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Your request is invalid.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Create a connection
+      tags:
+      - Connections
+  /public/banking-documents/v1/entities/{entityId}/connections/{connectionId}:
+    delete:
+      operationId: Connections_DisableConnection
+      parameters:
+      - description: Agicap entity identifier
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Connection identifier
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '204':
+          content:
+            text/plain: {}
+          description: The connection has been successfully disabled
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '404':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: The targeted entity has not been found.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Delete a connection
+      tags:
+      - Connections
+  /public/business-documents/v1/entities/{entityid}/connections:
+    get:
+      operationId: Connection_GetConnections
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+              - entityId: Entity Id
+                id: 13e63366-8cd3-4c07-967a-c683163808a2
+                integrationName: Integration Name
+                name: Connection Name
+                source: Connection Source
+              schema:
+                items:
+                  $ref: '#/components/schemas/ConnectionDto'
+                type: array
+          description: Connections
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Get connections
+      tags:
+      - Connections
+    post:
+      operationId: Connection_CreateConnection
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            example:
+              integrationName: Integration Name
+              name: Connection Name
+              source: External integrator - IntegratorCompany
+            schema:
+              $ref: '#/components/schemas/CreateConnectionDto'
+          application/json:
+            example:
+              integrationName: Integration Name
+              name: Connection Name
+              source: External integrator - IntegratorCompany
+            schema:
+              $ref: '#/components/schemas/CreateConnectionDto'
+          text/json:
+            example:
+              integrationName: Integration Name
+              name: Connection Name
+              source: External integrator - IntegratorCompany
+            schema:
+              $ref: '#/components/schemas/CreateConnectionDto'
+      responses:
+        '201':
+          content:
+            text/plain: {}
+          description: connectionId
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Create a connection
+      tags:
+      - Connections
+  /public/business-documents/v1/entities/{entityid}/connections/{connectionid}:
+    get:
+      operationId: Connection_GetConnection
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionDto'
+          description: Connection
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Get connection
+      tags:
+      - Connections
+  /public/business-documents/v2/entities/{entityid}/connections:
+    get:
+      operationId: Connection_GetConnections
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+              - entityId: Entity Id
+                id: 13e63366-8cd3-4c07-967a-c683163808a2
+                integrationName: Integration Name
+                name: Connection Name
+                source: Connection Source
+              schema:
+                items:
+                  $ref: '#/components/schemas/ConnectionDto'
+                type: array
+          description: Connections
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Get connections
+      tags:
+      - Connections
+    post:
+      operationId: Connection_CreateConnection
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            example:
+              integrationName: Integration Name
+              name: Connection Name
+              source: External integrator - IntegratorCompany
+            schema:
+              $ref: '#/components/schemas/CreateConnectionDto'
+          application/json:
+            example:
+              integrationName: Integration Name
+              name: Connection Name
+              source: External integrator - IntegratorCompany
+            schema:
+              $ref: '#/components/schemas/CreateConnectionDto'
+          text/json:
+            example:
+              integrationName: Integration Name
+              name: Connection Name
+              source: External integrator - IntegratorCompany
+            schema:
+              $ref: '#/components/schemas/CreateConnectionDto'
+      responses:
+        '201':
+          content:
+            text/plain: {}
+          description: connectionId
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Create a connection
+      tags:
+      - Connections
+  /public/business-documents/v2/entities/{entityid}/connections/{connectionid}:
+    get:
+      operationId: Connection_GetConnection
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionDto'
+          description: Connection
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Get connection
+      tags:
+      - Connections
+components:
+  schemas:
+    CreateConnectionDto:
+      additionalProperties: false
+      properties:
+        integrationName:
+          description: Name of the data source
+          nullable: true
+          type: string
+        name:
+          description: Name of the connection
+          nullable: true
+          type: string
+        source:
+          description: 'Enables the identification of the team responsible for developing the connector. This field helps track which party developed the integration, providing transparency for troubleshooting, support, and future updates.
+
+            - If you are an external integrator, put the "External integrator - `{name_of_your_company}`"
+
+            - If you are the user’s in-house development team, put “Internal  team”'
+          nullable: true
+          type: string
+      title: CreateConnection
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    ConnectionToCreate:
+      additionalProperties: false
+      properties:
+        Name:
+          description: Connection name
+          type: string
+      type: object
+    ConnectionDto:
+      additionalProperties: false
+      properties:
+        entityId:
+          description: Agicap entity unique identifier
+          type: string
+        id:
+          description: Connection unique identifier
+          format: uuid
+          type: string
+        integrationName:
+          description: 'Name of the data source. Example : Sage100, SAP B1'
+          nullable: true
+          type: string
+        name:
+          description: Name of the connection
+          type: string
+        source:
+          description: 'Enables the identification of the team responsible for developing the connector. This field helps track which party developed the integration, providing transparency for troubleshooting, support, and future updates.
+
+            - If you are an external integrator, put the "External integrator - `{name_of_your_company}`"
+
+            - If you are the user’s in-house development team, put “Internal  team”'
+          nullable: true
+          type: string
+      title: Connection
+      type: object
+    ConnectionSummaryPagedResult:
+      additionalProperties: false
+      properties:
+        Items:
+          items:
+            $ref: '#/components/schemas/ConnectionSummary'
+          nullable: true
+          type: array
+        Pagination:
+          $ref: '#/components/schemas/Pagination'
+      type: object
+    Pagination:
+      additionalProperties: false
+      properties:
+        CurrentPageItemsCount:
+          format: int32
+          type: integer
+        CurrentPageNumber:
+          format: int32
+          type: integer
+        PageSize:
+          format: int32
+          type: integer
+        PagesCount:
+          format: int32
+          type: integer
+        TotalItemsCount:
+          format: int32
+          type: integer
+      type: object
+    ConnectionSummary:
+      additionalProperties: false
+      properties:
+        Id:
+          description: Connection identifier
+          format: uuid
+          type: string
+        Name:
+          description: Connection name
+          type: string
+        Type:
+          description: Type of the connection. Possible values are PUBLIC_API, SWIFT, EBICS, EDITRAN
+          type: string
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

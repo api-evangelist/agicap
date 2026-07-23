@@ -1,0 +1,768 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Import and delete API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Import and delete
+paths:
+  /public/chart-of-accounts/v1/entities/{entityId}/accounting-accounts/delete:
+    post:
+      description: You can only delete 1000 accounting accounts per call, if you want to delete more, you need to call this endpoint multiple times.
+      operationId: ChartOfAccountsPublicApi_DeleteAccountingAccounts
+      parameters:
+      - description: Agicap entity identifier
+        example: 54
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/*+json:
+            example:
+              accountingAccountNumbers:
+              - '411'
+              - '512'
+              - '412'
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/DeleteAccountingAccountsRequestPublicApiDto'
+          application/json:
+            example:
+              accountingAccountNumbers:
+              - '411'
+              - '512'
+              - '412'
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/DeleteAccountingAccountsRequestPublicApiDto'
+          text/json:
+            example:
+              accountingAccountNumbers:
+              - '411'
+              - '512'
+              - '412'
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/DeleteAccountingAccountsRequestPublicApiDto'
+        description: Request body containing the numbers identifying the accounting accounts to delete
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Delete the accounting accounts identified by their number.
+      tags:
+      - Import and delete
+  /public/chart-of-accounts/v1/entities/{entityId}/accounting-accounts/import/{importId}:
+    post:
+      description: "Create new accounting accounts asynchronously.\n\nAccounting accounts can only be of the following types : Bank, Client, Supplier, Expense, Product, Vat and Other.\n\nAccounting accounts with types not in the list above won't be created.\n<p>\n    Vat Rate is only relevant for Vat accounting accounts, and Vat Rate must be between 0 and 1 (example : 0.15 for 15%).\n    Tax Key is only relevant for Vat accounting accounts, and Tax Key must be under 300 characters.\n    If the Vat Rate is not provided, the existing rate is kept (if any), the behavior is the same for the Tax Key.\n</p>\nAccounting accounts import size is limited to 5000 per batch.\n\nAccounting account number is unique for an entity, if ever you re-import accounting account info that already exists in our system, we won't create a\nduplicate.\n\nThe response HttpStatus code will be different when calling multiple times with the same `importId`:\n\n- For the first call with an `importId`, a 202 (Accepted) response will be returned notifying that the import requested was taken into account.\n\n- A 200 (Ok) response will be returned for subsequent calls with the same `importId`.\n\nFor both status codes, the response body will contain import details, see the ImportResponse description for more information."
+      operationId: ChartOfAccountsPublicApi_ImportAccountingAccounts
+      parameters:
+      - description: Agicap entity identifier
+        example: 54
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: 'Unique ID of the import, provided by the caller. In case of network issue, use the same
+
+          unique ID to retry.'
+        example: 6dae0de9-48b7-4c3c-95b0-a9e00627b041
+        in: path
+        name: importId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            example:
+              accountingAccounts:
+              - accountingAccountName: AccountingAccountNameBank
+                accountingAccountNumber: AccountingAccountNumberBank
+                accountingAccountType: Bank
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameClient
+                accountingAccountNumber: AccountingAccountNumberClient
+                accountingAccountType: Client
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameSupplier
+                accountingAccountNumber: AccountingAccountNumberSupplier
+                accountingAccountType: Supplier
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameExpense
+                accountingAccountNumber: AccountingAccountNumberExpense
+                accountingAccountType: Expense
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameProduct
+                accountingAccountNumber: AccountingAccountNumberProduct
+                accountingAccountType: Product
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameVat
+                accountingAccountNumber: AccountingAccountNumberVat
+                accountingAccountType: Vat
+                externalId: null
+                taxKey: ATaxKey
+                vatRate: 0.2
+              - accountingAccountName: AccountingAccountNameOther
+                accountingAccountNumber: AccountingAccountNumberOther
+                accountingAccountType: Other
+                externalId: null
+                taxKey: null
+                vatRate: null
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ImportAccountingAccountsRequestDto'
+              description: Import accounting accounts request.
+          application/json:
+            example:
+              accountingAccounts:
+              - accountingAccountName: AccountingAccountNameBank
+                accountingAccountNumber: AccountingAccountNumberBank
+                accountingAccountType: Bank
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameClient
+                accountingAccountNumber: AccountingAccountNumberClient
+                accountingAccountType: Client
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameSupplier
+                accountingAccountNumber: AccountingAccountNumberSupplier
+                accountingAccountType: Supplier
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameExpense
+                accountingAccountNumber: AccountingAccountNumberExpense
+                accountingAccountType: Expense
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameProduct
+                accountingAccountNumber: AccountingAccountNumberProduct
+                accountingAccountType: Product
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameVat
+                accountingAccountNumber: AccountingAccountNumberVat
+                accountingAccountType: Vat
+                externalId: null
+                taxKey: ATaxKey
+                vatRate: 0.2
+              - accountingAccountName: AccountingAccountNameOther
+                accountingAccountNumber: AccountingAccountNumberOther
+                accountingAccountType: Other
+                externalId: null
+                taxKey: null
+                vatRate: null
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ImportAccountingAccountsRequestDto'
+              description: Import accounting accounts request.
+          text/json:
+            example:
+              accountingAccounts:
+              - accountingAccountName: AccountingAccountNameBank
+                accountingAccountNumber: AccountingAccountNumberBank
+                accountingAccountType: Bank
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameClient
+                accountingAccountNumber: AccountingAccountNumberClient
+                accountingAccountType: Client
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameSupplier
+                accountingAccountNumber: AccountingAccountNumberSupplier
+                accountingAccountType: Supplier
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameExpense
+                accountingAccountNumber: AccountingAccountNumberExpense
+                accountingAccountType: Expense
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameProduct
+                accountingAccountNumber: AccountingAccountNumberProduct
+                accountingAccountType: Product
+                externalId: null
+                taxKey: null
+                vatRate: null
+              - accountingAccountName: AccountingAccountNameVat
+                accountingAccountNumber: AccountingAccountNumberVat
+                accountingAccountType: Vat
+                externalId: null
+                taxKey: ATaxKey
+                vatRate: 0.2
+              - accountingAccountName: AccountingAccountNameOther
+                accountingAccountNumber: AccountingAccountNumberOther
+                accountingAccountType: Other
+                externalId: null
+                taxKey: null
+                vatRate: null
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ImportAccountingAccountsRequestDto'
+              description: Import accounting accounts request.
+        description: Request body containing the accounting accounts to create
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                failureReason: null
+                importDate: '2025-01-01T13:20:15Z'
+                importId: 6dae0de9-48b7-4c3c-95b0-a9e00627b041
+                importStatus: Done
+                importSummary:
+                  importedCount: 128
+                  notImportedCount: 12
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+            text/json:
+              example:
+                failureReason: null
+                importDate: '2025-01-01T13:20:15Z'
+                importId: 6dae0de9-48b7-4c3c-95b0-a9e00627b041
+                importStatus: Done
+                importSummary:
+                  importedCount: 128
+                  notImportedCount: 12
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+            text/plain:
+              example:
+                failureReason: null
+                importDate: '2025-01-01T13:20:15Z'
+                importId: 6dae0de9-48b7-4c3c-95b0-a9e00627b041
+                importStatus: Done
+                importSummary:
+                  importedCount: 128
+                  notImportedCount: 12
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+          description: OK
+        '202':
+          content:
+            application/json:
+              example:
+                failureReason: null
+                importDate: '2025-01-01T13:20:15Z'
+                importId: 6dae0de9-48b7-4c3c-95b0-a9e00627b041
+                importStatus: Started
+                importSummary: null
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+            text/json:
+              example:
+                failureReason: null
+                importDate: '2025-01-01T13:20:15Z'
+                importId: 6dae0de9-48b7-4c3c-95b0-a9e00627b041
+                importStatus: Started
+                importSummary: null
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+            text/plain:
+              example:
+                failureReason: null
+                importDate: '2025-01-01T13:20:15Z'
+                importId: 6dae0de9-48b7-4c3c-95b0-a9e00627b041
+                importStatus: Started
+                importSummary: null
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+          description: Accepted
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Import accounting accounts.
+      tags:
+      - Import and delete
+  /public/chart-of-accounts/v1/entities/{entityId}/third-parties/delete:
+    post:
+      description: You can only delete 1000 third parties per call, if you want to delete more, you need to call this endpoint multiple times.
+      operationId: ChartOfAccountsPublicApi_DeleteThirdParties
+      parameters:
+      - description: Agicap entity identifier
+        example: 54
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/*+json:
+            example:
+              thirdPartyCodes:
+              - Third party code 1
+              - Third party code 2
+              - Third party code 3
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/DeleteThirdPartiesRequestPublicApiDto'
+          application/json:
+            example:
+              thirdPartyCodes:
+              - Third party code 1
+              - Third party code 2
+              - Third party code 3
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/DeleteThirdPartiesRequestPublicApiDto'
+          text/json:
+            example:
+              thirdPartyCodes:
+              - Third party code 1
+              - Third party code 2
+              - Third party code 3
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/DeleteThirdPartiesRequestPublicApiDto'
+        description: Request body containing the codes identifying the third parties to delete
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Delete the third parties identified by their code.
+      tags:
+      - Import and delete
+  /public/chart-of-accounts/v1/entities/{entityId}/third-parties/import/{importId}:
+    post:
+      description: 'Create new third parties asynchronously.
+
+
+        Third Parties can only be created for accounting account types : Client, Supplier, Expense, Product, Vat and Other.
+
+
+        Third Parties import size is limited to 5000 per batch.
+
+
+        If you import a third party on an accounting account typed as “Bank” in Agicap, it won’t be created.
+
+
+        The accounting account must exist for third parties to be created, unknown accounting accounts won''t be created.
+
+
+        Third party code is unique for an accounting account, if ever you re-import third party info that already exists in our system, we won''t create a
+
+        duplicate.
+
+
+        The response HttpStatus code will be different when calling multiple times with the same `importId`:
+
+
+        - For the first call with an `importId`, a 202 (Accepted) response will be returned notifying that the import requested was taken into account.
+
+
+        - A 200 (Ok) response will be returned for subsequent calls with the same `importId`.
+
+
+        For both status codes, the response body will contain import details, see the ImportThirdPartiesResponse description for more information.'
+      operationId: ChartOfAccountsPublicApi_ImportThirdParties
+      parameters:
+      - description: Agicap entity identifier
+        example: 54
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: 'Unique ID of the import, provided by the caller. In case of network issue, use the same
+
+          unique ID to retry.'
+        example: 6dae0de9-48b7-4c3c-95b0-a9e00627b041
+        in: path
+        name: importId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            example:
+              thirdParties:
+              - accountingAccountNumber: AccountingAccount1
+                externalId: null
+                thirdPartyCode: ThirdPartyCode1
+                thirdPartyName: ThirdPartyName1
+              - accountingAccountNumber: AccountingAccount1
+                externalId: null
+                thirdPartyCode: ThirdPartyCode2
+                thirdPartyName: ThirdPartyName2
+              - accountingAccountNumber: AccountingAccount2
+                externalId: null
+                thirdPartyCode: ThirdPartyCode3
+                thirdPartyName: ThirdPartyName3
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ImportThirdPartiesRequest'
+              description: Import third parties request.
+          application/json:
+            example:
+              thirdParties:
+              - accountingAccountNumber: AccountingAccount1
+                externalId: null
+                thirdPartyCode: ThirdPartyCode1
+                thirdPartyName: ThirdPartyName1
+              - accountingAccountNumber: AccountingAccount1
+                externalId: null
+                thirdPartyCode: ThirdPartyCode2
+                thirdPartyName: ThirdPartyName2
+              - accountingAccountNumber: AccountingAccount2
+                externalId: null
+                thirdPartyCode: ThirdPartyCode3
+                thirdPartyName: ThirdPartyName3
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ImportThirdPartiesRequest'
+              description: Import third parties request.
+          text/json:
+            example:
+              thirdParties:
+              - accountingAccountNumber: AccountingAccount1
+                externalId: null
+                thirdPartyCode: ThirdPartyCode1
+                thirdPartyName: ThirdPartyName1
+              - accountingAccountNumber: AccountingAccount1
+                externalId: null
+                thirdPartyCode: ThirdPartyCode2
+                thirdPartyName: ThirdPartyName2
+              - accountingAccountNumber: AccountingAccount2
+                externalId: null
+                thirdPartyCode: ThirdPartyCode3
+                thirdPartyName: ThirdPartyName3
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ImportThirdPartiesRequest'
+              description: Import third parties request.
+        description: Request body containing the third parties to create
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                failureReason: null
+                importDate: '2025-01-01T13:20:15Z'
+                importId: 6dae0de9-48b7-4c3c-95b0-a9e00627b041
+                importStatus: Done
+                importSummary:
+                  importedCount: 128
+                  notImportedCount: 12
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+            text/json:
+              example:
+                failureReason: null
+                importDate: '2025-01-01T13:20:15Z'
+                importId: 6dae0de9-48b7-4c3c-95b0-a9e00627b041
+                importStatus: Done
+                importSummary:
+                  importedCount: 128
+                  notImportedCount: 12
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+            text/plain:
+              example:
+                failureReason: null
+                importDate: '2025-01-01T13:20:15Z'
+                importId: 6dae0de9-48b7-4c3c-95b0-a9e00627b041
+                importStatus: Done
+                importSummary:
+                  importedCount: 128
+                  notImportedCount: 12
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+          description: OK
+        '202':
+          content:
+            application/json:
+              example:
+                failureReason: null
+                importDate: '2025-01-01T13:20:15Z'
+                importId: 6dae0de9-48b7-4c3c-95b0-a9e00627b041
+                importStatus: Started
+                importSummary: null
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+            text/json:
+              example:
+                failureReason: null
+                importDate: '2025-01-01T13:20:15Z'
+                importId: 6dae0de9-48b7-4c3c-95b0-a9e00627b041
+                importStatus: Started
+                importSummary: null
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+            text/plain:
+              example:
+                failureReason: null
+                importDate: '2025-01-01T13:20:15Z'
+                importId: 6dae0de9-48b7-4c3c-95b0-a9e00627b041
+                importStatus: Started
+                importSummary: null
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+          description: Accepted
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Import Third Parties.
+      tags:
+      - Import and delete
+components:
+  schemas:
+    ImportResponse:
+      additionalProperties: false
+      description: Response of a third parties import with detailed information.
+      properties:
+        failureReason:
+          description: The failure description when the import failed (import status = Failed).
+          nullable: true
+          type: string
+        importDate:
+          description: The date at which the import was requested
+          type: string
+        importId:
+          description: The identifier of the import, provided by the caller.
+          format: uuid
+          type: string
+        importStatus:
+          description: 'The status of the import which can be any for the following values: Started, Done or Failed'
+          type: string
+        importSummary:
+          allOf:
+          - $ref: '#/components/schemas/ImportSummaryDto'
+          description: The summary of what was imported when the import is finished (import status = Done).
+          nullable: true
+      required:
+      - importDate
+      - importId
+      - importStatus
+      type: object
+    ImportAccountingAccountsRequestDto:
+      additionalProperties: false
+      description: Import accounting accounts request.
+      properties:
+        accountingAccounts:
+          items:
+            $ref: '#/components/schemas/AccountingAccountDto'
+          type: array
+      required:
+      - accountingAccounts
+      type: object
+    DeleteAccountingAccountsRequestPublicApiDto:
+      additionalProperties: false
+      properties:
+        accountingAccountNumbers:
+          items:
+            type: string
+          type: array
+      required:
+      - accountingAccountNumbers
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    DeleteThirdPartiesRequestPublicApiDto:
+      additionalProperties: false
+      properties:
+        thirdPartyCodes:
+          items:
+            type: string
+          type: array
+      required:
+      - thirdPartyCodes
+      type: object
+    ThirdPartyDto:
+      additionalProperties: false
+      description: A third party information.
+      properties:
+        accountingAccountNumber:
+          description: The accounting account number, should already exist.
+          type: string
+        externalId:
+          description: An optional ERP-specific external identifier for the third party (max 300 characters).
+          nullable: true
+          type: string
+        thirdPartyCode:
+          description: The code of the third party, should be unique in an accounting account.
+          type: string
+        thirdPartyName:
+          description: The name of the third party.
+          type: string
+      required:
+      - accountingAccountNumber
+      - thirdPartyCode
+      - thirdPartyName
+      type: object
+    AccountingAccountDto:
+      additionalProperties: false
+      description: An accounting account information.
+      properties:
+        accountingAccountName:
+          description: The accounting account name.
+          type: string
+        accountingAccountNumber:
+          description: The accounting account number, must be unique.
+          type: string
+        accountingAccountType:
+          description: 'The accounting account type which can be of the following values: Bank, Client, Supplier, Expense, Product, Vat and Other.'
+          nullable: true
+          type: string
+        externalId:
+          description: An optional ERP-specific external identifier for the accounting account (max 300 characters).
+          nullable: true
+          type: string
+        taxKey:
+          description: The accounting account Tax Key (only for Vat Account Type).
+          nullable: true
+          type: string
+        vatRate:
+          description: The accounting account Vat Rate (only for Vat Account Type).
+          format: double
+          nullable: true
+          type: number
+      required:
+      - accountingAccountName
+      - accountingAccountNumber
+      type: object
+    ImportThirdPartiesRequest:
+      additionalProperties: false
+      description: Import third parties request.
+      properties:
+        thirdParties:
+          items:
+            $ref: '#/components/schemas/ThirdPartyDto'
+          type: array
+      required:
+      - thirdParties
+      type: object
+    ImportSummaryDto:
+      additionalProperties: false
+      description: Summary of imported third parties when status is Done
+      properties:
+        importedCount:
+          description: Number of imported third parties (only available when status is Done)
+          format: int32
+          type: integer
+        notImportedCount:
+          description: Number of not imported third parties (only available when status is Done)
+          format: int32
+          type: integer
+      required:
+      - importedCount
+      - notImportedCount
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

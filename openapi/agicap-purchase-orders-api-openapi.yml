@@ -1,0 +1,1633 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Purchase Orders API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Purchase Orders
+paths:
+  /public/business-documents/v1/entities/{entityid}/connections/{connectionid}/purchase-orders:
+    get:
+      operationId: PurchaseOrder_GetPurchaseOrders
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      - description: Number of items per page (max 10 000)
+        in: query
+        name: pagesize
+        schema:
+          description: Number of items per page (max 10 000)
+          format: int32
+          type: integer
+      - description: Page index
+        in: query
+        name: pageindex
+        schema:
+          description: Page index
+          format: int32
+          type: integer
+      - description: Unique identifier of the document in the data source
+        explode: false
+        in: query
+        name: externalids
+        schema:
+          description: Unique identifier of the document in the data source
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Will return only documents updated **after** this date
+        in: query
+        name: updatedsince
+        schema:
+          description: Will return only documents updated **after** this date
+          format: date-time
+          type: string
+      - description: 'Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted'
+        explode: false
+        in: query
+        name: status
+        schema:
+          description: 'Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted'
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                items:
+                - amounts:
+                    remainingAmount: 80
+                    taxesAmount: 20
+                    totalAmount: 200
+                  counterParty:
+                    id: id
+                    name: counter party name
+                  currency: EUR
+                  deliveryDate: null
+                  dueDate: '2025-03-07T14:30:10+00:00'
+                  erpIdentificationFields:
+                    erp field 1: value 1
+                    erp field 2: value 2
+                  externalId: Some External Id
+                  id: d062b351-99ac-413a-9bf9-509498499a18
+                  issueDate: '2024-02-06T14:30:10+00:00'
+                  label: purchase order label
+                  metadata:
+                    additional field: additional info
+                  purchaseOrderNumber: '00341001'
+                  status: accepted
+                pagination:
+                  pageIndex: 1
+                  pageItemsCount: 7
+                  pageSize: 10
+                  totalItemsCount: 7
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderDtoPageDto'
+          description: Purchase orders
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Get purchase orders
+      tags:
+      - Purchase Orders
+    post:
+      operationId: PurchaseOrder_CreatePurchaseOrders
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            example:
+            - amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              currency: EUR
+              deliveryDate: null
+              dueDate: '2025-03-07T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: purchase order label
+              metadata:
+                additional field: additional info
+              purchaseOrderNumber: '00341001'
+              status: accepted
+            schema:
+              items:
+                $ref: '#/components/schemas/CreatePurchaseOrderDto'
+              type: array
+          application/json:
+            example:
+            - amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              currency: EUR
+              deliveryDate: null
+              dueDate: '2025-03-07T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: purchase order label
+              metadata:
+                additional field: additional info
+              purchaseOrderNumber: '00341001'
+              status: accepted
+            schema:
+              items:
+                $ref: '#/components/schemas/CreatePurchaseOrderDto'
+              type: array
+          text/json:
+            example:
+            - amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              currency: EUR
+              deliveryDate: null
+              dueDate: '2025-03-07T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: purchase order label
+              metadata:
+                additional field: additional info
+              purchaseOrderNumber: '00341001'
+              status: accepted
+            schema:
+              items:
+                $ref: '#/components/schemas/CreatePurchaseOrderDto'
+              type: array
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CreatedDocumentDto'
+                type: array
+          description: Ids of the created documents, associated with the provided external identifiers
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Create purchase orders
+      tags:
+      - Purchase Orders
+    put:
+      operationId: PurchaseOrder_UpdatePurchaseOrders
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdatePurchaseOrderDto'
+              type: array
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdatePurchaseOrderDto'
+              type: array
+          text/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdatePurchaseOrderDto'
+              type: array
+      responses:
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Update purchase orders
+      tags:
+      - Purchase Orders
+  /public/business-documents/v2/entities/{entityid}/connections/{connectionid}/purchase-orders:
+    get:
+      operationId: PurchaseOrder_GetPurchaseOrdersV2
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      - description: Number of items per page (max 10 000)
+        in: query
+        name: pagesize
+        schema:
+          description: Number of items per page (max 10 000)
+          format: int32
+          type: integer
+      - description: Page index
+        in: query
+        name: pageindex
+        schema:
+          description: Page index
+          format: int32
+          type: integer
+      - description: Unique identifier of the document in the data source
+        explode: false
+        in: query
+        name: externalids
+        schema:
+          description: Unique identifier of the document in the data source
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Will return only documents updated **after** this date
+        in: query
+        name: updatedsince
+        schema:
+          description: Will return only documents updated **after** this date
+          format: date-time
+          type: string
+      - description: 'Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted'
+        explode: false
+        in: query
+        name: status
+        schema:
+          description: 'Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted'
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderDtoV2PageDto'
+          description: Purchase orders
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Get purchase orders
+      tags:
+      - Purchase Orders
+    post:
+      operationId: PurchaseOrder_CreatePurchaseOrdersV2
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            example:
+            - amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              currency: EUR
+              deliveryDate: null
+              dueDate: '2025-03-07T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: purchase order label
+              lineItems: null
+              metadata:
+                additional field: additional info
+              purchaseOrderNumber: '00341001'
+              status: accepted
+            schema:
+              items:
+                $ref: '#/components/schemas/CreatePurchaseOrderDtoV2'
+              type: array
+          application/json:
+            example:
+            - amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              currency: EUR
+              deliveryDate: null
+              dueDate: '2025-03-07T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: purchase order label
+              lineItems: null
+              metadata:
+                additional field: additional info
+              purchaseOrderNumber: '00341001'
+              status: accepted
+            schema:
+              items:
+                $ref: '#/components/schemas/CreatePurchaseOrderDtoV2'
+              type: array
+          text/json:
+            example:
+            - amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              currency: EUR
+              deliveryDate: null
+              dueDate: '2025-03-07T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: purchase order label
+              lineItems: null
+              metadata:
+                additional field: additional info
+              purchaseOrderNumber: '00341001'
+              status: accepted
+            schema:
+              items:
+                $ref: '#/components/schemas/CreatePurchaseOrderDtoV2'
+              type: array
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CreatedDocumentDto'
+                type: array
+          description: Ids of the created documents, associated with the provided external identifiers
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Create purchase orders
+      tags:
+      - Purchase Orders
+    put:
+      operationId: PurchaseOrder_UpdatePurchaseOrdersV2
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            example:
+            - amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              currency: EUR
+              deliveryDate: null
+              dueDate: '2025-03-07T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              id: d062b351-99ac-413a-9bf9-509498499a18
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: purchase order label
+              lineItems: null
+              metadata:
+                additional field: additional info
+              purchaseOrderNumber: '00341001'
+              status: accepted
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdatePurchaseOrderDtoV2'
+              type: array
+          application/json:
+            example:
+            - amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              currency: EUR
+              deliveryDate: null
+              dueDate: '2025-03-07T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              id: d062b351-99ac-413a-9bf9-509498499a18
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: purchase order label
+              lineItems: null
+              metadata:
+                additional field: additional info
+              purchaseOrderNumber: '00341001'
+              status: accepted
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdatePurchaseOrderDtoV2'
+              type: array
+          text/json:
+            example:
+            - amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              currency: EUR
+              deliveryDate: null
+              dueDate: '2025-03-07T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              id: d062b351-99ac-413a-9bf9-509498499a18
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: purchase order label
+              lineItems: null
+              metadata:
+                additional field: additional info
+              purchaseOrderNumber: '00341001'
+              status: accepted
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdatePurchaseOrderDtoV2'
+              type: array
+      responses:
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Update purchase orders
+      tags:
+      - Purchase Orders
+  /public/invoices-management/v1/entities/{entityId}/purchase-orders:
+    post:
+      description: 'Use this endpoint to retrieve the full details of purchase orders linked to invoices, from a list of purchase order IDs. It returns header information, order and delivery statuses, line items with ordered, delivered and billed quantities, and the list of associated delivery notes.
+
+        This data is typically used alongside the invoice export to provide ERPs with the delivery references needed to finalize the 3-way matching and close orders upon invoice creation.'
+      operationId: post_public-api/invoices-management/v1/entities/{entityid}/purchase-orders
+      parameters:
+      - description: The entity identifier.
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Dto.PurchaseOrderQueryDto'
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Dto.PurchaseOrderQueryDto'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Dto.PurchaseOrderQueryDto'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrdersResponse'
+          description: Your request has been successfully processed.
+        '400':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+          description: Your request is invalid.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearerAuth: []
+      summary: List purchase orders
+      tags:
+      - Purchase Orders
+components:
+  schemas:
+    UpdatePurchaseOrderDto:
+      additionalProperties: false
+      properties:
+        amounts:
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDto'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDto'
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        deliveryDate:
+          description: Delivery date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        id:
+          description: Unique identifier generated by Agicap
+          format: uuid
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        label:
+          description: Label of the order
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          nullable: true
+          type: object
+        purchaseOrderNumber:
+          description: Document number in the source data
+          nullable: true
+          type: string
+        status:
+          description: 'Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - currency
+      - externalId
+      - id
+      - status
+      title: UpdatePurchaseOrder
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Dto.PurchaseOrderQueryDto:
+      additionalProperties: false
+      properties:
+        purchaseOrderIds:
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - purchaseOrderIds
+      type: object
+    CounterPartyDtoV2:
+      additionalProperties: false
+      properties:
+        id:
+          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
+          minLength: 1
+          type: string
+        name:
+          description: Name of the linked Counterpart (Supplier / Client)
+          minLength: 1
+          type: string
+      required:
+      - id
+      - name
+      title: CounterParty
+      type: object
+    PurchaseOrderDtoV2PageDto:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PurchaseOrderDtoV2'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      title: Page
+      type: object
+    CreatedDocumentDto:
+      additionalProperties: false
+      properties:
+        externalId:
+          type: string
+        id:
+          format: uuid
+          type: string
+      title: CreatedDocument
+      type: object
+    CreatePurchaseOrderDtoV2:
+      additionalProperties: false
+      properties:
+        amounts:
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDtoV2'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDtoV2'
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        deliveryDate:
+          description: Delivery date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          type: string
+        label:
+          description: Label of the document
+          nullable: true
+          type: string
+        lineItems:
+          description: Article line items of the purchase order. Optional.
+          items:
+            $ref: '#/components/schemas/PurchaseOrderLineItemDto'
+          nullable: true
+          type: array
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          nullable: true
+          type: object
+        purchaseOrderNumber:
+          description: Document number in the source data
+          minLength: 1
+          type: string
+        status:
+          description: 'Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - counterParty
+      - currency
+      - dueDate
+      - externalId
+      - issueDate
+      - purchaseOrderNumber
+      - status
+      title: CreatePurchaseOrder
+      type: object
+    PurchaseOrderLineItemDto:
+      additionalProperties: false
+      properties:
+        externalId:
+          description: Unique identifier of the line item in the source data
+          minLength: 1
+          type: string
+        orderedQuantity:
+          description: Ordered quantity. Must be strictly positive (> 0).
+          format: double
+          type: number
+        reference:
+          description: Article reference in the ERP catalog. Optional.
+          nullable: true
+          type: string
+        title:
+          description: Article label
+          minLength: 1
+          type: string
+        totalAmountExcludingTax:
+          description: Total amount excluding tax for this line. Maximum 2 decimal places.
+          format: double
+          type: number
+        unitPriceExcludingTax:
+          description: Net unit price excluding tax. Maximum 2 decimal places.
+          format: double
+          type: number
+      required:
+      - externalId
+      - orderedQuantity
+      - title
+      - totalAmountExcludingTax
+      - unitPriceExcludingTax
+      title: PurchaseOrderLineItem
+      type: object
+    PaginationMetadataDto:
+      additionalProperties: false
+      properties:
+        pageIndex:
+          description: Current page index
+          format: int32
+          type: integer
+        pageItemsCount:
+          description: Number of items on the current page
+          format: int32
+          type: integer
+        pageSize:
+          description: Page size (items per page)
+          format: int32
+          type: integer
+        totalItemsCount:
+          description: Total number of items
+          format: int32
+          type: integer
+      title: PaginationMetadata
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderLinkedInvoiceResponse:
+      additionalProperties: false
+      description: Invoice linked to a purchase order.
+      properties:
+        associatedAmountExcludingTaxes:
+          description: The amount excluding taxes associated to this purchase order.
+          format: double
+          type: number
+        invoiceId:
+          description: The invoice identifier.
+          format: uuid
+          type: string
+        number:
+          description: The invoice number.
+          nullable: true
+          type: string
+      required:
+      - associatedAmountExcludingTaxes
+      - invoiceId
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderDeliveryResponse:
+      additionalProperties: false
+      description: Purchase order delivery details.
+      properties:
+        date:
+          description: The delivery date.
+          format: date
+          type: string
+        number:
+          description: The delivery number.
+          nullable: true
+          type: string
+      required:
+      - date
+      type: object
+    InvoicesManagement.Read.Export.PurchaseOrderStatusForExport:
+      additionalProperties: false
+      enum:
+      - Open
+      - Closed
+      type: string
+    CounterPartyDto:
+      additionalProperties: false
+      properties:
+        id:
+          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
+          nullable: true
+          type: string
+        name:
+          description: Name of the linked Counterpart (Supplier / Client)
+          nullable: true
+          type: string
+      title: CounterParty
+      type: object
+    PurchaseOrderDto:
+      additionalProperties: false
+      properties:
+        amounts:
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDto'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDto'
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        deliveryDate:
+          description: Delivery date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        id:
+          description: Unique identifier generated by Agicap
+          format: uuid
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        label:
+          description: Label of the order
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          nullable: true
+          type: object
+        purchaseOrderNumber:
+          description: Document number in the source data
+          nullable: true
+          type: string
+        status:
+          description: 'Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - currency
+      - externalId
+      - id
+      - status
+      title: PurchaseOrder
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderResponse:
+      additionalProperties: false
+      description: Purchase order details.
+      properties:
+        amountExcludingTaxes:
+          description: The amount excluding taxes.
+          format: double
+          nullable: true
+          type: number
+        amountIncludingTaxes:
+          description: The amount including taxes.
+          format: double
+          nullable: true
+          type: number
+        counterpartyId:
+          description: The counterparty (supplier) ERP identifier, when synced from the P2P integration; null until the purchase order is re-synced.
+          nullable: true
+          type: string
+        counterpartyName:
+          description: The counterparty (supplier) name as synced from the P2P integration; null until the purchase order is re-synced. Distinct from the collection-context Supplier name.
+          nullable: true
+          type: string
+        currency:
+          description: The currency code (ISO 4217).
+          nullable: true
+          type: string
+        deliveries:
+          description: The deliveries.
+          items:
+            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderDeliveryResponse'
+          type: array
+        deliveryDate:
+          description: The delivery date.
+          format: date
+          nullable: true
+          type: string
+        deliveryStatus:
+          description: The delivery status.
+          type: string
+        expectedPaymentDate:
+          description: The expected payment date.
+          format: date
+          nullable: true
+          type: string
+        lineItems:
+          description: The line items.
+          items:
+            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderLineItemResponse'
+          type: array
+        linkedInvoices:
+          description: The linked invoices.
+          items:
+            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderLinkedInvoiceResponse'
+          type: array
+        number:
+          description: The purchase order number.
+          nullable: true
+          type: string
+        purchaseOrderId:
+          description: The purchase order identifier.
+          format: uuid
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/InvoicesManagement.Read.Export.PurchaseOrderStatusForExport'
+          description: The purchase order status (Open, Closed).
+        supplier:
+          description: The supplier name.
+          nullable: true
+          type: string
+        title:
+          description: The purchase order title.
+          type: string
+      required:
+      - deliveries
+      - deliveryStatus
+      - lineItems
+      - linkedInvoices
+      - purchaseOrderId
+      - status
+      - title
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrdersResponse:
+      additionalProperties: false
+      description: Purchase orders response.
+      properties:
+        purchaseOrders:
+          description: The list of purchase orders.
+          items:
+            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderResponse'
+          type: array
+      required:
+      - purchaseOrders
+      type: object
+    PurchaseOrderDtoPageDto:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PurchaseOrderDto'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      title: Page
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderLineItemResponse:
+      additionalProperties: false
+      description: Purchase order line item details.
+      properties:
+        articleName:
+          description: The article name.
+          nullable: true
+          type: string
+        articleReference:
+          description: The article reference.
+          nullable: true
+          type: string
+        billedQuantity:
+          description: The billed quantity.
+          format: double
+          type: number
+        deliveredQuantity:
+          description: The delivered quantity.
+          format: double
+          type: number
+        erpId:
+          description: The line item ERP identifier.
+          nullable: true
+          type: string
+        lineItemId:
+          description: The line item identifier.
+          format: uuid
+          type: string
+        orderedQuantity:
+          description: The ordered quantity.
+          format: double
+          nullable: true
+          type: number
+        totalAmountExcludingTaxes:
+          description: The total amount excluding taxes.
+          format: double
+          nullable: true
+          type: number
+        unitAmountExcludingTaxes:
+          description: The unit amount excluding taxes.
+          format: double
+          nullable: true
+          type: number
+      required:
+      - billedQuantity
+      - deliveredQuantity
+      - lineItemId
+      type: object
+    AmountsWithRemainingAmountDtoV2:
+      additionalProperties: false
+      properties:
+        remainingAmount:
+          description: Remaining amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+        taxesAmount:
+          description: Taxes amount in the document currency (amount must be positive)
+          format: double
+          type: number
+        totalAmount:
+          description: Total amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+      required:
+      - remainingAmount
+      - taxesAmount
+      - totalAmount
+      title: AmountsWithRemainingAmount
+      type: object
+    AmountsWithRemainingAmountDto:
+      additionalProperties: false
+      properties:
+        remainingAmount:
+          description: Remaining amount in the document currency.
+          format: double
+          nullable: true
+          type: number
+        taxesAmount:
+          description: Taxes amount in the document currency
+          format: double
+          nullable: true
+          type: number
+        totalAmount:
+          description: Total amount in the document currency.
+          format: double
+          type: number
+      required:
+      - totalAmount
+      title: AmountsWithRemainingAmount
+      type: object
+    CreatePurchaseOrderDto:
+      additionalProperties: false
+      properties:
+        amounts:
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDto'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDto'
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        deliveryDate:
+          description: Delivery date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        label:
+          description: Label of the document
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          nullable: true
+          type: object
+        purchaseOrderNumber:
+          description: Document number in the source data
+          nullable: true
+          type: string
+        status:
+          description: 'Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - currency
+      - externalId
+      - status
+      type: object
+    Microsoft.AspNetCore.Mvc.ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          enum:
+          - Generic_InternalServerError
+          - InvoicesZipDownloadError
+          - Read_Generic_Error
+          - Write_File_InvalidData
+          - Write_File_InvalidFormat
+          - Write_Invoice_Duplicate
+          - Write_Invoice_EmptyFile
+          - Write_Invoice_NotSupportedFileType
+          - Write_Invoice_TooLargeFile
+          - Write_Invoice_Uncompleted
+          - Write_Supplier_NotFound
+          type: string
+      required:
+      - type
+      type: object
+    PurchaseOrderDtoV2:
+      additionalProperties: false
+      properties:
+        amounts:
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDto'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDto'
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        deliveryDate:
+          description: Delivery date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        id:
+          description: Unique identifier generated by Agicap
+          format: uuid
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        label:
+          description: Label of the order
+          nullable: true
+          type: string
+        lineItems:
+          description: Article line items of the purchase order. Empty array if the PO was imported without line items.
+          items:
+            $ref: '#/components/schemas/PurchaseOrderLineItemDto'
+          type: array
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          nullable: true
+          type: object
+        purchaseOrderNumber:
+          description: Document number in the source data
+          nullable: true
+          type: string
+        status:
+          description: 'Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - currency
+      - externalId
+      - id
+      - status
+      title: PurchaseOrder
+      type: object
+    UpdatePurchaseOrderDtoV2:
+      additionalProperties: false
+      properties:
+        amounts:
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDtoV2'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDtoV2'
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        deliveryDate:
+          description: Delivery date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        id:
+          description: Unique identifier generated by Agicap
+          format: uuid
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          type: string
+        label:
+          description: Label of the order
+          nullable: true
+          type: string
+        lineItems:
+          description: Article line items of the purchase order. Optional.
+          items:
+            $ref: '#/components/schemas/PurchaseOrderLineItemDto'
+          nullable: true
+          type: array
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          nullable: true
+          type: object
+        purchaseOrderNumber:
+          description: Document number in the source data
+          minLength: 1
+          type: string
+        status:
+          description: 'Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - counterParty
+      - currency
+      - dueDate
+      - externalId
+      - id
+      - issueDate
+      - purchaseOrderNumber
+      - status
+      title: UpdatePurchaseOrder
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

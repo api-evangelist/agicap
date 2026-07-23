@@ -1,0 +1,217 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Redirects API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Redirects
+paths:
+  /public/httpbin/v1/absolute-redirect/{n}:
+    get:
+      parameters:
+      - in: path
+        name: n
+        required: true
+        schema:
+          type: int
+      responses:
+        '302':
+          description: A redirection.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Absolutely 302 Redirects n times.
+      tags:
+      - Redirects
+  /public/httpbin/v1/redirect-to:
+    delete:
+      responses:
+        '302':
+          description: A redirection.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: 302/3XX Redirects to the given URL.
+      tags:
+      - Redirects
+    get:
+      parameters:
+      - in: query
+        name: url
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: status_code
+        schema:
+          type: int
+      responses:
+        '302':
+          description: A redirection.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: 302/3XX Redirects to the given URL.
+      tags:
+      - Redirects
+    patch:
+      responses:
+        '302':
+          description: A redirection.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: 302/3XX Redirects to the given URL.
+      tags:
+      - Redirects
+    post:
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                status_code:
+                  type: int
+                  x-formData-name: status_code
+                url:
+                  type: string
+                  x-formData-name: url
+              required:
+              - url
+              type: object
+      responses:
+        '302':
+          description: A redirection.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: 302/3XX Redirects to the given URL.
+      tags:
+      - Redirects
+    put:
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                status_code:
+                  type: int
+                  x-formData-name: status_code
+                url:
+                  type: string
+                  x-formData-name: url
+              required:
+              - url
+              type: object
+      responses:
+        '302':
+          description: A redirection.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: 302/3XX Redirects to the given URL.
+      tags:
+      - Redirects
+  /public/httpbin/v1/redirect/{n}:
+    get:
+      parameters:
+      - in: path
+        name: n
+        required: true
+        schema:
+          type: int
+      responses:
+        '302':
+          description: A redirection.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: 302 Redirects n times.
+      tags:
+      - Redirects
+  /public/httpbin/v1/relative-redirect/{n}:
+    get:
+      parameters:
+      - in: path
+        name: n
+        required: true
+        schema:
+          type: int
+      responses:
+        '302':
+          description: A redirection.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Relatively 302 Redirects n times.
+      tags:
+      - Redirects
+components:
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

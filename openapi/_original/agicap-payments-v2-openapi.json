@@ -1,0 +1,1705 @@
+{
+ "components": {
+  "schemas": {
+   "Microsoft.AspNetCore.Mvc.ProblemDetails": {
+    "additionalProperties": {},
+    "properties": {
+     "detail": {
+      "nullable": true,
+      "type": "string"
+     },
+     "instance": {
+      "nullable": true,
+      "type": "string"
+     },
+     "status": {
+      "format": "int32",
+      "nullable": true,
+      "type": "integer"
+     },
+     "title": {
+      "nullable": true,
+      "type": "string"
+     },
+     "type": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails": {
+    "additionalProperties": {},
+    "properties": {
+     "additionalInformations": {
+      "items": {
+       "$ref": "#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.ThirdPartyPresentation"
+      },
+      "type": "array"
+     },
+     "detail": {
+      "nullable": true,
+      "type": "string"
+     },
+     "instance": {
+      "nullable": true,
+      "type": "string"
+     },
+     "status": {
+      "format": "int32",
+      "nullable": true,
+      "type": "integer"
+     },
+     "title": {
+      "nullable": true,
+      "type": "string"
+     },
+     "type": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "required": [
+     "additionalInformations"
+    ],
+    "type": "object"
+   },
+   "PaymentsFileGeneration.Web.Models.Presentations.ThirdPartyPresentation": {
+    "additionalProperties": false,
+    "properties": {
+     "iban": {
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "iban",
+     "name"
+    ],
+    "type": "object"
+   },
+   "PaymentsPreparation.Web.Models.Dtos.Beneficiaries.AddBeneficiaryDto": {
+    "additionalProperties": false,
+    "description": "Beneficiary's information to add",
+    "properties": {
+     "bankAccount": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BankAccountDto"
+       }
+      ],
+      "description": "Information about the bank account of the beneficiary",
+      "nullable": true
+     },
+     "name": {
+      "description": "Name of the beneficiary",
+      "type": "string"
+     },
+     "postalAddress": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.PostalAddressDto"
+       }
+      ],
+      "description": "Information about the postal address of the beneficiary",
+      "nullable": true
+     }
+    },
+    "required": [
+     "name"
+    ],
+    "type": "object"
+   },
+   "PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BankAccountDto": {
+    "additionalProperties": false,
+    "description": "Information about the bank account of the beneficiary",
+    "properties": {
+     "bankName": {
+      "description": "Name of the bank the account is located. Use if required by your bank.",
+      "example": "Société Général compte courant",
+      "nullable": true,
+      "type": "string"
+     },
+     "bic": {
+      "description": "Bank identifier code of the bank where the account is located. Recommended for most payments.",
+      "example": "SOGEFRPP",
+      "nullable": true,
+      "type": "string"
+     },
+     "country": {
+      "description": "Country of the bank where the account is located. Use ISO 3166 2-letters code.",
+      "example": "FR",
+      "nullable": true,
+      "type": "string"
+     },
+     "identifier": {
+      "description": "Bank account number (IBAN/BBAN/Other).",
+      "example": "FR1317515900006392295694K68",
+      "nullable": true,
+      "type": "string"
+     },
+     "intermediaryBankBic": {
+      "description": "Bank identifier code of the intermediary bank processing the payments. Use if required by your supplier/bank.",
+      "nullable": true,
+      "type": "string"
+     },
+     "localClearingCode": {
+      "description": "Local identifier of the bank. Usually usefull when the account number is not an IBAN.",
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BeneficiarySyncItemDto": {
+    "additionalProperties": false,
+    "description": "A single beneficiary to synchronize.",
+    "properties": {
+     "accountNumber": {
+      "description": "Bank account number (IBAN/BBAN/Other).",
+      "example": "FR1317515900006392295694K68",
+      "nullable": true,
+      "type": "string"
+     },
+     "bankCountry": {
+      "description": "Country of the bank where the account is located. Use ISO 3166 2-letters code.",
+      "example": "FR",
+      "nullable": true,
+      "type": "string"
+     },
+     "bankIdentifier": {
+      "description": "Bank identifier code (BIC) of the bank where the account is located. Recommended for most payments.",
+      "example": "SOGEFRPP",
+      "nullable": true,
+      "type": "string"
+     },
+     "bankName": {
+      "description": "Name of the bank the account is located. Use if required by your bank.",
+      "example": "Société Générale",
+      "nullable": true,
+      "type": "string"
+     },
+     "companyLegalId": {
+      "description": "Legal registration identifier of the beneficiary company (e.g. SIRET, company number).",
+      "example": "552100554",
+      "nullable": true,
+      "type": "string"
+     },
+     "erpId": {
+      "description": "Identifier of the beneficiary in your ERP. Used as the upsert key: an existing beneficiary with the same identifier is updated, otherwise a new one is created.",
+      "example": "BEN-10042",
+      "type": "string"
+     },
+     "intermediaryBankIdentifier": {
+      "description": "Bank identifier code (BIC) of the intermediary bank processing the payments. Use if required by your supplier/bank.",
+      "nullable": true,
+      "type": "string"
+     },
+     "localClearingCode": {
+      "description": "Local identifier of the bank. Usually useful when the account number is not an IBAN.",
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "description": "Name of the beneficiary.",
+      "example": "ACME Corporation",
+      "type": "string"
+     },
+     "postalAddress": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BeneficiarySyncPostalAddressDto"
+       }
+      ],
+      "description": "Postal address of the beneficiary.",
+      "nullable": true
+     },
+     "supplierErpIds": {
+      "description": "ERP identifiers of the suppliers to associate with this beneficiary.",
+      "items": {
+       "type": "string"
+      },
+      "nullable": true,
+      "type": "array"
+     }
+    },
+    "required": [
+     "erpId",
+     "name"
+    ],
+    "type": "object"
+   },
+   "PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BeneficiarySyncPostalAddressDto": {
+    "additionalProperties": false,
+    "description": "Postal address of a synchronized beneficiary.",
+    "properties": {
+     "city": {
+      "description": "Name of the city.",
+      "example": "Paris",
+      "nullable": true,
+      "type": "string"
+     },
+     "country": {
+      "description": "Country in which the beneficiary is located. Use ISO 3166 2-letters code.",
+      "example": "FR",
+      "type": "string"
+     },
+     "number": {
+      "description": "Number of the building.",
+      "example": "42",
+      "nullable": true,
+      "type": "string"
+     },
+     "state": {
+      "description": "State in which the beneficiary is located, if needed.",
+      "nullable": true,
+      "type": "string"
+     },
+     "streetName": {
+      "description": "Name of the street.",
+      "example": "Av. des Champs-Élysées",
+      "nullable": true,
+      "type": "string"
+     },
+     "zipCode": {
+      "description": "ZIP code of the beneficiary location.",
+      "example": "75008",
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "required": [
+     "country"
+    ],
+    "type": "object"
+   },
+   "PaymentsPreparation.Web.Models.Dtos.Beneficiaries.EditBeneficiaryDto": {
+    "additionalProperties": false,
+    "description": "Beneficiary's information to edit",
+    "properties": {
+     "bankAccount": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BankAccountDto"
+       }
+      ],
+      "description": "Information about the bank account of the beneficiary",
+      "nullable": true
+     },
+     "name": {
+      "description": "Name of the beneficiary",
+      "example": "John Doe",
+      "type": "string"
+     },
+     "postalAddress": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.PostalAddressDto"
+       }
+      ],
+      "description": "Information about the postal address of the beneficiary",
+      "nullable": true
+     }
+    },
+    "required": [
+     "name"
+    ],
+    "type": "object"
+   },
+   "PaymentsPreparation.Web.Models.Dtos.Beneficiaries.PostalAddressDto": {
+    "additionalProperties": false,
+    "description": "Information about the postal address of the beneficiary",
+    "properties": {
+     "city": {
+      "description": "Name of the city - required if any field of the address is filled",
+      "example": "Paris",
+      "type": "string"
+     },
+     "country": {
+      "description": "Country in which the beneficiary is located - 2 characters ISO 3166 code - required if any field of the address is filled",
+      "example": "France",
+      "type": "string"
+     },
+     "number": {
+      "description": "Number of the building",
+      "example": "42",
+      "nullable": true,
+      "type": "string"
+     },
+     "state": {
+      "description": "State in which the beneficiary is located if needed",
+      "nullable": true,
+      "type": "string"
+     },
+     "streetName": {
+      "description": "Name of the street - required if any field of the address is filled",
+      "example": "Av. des Champs-Élysées",
+      "type": "string"
+     },
+     "zipCode": {
+      "description": "ZIP code of the beneficiary location if needed",
+      "example": "75008",
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "required": [
+     "city",
+     "country",
+     "streetName"
+    ],
+    "type": "object"
+   },
+   "PaymentsPreparation.Web.Models.Dtos.Beneficiaries.StartBeneficiarySyncDto": {
+    "additionalProperties": false,
+    "description": "Payload of a beneficiary synchronization request.",
+    "properties": {
+     "items": {
+      "description": "Beneficiaries to synchronize. Up to 15 000 items can be sent in a single request.",
+      "items": {
+       "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BeneficiarySyncItemDto"
+      },
+      "type": "array"
+     }
+    },
+    "required": [
+     "items"
+    ],
+    "type": "object"
+   },
+   "PaymentsPreparation.Web.Models.Presentations.Beneficiary.BankAccountPresentation": {
+    "additionalProperties": false,
+    "properties": {
+     "bankName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "bic": {
+      "nullable": true,
+      "type": "string"
+     },
+     "country": {
+      "nullable": true,
+      "type": "string"
+     },
+     "identifier": {
+      "nullable": true,
+      "type": "string"
+     },
+     "intermediaryBankBic": {
+      "nullable": true,
+      "type": "string"
+     },
+     "localClearingCode": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiaryPresentation": {
+    "additionalProperties": false,
+    "properties": {
+     "bankAccount": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.BankAccountPresentation"
+       }
+      ]
+     },
+     "companyLegalIdentifier": {
+      "nullable": true,
+      "type": "string"
+     },
+     "id": {
+      "format": "uuid",
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     },
+     "postalAddress": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.PostalAddressPresentation"
+       }
+      ],
+      "nullable": true
+     },
+     "uncertaintyStatus": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.UncertaintyStatusPresentation"
+       }
+      ],
+      "nullable": true
+     },
+     "validationStatus": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.ValidationStatusPresentation"
+       }
+      ],
+      "nullable": true
+     }
+    },
+    "required": [
+     "bankAccount",
+     "id",
+     "name"
+    ],
+    "type": "object"
+   },
+   "PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncErrorCodePresentation": {
+    "description": "Reason an item failed during a beneficiary synchronization. Each value is contractual: renaming one is a breaking change.",
+    "enum": [
+     "InvalidName",
+     "InvalidIban",
+     "InvalidBic",
+     "InvalidBankIdentifier",
+     "InvalidLocalClearingCode",
+     "InvalidCountry",
+     "UnsupportedCountry",
+     "MissingBankCountry",
+     "IncompletePostalAddress",
+     "NameAlreadyUsed",
+     "AccountNumberAlreadyUsed",
+     "NameAndAccountNumberAlreadyUsed",
+     "SupplierNotFound"
+    ],
+    "type": "string"
+   },
+   "PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncErrorPresentation": {
+    "additionalProperties": false,
+    "description": "A single item that failed during a beneficiary synchronization.",
+    "properties": {
+     "errorCode": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncErrorCodePresentation"
+       }
+      ],
+      "description": "Machine-readable error code identifying the reason the item failed.",
+      "example": "InvalidIban"
+     },
+     "errorMessage": {
+      "description": "Human-readable description of the error, when available.",
+      "nullable": true,
+      "type": "string"
+     },
+     "rawData": {
+      "description": "Raw JSON of the submitted item, echoed back to help you locate it.",
+      "type": "string"
+     },
+     "rowIndex": {
+      "description": "Zero-based index of the failing item in the submitted payload.",
+      "example": 0,
+      "format": "int32",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "errorCode",
+     "rawData",
+     "rowIndex"
+    ],
+    "type": "object"
+   },
+   "PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncReportPresentation": {
+    "additionalProperties": false,
+    "description": "Status and per-item errors of a beneficiary synchronization.",
+    "properties": {
+     "createdAt": {
+      "description": "Date and time the synchronization was started (ISO 8601, UTC).",
+      "example": "2026-06-09T14:30:00+00:00",
+      "format": "date-time",
+      "type": "string"
+     },
+     "errors": {
+      "description": "Per-item errors. Empty when every item was synchronized successfully.",
+      "items": {
+       "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncErrorPresentation"
+      },
+      "type": "array"
+     },
+     "finishedAt": {
+      "description": "Date and time the synchronization finished (ISO 8601, UTC). Null while the synchronization is still running.",
+      "example": "2026-06-09T14:31:12+00:00",
+      "format": "date-time",
+      "nullable": true,
+      "type": "string"
+     },
+     "status": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncStatusPresentation"
+       }
+      ],
+      "description": "Status of the synchronization: Running, Completed or CompletedWithErrors.",
+      "example": "CompletedWithErrors"
+     },
+     "syncId": {
+      "description": "Identifier of the synchronization.",
+      "example": "1660e6c3-54fd-402f-be8e-7748efd94791",
+      "format": "uuid",
+      "type": "string"
+     }
+    },
+    "required": [
+     "createdAt",
+     "errors",
+     "status",
+     "syncId"
+    ],
+    "type": "object"
+   },
+   "PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncStatusPresentation": {
+    "description": "Status of a beneficiary synchronization.",
+    "enum": [
+     "Running",
+     "Completed",
+     "CompletedWithErrors"
+    ],
+    "type": "string"
+   },
+   "PaymentsPreparation.Web.Models.Presentations.Beneficiary.PostalAddressPresentation": {
+    "additionalProperties": false,
+    "properties": {
+     "city": {
+      "type": "string"
+     },
+     "country": {
+      "type": "string"
+     },
+     "number": {
+      "nullable": true,
+      "type": "string"
+     },
+     "state": {
+      "nullable": true,
+      "type": "string"
+     },
+     "streetName": {
+      "type": "string"
+     },
+     "zipCode": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "required": [
+     "city",
+     "country",
+     "streetName"
+    ],
+    "type": "object"
+   },
+   "PaymentsPreparation.Web.Models.Presentations.Beneficiary.UncertaintyStatusPresentation": {
+    "enum": [
+     "Uncertain",
+     "NotUncertain",
+     "Irrelevant"
+    ],
+    "type": "string"
+   },
+   "PaymentsPreparation.Web.Models.Presentations.Beneficiary.ValidationStatusPresentation": {
+    "enum": [
+     "Validated",
+     "PendingValidation"
+    ],
+    "type": "string"
+   }
+  },
+  "securitySchemes": {
+   "ApiKey": {
+    "description": "Used for internal API endpoints instead of bearer token",
+    "in": "header",
+    "name": "X-API-Key",
+    "type": "apiKey"
+   },
+   "Bearer": {
+    "scheme": "Bearer",
+    "type": "http"
+   },
+   "bearerAuth": {
+    "bearerFormat": "OPAQUE",
+    "scheme": "bearer",
+    "type": "http"
+   },
+   "bearer_client_credentials": {
+    "flows": {
+     "clientCredentials": {
+      "scopes": {
+       "agicap:public-api": "Access to the public API",
+       "public-api:import_payment_files": "Import payment files",
+       "public-api:import_payment_files_with_signed_beneficiaries": "Import payment files with signed beneficiaries"
+      },
+      "tokenUrl": "https://myaccount.agicap.com/connect/token"
+     }
+    },
+    "type": "oauth2"
+   }
+  }
+ },
+ "info": {
+  "contact": {},
+  "description": "# Introduction\n\nWelcome to the Agicap Payment API documentation. **This API is designed to help you**\n\n- import payment files that have been generated using external tools into Agicap.\n- synchronise your beneficiaries from a third party source of truth\n\n### Payment Files overview\n\nPayment files allow you to send payment orders to your banks. They can be used for various purposes, such as paying suppliers, employees, or even requesting debits from clients.\n\n### Use case covered by this API\n\n**Use case 1 : synchronise your beneficiaries with your ERP**\n\n**Agicap provides extensive functionalities to store, manage and secure your beneficiaries, for invoice management, pre accounting and payment purposes. If you prefer to keep your source of truth in a third party tool, and synchronise the data of your beneficiaries from this tool to Agicap, this API provides you endpoints to create, list, edit and delete the beneficiaries of an Agicap entity.**\n\nIn addition to individual CRUD operations, a synchronisation endpoint is available to bulk-upsert your full beneficiary list in a single call. The sync key is the beneficiary identifier in your ERP (`erpId`): if a beneficiary already exists for a given `erpId` it is updated, otherwise a new one is created. Unlike the supplier synchronisation, beneficiaries absent from the payload are not deleted — the sync is purely additive; use the delete endpoint to remove one. The sync endpoint is also how you link a beneficiary to its supplier, via the `supplierErpIds` field.\n\n**Use case 2 : Route your Payment Files to Agicap**\n\nAgicap provides the capability to generate payment files directly within its application. However, if you prefer to generate these files outside of Agicap, this API enables you to route them into Agicap in any standard banking format. Once imported, the files are processed and sent to the bank without any modifications.\n\nSupported Formats: the API supports all standard banking formats in\\_`.xml`\\_and\\_`.txt`\n\n### Prerequisites for Using This API\n\nBefore you can use this API, you need to complete a few setup steps :\n\n1. **Activate the right modules**\n    1. **For routing use case, you need to activate a payment solution on your entity. Contact your Account Manager to activate the appropriate payment solution for your Agicap entities. Note that this API is not compatible with all payment solutions.**\n    2. **For beneficiaries use case, you need to activate a payment solution or our account payable module. Contact your Account Manager to activate the appropriate solution depending on your need.** \n    \n2. **Steps necessary for routing only : set up your payment solution. Work with Agicap’s team to set up your payment solution:**\n    1. **Establish connections with your banks.**\n    2. **Create and link your bank accounts to these connections.**\n    \n### Authentication\n\nTo call this API, you need API credentials with a specific scope. Each route in the Agicap Payment API documentation will specify the required scope.\n\nSteps to obtain the right scope for your credentials:\n1. Generate API Credentials. Follow the\\_[Authentication guidelines](https://api.agicap.com/guides/authentication)\\_to generate your API credentials.\n2. Select the Required Scope. Ensure you select the necessary scope when generating these credentials.\n3. Generate your Access Token. Use the Authentication API to generate your access token. Be sure to specify the required scope in your request.\n4. Use the Authentication Token. Include this authentication token in your requests to the Payment API.\n\nThis documentation aims to guide you through the process of integrating and using the Agicap Payment API effectively. If you have any questions or need further assistance, feel free to reach out to our support team.\n",
+  "title": "Payments",
+  "version": "v2"
+ },
+ "openapi": "3.0.0",
+ "paths": {
+  "/public/payments/v2/entities/{entityId}/Beneficiaries": {
+   "delete": {
+    "description": "Delete all beneficiaries from the specific entity",
+    "operationId": "5_Beneficiaries_Delete_All",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "example": 123456,
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "content": {
+       "text/plain": {}
+      },
+      "description": "All beneficiaries have been successfully deleted."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "public-api:manage-payment-beneficiaries",
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Delete all beneficiaries",
+    "tags": [
+     "Manage beneficiaries"
+    ]
+   },
+   "get": {
+    "description": "List all existing beneficiaries in the entity, and their detailed information.",
+    "operationId": "1_Beneficiaries_Get_All",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "example": 123456,
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiaryPresentation"
+         },
+         "type": "array"
+        }
+       }
+      },
+      "description": "Your request has been successfully processed."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "public-api:manage-payment-beneficiaries",
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Get beneficiaries",
+    "tags": [
+     "Manage beneficiaries"
+    ]
+   },
+   "post": {
+    "description": "Create a beneficiary in a specific entity with its detailed information.",
+    "operationId": "2_Beneficiaries_Add",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "example": 123456,
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/*+json": {
+       "schema": {
+        "allOf": [
+         {
+          "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.AddBeneficiaryDto"
+         }
+        ],
+        "description": "Beneficiary's information to add"
+       }
+      },
+      "application/json": {
+       "schema": {
+        "allOf": [
+         {
+          "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.AddBeneficiaryDto"
+         }
+        ],
+        "description": "Beneficiary's information to add"
+       }
+      },
+      "text/json": {
+       "schema": {
+        "allOf": [
+         {
+          "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.AddBeneficiaryDto"
+         }
+        ],
+        "description": "Beneficiary's information to add"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "text/plain": {}
+      },
+      "description": "The beneficiary has been successfully added."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "public-api:manage-payment-beneficiaries",
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Create a beneficiary",
+    "tags": [
+     "Manage beneficiaries"
+    ]
+   }
+  },
+  "/public/payments/v2/entities/{entityId}/Beneficiaries/sync": {
+   "post": {
+    "description": "Start an asynchronous bulk synchronization of beneficiaries from your ERP. Each item is upserted using its ERP identifier (`erpId`) as the key: an existing beneficiary is updated, otherwise a new one is created.\nThe synchronization is additive: beneficiaries absent from the payload are not deleted (use the delete endpoint to remove one).\nProcessing runs in the background; the returned sync identifier lets you poll the synchronization report.",
+    "operationId": "6_Beneficiaries_Sync_Start",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "example": 123456,
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/*+json": {
+       "schema": {
+        "allOf": [
+         {
+          "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.StartBeneficiarySyncDto"
+         }
+        ],
+        "description": "Payload of a beneficiary synchronization request."
+       }
+      },
+      "application/json": {
+       "schema": {
+        "allOf": [
+         {
+          "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.StartBeneficiarySyncDto"
+         }
+        ],
+        "description": "Payload of a beneficiary synchronization request."
+       }
+      },
+      "text/json": {
+       "schema": {
+        "allOf": [
+         {
+          "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.StartBeneficiarySyncDto"
+         }
+        ],
+        "description": "Payload of a beneficiary synchronization request."
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "202": {
+      "content": {
+       "text/plain": {}
+      },
+      "description": "The beneficiary synchronization has been accepted and is being processed."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "public-api:manage-payment-beneficiaries",
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Synchronize beneficiaries",
+    "tags": [
+     "Manage beneficiaries"
+    ]
+   }
+  },
+  "/public/payments/v2/entities/{entityId}/Beneficiaries/sync/{syncId}": {
+   "get": {
+    "description": "Retrieve the status and the per-item errors of a beneficiary synchronization, using the sync identifier returned by the synchronize beneficiaries endpoint.",
+    "operationId": "7_Beneficiaries_Sync_Report",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "example": 123456,
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Identifier of the synchronization. This ID is obtained using the synchronize beneficiaries endpoint",
+      "example": "1660e6c3-54fd-402f-be8e-7748efd94791",
+      "in": "path",
+      "name": "syncId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncReportPresentation"
+        }
+       }
+      },
+      "description": "Your request has been successfully processed."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "404": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+        }
+       }
+      },
+      "description": "No synchronization was found for the provided sync identifier."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "public-api:manage-payment-beneficiaries",
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Get a beneficiary synchronization report",
+    "tags": [
+     "Manage beneficiaries"
+    ]
+   }
+  },
+  "/public/payments/v2/entities/{entityId}/Beneficiaries/{beneficiaryId}": {
+   "delete": {
+    "description": "Delete a beneficiary from a specific entity, using its identifier (obtained via the get beneficiaries endpoint)",
+    "operationId": "4_Beneficiaries_Delete",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "example": 123456,
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Identifier of the beneficiary in Agicap. This ID is obtained using get beneficiaries endpoint",
+      "example": "1660e6c3-54fd-402f-be8e-7748efd94791",
+      "in": "path",
+      "name": "beneficiaryId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "content": {
+       "text/plain": {}
+      },
+      "description": "The beneficiary has been successfully deleted."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "public-api:manage-payment-beneficiaries",
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Delete a beneficiary",
+    "tags": [
+     "Manage beneficiaries"
+    ]
+   },
+   "put": {
+    "description": "Edit a beneficiary from a specific entity with its detailed information,  using its identifier (obtained via the get beneficiaries endpoint)",
+    "operationId": "3_Beneficiaries_edit",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "example": 123456,
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Identifier of the beneficiary in Agicap. This ID is obtained using get beneficiaries endpoint",
+      "example": "1660e6c3-54fd-402f-be8e-7748efd94791",
+      "in": "path",
+      "name": "beneficiaryId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/*+json": {
+       "schema": {
+        "allOf": [
+         {
+          "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.EditBeneficiaryDto"
+         }
+        ],
+        "description": "Beneficiary's information to edit"
+       }
+      },
+      "application/json": {
+       "schema": {
+        "allOf": [
+         {
+          "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.EditBeneficiaryDto"
+         }
+        ],
+        "description": "Beneficiary's information to edit"
+       }
+      },
+      "text/json": {
+       "schema": {
+        "allOf": [
+         {
+          "$ref": "#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.EditBeneficiaryDto"
+         }
+        ],
+        "description": "Beneficiary's information to edit"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "204": {
+      "content": {
+       "text/plain": {}
+      },
+      "description": "The beneficiary has been successfully edited."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "public-api:manage-payment-beneficiaries",
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Edit a beneficiary",
+    "tags": [
+     "Manage beneficiaries"
+    ]
+   }
+  },
+  "/public/payments/v2/entities/{entityId}/payments-files/import": {
+   "post": {
+    "description": "Route payment files into Agicap in any standard banking format. Once imported, the files are processed and sent to the bank without any modifications.<br/>Supported Formats: the API supports all standard banking formats in `.xml` and `.txt`\n\n**Required OAuth scopes:**\n\n- `agicap:public-api`\n- `public-api:import_payment_files`",
+    "operationId": "PaymentsFile_Import_Post",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "encoding": {
+        "file": {
+         "style": "form"
+        }
+       },
+       "schema": {
+        "properties": {
+         "file": {
+          "description": "File to be routed. In .xml or .txt format",
+          "format": "binary",
+          "type": "string"
+         }
+        },
+        "required": [
+         "file"
+        ],
+        "type": "object"
+       }
+      }
+     }
+    },
+    "responses": {
+     "204": {
+      "content": {
+       "text/plain": {}
+      },
+      "description": "The remittance has been successfully imported."
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "public-api:import_payment_files",
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Route payment file",
+    "tags": [
+     "Route payment files"
+    ]
+   }
+  },
+  "/public/payments/v2/entities/{entityId}/payments-files/secured-import": {
+   "post": {
+    "description": "Do not use except if you received dedicated instruction from Agicap’s team. More documentation to come on this use case.\n\n**Required OAuth scopes:**\n\n- `agicap:public-api`\n- `public-api:import_payment_files_with_signed_beneficiaries`",
+    "operationId": "PaymentsFile_SecuredImport_Post",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "encoding": {
+        "keepConfidentiality": {
+         "style": "form"
+        },
+        "remittanceFile": {
+         "style": "form"
+        },
+        "signaturesJsonFile": {
+         "style": "form"
+        }
+       },
+       "schema": {
+        "properties": {
+         "keepConfidentiality": {
+          "description": "Boolean indicating whether confidentiality flag in file must be removed or kept",
+          "type": "boolean"
+         },
+         "remittanceFile": {
+          "description": "File to be routed. In .xml or .txt format",
+          "format": "binary",
+          "type": "string"
+         },
+         "signaturesJsonFile": {
+          "description": "Json file containing account numbers with their signature",
+          "format": "binary",
+          "type": "string"
+         }
+        },
+        "required": [
+         "keepConfidentiality",
+         "remittanceFile",
+         "signaturesJsonFile"
+        ],
+        "type": "object"
+       }
+      }
+     }
+    },
+    "responses": {
+     "204": {
+      "content": {
+       "text/plain": {}
+      },
+      "description": "The remittance has been successfully imported."
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "public-api:import_payment_files_with_signed_beneficiaries",
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Route payment files with signed beneficiaries",
+    "tags": [
+     "Route payment files"
+    ]
+   }
+  },
+  "/public/payments/v2/entities/{entityId}/remittances/import": {
+   "post": {
+    "deprecated": true,
+    "description": "Route payment files into Agicap in any standard banking format. Once imported, the files are processed and sent to the bank without any modifications.<br/>Supported Formats: the API supports all standard banking formats in `.xml` and `.txt`<br/><b>Deprecated:</b> Use public-api/payments/v2/entities/{entityId:int}/payments-files/import instead\n\n**Required OAuth scopes:**\n\n- `agicap:public-api`\n- `public-api:import_payment_files`",
+    "operationId": "PaymentsFile_Import_Post",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "encoding": {
+        "file": {
+         "style": "form"
+        }
+       },
+       "schema": {
+        "properties": {
+         "file": {
+          "description": "File to be routed. In .xml or .txt format",
+          "format": "binary",
+          "type": "string"
+         }
+        },
+        "required": [
+         "file"
+        ],
+        "type": "object"
+       }
+      }
+     }
+    },
+    "responses": {
+     "204": {
+      "content": {
+       "text/plain": {}
+      },
+      "description": "The remittance has been successfully imported."
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "public-api:import_payment_files",
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Route payment file",
+    "tags": [
+     "Route payment files"
+    ]
+   }
+  },
+  "/public/payments/v2/entities/{entityId}/remittances/secured-import": {
+   "post": {
+    "deprecated": true,
+    "description": "Do not use except if you received dedicated instruction from Agicap’s team. More documentation to come on this use case.<br/><b>Deprecated:</b> Use public-api/payments/v2/entities/{entityId:int}/payments-files/secured-import instead\n\n**Required OAuth scopes:**\n\n- `agicap:public-api`\n- `public-api:import_payment_files_with_signed_beneficiaries`",
+    "operationId": "PaymentsFile_SecuredImport_Post",
+    "parameters": [
+     {
+      "description": "Agicap entity identifier",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "encoding": {
+        "keepConfidentiality": {
+         "style": "form"
+        },
+        "remittanceFile": {
+         "style": "form"
+        },
+        "signaturesJsonFile": {
+         "style": "form"
+        }
+       },
+       "schema": {
+        "properties": {
+         "keepConfidentiality": {
+          "description": "Boolean indicating whether confidentiality flag in file must be removed or kept",
+          "type": "boolean"
+         },
+         "remittanceFile": {
+          "description": "File to be routed. In .xml or .txt format",
+          "format": "binary",
+          "type": "string"
+         },
+         "signaturesJsonFile": {
+          "description": "Json file containing account numbers with their signature",
+          "format": "binary",
+          "type": "string"
+         }
+        },
+        "required": [
+         "keepConfidentiality",
+         "remittanceFile",
+         "signaturesJsonFile"
+        ],
+        "type": "object"
+       }
+      }
+     }
+    },
+    "responses": {
+     "204": {
+      "content": {
+       "text/plain": {}
+      },
+      "description": "The remittance has been successfully imported."
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "public-api:import_payment_files_with_signed_beneficiaries",
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Route payment files with signed beneficiaries",
+    "tags": [
+     "Route payment files"
+    ]
+   }
+  }
+ },
+ "security": [
+  {
+   "ApiKey": [],
+   "Bearer": []
+  },
+  {
+   "ApiKey": [],
+   "Bearer": []
+  }
+ ],
+ "servers": [
+  {
+   "url": "https://api.agicap.com"
+  },
+  {
+   "url": "https://api.agicap.internal"
+  }
+ ]
+}

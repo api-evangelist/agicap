@@ -1,0 +1,223 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Interests statements API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Interests statements
+paths:
+  /public/intragroup-financing/v1/entities/{entityId}/financings/{financingId}/interests-statement:
+    get:
+      description: Retrieve the interests statement belonging to financing specified in the url.
+      operationId: InterestsStatement_GetInterestsStatementOfFinancing
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: financingId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Offset value. Minimum 0. Default 0.
+        in: query
+        name: offset
+        schema:
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+      - description: Limit value. Minimum 1. Maximum 100. Default 50.
+        in: query
+        name: limit
+        schema:
+          format: int32
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+      - description: Date format is YYYY-MM-DD
+        in: query
+        name: fromDate
+        schema:
+          format: date
+          type: string
+      - description: Date format is YYYY-MM-DD
+        in: query
+        name: untilDate
+        schema:
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InterestsStatementResourcePublic'
+          description: An interests statement of financing.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ProblemDetails'
+                - $ref: '#/components/schemas/HttpValidationProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Get interests statement of financing
+      tags:
+      - Interests statements
+components:
+  schemas:
+    Offset:
+      additionalProperties: false
+      properties:
+        current:
+          format: int32
+          type: integer
+        limit:
+          format: int32
+          type: integer
+        next:
+          format: int32
+          type: integer
+        previous:
+          format: int32
+          type: integer
+      type: object
+    DrawDownResourcePublic:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/TransactionResourcePublic'
+      - additionalProperties: false
+        properties:
+          amount:
+            format: double
+            type: number
+        type: object
+      title: DrawDown
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    TransactionResourcePublic:
+      additionalProperties: false
+      properties:
+        date:
+          format: date
+          type: string
+      title: Transaction
+      type: object
+    DailyPositionResourcePublic:
+      additionalProperties: false
+      properties:
+        accruedInterests:
+          format: double
+          type: number
+        balance:
+          format: double
+          type: number
+        date:
+          format: date
+          type: string
+        drawDown:
+          format: double
+          nullable: true
+          type: number
+        periodInterests:
+          format: double
+          type: number
+        repayment:
+          format: double
+          nullable: true
+          type: number
+        transactions:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/DrawDownResourcePublic'
+            - $ref: '#/components/schemas/RepaymentResourcePublic'
+            title: Transaction
+          nullable: true
+          type: array
+      title: DailyPosition
+      type: object
+    HttpValidationProblemDetails:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - additionalProperties: {}
+        properties:
+          errors:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+        type: object
+    RepaymentResourcePublic:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/TransactionResourcePublic'
+      - additionalProperties: false
+        properties:
+          capital:
+            format: double
+            type: number
+          interests:
+            format: double
+            type: number
+          total:
+            format: double
+            type: number
+        type: object
+      title: Repayment
+    InterestsStatementResourcePublic:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DailyPositionResourcePublic'
+          type: array
+        offset:
+          $ref: '#/components/schemas/Offset'
+      title: InterestsStatement
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

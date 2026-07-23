@@ -1,0 +1,59 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  openapi/ (securitySchemes, response media types, pagination + conditional-request
+  parameters), myaccount.agicap.com OIDC discovery, trust.agicap.com trust center
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      OpenAPI securitySchemes declare oauth2 clientCredentials (scope agicap:public-api,
+      tokenUrl https://myaccount.agicap.com/connect/token) and implicit flows
+  - id: oidc
+    conforms: true
+    evidence: >-
+      myaccount.agicap.com publishes a full /.well-known/openid-configuration
+      (IdentityServer) with authorization/token/userinfo/jwks/introspection/revocation
+      endpoints
+  - id: oauth2-pkce
+    conforms: true
+    evidence: OIDC discovery advertises code_challenge_methods_supported (S256)
+  - id: oauth2-par
+    conforms: true
+    evidence: OIDC discovery advertises pushed_authorization_request_endpoint
+  - id: oauth2-dpop
+    conforms: true
+    evidence: OIDC discovery advertises dpop_signing_alg_values_supported
+  - id: rfc9457-problem-details
+    conforms: true
+    evidence: >-
+      Error responses use application/problem+json across the API surface
+      (observed on 151 operation responses)
+  - id: rfc9116-security-txt
+    conforms: true
+    evidence: /.well-known/security.txt published with Contact/Policy/Expires
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No Sunset/Deprecation header support documented in the specs
+  - id: rest-json
+    conforms: true
+    evidence: JSON request/response bodies over HTTPS with resource-oriented paths under /public/*
+  - id: conditional-requests
+    conforms: true
+    evidence: If-Match / If-None-Match / If-Modified-Since request headers used for optimistic concurrency and caching
+  - id: pagination
+    conforms: true
+    evidence: Page-based (PageNumber/PageSize) and cursor/limit pagination parameters present across list operations
+  - id: idempotency-key
+    conforms: false
+    evidence: No Idempotency-Key header/parameter documented in the specs
+  - id: soc2
+    conforms: true
+    evidence: SOC 2 posture published on trust.agicap.com
+  - id: iso-27001
+    conforms: true
+    evidence: ISO 27001 certification published on trust.agicap.com
+compliance_program:
+  published: true
+  url: https://trust.agicap.com/
+  certifications: [SOC 2, ISO 27001]

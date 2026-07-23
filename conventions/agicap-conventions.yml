@@ -1,0 +1,63 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  openapi/ (parameters, response media types, security), api.agicap.com/guides/authentication,
+  embedded API description/guideline docs
+base_url: https://api.agicap.com
+path_prefix: /public/{product}/v{n}/
+authentication:
+  style: oauth2-bearer
+  flow: clientCredentials
+  scope: agicap:public-api
+  token_url: https://myaccount.agicap.com/connect/token
+  header: 'Authorization: Bearer {access_token}'
+  bearer_format: OPAQUE
+  docs: https://api.agicap.com/guides/authentication
+  cross_ref: authentication/agicap-authentication.yml
+entity_scoping:
+  note: >-
+    Requests are scoped to an organization/entity. Callers typically list the entities
+    a token can access via the Organization API (organizations-v1) and pass entity/connection
+    identifiers as path parameters on downstream calls.
+  discovery_api: openapi/agicap-organizations-v1-openapi.json
+idempotency:
+  supported: false
+  note: >-
+    No Idempotency-Key header or parameter is documented in the Agicap Public API specs.
+    Optimistic concurrency is instead handled with conditional-request headers (see below).
+conditional_requests:
+  supported: true
+  request_headers: [If-Match, If-None-Match, If-Modified-Since]
+  purpose: Optimistic concurrency control and conditional caching (ETag-style)
+pagination:
+  supported: true
+  styles:
+    - style: page-number
+      params: [PageNumber, PageSize, pageNumber, pageSize, pageindex, pagesize]
+    - style: cursor-limit
+      params: [cursor, limit, offset, size, token]
+  sorting:
+    params: [sortBy, sortDirection, maturityDateSort]
+  note: >-
+    Pagination style varies by module (page-number is most common; some list endpoints
+    use cursor/limit or offset).
+request_tracing:
+  header: Request-Id
+  note: Client-supplied correlation identifier accepted on requests.
+other_headers:
+  - name: X-FlowMode
+    note: Provider-specific header used on selected operations.
+versioning:
+  scheme: uri-path
+  cross_ref: lifecycle/agicap-lifecycle.yml
+error_envelope:
+  format: rfc9457
+  media_type: application/problem+json
+  fields: [type, title, status, detail]
+  cross_ref: errors/agicap-problem-types.yml
+rate_limiting:
+  signaled: true
+  status_code: 429
+  note: >-
+    A 429 Too Many Requests response is declared on nearly every operation; explicit
+    rate-limit response headers/quotas are not documented in the public specs.

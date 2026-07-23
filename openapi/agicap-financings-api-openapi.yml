@@ -1,0 +1,254 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Financings API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Financings
+paths:
+  /public/intragroup-financing/v1/borrowers/{entityId}/financings:
+    get:
+      description: Financings between the entity and all other lenders. Will not return financings where entity is lender.
+      operationId: Financings_GetFinancingsOfEntityAsBorrower
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+      - description: Offset value. Minimum 0. Default 0.
+        in: query
+        name: offset
+        schema:
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+      - description: Limit value. Minimum 1. Maximum 100. Default 50.
+        in: query
+        name: limit
+        schema:
+          format: int32
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+      - description: Date format is YYYY-MM-DD
+        in: query
+        name: fromDate
+        schema:
+          format: date
+          type: string
+      - description: Date format is YYYY-MM-DD
+        in: query
+        name: untilDate
+        schema:
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinancingListResourcePublic'
+          description: List financing where entity is borrower.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ProblemDetails'
+                - $ref: '#/components/schemas/HttpValidationProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: List financings where entity is borrower
+      tags:
+      - Financings
+  /public/intragroup-financing/v1/lenders/{entityId}/financings:
+    get:
+      description: Financings from the entity to all other borrowers. Will not return financings where entity is borrower.
+      operationId: Financings_GetFinancingsOfEntityAsLender
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+      - description: Offset value. Minimum 0. Default 0.
+        in: query
+        name: offset
+        schema:
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+      - description: Limit value. Minimum 1. Maximum 100. Default 50.
+        in: query
+        name: limit
+        schema:
+          format: int32
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+      - description: Date format is YYYY-MM-DD
+        in: query
+        name: fromDate
+        schema:
+          format: date
+          type: string
+      - description: Date format is YYYY-MM-DD
+        in: query
+        name: untilDate
+        schema:
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinancingListResourcePublic'
+          description: List financings where entity is lender.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ProblemDetails'
+                - $ref: '#/components/schemas/HttpValidationProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: List financings where entity is lender
+      tags:
+      - Financings
+components:
+  schemas:
+    Offset:
+      additionalProperties: false
+      properties:
+        current:
+          format: int32
+          type: integer
+        limit:
+          format: int32
+          type: integer
+        next:
+          format: int32
+          type: integer
+        previous:
+          format: int32
+          type: integer
+      type: object
+    FinancingListItemResourcePublic:
+      additionalProperties: false
+      properties:
+        accruedInterests:
+          $ref: '#/components/schemas/AmountDto'
+        balance:
+          $ref: '#/components/schemas/AmountDto'
+        borrower:
+          $ref: '#/components/schemas/StakeholderDto'
+        id:
+          format: uuid
+          type: string
+        lender:
+          $ref: '#/components/schemas/StakeholderDto'
+        name:
+          type: string
+        startDate:
+          format: date
+          type: string
+      title: FinancingListItem
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    StakeholderDto:
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+      title: Stakeholder
+      type: object
+    HttpValidationProblemDetails:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - additionalProperties: {}
+        properties:
+          errors:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+        type: object
+    AmountDto:
+      additionalProperties: false
+      properties:
+        currency:
+          type: string
+        value:
+          format: double
+          type: number
+      title: Amount
+      type: object
+    FinancingListResourcePublic:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/FinancingListItemResourcePublic'
+          type: array
+        offset:
+          $ref: '#/components/schemas/Offset'
+      title: FinancingList
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

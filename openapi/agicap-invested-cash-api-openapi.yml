@@ -1,0 +1,116 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Invested cash API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Invested cash
+paths:
+  /public/financial-investments/v1/entities/{entityId}/invested-cash:
+    get:
+      operationId: InvestedCashPublicApi_GetInvestedCashByCurrency
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: currencies
+        schema:
+          items:
+            type: string
+          type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvestedCashByCurrencyResponse'
+          description: Invested cash by currency.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ProblemDetails'
+                - $ref: '#/components/schemas/HttpValidationProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Get invested cash
+      tags:
+      - Invested cash
+components:
+  schemas:
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    InvestedCashResponse:
+      additionalProperties: false
+      properties:
+        investedCash:
+          format: double
+          type: number
+      title: InvestedCash
+      type: object
+    HttpValidationProblemDetails:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - additionalProperties: {}
+        properties:
+          errors:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+        type: object
+    InvestedCashByCurrencyResponse:
+      additionalProperties: false
+      properties:
+        items:
+          additionalProperties:
+            $ref: '#/components/schemas/InvestedCashResponse'
+          type: object
+      title: InvestedCashByCurrency
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

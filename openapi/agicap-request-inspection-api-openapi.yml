@@ -1,0 +1,75 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Request inspection API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Request inspection
+paths:
+  /public/httpbin/v1/headers:
+    get:
+      responses:
+        '200':
+          description: The request's headers.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Return the incoming request's HTTP headers.
+      tags:
+      - Request inspection
+  /public/httpbin/v1/ip:
+    get:
+      responses:
+        '200':
+          description: The Requester's IP Address.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns the requester's IP Address.
+      tags:
+      - Request inspection
+  /public/httpbin/v1/user-agent:
+    get:
+      responses:
+        '200':
+          description: The request's User-Agent header.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Return the incoming requests's User-Agent header.
+      tags:
+      - Request inspection
+components:
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

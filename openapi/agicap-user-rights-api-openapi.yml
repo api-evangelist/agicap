@@ -1,0 +1,155 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports User rights API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: User rights
+paths:
+  /public/ar-clients/v1/entities/{entityId}/user-rights:
+    post:
+      description: Assign Agicap users to clients in bulk by user email and client external ID. Assignment will replace existing client assignations for the assigned users.
+      operationId: Assign users to clients by external id
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int
+          type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignUsersToClientsByExternalIdRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssignUsersToClientsByExternalIdResponse'
+          description: ''
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - bearer: []
+      - bearerAuth: []
+      tags:
+      - User rights
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    ClientUserAssignment:
+      properties:
+        agicapUserEmails:
+          description: Email addresses of the successfully assigned Agicap users.
+          example:
+          - john.doe@example.com
+          - jane.doe@example.com
+          items:
+            type: string
+          type: array
+        clientExternalId:
+          description: External identifier of the client.
+          example: client_1
+          type: string
+      required:
+      - clientExternalId
+      - agicapUserEmails
+      type: object
+    AssignUsersToClientsByExternalIdRequest:
+      properties:
+        assignments:
+          description: List of client-to-users assignments. Max 1000 items per request.
+          items:
+            $ref: '#/components/schemas/ClientUserRightAssignment'
+          type: array
+      required:
+      - assignments
+      type: object
+    AssignUsersToClientsByExternalIdFailureReasonEnum:
+      description: Reason why the user could not be assigned to the client.
+      enum:
+      - USER_NOT_FOUND
+      - CLIENT_NOT_FOUND
+      type: string
+    AssignUsersToClientsByExternalIdResponse:
+      properties:
+        assigned:
+          description: Successfully assigned user-to-client groups.
+          items:
+            $ref: '#/components/schemas/ClientUserAssignment'
+          type: array
+        notAssigned:
+          description: User-to-client groups that could not be assigned.
+          items:
+            $ref: '#/components/schemas/FailedClientUserAssignment'
+          type: array
+      required:
+      - assigned
+      - notAssigned
+      type: object
+    ClientUserRightAssignment:
+      properties:
+        agicapUserEmails:
+          description: Email addresses of the Agicap users in the organization to assign. Must be valid email addresses. Values are lowercased and trimmed.
+          example:
+          - john.doe@example.com
+          - jane.doe@example.com
+          items:
+            type: string
+          type: array
+        clientExternalId:
+          description: External identifier of the client from the ERP or external system. Max 1000 characters, trimmed.
+          example: client_1
+          type: string
+      required:
+      - clientExternalId
+      - agicapUserEmails
+      type: object
+    FailedClientUserAssignment:
+      properties:
+        clientExternalId:
+          description: External identifier of the client.
+          example: client_1
+          type: string
+        failures:
+          description: Users that could not be assigned to this client.
+          items:
+            $ref: '#/components/schemas/AssignmentFailure'
+          type: array
+      required:
+      - clientExternalId
+      - failures
+      type: object
+    AssignmentFailure:
+      properties:
+        agicapUserEmail:
+          description: Email address of the Agicap user that could not be assigned.
+          example: unknown@example.com
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/AssignUsersToClientsByExternalIdFailureReasonEnum'
+          description: Reason why the user could not be assigned to the client.
+      required:
+      - agicapUserEmail
+      - reason
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

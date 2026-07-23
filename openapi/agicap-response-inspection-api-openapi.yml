@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Response inspection API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Response inspection
+paths:
+  /public/httpbin/v1/cache:
+    get:
+      parameters:
+      - in: header
+        name: If-Modified-Since
+        schema: {}
+      - in: header
+        name: If-None-Match
+        schema: {}
+      responses:
+        '200':
+          description: Cached response
+        '304':
+          description: Modified
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns a 304 if an If-Modified-Since header or If-None-Match is present. Returns the same as a GET otherwise.
+      tags:
+      - Response inspection
+  /public/httpbin/v1/cache/{value}:
+    get:
+      parameters:
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Cache control set
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Sets a Cache-Control header for n seconds.
+      tags:
+      - Response inspection
+  /public/httpbin/v1/etag/{etag}:
+    get:
+      parameters:
+      - in: header
+        name: If-None-Match
+        schema: {}
+      - in: header
+        name: If-Match
+        schema: {}
+      responses:
+        '200':
+          description: Normal response
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '412':
+          description: match
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Assumes the resource has the given etag and responds to If-None-Match and If-Match headers appropriately.
+      tags:
+      - Response inspection
+  /public/httpbin/v1/response-headers:
+    get:
+      parameters:
+      - in: query
+        name: freeform
+        schema:
+          allowEmptyValue: true
+      responses:
+        '200':
+          description: Response headers
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns a set of response headers from the query string.
+      tags:
+      - Response inspection
+    post:
+      parameters:
+      - in: query
+        name: freeform
+        schema:
+          allowEmptyValue: true
+      responses:
+        '200':
+          description: Response headers
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns a set of response headers from the query string.
+      tags:
+      - Response inspection
+components:
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

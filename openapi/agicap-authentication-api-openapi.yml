@@ -1,0 +1,306 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Authentication API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Authentication
+paths:
+  /public/auth/v1/token:
+    post:
+      description: 'This endpoint generates an access token that will be used with your Public Api call''s. The generated token will be placed in the `Authorization` header with value: `"Bearer YOUR_GENERATED_TOKEN"`
+
+
+        > The credentials used in the body must be generated from the Agicap application.
+
+        '
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AccessTokenRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+          description: The generated Access Token object
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Invalid request
+      summary: Generate an Access Token
+      tags:
+      - Authentication
+  /public/httpbin/v1/basic-auth/{user}/{passwd}:
+    get:
+      parameters:
+      - in: path
+        name: user
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: passwd
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sucessful authentication.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Prompts the user for authorization using HTTP Basic Auth.
+      tags:
+      - Authentication
+  /public/httpbin/v1/bearer:
+    get:
+      parameters:
+      - in: header
+        name: Authorization
+        schema: {}
+      responses:
+        '200':
+          description: Sucessful authentication.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Prompts the user for authorization using bearer authentication.
+      tags:
+      - Authentication
+  /public/httpbin/v1/digest-auth/{qop}/{user}/{passwd}:
+    get:
+      parameters:
+      - description: auth or auth-int
+        in: path
+        name: qop
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: user
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: passwd
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sucessful authentication.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Prompts the user for authorization using Digest Auth.
+      tags:
+      - Authentication
+  /public/httpbin/v1/digest-auth/{qop}/{user}/{passwd}/{algorithm}:
+    get:
+      parameters:
+      - description: auth or auth-int
+        in: path
+        name: qop
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: user
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: passwd
+        required: true
+        schema:
+          type: string
+      - description: MD5, SHA-256, SHA-512
+        in: path
+        name: algorithm
+        required: true
+        schema:
+          default: MD5
+          type: string
+      responses:
+        '200':
+          description: Sucessful authentication.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Prompts the user for authorization using Digest Auth + Algorithm.
+      tags:
+      - Authentication
+  /public/httpbin/v1/digest-auth/{qop}/{user}/{passwd}/{algorithm}/{stale_after}:
+    get:
+      description: 'allow settings the stale_after argument.
+
+        '
+      parameters:
+      - description: auth or auth-int
+        in: path
+        name: qop
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: user
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: passwd
+        required: true
+        schema:
+          type: string
+      - description: MD5, SHA-256, SHA-512
+        in: path
+        name: algorithm
+        required: true
+        schema:
+          default: MD5
+          type: string
+      - in: path
+        name: stale_after
+        required: true
+        schema:
+          default: never
+          type: string
+      responses:
+        '200':
+          description: Sucessful authentication.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Prompts the user for authorization using Digest Auth + Algorithm.
+      tags:
+      - Authentication
+  /public/httpbin/v1/hidden-basic-auth/{user}/{passwd}:
+    get:
+      parameters:
+      - in: path
+        name: user
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: passwd
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sucessful authentication.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '404':
+          description: Unsuccessful authentication.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Prompts the user for authorization using HTTP Basic Auth.
+      tags:
+      - Authentication
+components:
+  schemas:
+    BadRequestResponse:
+      properties:
+        error:
+          description: The error message.
+          type: string
+      type: object
+    AccessTokenResponse:
+      properties:
+        access_token:
+          description: The access token issued by the authorization server.
+          type: string
+        expires_in:
+          description: The lifetime in seconds of the access token.
+          type: integer
+        scope:
+          description: The associated scopes for the access token.
+          type: string
+        token_type:
+          description: The type of the token issued.
+          type: string
+      type: object
+    AccessTokenRequest:
+      properties:
+        client_id:
+          default: ''
+          description: The client identifier generated through the Agicap application.
+          type: string
+        client_secret:
+          default: ''
+          description: The client secret generated through the Agicap application.
+          type: string
+        grant_type:
+          default: client_credentials
+          description: The grant type as defined in the OAuth2 specification (must be client_credentials, authorization_code is not yet supported).
+          type: string
+        scope:
+          default: agicap:public-api
+          description: The scopes list separated by whitespace (should at least contains "agicap:public-api").
+          type: string
+      required:
+      - grant_type
+      - client_id
+      - client_secret
+      - scope
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

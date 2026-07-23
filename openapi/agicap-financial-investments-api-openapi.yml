@@ -1,0 +1,283 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Financial investments API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Financial investments
+paths:
+  /public/financial-investments/v1/entities/{entityId}/investments:
+    get:
+      description: Returns the full list of all financial investments for a given entity.
+      operationId: FinancialInvestmentsPublicApi_GetInvestments
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: limit
+        schema:
+          default: 1000
+          format: int32
+          type: integer
+      - in: query
+        name: currencies
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: maturityDateFrom
+        schema:
+          format: date
+          type: string
+      - in: query
+        name: maturityDateTo
+        schema:
+          format: date
+          type: string
+      - in: query
+        name: maturityDateSort
+        schema:
+          default: 1
+          enum:
+          - 0
+          - 1
+          format: int32
+          type: integer
+      - in: query
+        name: showPastInvestments
+        schema:
+          default: true
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvestmentsResponse'
+          description: All financial investments for given entity.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ProblemDetails'
+                - $ref: '#/components/schemas/HttpValidationProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: List financial investments by entity
+      tags:
+      - Financial investments
+  /public/financial-investments/v1/investments/{id}:
+    get:
+      description: Returns all information of a given financial investment along with its instalments. Investment id can be retrieved via the 'List financial investments' request
+      operationId: FinancialInvestmentsPublicApi_GetInvestmentDetails
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvestmentDetailResponse'
+          description: Details of the financial investment.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ProblemDetails'
+                - $ref: '#/components/schemas/HttpValidationProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Get financial investment details
+      tags:
+      - Financial investments
+components:
+  schemas:
+    Offset:
+      additionalProperties: false
+      properties:
+        current:
+          format: int32
+          type: integer
+        limit:
+          format: int32
+          type: integer
+        next:
+          format: int32
+          type: integer
+        previous:
+          format: int32
+          type: integer
+      type: object
+    AccruedResponse:
+      additionalProperties: false
+      properties:
+        lastMonth:
+          format: double
+          type: number
+        lastYear:
+          format: double
+          type: number
+        thisMonth:
+          format: double
+          type: number
+        thisYear:
+          format: double
+          type: number
+      title: Accrued
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    InvestmentsResponse:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/InvestmentItemResponse'
+          type: array
+        offset:
+          $ref: '#/components/schemas/Offset'
+      title: InvestmentsList
+      type: object
+    HttpValidationProblemDetails:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - additionalProperties: {}
+        properties:
+          errors:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+        type: object
+    InterestsResponse:
+      additionalProperties: false
+      properties:
+        accrued:
+          $ref: '#/components/schemas/AccruedResponse'
+        due:
+          format: double
+          type: number
+      title: Interests
+      type: object
+    InvestmentDetailResponse:
+      additionalProperties: false
+      properties:
+        amount:
+          format: double
+          type: number
+        currency:
+          type: string
+        entityId:
+          type: string
+        id:
+          format: uuid
+          type: string
+        interests:
+          $ref: '#/components/schemas/InterestsResponse'
+        maturityDate:
+          format: date
+          type: string
+        name:
+          type: string
+        rate:
+          format: double
+          type: number
+        status:
+          type: string
+        subscriptionDate:
+          format: date
+          type: string
+      title: InvestmentDetails
+      type: object
+    InvestmentItemResponse:
+      additionalProperties: false
+      properties:
+        amount:
+          format: double
+          type: number
+        closingDate:
+          format: date
+          nullable: true
+          type: string
+        currency:
+          type: string
+        id:
+          format: uuid
+          type: string
+        maturityDate:
+          format: date
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+      title: InvestmentsListItem
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

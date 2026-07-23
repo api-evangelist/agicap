@@ -1,0 +1,540 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports External contacts API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: External contacts
+paths:
+  /public/ar-clients/v1/entities/{entityId}/external-contacts:
+    delete:
+      description: Delete external contacts in bulk. Each contact is identified by itsexternalId within the client scope (clientExternalId + externalId).Maximum 1000 contacts per request.
+      operationId: Delete external contacts
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int
+          type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteExternalContactsRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteExternalContactsResponse'
+          description: ''
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - bearer: []
+      - bearerAuth: []
+      tags:
+      - External contacts
+      x-codegen-request-body-name: body
+    get:
+      description: Retrieve a paginated list of external contacts for the given entity.
+      operationId: List external contacts
+      parameters:
+      - in: query
+        name: pageSize
+        schema:
+          type: number
+      - description: Filter contacts by client external identifiers. Supports multiple values.
+        in: query
+        name: clientExternalIds
+        schema:
+          example:
+          - ext-client-001
+          - ext-client-002
+          items:
+            type: string
+          type: array
+      - description: Filter contacts by their client Agicap identifier (UUID). Supports multiple values.
+        in: query
+        name: clientIds
+        schema:
+          example:
+          - f47ac10b-58cc-4372-a567-0e02b2c3d479
+          items:
+            type: string
+          type: array
+      - description: Filter contacts whose email contains this value (case-insensitive).
+        in: query
+        name: email
+        schema:
+          example: jane@acme.com
+          type: string
+      - description: Opaque pagination token for retrieving the next page
+        in: query
+        name: token
+        schema:
+          format: base64url
+          type: string
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int
+          type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetExternalContactsResponse'
+          description: ''
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - bearer: []
+      - bearerAuth: []
+      tags:
+      - External contacts
+      x-codegen-request-body-name: body
+    post:
+      description: Create external contacts in bulk by clientExternalId. Maximum 1000 items per request.
+      operationId: Create external contacts
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int
+          type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExternalContactsRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateExternalContactsResponse'
+          description: ''
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - bearer: []
+      - bearerAuth: []
+      tags:
+      - External contacts
+      x-codegen-request-body-name: body
+    put:
+      description: Update external contacts in bulk by contactExternalId. Maximum 1000 items per request.
+      operationId: Update external contacts
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int
+          type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateExternalContactsRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateExternalContactsResponse'
+          description: ''
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - bearer: []
+      - bearerAuth: []
+      tags:
+      - External contacts
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    DeletedExternalContact:
+      properties:
+        externalId:
+          description: Identifier from the ERP or external system for this contact
+          example: contact_1
+          type: string
+      required:
+      - externalId
+      type: object
+    ExternalContactDeletionFailureEnum:
+      description: Reason why the contact could not be deleted
+      enum:
+      - CLIENT_NOT_FOUND
+      - CONTACT_NOT_FOUND
+      type: string
+    ExternalContactToDelete:
+      properties:
+        clientExternalId:
+          description: Client external ID that owns the contact. Max 1000 characters. Value is trimmed.
+          example: client_1
+          maxLength: 1000
+          type: string
+        externalId:
+          description: External contact external ID to delete. Max 1000 characters. Value is trimmed.
+          example: contact_1
+          maxLength: 1000
+          type: string
+      required:
+      - clientExternalId
+      - externalId
+      type: object
+    ExternalContactItem:
+      properties:
+        clientExternalId:
+          description: External identifier of the client this contact belongs to.
+          example: ext-client-001
+          nullable: true
+          type: string
+        createdDate:
+          description: Date and time the external contact was created (ISO 8601).
+          example: '2024-01-15T09:30:00.000Z'
+          format: date-time
+          type: string
+        email:
+          description: Email address of the external contact.
+          example: john@example.com
+          nullable: true
+          type: string
+        externalId:
+          description: Identifier from the ERP or external system. Unique per client if not `null`.
+          example: contact_1
+          nullable: true
+          type: string
+        id:
+          description: Unique external contact identifier (UUID format)
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          type: string
+        isMainContact:
+          description: Whether this contact is the main (primary) contact of its client.
+          example: true
+          type: boolean
+        name:
+          description: Name of the external contact.
+          example: John
+          nullable: true
+          type: string
+        notes:
+          description: Notes about the external contact.
+          example: Preferred contact for billing
+          nullable: true
+          type: string
+        phoneNumber:
+          description: Phone number of the external contact.
+          example: '+33612345678'
+          nullable: true
+          type: string
+        surname:
+          description: Surname of the external contact.
+          example: Doe
+          nullable: true
+          type: string
+      required:
+      - id
+      - externalId
+      - name
+      - surname
+      - email
+      - phoneNumber
+      - notes
+      - clientExternalId
+      - createdDate
+      - isMainContact
+      type: object
+    ExternalContactToCreate:
+      properties:
+        clientExternalId:
+          description: Identifier of the client from the ERP or external system. Max 1000 characters. Value is trimmed.
+          example: client_1
+          maxLength: 1000
+          type: string
+        contactExternalId:
+          description: Unique identifier of the contact from the ERP or external system. Max 1000 characters. Value is trimmed.
+          example: contact_1
+          maxLength: 1000
+          type: string
+        email:
+          description: Email address of the contact. Must be a valid email address. Value is lowercased and trimmed.
+          example: john.doe@example.com
+          type: string
+        firstName:
+          description: First name of the contact
+          example: John
+          type: string
+        lastName:
+          description: Last name of the contact
+          example: Doe
+          type: string
+        notes:
+          description: Additional notes about the contact. Max 100 characters.
+          example: Main contact for invoices
+          maxLength: 100
+          type: string
+        phone:
+          description: 'Phone number of the contact. Max 22 characters. Allowed characters: +, digits, spaces, x, #, *, ., (, ), -. Value is trimmed.'
+          example: '+33612345678'
+          maxLength: 22
+          type: string
+      required:
+      - clientExternalId
+      - contactExternalId
+      type: object
+    UpdateExternalContactsRequest:
+      properties:
+        contacts:
+          description: List of external contacts to update
+          items:
+            $ref: '#/components/schemas/UpdateExternalContact'
+          type: array
+      required:
+      - contacts
+      type: object
+    CreatedExternalContact:
+      properties:
+        externalId:
+          description: External contact identifier from the ERP or external system
+          example: contact_1
+          type: string
+      required:
+      - externalId
+      type: object
+    UpdateExternalContactFailureEnum:
+      description: Reason why the external contact could not be updated
+      enum:
+      - CLIENT_NOT_FOUND
+      - EXTERNAL_CONTACT_NOT_FOUND
+      - EXTERNAL_ID_CONFLICT
+      type: string
+    PaginationMetadataDto:
+      properties:
+        after:
+          nullable: true
+          type: string
+        before:
+          nullable: true
+          type: string
+      required:
+      - before
+      - after
+      type: object
+    CreateExternalContactsResponse:
+      properties:
+        created:
+          description: Successfully created external contacts
+          items:
+            $ref: '#/components/schemas/CreatedExternalContact'
+          type: array
+        notCreated:
+          description: External contacts that failed to be created
+          items:
+            $ref: '#/components/schemas/NotCreatedExternalContact'
+          type: array
+      required:
+      - created
+      - notCreated
+      type: object
+    DeleteExternalContactsResponse:
+      properties:
+        deleted:
+          description: Successfully deleted external contacts
+          items:
+            $ref: '#/components/schemas/DeletedExternalContact'
+          type: array
+        notDeleted:
+          description: External contacts that failed to be deleted
+          items:
+            $ref: '#/components/schemas/NotDeletedExternalContact'
+          type: array
+      required:
+      - deleted
+      - notDeleted
+      type: object
+    AddExternalContactFailureEnum:
+      description: Reason why the external contact could not be created
+      enum:
+      - CLIENT_NOT_FOUND
+      - EXTERNAL_ID_ALREADY_EXISTS
+      type: string
+    CreateExternalContactsRequest:
+      properties:
+        contacts:
+          description: List of external contacts to create
+          items:
+            $ref: '#/components/schemas/ExternalContactToCreate'
+          type: array
+      required:
+      - contacts
+      type: object
+    GetExternalContactsResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ExternalContactItem'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      required:
+      - items
+      - pagination
+      type: object
+    UpdateExternalContact:
+      properties:
+        clientExternalId:
+          description: Identifier of the client from the ERP or external system. Max 1000 characters. Value is trimmed.
+          example: client_1
+          maxLength: 1000
+          type: string
+        contactId:
+          description: Identifier of the contact in Cash Collect (if existing)
+          example: 550e8400-e29b-41d4-a716-446655440000
+          type: string
+        email:
+          description: Email address of the contact. Must be a valid email address. Value is lowercased and trimmed.
+          example: john.doe@example.com
+          type: string
+        externalId:
+          description: Unique identifier of the contact from the ERP or external system. Max 1000 characters. Value is trimmed.
+          example: contact_1
+          maxLength: 1000
+          type: string
+        firstName:
+          description: First name of the contact
+          example: John
+          type: string
+        lastName:
+          description: Last name of the contact
+          example: Doe
+          type: string
+        notes:
+          description: Additional notes about the contact. Max 100 characters.
+          example: Main contact for invoices
+          maxLength: 100
+          type: string
+        phone:
+          description: 'Phone number of the contact. Max 22 characters. Allowed characters: +, digits, spaces, x, #, *, ., (, ), -. Value is trimmed.'
+          example: '+33612345678'
+          maxLength: 22
+          type: string
+      required:
+      - clientExternalId
+      - externalId
+      type: object
+    NotCreatedExternalContact:
+      properties:
+        externalId:
+          description: External contact identifier from the ERP or external system
+          example: contact_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/AddExternalContactFailureEnum'
+          description: Reason why the external contact could not be created
+      required:
+      - externalId
+      - reason
+      type: object
+    NotUpdatedExternalContact:
+      properties:
+        externalId:
+          description: External contact identifier from the ERP or external system
+          example: contact_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/UpdateExternalContactFailureEnum'
+          description: Reason why the external contact could not be updated
+      required:
+      - externalId
+      - reason
+      type: object
+    DeleteExternalContactsRequest:
+      properties:
+        contacts:
+          description: List of external contacts to delete (max 1000 items)
+          items:
+            $ref: '#/components/schemas/ExternalContactToDelete'
+          type: array
+      required:
+      - contacts
+      type: object
+    NotDeletedExternalContact:
+      properties:
+        externalId:
+          description: Identifier from the ERP or external system for this contact
+          example: contact_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/ExternalContactDeletionFailureEnum'
+          description: Reason why the contact could not be deleted
+      required:
+      - externalId
+      - reason
+      type: object
+    UpdatedExternalContact:
+      properties:
+        externalId:
+          description: External contact identifier from the ERP or external system
+          example: contact_1
+          type: string
+      required:
+      - externalId
+      type: object
+    UpdateExternalContactsResponse:
+      properties:
+        notUpdated:
+          description: External contacts that failed to be updated
+          items:
+            $ref: '#/components/schemas/NotUpdatedExternalContact'
+          type: array
+        updated:
+          description: Successfully updated external contacts
+          items:
+            $ref: '#/components/schemas/UpdatedExternalContact'
+          type: array
+      required:
+      - updated
+      - notUpdated
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

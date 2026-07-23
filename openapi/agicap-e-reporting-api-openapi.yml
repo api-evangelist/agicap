@@ -1,0 +1,333 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports E-Reporting API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: E-Reporting
+paths:
+  /public/einvoicing/v1/e-reportings/b2c-transactions:
+    post:
+      description: 'Report a B2C transaction for e-reporting purposes.
+
+        The transaction is associated with a company identified by its SIREN and
+
+        aggregated into an e-reporting period based on the transaction date and VAT regime.'
+      operationId: AddB2CTransaction
+      parameters:
+      - description: 'Allowed values: Production, Sandbox. Defaults to Production when not specified.'
+        in: header
+        name: X-FlowMode
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PublicApiAddB2CTransactionRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublicApiAddB2CTransactionRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PublicApiAddB2CTransactionRequest'
+      responses:
+        '204':
+          description: The B2C transaction has been successfully reported.
+        '400':
+          description: 'Error 400 : Bad request — invalid or missing fields.'
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '404':
+          description: 'Error 404 : E-reporting configuration not found for the given company.'
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: 'Error 500 : Server Internal Error.'
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Add a B2C transaction
+      tags:
+      - E-Reporting
+components:
+  schemas:
+    ReportedInvoiceCategory:
+      additionalProperties: false
+      enum:
+      - SaleOfGoods
+      - ProvisionOfService
+      type: string
+    PublicApiAddB2CTransactionRequest:
+      additionalProperties: false
+      properties:
+        category:
+          $ref: '#/components/schemas/ReportedInvoiceCategory'
+        currencyCode:
+          $ref: '#/components/schemas/CurrencyCode'
+        entityId:
+          description: Identifier of the entity the transaction is reported for.
+          format: int32
+          type: integer
+        legalRegistrationId:
+          description: 9-digit French company identifier (SIREN) associated with the transaction.
+          minLength: 1
+          type: string
+        transactionDate:
+          description: 'Date of the B2C transaction (format: YYYY-MM-DD).'
+          format: date
+          type: string
+        transactionDetails:
+          description: Tax breakdown details for the transaction. At least one entry is required.
+          items:
+            $ref: '#/components/schemas/PublicApiB2CTransactionDetailRequest'
+          type: array
+      required:
+      - category
+      - currencyCode
+      - entityId
+      - legalRegistrationId
+      - transactionDate
+      - transactionDetails
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    PublicApiB2CTransactionDetailRequest:
+      additionalProperties: false
+      properties:
+        taxRate:
+          description: 'VAT tax rate as a percentage. Allowed values: 0.00, 0.90, 1.05, 1.75, 2.10, 5.50, 7.00, 8.50, 9.20, 9.60, 10.00, 13.00, 19.60, 20.00, 20.60.'
+          format: double
+          type: number
+        taxableAmount:
+          description: Taxable amount excluding VAT. Must be greater than or equal to 0 with a maximum of two decimal.
+          format: double
+          type: number
+      required:
+      - taxableAmount
+      - taxRate
+      title: Details of the B2C transaction
+      type: object
+    CurrencyCode:
+      additionalProperties: false
+      enum:
+      - AED
+      - AFN
+      - ALL
+      - AMD
+      - ANG
+      - AOA
+      - ARS
+      - AUD
+      - AWG
+      - AZN
+      - BAM
+      - BBD
+      - BDT
+      - BGN
+      - BHD
+      - BIF
+      - BMD
+      - BND
+      - BOB
+      - BOV
+      - BRL
+      - BSD
+      - BTN
+      - BWP
+      - BYN
+      - BZD
+      - CAD
+      - CDF
+      - CHE
+      - CHF
+      - CHW
+      - CLF
+      - CLP
+      - CNY
+      - COP
+      - COU
+      - CRC
+      - CUC
+      - CUP
+      - CVE
+      - CZK
+      - DJF
+      - DKK
+      - DOP
+      - DZD
+      - EGP
+      - ERN
+      - ETB
+      - EUR
+      - FJD
+      - FKP
+      - GBP
+      - GEL
+      - GHS
+      - GIP
+      - GMD
+      - GNF
+      - GTQ
+      - GYD
+      - HKD
+      - HNL
+      - HTG
+      - HUF
+      - IDR
+      - ILS
+      - INR
+      - IQD
+      - IRR
+      - ISK
+      - JMD
+      - JOD
+      - JPY
+      - KES
+      - KGS
+      - KHR
+      - KMF
+      - KPW
+      - KRW
+      - KWD
+      - KYD
+      - KZT
+      - LAK
+      - LBP
+      - LKR
+      - LRD
+      - LSL
+      - LYD
+      - MAD
+      - MDL
+      - MGA
+      - MKD
+      - MMK
+      - MNT
+      - MOP
+      - MRU
+      - MUR
+      - MVR
+      - MWK
+      - MXN
+      - MXV
+      - MYR
+      - MZN
+      - NAD
+      - NGN
+      - NIO
+      - NOK
+      - NPR
+      - NZD
+      - OMR
+      - PAB
+      - PEN
+      - PGK
+      - PHP
+      - PKR
+      - PLN
+      - PYG
+      - QAR
+      - RON
+      - RSD
+      - RUB
+      - RWF
+      - SAR
+      - SBD
+      - SCR
+      - SDG
+      - SEK
+      - SGD
+      - SHP
+      - SLE
+      - SOS
+      - SRD
+      - SSP
+      - STN
+      - SVC
+      - SYP
+      - SZL
+      - THB
+      - TJS
+      - TMT
+      - TND
+      - TOP
+      - TRY
+      - TTD
+      - TWD
+      - TZS
+      - UAH
+      - UGX
+      - USD
+      - USN
+      - UYI
+      - UYU
+      - UYW
+      - UZS
+      - VED
+      - VES
+      - VND
+      - VUV
+      - WST
+      - XAF
+      - XAG
+      - XAU
+      - XBA
+      - XBB
+      - XBC
+      - XBD
+      - XCD
+      - XDR
+      - XOF
+      - XPD
+      - XPF
+      - XPT
+      - XSU
+      - XTS
+      - XUA
+      - XXX
+      - YER
+      - ZAR
+      - ZMW
+      - ZWG
+      - ZWL
+      type: string
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

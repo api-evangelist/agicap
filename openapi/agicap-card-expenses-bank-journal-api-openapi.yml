@@ -1,0 +1,231 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Card expenses bank journal API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Card expenses bank journal
+paths:
+  /public/card-expenses-bank-journal/v1/entities/{entityId}/accounting-transactions:
+    get:
+      description: "# Getting Started:\n\n## Export your card expenses bank journal entries from Agicap to your accounting software\n\nWelcome to the card expenses bank journal entries API documentation. This guide is designed to help you seamlessly export bank journal entries to your accounting software from Agicap.\n\n## Introduction\n\nBefore starting, make sure with your Account Manager that the relevant option is activated in Agicap on your entity = Pre-Accounting with the export option “External accounting softwares”. After that, you need your accountant to prepare the journal entries and click on “export to my accounting software” for them to be available from the API database.\n\n## Set up a connexion to retrieve journal entries\n\n### Step 1: Generate Client Credentials\n\nTo get started, you’ll need to generate client credentials. These credentials will authenticate your API requests. For detailed instructions, please refer to our [Introduction Guide](https://api.agicap.com/guides/introduction).\n\n### Step 2: Retrieve Entity\n\nEach connection must be associated with an entity. You’ll need the `entity id` to create a connection.\n\n- If you already have the `entity id`, skip to Step 3.\n- To retrieve the `entity id`:\n    1. **List Organizations**: Use the following request ([Get Organizations](https://api.agicap.com/api-details/organizations-v1#tag/Entities/operation/Organizations_ListOrganizations))\n    2. **List Entities**: Use the following request ([Get Entities](https://api.agicap.com/api-details/organizations-v1#tag/Entities)) to find the entities associated with your organization\n    3. **Select the Entity Owner**: Choose the entity that will be the owner of the connection.\n\n### Step 3: Get bank journal entries\n\nWe recommend creating a separate connection for each entity to keep data sources distinct and maintain clarity within Agicap. To get bank journal entries, make the following API call: [Get accounting transactions](https://api.agicap.com/api-details/card-expenses-bank-journal-v1#tag/Card-expenses-bank-journal/operation/AccountingTransactionsPublicApi_GetAccountingTransactionLines)."
+      operationId: GetAccountingTransactionLines
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: LastSynchronizationDate
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: PageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: PageNumber
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResult`1<PreAccounting.Queries.BankJournal.AccountingTransactionLine>'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PagedResult`1<PreAccounting.Queries.BankJournal.AccountingTransactionLine>'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PagedResult`1<PreAccounting.Queries.BankJournal.AccountingTransactionLine>'
+          description: OK
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Retrieve your card expense bank journal entries
+      tags:
+      - Card expenses bank journal
+components:
+  schemas:
+    AccountingTransactionCredit:
+      additionalProperties: false
+      properties:
+        accountNumber:
+          description: number of the account posted
+          type: string
+        accountType:
+          allOf:
+          - $ref: '#/components/schemas/AccountingTransactionAccountType'
+          description: type of bookkeeping account
+        amount:
+          description: amount of the transaction
+          format: double
+          type: number
+        currency:
+          description: currency of the transaction
+          type: string
+        thirdPartyAccount:
+          description: label for the account posted
+          type: string
+      required:
+      - accountNumber
+      - accountType
+      - amount
+      - currency
+      - thirdPartyAccount
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    PagedResult`1<PreAccounting.Queries.BankJournal.AccountingTransactionLine>:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AccountingTransactionLine'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/Pagination'
+      required:
+      - items
+      - pagination
+      type: object
+    AccountingTransactionDebit:
+      additionalProperties: false
+      properties:
+        accountNumber:
+          description: number of the account posted
+          type: string
+        accountType:
+          allOf:
+          - $ref: '#/components/schemas/AccountingTransactionAccountType'
+          description: type of bookkeeping account
+        amount:
+          description: amount of the transaction
+          format: double
+          type: number
+        currency:
+          description: currency of the transaction
+          type: string
+        thirdPartyAccount:
+          description: label for the account posted
+          type: string
+      required:
+      - accountNumber
+      - accountType
+      - amount
+      - currency
+      - thirdPartyAccount
+      type: object
+    AccountingTransactionAccountType:
+      additionalProperties: false
+      enum:
+      - SupplierAccount
+      - BankLedger
+      type: string
+    Pagination:
+      additionalProperties: false
+      properties:
+        currentPageItemsCount:
+          format: int32
+          type: integer
+        currentPageNumber:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pagesCount:
+          format: int32
+          type: integer
+        totalItemsCount:
+          format: int32
+          type: integer
+      required:
+      - currentPageItemsCount
+      - currentPageNumber
+      - pagesCount
+      - pageSize
+      - totalItemsCount
+      type: object
+    AccountingTransactionLine:
+      additionalProperties: false
+      properties:
+        credit:
+          allOf:
+          - $ref: '#/components/schemas/AccountingTransactionCredit'
+          description: amount applied to the credit column
+        debit:
+          allOf:
+          - $ref: '#/components/schemas/AccountingTransactionDebit'
+          description: amount applied to the debit column
+        paymentDate:
+          description: date of the payment
+          format: date-time
+          type: string
+        supplierOrMerchant:
+          description: name of the supplier
+          type: string
+        title:
+          description: title manually entered
+          type: string
+        uniqueId:
+          description: GUID
+          type: string
+      required:
+      - credit
+      - debit
+      - paymentDate
+      - supplierOrMerchant
+      - title
+      - uniqueId
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

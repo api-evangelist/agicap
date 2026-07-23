@@ -1,0 +1,823 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: AR Account reports Clients API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Clients
+paths:
+  /public/ar-clients/v1/entities/{entityId}/clients:
+    delete:
+      description: Delete clients in bulk by externalId. A client with linked invoices or credit notes cannot be deleted.
+      operationId: Delete clients
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int
+          type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteClientsRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteClientsResponse'
+          description: ''
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - bearer: []
+      - bearerAuth: []
+      tags:
+      - Clients
+      x-codegen-request-body-name: body
+    get:
+      description: Retrieve a paginated list of clients for the given entity.
+      operationId: List clients
+      parameters:
+      - in: query
+        name: pageSize
+        schema:
+          type: number
+      - description: Filter clients by external identifiers. Supports multiple values.
+        in: query
+        name: clientExternalIds
+        schema:
+          example:
+          - ext-client-001
+          - ext-client-002
+          items:
+            type: string
+          type: array
+      - description: Filter clients by their Agicap identifier (UUID). Supports multiple values.
+        in: query
+        name: clientIds
+        schema:
+          example:
+          - f47ac10b-58cc-4372-a567-0e02b2c3d479
+          items:
+            type: string
+          type: array
+      - description: Filter clients whose name contains this value (case-insensitive).
+        in: query
+        name: name
+        schema:
+          example: Agicap
+          type: string
+      - description: Filter clients whose business reference contains this value (case-insensitive).
+        in: query
+        name: reference
+        schema:
+          example: ACME
+          type: string
+      - description: Field to sort clients by. Defaults to a stable identifier order when omitted.
+        in: query
+        name: sortBy
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/GetClientsSortByEnum'
+          example: name
+      - description: Sort direction. Defaults to ascending.
+        in: query
+        name: sortDirection
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/SortDirectionEnum'
+          example: asc
+      - description: Opaque pagination token for retrieving the next page
+        in: query
+        name: token
+        schema:
+          format: base64url
+          type: string
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int
+          type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetClientsResponse'
+          description: ''
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - bearer: []
+      - bearerAuth: []
+      tags:
+      - Clients
+      x-codegen-request-body-name: body
+    post:
+      description: Create clients in bulk. Clients with an already existing externalId are ignored. Maximum 1000 items per request.
+      operationId: Create clients
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int
+          type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClientsRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateClientsResponse'
+          description: ''
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - bearer: []
+      - bearerAuth: []
+      tags:
+      - Clients
+      x-codegen-request-body-name: body
+    put:
+      description: Update clients in bulk by Agicap ID or externalId (Agicap ID takes priority). Non-existing clients are ignored. Maximum 1000 items per request.
+      operationId: Update clients
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int
+          type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateClientsRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateClientsResponse'
+          description: ''
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - bearer: []
+      - bearerAuth: []
+      tags:
+      - Clients
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    CreateClientFailureEnum:
+      description: Reason why the client could not be created
+      enum:
+      - DUPLICATED_EXTERNAL_ID
+      - DUPLICATED_REFERENCE
+      type: string
+    UpdateClientsRequest:
+      properties:
+        clients:
+          description: List of clients to update
+          items:
+            $ref: '#/components/schemas/ClientToUpdate'
+          type: array
+      required:
+      - clients
+      type: object
+    NotUpdatedClient:
+      properties:
+        externalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/NotUpdatedReasonEnum'
+          description: Reason why the client could not be updated
+      required:
+      - externalId
+      - reason
+      type: object
+    Client:
+      properties:
+        averagePaymentDelay:
+          description: Average payment delay of the client in days. `null` when not enough data is available.
+          example: 12
+          nullable: true
+          type: number
+        consolidatedCurrency:
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+          description: Entity main currency the consolidated amounts are expressed in.
+        consolidatedDueAmount:
+          description: Total due amount consolidated into the entity main currency, in currency units (not cents), rounded.
+          example: 1680
+          type: number
+        consolidatedOutstandingAmount:
+          description: Total outstanding amount consolidated into the entity main currency, in currency units (not cents), rounded.
+          example: 2380
+          type: number
+        dueAmountSummary:
+          description: Due amounts broken down by currency, with conversion to the entity main currency.
+          items:
+            $ref: '#/components/schemas/DueAmountSummaryItem'
+          type: array
+        electronicInvoicingAddress:
+          description: Address used for electronic invoicing (Chorus Pro, Peppol, etc.)
+          example: '83486222100034'
+          nullable: true
+          type: string
+        externalId:
+          description: Identifier from the ERP or external invoicing system
+          example: erp_agicap_001
+          nullable: true
+          type: string
+        id:
+          description: Unique client identifier (UUID format)
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          type: string
+        legalId:
+          description: Legal identifier (SIREN, SIRET, VAT, etc.)
+          example: FR12345678901
+          nullable: true
+          type: string
+        name:
+          description: Client name
+          example: Agicap
+          type: string
+        numberOfContacts:
+          description: Number of external contacts attached to the client.
+          example: 3
+          type: number
+        outstandingAmountSummary:
+          description: Outstanding amounts broken down by currency, with conversion to the entity main currency.
+          items:
+            $ref: '#/components/schemas/OutstandingAmountSummaryItem'
+          type: array
+        reference:
+          description: Business reference for the client
+          example: Agicap
+          type: string
+        tags:
+          description: Tags associated with the client
+          example:
+          - priority
+          - france
+          items:
+            type: string
+          type: array
+      required:
+      - id
+      - name
+      - reference
+      - externalId
+      - legalId
+      - electronicInvoicingAddress
+      - tags
+      - outstandingAmountSummary
+      - dueAmountSummary
+      - averagePaymentDelay
+      - numberOfContacts
+      - consolidatedOutstandingAmount
+      - consolidatedDueAmount
+      - consolidatedCurrency
+      type: object
+    ClientToCreate:
+      properties:
+        electronicInvoicingAddress:
+          description: Address used for electronic invoicing (Chorus Pro, Peppol, etc.). Max 256 characters. Cannot be empty when provided. Value is trimmed.
+          example: '83486222100034'
+          maxLength: 256
+          type: string
+        externalId:
+          description: Identifier from the ERP or external system. Max 1000 characters. Value is trimmed.
+          example: client_1
+          maxLength: 1000
+          type: string
+        legalId:
+          description: Legal identifier (SIREN, SIRET, VAT, etc.). Cannot be empty when provided. Value is trimmed.
+          example: FR12345678901
+          type: string
+        name:
+          description: Client name. Max 400 characters. Cannot be empty. Value is trimmed.
+          example: Acme Industries
+          maxLength: 400
+          type: string
+        reference:
+          description: Business reference for the client. Max 400 characters. Cannot be empty. Value is trimmed.
+          example: C-10023
+          maxLength: 400
+          type: string
+        tags:
+          description: 'Tags associated with the client. Each tag: min 1, max 30 characters. Value is trimmed.'
+          example:
+          - Key Account
+          items:
+            type: string
+          type: array
+      required:
+      - externalId
+      - name
+      - reference
+      - tags
+      type: object
+    UpdateClientsResponse:
+      properties:
+        notUpdated:
+          description: Clients that failed to be updated
+          items:
+            $ref: '#/components/schemas/NotUpdatedClient'
+          type: array
+        updated:
+          description: Successfully updated clients
+          items:
+            $ref: '#/components/schemas/UpdatedClient'
+          type: array
+      required:
+      - updated
+      - notUpdated
+      type: object
+    DeleteClientsResponse:
+      properties:
+        deleted:
+          description: Successfully deleted clients
+          items:
+            $ref: '#/components/schemas/ClientSummaryDto'
+          type: array
+        notDeleted:
+          description: Clients that failed to be deleted
+          items:
+            $ref: '#/components/schemas/NotDeletedClient'
+          type: array
+      required:
+      - deleted
+      - notDeleted
+      type: object
+    Currency:
+      description: Currency of the outstanding amount.
+      enum:
+      - AED
+      - AFN
+      - ALL
+      - AMD
+      - ANG
+      - AOA
+      - ARS
+      - AUD
+      - AWG
+      - AZN
+      - BAM
+      - BBD
+      - BDT
+      - BGN
+      - BHD
+      - BIF
+      - BMD
+      - BND
+      - BOB
+      - BRL
+      - BSD
+      - BTC
+      - BTN
+      - BWP
+      - BYN
+      - BYR
+      - BZD
+      - CAD
+      - CDF
+      - CHF
+      - CLF
+      - CLP
+      - CNY
+      - COP
+      - CRC
+      - CUC
+      - CUP
+      - CVE
+      - CZK
+      - DJF
+      - DKK
+      - DOP
+      - DZD
+      - EGP
+      - ERN
+      - ETB
+      - EUR
+      - FJD
+      - FKP
+      - GBP
+      - GEL
+      - GGP
+      - GHS
+      - GIP
+      - GMD
+      - GNF
+      - GTQ
+      - GYD
+      - HKD
+      - HNL
+      - HRK
+      - HTG
+      - HUF
+      - IDR
+      - ILS
+      - IMP
+      - INR
+      - IQD
+      - IRR
+      - ISK
+      - JEP
+      - JMD
+      - JOD
+      - JPY
+      - KES
+      - KGS
+      - KHR
+      - KMF
+      - KPW
+      - KRW
+      - KWD
+      - KYD
+      - KZT
+      - LAK
+      - LBP
+      - LKR
+      - LRD
+      - LSL
+      - LTL
+      - LVL
+      - LYD
+      - MAD
+      - MDL
+      - MGA
+      - MKD
+      - MMK
+      - MNT
+      - MOP
+      - MRO
+      - MUR
+      - MVR
+      - MWK
+      - MXN
+      - MYR
+      - MZN
+      - NAD
+      - NGN
+      - NIO
+      - NOK
+      - NPR
+      - NZD
+      - OMR
+      - PAB
+      - PEN
+      - PGK
+      - PHP
+      - PKR
+      - PLN
+      - PYG
+      - QAR
+      - RON
+      - RSD
+      - RUB
+      - RWF
+      - SAR
+      - SBD
+      - SCR
+      - SDG
+      - SEK
+      - SGD
+      - SHP
+      - SLL
+      - SOS
+      - SRD
+      - STD
+      - SVC
+      - SYP
+      - SZL
+      - THB
+      - TJS
+      - TMT
+      - TND
+      - TOP
+      - TRY
+      - TTD
+      - TWD
+      - TZS
+      - UAH
+      - UGX
+      - USD
+      - UYU
+      - UZS
+      - VEF
+      - VND
+      - VUV
+      - WST
+      - XAF
+      - XAG
+      - XAU
+      - XCD
+      - XDR
+      - XOF
+      - XPF
+      - YER
+      - ZAR
+      - ZMK
+      - ZMW
+      - ZWL
+      - BOV
+      - COU
+      - MRU
+      - XUA
+      - MXV
+      - STN
+      - SLE
+      - XSU
+      - SSD
+      - CHE
+      - CHW
+      - USN
+      - UYI
+      - UYW
+      - VES
+      - VED
+      - XBA
+      - XBB
+      - XBC
+      - XBD
+      - XTS
+      - XXX
+      - XPD
+      - XPT
+      type: string
+    NotDeletedClient:
+      properties:
+        externalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+        reason:
+          description: Reason why the client could not be deleted
+          enum:
+          - CLIENT_HAS_DOCUMENTS
+          - CLIENT_NOT_FOUND
+          type: string
+      required:
+      - externalId
+      - reason
+      type: object
+    ClientSummaryDto:
+      properties:
+        externalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+        id:
+          description: Unique client identifier (UUID format)
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          type: string
+      required:
+      - id
+      - externalId
+      type: object
+    PaginationMetadataDto:
+      properties:
+        after:
+          nullable: true
+          type: string
+        before:
+          nullable: true
+          type: string
+      required:
+      - before
+      - after
+      type: object
+    NotUpdatedReasonEnum:
+      description: Reason why the client could not be updated
+      enum:
+      - NOT_FOUND
+      - EXTERNAL_ID_CONFLICT
+      type: string
+    UpdatedClient:
+      properties:
+        externalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+        id:
+          description: Unique client identifier (UUID format)
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          type: string
+      required:
+      - id
+      - externalId
+      type: object
+    DueAmountSummaryItem:
+      properties:
+        convertedCurrencyCode:
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+          description: Main currency the amount was converted to. `null` when no conversion was applied.
+          nullable: true
+        convertedDueAmount:
+          description: Due amount converted to the entity main currency, in currency units (not cents), rounded. `null` when the amount is already in the main currency or no exchange rate is available.
+          example: 880
+          nullable: true
+          type: number
+        currencyCode:
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+          description: Currency of the due amount.
+        dueAmount:
+          description: Due amount in the original currency, expressed in currency units (not cents), rounded.
+          example: 800
+          type: number
+      required:
+      - dueAmount
+      - currencyCode
+      - convertedDueAmount
+      - convertedCurrencyCode
+      type: object
+    GetClientsResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Client'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      required:
+      - items
+      - pagination
+      type: object
+    ClientToUpdate:
+      properties:
+        electronicInvoicingAddress:
+          description: Address used for electronic invoicing (Chorus Pro, Peppol, etc.). Max 256 characters. Cannot be empty when provided. Value is trimmed.
+          example: '83486222100034'
+          maxLength: 256
+          type: string
+        externalId:
+          description: Identifier from the ERP or external system. Max 1000 characters. Value is trimmed.
+          example: client_1
+          maxLength: 1000
+          type: string
+        id:
+          description: Agicap internal client identifier. Must be a valid UUID.
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          type: string
+        legalId:
+          description: Legal identifier (SIREN, SIRET, VAT, etc.). Cannot be empty when provided. Value is trimmed.
+          example: FR12345678901
+          type: string
+        name:
+          description: Client name. Max 400 characters. Cannot be empty. Value is trimmed.
+          example: Acme Industries
+          maxLength: 400
+          type: string
+        tags:
+          description: 'Tags associated with the client. Each tag: min 1, max 30 characters. Value is trimmed.'
+          example:
+          - Key Account
+          items:
+            type: string
+          type: array
+      required:
+      - externalId
+      - name
+      - tags
+      type: object
+    CreateClientsResponse:
+      properties:
+        created:
+          description: Successfully created clients
+          items:
+            $ref: '#/components/schemas/ClientSummaryDto'
+          type: array
+        notCreated:
+          description: Clients that failed to be created
+          items:
+            $ref: '#/components/schemas/NotCreatedClient'
+          type: array
+      required:
+      - created
+      - notCreated
+      type: object
+    NotCreatedClient:
+      properties:
+        externalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/CreateClientFailureEnum'
+          description: Reason why the client could not be created
+      required:
+      - externalId
+      - reason
+      type: object
+    CreateClientsRequest:
+      properties:
+        clients:
+          description: List of clients to create
+          items:
+            $ref: '#/components/schemas/ClientToCreate'
+          type: array
+      required:
+      - clients
+      type: object
+    OutstandingAmountSummaryItem:
+      properties:
+        convertedCurrencyCode:
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+          description: Main currency the amount was converted to. `null` when no conversion was applied.
+          nullable: true
+        convertedRoundedAmount:
+          description: Outstanding amount converted to the entity main currency, in currency units (not cents), rounded. `null` when the amount is already in the main currency or no exchange rate is available.
+          example: 1650
+          nullable: true
+          type: number
+        currencyCode:
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+          description: Currency of the outstanding amount.
+        roundedAmount:
+          description: Outstanding amount in the original currency, expressed in currency units (not cents), rounded.
+          example: 1500
+          type: number
+      required:
+      - roundedAmount
+      - currencyCode
+      - convertedRoundedAmount
+      - convertedCurrencyCode
+      type: object
+    DeleteClientsRequest:
+      properties:
+        externalIds:
+          description: 'List of client external IDs to delete. Max 1000 items. Each ID: max 1000 characters, value is trimmed.'
+          example:
+          - client_1
+          - client_2
+          items:
+            type: string
+          type: array
+      required:
+      - externalIds
+      type: object
+    SortDirectionEnum:
+      description: Sort direction. Defaults to ascending.
+      enum:
+      - asc
+      - desc
+      type: string
+    GetClientsSortByEnum:
+      description: Field to sort clients by. Defaults to a stable identifier order when omitted.
+      enum:
+      - name
+      - reference
+      - outstandingAmount
+      - dueAmount
+      type: string
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

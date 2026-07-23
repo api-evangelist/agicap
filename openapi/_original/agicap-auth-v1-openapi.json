@@ -1,0 +1,124 @@
+{
+ "components": {
+  "schemas": {
+   "AccessTokenRequest": {
+    "properties": {
+     "client_id": {
+      "default": "",
+      "description": "The client identifier generated through the Agicap application.",
+      "type": "string"
+     },
+     "client_secret": {
+      "default": "",
+      "description": "The client secret generated through the Agicap application.",
+      "type": "string"
+     },
+     "grant_type": {
+      "default": "client_credentials",
+      "description": "The grant type as defined in the OAuth2 specification (must be client_credentials, authorization_code is not yet supported).",
+      "type": "string"
+     },
+     "scope": {
+      "default": "agicap:public-api",
+      "description": "The scopes list separated by whitespace (should at least contains \"agicap:public-api\").",
+      "type": "string"
+     }
+    },
+    "required": [
+     "grant_type",
+     "client_id",
+     "client_secret",
+     "scope"
+    ],
+    "type": "object"
+   },
+   "AccessTokenResponse": {
+    "properties": {
+     "access_token": {
+      "description": "The access token issued by the authorization server.",
+      "type": "string"
+     },
+     "expires_in": {
+      "description": "The lifetime in seconds of the access token.",
+      "type": "integer"
+     },
+     "scope": {
+      "description": "The associated scopes for the access token.",
+      "type": "string"
+     },
+     "token_type": {
+      "description": "The type of the token issued.",
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "BadRequestResponse": {
+    "properties": {
+     "error": {
+      "description": "The error message.",
+      "type": "string"
+     }
+    },
+    "type": "object"
+   }
+  }
+ },
+ "info": {
+  "contact": {},
+  "description": "my-account-web",
+  "title": "Authentication",
+  "version": "v1"
+ },
+ "openapi": "3.0.0",
+ "paths": {
+  "/public/auth/v1/token": {
+   "post": {
+    "description": "This endpoint generates an access token that will be used with your Public Api call's. The generated token will be placed in the `Authorization` header with value: `\"Bearer YOUR_GENERATED_TOKEN\"`\n\n> The credentials used in the body must be generated from the Agicap application.\n",
+    "requestBody": {
+     "content": {
+      "application/x-www-form-urlencoded": {
+       "schema": {
+        "$ref": "#/components/schemas/AccessTokenRequest"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AccessTokenResponse"
+        }
+       }
+      },
+      "description": "The generated Access Token object"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/BadRequestResponse"
+        }
+       }
+      },
+      "description": "Invalid request"
+     }
+    },
+    "summary": "Generate an Access Token",
+    "tags": [
+     "Authentication"
+    ]
+   }
+  }
+ },
+ "servers": [
+  {
+   "url": "https://api.agicap.com"
+  },
+  {
+   "url": "https://api.agicap.internal"
+  }
+ ]
+}

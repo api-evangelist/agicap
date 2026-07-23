@@ -1,0 +1,348 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Bank files API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Bank files
+paths:
+  /public/banking-documents/v1/entities/{entityId}/connections/{connectionId}/files:
+    get:
+      operationId: BankFiles_ListBankFilesOfConnection
+      parameters:
+      - description: Agicap entity identifier
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Connection identifier
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Bank file format
+        in: query
+        name: format
+        schema:
+          items:
+            type: string
+          type: array
+      - description: Bank file type. Possible value are STATEMENT, ACCOUNT_REPORT, OTHER, UNKNOWN
+        in: query
+        name: type
+        schema:
+          items:
+            type: string
+          type: array
+      - description: Will return only bank files created **after** this date
+        in: query
+        name: createdSince
+        schema:
+          format: date-time
+          type: string
+      - description: Will return only bank files created **before** this date
+        in: query
+        name: createdUntil
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: PageNumber
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: PageSize
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankFileSummaryPagedResult'
+          description: Your request has been successfully processed.
+        '400':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Your request is invalid.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: List bank files
+      tags:
+      - Bank files
+    post:
+      operationId: BankFiles_PushBankFile
+      parameters:
+      - description: Agicap entity identifier
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Connection identifier
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              file:
+                style: form
+            schema:
+              properties:
+                file:
+                  format: binary
+                  type: string
+              type: object
+      responses:
+        '201':
+          content:
+            text/plain: {}
+          description: Your entity has been created.
+        '400':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Your request is invalid.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Push a bank file
+      tags:
+      - Bank files
+  /public/banking-documents/v1/entities/{entityId}/connections/{connectionId}/files/{fileId}:
+    delete:
+      operationId: BankFiles_DeleteConnection
+      parameters:
+      - description: Agicap entity identifier
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Connection identifier
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: File identifier
+        in: path
+        name: fileId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '204':
+          content:
+            text/plain: {}
+          description: The file has been successfully deleted
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '404':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: The targeted entity has not been found.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Delete a file
+      tags:
+      - Bank files
+    get:
+      operationId: BankFiles_GetNormalizedFile
+      parameters:
+      - description: Agicap entity identifier
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Connection identifier
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: File identifier
+        in: path
+        name: fileId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                format: binary
+                type: string
+          description: Your request has been successfully processed.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Download a bank file
+      tags:
+      - Bank files
+components:
+  schemas:
+    Pagination:
+      additionalProperties: false
+      properties:
+        CurrentPageItemsCount:
+          format: int32
+          type: integer
+        CurrentPageNumber:
+          format: int32
+          type: integer
+        PageSize:
+          format: int32
+          type: integer
+        PagesCount:
+          format: int32
+          type: integer
+        TotalItemsCount:
+          format: int32
+          type: integer
+      type: object
+    BankFileSummaryPagedResult:
+      additionalProperties: false
+      properties:
+        Items:
+          items:
+            $ref: '#/components/schemas/BankFileSummary'
+          nullable: true
+          type: array
+        Pagination:
+          $ref: '#/components/schemas/Pagination'
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    BankFileSummary:
+      additionalProperties: false
+      properties:
+        ConnectionId:
+          description: Connection identifier
+          format: uuid
+          type: string
+        CreatedAt:
+          description: Creation date (UTC) of the file
+          format: date-time
+          type: string
+        Format:
+          description: Bank file format
+          type: string
+        Id:
+          description: File identifier
+          format: uuid
+          type: string
+        Name:
+          description: File name
+          type: string
+        Type:
+          description: Bank file type. Possible value are STATEMENT, ACCOUNT_REPORT, OTHER, UNKNOWN
+          type: string
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

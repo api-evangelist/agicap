@@ -1,0 +1,572 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Client addresses API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Client addresses
+paths:
+  /public/ar-clients/v1/entities/{entityId}/client-addresses:
+    delete:
+      description: Delete client addresses in bulk by clientExternalId. Maximum 1000 items per request.
+      operationId: Delete client addresses
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int
+          type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteClientAddressesRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteClientAddressesResponse'
+          description: ''
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - bearer: []
+      - bearerAuth: []
+      tags:
+      - Client addresses
+      x-codegen-request-body-name: body
+    get:
+      description: Retrieve a paginated list of client addresses for the given entity.
+      operationId: List client addresses
+      parameters:
+      - in: query
+        name: pageSize
+        schema:
+          type: number
+      - description: Filter client addresses by client external identifiers. Supports multiple values.
+        in: query
+        name: clientExternalIds
+        schema:
+          example:
+          - ext-client-001
+          - ext-client-002
+          items:
+            type: string
+          type: array
+      - description: Opaque pagination token for retrieving the next page
+        in: query
+        name: token
+        schema:
+          format: base64url
+          type: string
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int
+          type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetClientAddressesResponse'
+          description: ''
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - bearer: []
+      - bearerAuth: []
+      tags:
+      - Client addresses
+      x-codegen-request-body-name: body
+    post:
+      description: Create client addresses in bulk by clientExternalId. Maximum 1000 items per request.
+      operationId: Create client addresses
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int
+          type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddClientAddressesRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddClientAddressesResponse'
+          description: ''
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - bearer: []
+      - bearerAuth: []
+      tags:
+      - Client addresses
+      x-codegen-request-body-name: body
+    put:
+      description: Update client addresses in bulk by clientExternalId. Non-existing clients or clients without an address are ignored. Maximum 1000 items per request.
+      operationId: Update client addresses
+      parameters:
+      - in: path
+        name: entityId
+        required: true
+        schema:
+          format: int
+          type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateClientAddressesRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateClientAddressesResponse'
+          description: ''
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - bearer: []
+      - bearerAuth: []
+      tags:
+      - Client addresses
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    Address:
+      properties:
+        city:
+          description: City name
+          example: Paris
+          type: string
+        country:
+          allOf:
+          - $ref: '#/components/schemas/CountryEnum'
+          description: Country code (ISO 3166-1)
+        line1:
+          description: Primary address line (street name and number)
+          example: 5 Rodeo Street
+          type: string
+        line2:
+          description: Secondary address line (apartment, suite, building, etc.)
+          example: 4th floor
+          nullable: true
+          type: string
+        name:
+          description: Name of the address (e.g., "Main Office", "Billing Address")
+          example: Main Office
+          type: string
+        postalCode:
+          description: Postal or ZIP code
+          example: '75100'
+          type: string
+      required:
+      - name
+      - line1
+      - line2
+      - postalCode
+      - city
+      - country
+      type: object
+    NotCreatedClientAddress:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/AddressCreationFailureEnum'
+          description: Reason why the address could not be created
+      required:
+      - clientExternalId
+      - reason
+      type: object
+    NotUpdatedClientAddress:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/UpdateClientAddressesFailureReasonEnum'
+          description: Reason why the address could not be updated
+      required:
+      - clientExternalId
+      - reason
+      type: object
+    NotDeletedAddresses:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/DeleteClientAddressesFailureReasonEnum'
+          description: Reason why the address could not be deleted
+      required:
+      - clientExternalId
+      - reason
+      type: object
+    UpdateClientAddressesRequest:
+      properties:
+        clientAddresses:
+          description: List of client addresses to update
+          items:
+            $ref: '#/components/schemas/ClientAddressToUpdate'
+          type: array
+      required:
+      - clientAddresses
+      type: object
+    DeleteClientAddressesFailureReasonEnum:
+      description: Reason why the address could not be deleted
+      enum:
+      - ADDRESS_NOT_FOUND
+      - CLIENT_NOT_FOUND
+      type: string
+    AddClientAddressesRequest:
+      properties:
+        clientAddresses:
+          description: List of client addresses to create
+          items:
+            $ref: '#/components/schemas/ClientAddressToCreate'
+          type: array
+      required:
+      - clientAddresses
+      type: object
+    DeleteClientAddressesResponse:
+      properties:
+        deleted:
+          description: Successfully deleted client addresses
+          items:
+            $ref: '#/components/schemas/DeletedAddresses'
+          type: array
+        notDeleted:
+          description: Client addresses that failed to be deleted
+          items:
+            $ref: '#/components/schemas/NotDeletedAddresses'
+          type: array
+      required:
+      - deleted
+      - notDeleted
+      type: object
+    GetClientClientAddress:
+      properties:
+        address:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: Address details
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          nullable: true
+          type: string
+        clientId:
+          description: Internal identifier of the client
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          type: string
+      required:
+      - clientId
+      - clientExternalId
+      - address
+      type: object
+    ClientAddressToCreate:
+      properties:
+        city:
+          description: City name
+          example: Paris
+          maxLength: 250
+          type: string
+        clientExternalId:
+          description: Identifier from the ERP or external system. Max 1000 characters. Value is trimmed.
+          example: client_1
+          maxLength: 1000
+          type: string
+        country:
+          allOf:
+          - $ref: '#/components/schemas/CountryEnum'
+          description: Country code (ISO 3166-1)
+        line1:
+          description: Primary address line (street name and number)
+          example: 5 Rodeo Street
+          maxLength: 250
+          type: string
+        line2:
+          description: Secondary address line (apartment, suite, building, etc.)
+          example: 4th floor
+          maxLength: 250
+          type: string
+        name:
+          description: Name of the address (e.g., "Main Office", "Billing Address")
+          example: Main Office
+          maxLength: 38
+          type: string
+        postalCode:
+          description: Postal or ZIP code. Validated against country-specific postal code format.
+          example: '75100'
+          maxLength: 38
+          type: string
+      required:
+      - clientExternalId
+      - name
+      - line1
+      - postalCode
+      - city
+      - country
+      type: object
+    AddClientAddressesResponse:
+      properties:
+        created:
+          description: Successfully created client addresses
+          items:
+            $ref: '#/components/schemas/CreatedClientAddress'
+          type: array
+        notCreated:
+          description: Client addresses that failed to be created
+          items:
+            $ref: '#/components/schemas/NotCreatedClientAddress'
+          type: array
+      required:
+      - created
+      - notCreated
+      type: object
+    DeletedAddresses:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+      required:
+      - clientExternalId
+      type: object
+    GetClientAddressesResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/GetClientClientAddress'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      required:
+      - items
+      - pagination
+      type: object
+    PaginationMetadataDto:
+      properties:
+        after:
+          nullable: true
+          type: string
+        before:
+          nullable: true
+          type: string
+      required:
+      - before
+      - after
+      type: object
+    UpdateClientAddressesResponse:
+      properties:
+        notUpdated:
+          description: Client addresses that failed to be updated
+          items:
+            $ref: '#/components/schemas/NotUpdatedClientAddress'
+          type: array
+        updated:
+          description: Successfully updated client addresses
+          items:
+            $ref: '#/components/schemas/ClientAddressToUpdate'
+          type: array
+      required:
+      - updated
+      - notUpdated
+      type: object
+    CountryEnum:
+      description: Country code (ISO 3166-1)
+      enum:
+      - AUT
+      - BGD
+      - BEL
+      - BRA
+      - BGR
+      - CAN
+      - CHN
+      - HRV
+      - CYP
+      - CZE
+      - COD
+      - DNK
+      - EGY
+      - EST
+      - ETH
+      - FIN
+      - FRA
+      - GUF
+      - DEU
+      - GRC
+      - GLP
+      - GGY
+      - HUN
+      - ISL
+      - IND
+      - IDN
+      - IRN
+      - IRL
+      - IMN
+      - ITA
+      - JPN
+      - JEY
+      - LVA
+      - LIE
+      - LTU
+      - LUX
+      - MLT
+      - MTQ
+      - MYT
+      - MEX
+      - MCO
+      - NLD
+      - NGA
+      - NOR
+      - PAK
+      - PHL
+      - POL
+      - PRT
+      - REU
+      - ROU
+      - RUS
+      - SPM
+      - SVK
+      - SVN
+      - ZAF
+      - ESP
+      - SWE
+      - CHE
+      - TZA
+      - THA
+      - TUR
+      - UKR
+      - GBR
+      - USA
+      - VNM
+      type: string
+    DeleteClientAddressesRequest:
+      properties:
+        clientExternalIds:
+          description: 'List of client external IDs whose addresses should be deleted. Each ID: max 1000 characters, value is trimmed.'
+          example:
+          - client_1
+          - client_2
+          items:
+            type: string
+          type: array
+      required:
+      - clientExternalIds
+      type: object
+    ClientAddressToUpdate:
+      properties:
+        city:
+          description: City name
+          example: Paris
+          maxLength: 250
+          type: string
+        clientExternalId:
+          description: Identifier from the ERP or external system. Max 1000 characters. Value is trimmed.
+          example: client_1
+          maxLength: 1000
+          type: string
+        country:
+          allOf:
+          - $ref: '#/components/schemas/CountryEnum'
+          description: Country code (ISO 3166-1)
+        line1:
+          description: Primary address line (street name and number)
+          example: 5 Rodeo Street
+          maxLength: 250
+          type: string
+        line2:
+          description: Secondary address line (apartment, suite, building, etc.)
+          example: 4th floor
+          maxLength: 250
+          type: string
+        name:
+          description: Name of the address (e.g., "Main Office", "Billing Address")
+          example: Main Office
+          maxLength: 38
+          type: string
+        postalCode:
+          description: Postal or ZIP code. Validated against country-specific postal code format.
+          example: '75100'
+          maxLength: 38
+          type: string
+      required:
+      - clientExternalId
+      - name
+      - line1
+      - postalCode
+      - city
+      - country
+      type: object
+    UpdateClientAddressesFailureReasonEnum:
+      description: Reason why the address could not be updated
+      enum:
+      - CLIENT_NOT_FOUND
+      - ADDRESS_NOT_FOUND
+      type: string
+    AddressCreationFailureEnum:
+      description: Reason why the address could not be created
+      enum:
+      - CLIENT_NOT_FOUND
+      - CLIENT_ADDRESS_ALREADY_EXISTS
+      type: string
+    CreatedClientAddress:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+      required:
+      - clientExternalId
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

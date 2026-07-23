@@ -1,0 +1,2930 @@
+{
+ "components": {
+  "schemas": {
+   "AcknowledgementDetailResult": {
+    "additionalProperties": false,
+    "properties": {
+     "businessTermCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "businessTermLabelFr": {
+      "nullable": true,
+      "type": "string"
+     },
+     "fixHintFr": {
+      "nullable": true,
+      "type": "string"
+     },
+     "item": {
+      "nullable": true,
+      "type": "string"
+     },
+     "level": {
+      "$ref": "#/components/schemas/Level"
+     },
+     "reasonCode": {
+      "minLength": 1,
+      "type": "string"
+     },
+     "reasonMessage": {
+      "minLength": 1,
+      "type": "string"
+     },
+     "reasonMessageFr": {
+      "nullable": true,
+      "type": "string"
+     },
+     "ruleCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "sourcePath": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "required": [
+     "level",
+     "reasonCode",
+     "reasonMessage"
+    ],
+    "type": "object"
+   },
+   "AcknowledgementResult": {
+    "additionalProperties": false,
+    "properties": {
+     "details": {
+      "items": {
+       "$ref": "#/components/schemas/AcknowledgementDetailResult"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "status": {
+      "$ref": "#/components/schemas/FlowAckStatus"
+     }
+    },
+    "required": [
+     "status"
+    ],
+    "type": "object"
+   },
+   "AdditionalDocumentReference": {
+    "additionalProperties": false,
+    "properties": {
+     "internalCustomerNumber": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "Allowance": {
+    "additionalProperties": false,
+    "properties": {
+     "baseAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "multiplierFactor": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "reason": {
+      "nullable": true,
+      "type": "string"
+     },
+     "reasonCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "taxCategoryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "taxExclusiveAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "taxRate": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     }
+    },
+    "type": "object"
+   },
+   "BillingServiceAddress": {
+    "additionalProperties": false,
+    "properties": {
+     "addressLine1": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine2": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine3": {
+      "nullable": true,
+      "type": "string"
+     },
+     "city": {
+      "nullable": true,
+      "type": "string"
+     },
+     "countryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "postalCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "region": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "BillingServiceContact": {
+    "additionalProperties": false,
+    "properties": {
+     "email": {
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "nullable": true,
+      "type": "string"
+     },
+     "telephone": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "Buyer": {
+    "additionalProperties": false,
+    "properties": {
+     "address": {
+      "$ref": "#/components/schemas/BuyerAddress"
+     },
+     "businessName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "contact": {
+      "$ref": "#/components/schemas/BuyerContact"
+     },
+     "electronicAddress": {
+      "nullable": true,
+      "type": "string"
+     },
+     "identifier": {
+      "items": {
+       "type": "string"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "legalRegistrationId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "registrationName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "vatId": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "BuyerAddress": {
+    "additionalProperties": false,
+    "properties": {
+     "addressLine1": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine2": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine3": {
+      "nullable": true,
+      "type": "string"
+     },
+     "city": {
+      "nullable": true,
+      "type": "string"
+     },
+     "countryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "postalCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "region": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "BuyerAgentAddress": {
+    "additionalProperties": false,
+    "properties": {
+     "addressLine1": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine2": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine3": {
+      "nullable": true,
+      "type": "string"
+     },
+     "city": {
+      "nullable": true,
+      "type": "string"
+     },
+     "countryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "postalCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "region": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "BuyerAgentContact": {
+    "additionalProperties": false,
+    "properties": {
+     "email": {
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "nullable": true,
+      "type": "string"
+     },
+     "telephone": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "BuyerContact": {
+    "additionalProperties": false,
+    "properties": {
+     "email": {
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "nullable": true,
+      "type": "string"
+     },
+     "telephone": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "Charge": {
+    "additionalProperties": false,
+    "properties": {
+     "baseAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "multiplierFactor": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "reason": {
+      "nullable": true,
+      "type": "string"
+     },
+     "reasonCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "taxCategoryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "taxExclusiveAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "taxRate": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     }
+    },
+    "type": "object"
+   },
+   "CurrencyCode": {
+    "additionalProperties": false,
+    "enum": [
+     "AED",
+     "AFN",
+     "ALL",
+     "AMD",
+     "ANG",
+     "AOA",
+     "ARS",
+     "AUD",
+     "AWG",
+     "AZN",
+     "BAM",
+     "BBD",
+     "BDT",
+     "BGN",
+     "BHD",
+     "BIF",
+     "BMD",
+     "BND",
+     "BOB",
+     "BOV",
+     "BRL",
+     "BSD",
+     "BTN",
+     "BWP",
+     "BYN",
+     "BZD",
+     "CAD",
+     "CDF",
+     "CHE",
+     "CHF",
+     "CHW",
+     "CLF",
+     "CLP",
+     "CNY",
+     "COP",
+     "COU",
+     "CRC",
+     "CUC",
+     "CUP",
+     "CVE",
+     "CZK",
+     "DJF",
+     "DKK",
+     "DOP",
+     "DZD",
+     "EGP",
+     "ERN",
+     "ETB",
+     "EUR",
+     "FJD",
+     "FKP",
+     "GBP",
+     "GEL",
+     "GHS",
+     "GIP",
+     "GMD",
+     "GNF",
+     "GTQ",
+     "GYD",
+     "HKD",
+     "HNL",
+     "HTG",
+     "HUF",
+     "IDR",
+     "ILS",
+     "INR",
+     "IQD",
+     "IRR",
+     "ISK",
+     "JMD",
+     "JOD",
+     "JPY",
+     "KES",
+     "KGS",
+     "KHR",
+     "KMF",
+     "KPW",
+     "KRW",
+     "KWD",
+     "KYD",
+     "KZT",
+     "LAK",
+     "LBP",
+     "LKR",
+     "LRD",
+     "LSL",
+     "LYD",
+     "MAD",
+     "MDL",
+     "MGA",
+     "MKD",
+     "MMK",
+     "MNT",
+     "MOP",
+     "MRU",
+     "MUR",
+     "MVR",
+     "MWK",
+     "MXN",
+     "MXV",
+     "MYR",
+     "MZN",
+     "NAD",
+     "NGN",
+     "NIO",
+     "NOK",
+     "NPR",
+     "NZD",
+     "OMR",
+     "PAB",
+     "PEN",
+     "PGK",
+     "PHP",
+     "PKR",
+     "PLN",
+     "PYG",
+     "QAR",
+     "RON",
+     "RSD",
+     "RUB",
+     "RWF",
+     "SAR",
+     "SBD",
+     "SCR",
+     "SDG",
+     "SEK",
+     "SGD",
+     "SHP",
+     "SLE",
+     "SOS",
+     "SRD",
+     "SSP",
+     "STN",
+     "SVC",
+     "SYP",
+     "SZL",
+     "THB",
+     "TJS",
+     "TMT",
+     "TND",
+     "TOP",
+     "TRY",
+     "TTD",
+     "TWD",
+     "TZS",
+     "UAH",
+     "UGX",
+     "USD",
+     "USN",
+     "UYI",
+     "UYU",
+     "UYW",
+     "UZS",
+     "VED",
+     "VES",
+     "VND",
+     "VUV",
+     "WST",
+     "XAF",
+     "XAG",
+     "XAU",
+     "XBA",
+     "XBB",
+     "XBC",
+     "XBD",
+     "XCD",
+     "XDR",
+     "XOF",
+     "XPD",
+     "XPF",
+     "XPT",
+     "XSU",
+     "XTS",
+     "XUA",
+     "XXX",
+     "YER",
+     "ZAR",
+     "ZMW",
+     "ZWG",
+     "ZWL"
+    ],
+    "type": "string"
+   },
+   "Delivery": {
+    "additionalProperties": false,
+    "properties": {
+     "actualDeliveryDate": {
+      "nullable": true,
+      "type": "string"
+     },
+     "address": {
+      "$ref": "#/components/schemas/DeliveryAddress"
+     },
+     "locationId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "DeliveryAddress": {
+    "additionalProperties": false,
+    "properties": {
+     "addressLine1": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine2": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine3": {
+      "nullable": true,
+      "type": "string"
+     },
+     "city": {
+      "nullable": true,
+      "type": "string"
+     },
+     "countryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "postalCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "region": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "DirectDebit": {
+    "additionalProperties": false,
+    "properties": {
+     "creditorIdentifier": {
+      "nullable": true,
+      "type": "string"
+     },
+     "debitedAccountIdentifier": {
+      "nullable": true,
+      "type": "string"
+     },
+     "mandateReference": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "Error": {
+    "additionalProperties": false,
+    "properties": {
+     "errorCode": {
+      "minLength": 1,
+      "type": "string"
+     },
+     "errorMessage": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "required": [
+     "errorCode"
+    ],
+    "type": "object"
+   },
+   "ExtBillingService": {
+    "additionalProperties": false,
+    "properties": {
+     "address": {
+      "$ref": "#/components/schemas/BillingServiceAddress"
+     },
+     "businessName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "contact": {
+      "$ref": "#/components/schemas/BillingServiceContact"
+     },
+     "electronicAddress": {
+      "nullable": true,
+      "type": "string"
+     },
+     "identifier": {
+      "items": {
+       "type": "string"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "legalRegistrationId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "registrationName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "roleCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "vatId": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "ExtBuyerAgent": {
+    "additionalProperties": false,
+    "properties": {
+     "address": {
+      "$ref": "#/components/schemas/BuyerAgentAddress"
+     },
+     "businessName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "contact": {
+      "$ref": "#/components/schemas/BuyerAgentContact"
+     },
+     "electronicAddress": {
+      "nullable": true,
+      "type": "string"
+     },
+     "identifier": {
+      "items": {
+       "type": "string"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "legalRegistrationId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "registrationName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "roleCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "vatId": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "ExtInvoicePayer": {
+    "additionalProperties": false,
+    "properties": {
+     "address": {
+      "$ref": "#/components/schemas/InvoicePayerAddress"
+     },
+     "businessName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "contact": {
+      "$ref": "#/components/schemas/InvoicePayerContact"
+     },
+     "electronicAddress": {
+      "nullable": true,
+      "type": "string"
+     },
+     "identifier": {
+      "items": {
+       "type": "string"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "legalRegistrationId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "registrationName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "roleCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "vatId": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "ExtSellerAgent": {
+    "additionalProperties": false,
+    "properties": {
+     "address": {
+      "$ref": "#/components/schemas/SellerAgentAddress"
+     },
+     "businessName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "contact": {
+      "$ref": "#/components/schemas/SellerAgentContact"
+     },
+     "electronicAddress": {
+      "nullable": true,
+      "type": "string"
+     },
+     "identifier": {
+      "items": {
+       "type": "string"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "legalRegistrationId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "registrationName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "roleCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "vatId": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "FlowAckStatus": {
+    "additionalProperties": false,
+    "enum": [
+     "Pending",
+     "Ok",
+     "Error",
+     "Archived"
+    ],
+    "type": "string"
+   },
+   "FlowDirection": {
+    "additionalProperties": false,
+    "enum": [
+     "In",
+     "Out"
+    ],
+    "type": "string"
+   },
+   "FlowDocFormat": {
+    "additionalProperties": false,
+    "enum": [
+     "Json",
+     "UBL",
+     "CII",
+     "CDAR"
+    ],
+    "type": "string"
+   },
+   "FlowDocType": {
+    "additionalProperties": false,
+    "enum": [
+     "Original",
+     "Converted"
+    ],
+    "type": "string"
+   },
+   "FlowDto": {
+    "additionalProperties": false,
+    "properties": {
+     "acknowledgement": {
+      "$ref": "#/components/schemas/AcknowledgementResult"
+     },
+     "attachmentNumber": {
+      "format": "int32",
+      "nullable": true,
+      "type": "integer"
+     },
+     "flowDirection": {
+      "$ref": "#/components/schemas/FlowDirection"
+     },
+     "flowId": {
+      "maxLength": 36,
+      "nullable": true,
+      "type": "string"
+     },
+     "flowProfile": {
+      "$ref": "#/components/schemas/FlowProfile"
+     },
+     "flowSyntax": {
+      "$ref": "#/components/schemas/FlowSyntax"
+     },
+     "flowType": {
+      "$ref": "#/components/schemas/FlowType"
+     },
+     "submittedAt": {
+      "format": "date-time",
+      "type": "string"
+     },
+     "trackingId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "updatedAt": {
+      "format": "date-time",
+      "type": "string"
+     }
+    },
+    "required": [
+     "acknowledgement",
+     "flowId"
+    ],
+    "type": "object"
+   },
+   "FlowInfo": {
+    "additionalProperties": false,
+    "properties": {
+     "entityId": {
+      "format": "int32",
+      "type": "integer"
+     },
+     "flowProfile": {
+      "$ref": "#/components/schemas/FlowProfile"
+     },
+     "flowSyntax": {
+      "$ref": "#/components/schemas/FlowSyntax"
+     },
+     "name": {
+      "nullable": true,
+      "type": "string"
+     },
+     "processingRule": {
+      "$ref": "#/components/schemas/ProcessingRule"
+     },
+     "sha256": {
+      "nullable": true,
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+     },
+     "trackingId": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "required": [
+     "entityId",
+     "flowSyntax"
+    ],
+    "type": "object"
+   },
+   "FlowMode": {
+    "additionalProperties": false,
+    "enum": [
+     "Production",
+     "Sandbox"
+    ],
+    "type": "string"
+   },
+   "FlowProfile": {
+    "additionalProperties": false,
+    "enum": [
+     "Basic",
+     "CIUS",
+     "Extended-CTC-FR"
+    ],
+    "type": "string"
+   },
+   "FlowSyntax": {
+    "additionalProperties": false,
+    "enum": [
+     "CII",
+     "UBL",
+     "Factur-X",
+     "CDAR",
+     "FRR",
+     "PEPPOL_BIS_3.0",
+     "JsonInvoice",
+     "JsonLifecycle"
+    ],
+    "type": "string"
+   },
+   "FlowType": {
+    "additionalProperties": false,
+    "enum": [
+     "CustomerInvoice",
+     "SupplierInvoice",
+     "CustomerInvoiceLC",
+     "SupplierInvoiceLC",
+     "TransactionReport",
+     "PaymentReport"
+    ],
+    "type": "string"
+   },
+   "FullFlowInfo": {
+    "additionalProperties": false,
+    "properties": {
+     "flowId": {
+      "maxLength": 36,
+      "nullable": true,
+      "type": "string"
+     },
+     "flowProfile": {
+      "$ref": "#/components/schemas/FlowProfile"
+     },
+     "flowSyntax": {
+      "$ref": "#/components/schemas/FlowSyntax"
+     },
+     "name": {
+      "minLength": 1,
+      "type": "string"
+     },
+     "sha256": {
+      "nullable": true,
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+     },
+     "trackingId": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "required": [
+     "flowId",
+     "flowSyntax",
+     "name",
+     "sha256"
+    ],
+    "type": "object"
+   },
+   "InvoicePayerAddress": {
+    "additionalProperties": false,
+    "properties": {
+     "addressLine1": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine2": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine3": {
+      "nullable": true,
+      "type": "string"
+     },
+     "city": {
+      "nullable": true,
+      "type": "string"
+     },
+     "countryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "postalCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "region": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "InvoicePayerContact": {
+    "additionalProperties": false,
+    "properties": {
+     "email": {
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "nullable": true,
+      "type": "string"
+     },
+     "telephone": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "Invoicee": {
+    "additionalProperties": false,
+    "properties": {
+     "address": {
+      "$ref": "#/components/schemas/InvoiceeAddress"
+     },
+     "businessName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "contact": {
+      "$ref": "#/components/schemas/InvoiceeContact"
+     },
+     "electronicAddress": {
+      "nullable": true,
+      "type": "string"
+     },
+     "identifier": {
+      "items": {
+       "type": "string"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "legalRegistrationId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "registrationName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "roleCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "vatId": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "InvoiceeAddress": {
+    "additionalProperties": false,
+    "properties": {
+     "addressLine1": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine2": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine3": {
+      "nullable": true,
+      "type": "string"
+     },
+     "city": {
+      "nullable": true,
+      "type": "string"
+     },
+     "countryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "postalCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "region": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "InvoiceeContact": {
+    "additionalProperties": false,
+    "properties": {
+     "email": {
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "nullable": true,
+      "type": "string"
+     },
+     "telephone": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "InvoicingPeriod": {
+    "additionalProperties": false,
+    "properties": {
+     "endDate": {
+      "nullable": true,
+      "type": "string"
+     },
+     "startDate": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "Item": {
+    "additionalProperties": false,
+    "properties": {
+     "attributes": {
+      "items": {
+       "$ref": "#/components/schemas/ItemAttribute"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "basePriceQuantity": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "basePriceQuantityUnit": {
+      "nullable": true,
+      "type": "string"
+     },
+     "buyersItemIdentification": {
+      "nullable": true,
+      "type": "string"
+     },
+     "commodityClassificationCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "description": {
+      "nullable": true,
+      "type": "string"
+     },
+     "grossPrice": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "name": {
+      "nullable": true,
+      "type": "string"
+     },
+     "netAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "originCountryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "priceDiscount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "sellersItemIdentification": {
+      "nullable": true,
+      "type": "string"
+     },
+     "standardItemIdentification": {
+      "nullable": true,
+      "type": "string"
+     },
+     "taxCategoryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "taxRate": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     }
+    },
+    "type": "object"
+   },
+   "ItemAttribute": {
+    "additionalProperties": false,
+    "properties": {
+     "name": {
+      "nullable": true,
+      "type": "string"
+     },
+     "value": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "Level": {
+    "additionalProperties": false,
+    "enum": [
+     "Error",
+     "Warning"
+    ],
+    "type": "string"
+   },
+   "Line": {
+    "additionalProperties": false,
+    "properties": {
+     "accountingCost": {
+      "nullable": true,
+      "type": "string"
+     },
+     "allowances": {
+      "items": {
+       "$ref": "#/components/schemas/LineAllowance"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "charges": {
+      "items": {
+       "$ref": "#/components/schemas/LineCharge"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "invoicedQuantity": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "item": {
+      "$ref": "#/components/schemas/Item"
+     },
+     "lineId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "lineNetAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "linePeriod": {
+      "$ref": "#/components/schemas/InvoicingPeriod"
+     },
+     "note": {
+      "nullable": true,
+      "type": "string"
+     },
+     "objectReference": {
+      "nullable": true,
+      "type": "string"
+     },
+     "purchaseOrderLineReference": {
+      "nullable": true,
+      "type": "string"
+     },
+     "purchaseOrderReference": {
+      "nullable": true,
+      "type": "string"
+     },
+     "unitOfMeasure": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "LineAllowance": {
+    "additionalProperties": false,
+    "properties": {
+     "baseAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "multiplierFactor": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "reason": {
+      "nullable": true,
+      "type": "string"
+     },
+     "reasonCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "taxExclusiveAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     }
+    },
+    "type": "object"
+   },
+   "LineCharge": {
+    "additionalProperties": false,
+    "properties": {
+     "baseAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "multiplierFactor": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "reason": {
+      "nullable": true,
+      "type": "string"
+     },
+     "reasonCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "taxExclusiveAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     }
+    },
+    "type": "object"
+   },
+   "Note": {
+    "additionalProperties": false,
+    "properties": {
+     "noteCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "noteValue": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "Payee": {
+    "additionalProperties": false,
+    "properties": {
+     "address": {
+      "$ref": "#/components/schemas/PayeeAddress"
+     },
+     "contact": {
+      "$ref": "#/components/schemas/PayeeContact"
+     },
+     "electronicAddress": {
+      "nullable": true,
+      "type": "string"
+     },
+     "identifier": {
+      "items": {
+       "type": "string"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "legalRegistrationId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "nullable": true,
+      "type": "string"
+     },
+     "roleCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "vatId": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "PayeeAddress": {
+    "additionalProperties": false,
+    "properties": {
+     "addressLine1": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine2": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine3": {
+      "nullable": true,
+      "type": "string"
+     },
+     "city": {
+      "nullable": true,
+      "type": "string"
+     },
+     "countryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "postalCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "region": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "PayeeContact": {
+    "additionalProperties": false,
+    "properties": {
+     "email": {
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "nullable": true,
+      "type": "string"
+     },
+     "telephone": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "PaymentCard": {
+    "additionalProperties": false,
+    "properties": {
+     "accountIdentifier": {
+      "nullable": true,
+      "type": "string"
+     },
+     "accountName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "networkId": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "PaymentMeans": {
+    "additionalProperties": false,
+    "properties": {
+     "card": {
+      "$ref": "#/components/schemas/PaymentCard"
+     },
+     "directDebit": {
+      "$ref": "#/components/schemas/DirectDebit"
+     },
+     "meansDescription": {
+      "nullable": true,
+      "type": "string"
+     },
+     "meansValue": {
+      "nullable": true,
+      "type": "string"
+     },
+     "paymentId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "transferAccount": {
+      "$ref": "#/components/schemas/TransferAccount"
+     }
+    },
+    "type": "object"
+   },
+   "PivotAttachment": {
+    "additionalProperties": false,
+    "properties": {
+     "content": {
+      "nullable": true,
+      "type": "string"
+     },
+     "contentType": {
+      "nullable": true,
+      "type": "string"
+     },
+     "externalLocation": {
+      "nullable": true,
+      "type": "string"
+     },
+     "fileName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "reference": {
+      "nullable": true,
+      "type": "string"
+     },
+     "supportingDocumentDescription": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "PivotInvoice": {
+    "additionalProperties": false,
+    "properties": {
+     "accountingCost": {
+      "nullable": true,
+      "type": "string"
+     },
+     "additionalDocumentReference": {
+      "$ref": "#/components/schemas/AdditionalDocumentReference"
+     },
+     "allowances": {
+      "items": {
+       "$ref": "#/components/schemas/Allowance"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "attachments": {
+      "items": {
+       "$ref": "#/components/schemas/PivotAttachment"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "businessProcessType": {
+      "nullable": true,
+      "type": "string"
+     },
+     "buyer": {
+      "$ref": "#/components/schemas/Buyer"
+     },
+     "buyerAgent": {
+      "$ref": "#/components/schemas/ExtBuyerAgent"
+     },
+     "buyerReference": {
+      "nullable": true,
+      "type": "string"
+     },
+     "charges": {
+      "items": {
+       "$ref": "#/components/schemas/Charge"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "contractReference": {
+      "nullable": true,
+      "type": "string"
+     },
+     "currencyCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "delivery": {
+      "$ref": "#/components/schemas/Delivery"
+     },
+     "despatchDocumentReference": {
+      "nullable": true,
+      "type": "string"
+     },
+     "dueDate": {
+      "nullable": true,
+      "type": "string"
+     },
+     "invoiceNumber": {
+      "nullable": true,
+      "type": "string"
+     },
+     "invoiceType": {
+      "nullable": true,
+      "type": "string"
+     },
+     "invoicee": {
+      "$ref": "#/components/schemas/Invoicee"
+     },
+     "invoicer": {
+      "$ref": "#/components/schemas/ExtBillingService"
+     },
+     "invoicingPeriod": {
+      "$ref": "#/components/schemas/InvoicingPeriod"
+     },
+     "issueDate": {
+      "nullable": true,
+      "type": "string"
+     },
+     "lines": {
+      "items": {
+       "$ref": "#/components/schemas/Line"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "note": {
+      "items": {
+       "$ref": "#/components/schemas/Note"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "originatorDocumentReference": {
+      "nullable": true,
+      "type": "string"
+     },
+     "payee": {
+      "$ref": "#/components/schemas/Payee"
+     },
+     "payer": {
+      "$ref": "#/components/schemas/ExtInvoicePayer"
+     },
+     "paymentMeans": {
+      "$ref": "#/components/schemas/PaymentMeans"
+     },
+     "paymentTerms": {
+      "nullable": true,
+      "type": "string"
+     },
+     "precedingInvoices": {
+      "items": {
+       "$ref": "#/components/schemas/PrecedingInvoice"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "projectReference": {
+      "nullable": true,
+      "type": "string"
+     },
+     "purchaseOrderReference": {
+      "nullable": true,
+      "type": "string"
+     },
+     "receiptDocumentReference": {
+      "nullable": true,
+      "type": "string"
+     },
+     "salesOrderReference": {
+      "nullable": true,
+      "type": "string"
+     },
+     "seller": {
+      "$ref": "#/components/schemas/Seller"
+     },
+     "sellerAgent": {
+      "$ref": "#/components/schemas/ExtSellerAgent"
+     },
+     "sellerTaxRepresentative": {
+      "$ref": "#/components/schemas/TaxRepresentative"
+     },
+     "specificationIdentifier": {
+      "nullable": true,
+      "type": "string"
+     },
+     "taxBreakdowns": {
+      "items": {
+       "$ref": "#/components/schemas/TaxBreakdown"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "taxCurrencyCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "taxPointDate": {
+      "nullable": true,
+      "type": "string"
+     },
+     "taxPointDateValue": {
+      "nullable": true,
+      "type": "string"
+     },
+     "totals": {
+      "$ref": "#/components/schemas/Totals"
+     }
+    },
+    "type": "object"
+   },
+   "PrecedingInvoice": {
+    "additionalProperties": false,
+    "properties": {
+     "invoiceNumber": {
+      "nullable": true,
+      "type": "string"
+     },
+     "issueDate": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "ProblemDetails": {
+    "additionalProperties": false,
+    "properties": {
+     "detail": {
+      "nullable": true,
+      "type": "string"
+     },
+     "instance": {
+      "nullable": true,
+      "type": "string"
+     },
+     "status": {
+      "format": "int32",
+      "nullable": true,
+      "type": "integer"
+     },
+     "title": {
+      "nullable": true,
+      "type": "string"
+     },
+     "type": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "ProcessingRule": {
+    "additionalProperties": false,
+    "enum": [
+     "B2B",
+     "B2BInt",
+     "B2C"
+    ],
+    "type": "string"
+   },
+   "PublicApiAddB2CTransactionRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "category": {
+      "$ref": "#/components/schemas/ReportedInvoiceCategory"
+     },
+     "currencyCode": {
+      "$ref": "#/components/schemas/CurrencyCode"
+     },
+     "entityId": {
+      "description": "Identifier of the entity the transaction is reported for.",
+      "format": "int32",
+      "type": "integer"
+     },
+     "legalRegistrationId": {
+      "description": "9-digit French company identifier (SIREN) associated with the transaction.",
+      "minLength": 1,
+      "type": "string"
+     },
+     "transactionDate": {
+      "description": "Date of the B2C transaction (format: YYYY-MM-DD).",
+      "format": "date",
+      "type": "string"
+     },
+     "transactionDetails": {
+      "description": "Tax breakdown details for the transaction. At least one entry is required.",
+      "items": {
+       "$ref": "#/components/schemas/PublicApiB2CTransactionDetailRequest"
+      },
+      "type": "array"
+     }
+    },
+    "required": [
+     "category",
+     "currencyCode",
+     "entityId",
+     "legalRegistrationId",
+     "transactionDate",
+     "transactionDetails"
+    ],
+    "type": "object"
+   },
+   "PublicApiB2CTransactionDetailRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "taxRate": {
+      "description": "VAT tax rate as a percentage. Allowed values: 0.00, 0.90, 1.05, 1.75, 2.10, 5.50, 7.00, 8.50, 9.20, 9.60, 10.00, 13.00, 19.60, 20.00, 20.60.",
+      "format": "double",
+      "type": "number"
+     },
+     "taxableAmount": {
+      "description": "Taxable amount excluding VAT. Must be greater than or equal to 0 with a maximum of two decimal.",
+      "format": "double",
+      "type": "number"
+     }
+    },
+    "required": [
+     "taxableAmount",
+     "taxRate"
+    ],
+    "title": "Details of the B2C transaction",
+    "type": "object"
+   },
+   "ReportedInvoiceCategory": {
+    "additionalProperties": false,
+    "enum": [
+     "SaleOfGoods",
+     "ProvisionOfService"
+    ],
+    "type": "string"
+   },
+   "SearchFlowContent": {
+    "additionalProperties": false,
+    "properties": {
+     "filter": {
+      "$ref": "#/components/schemas/SearchFlowFilters"
+     },
+     "limit": {
+      "format": "int32",
+      "type": "integer"
+     },
+     "offset": {
+      "format": "int32",
+      "type": "integer"
+     },
+     "results": {
+      "items": {
+       "$ref": "#/components/schemas/FlowDto"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "total": {
+      "format": "int32",
+      "type": "integer"
+     }
+    },
+    "type": "object"
+   },
+   "SearchFlowFilters": {
+    "additionalProperties": false,
+    "properties": {
+     "ackStatus": {
+      "$ref": "#/components/schemas/FlowAckStatus"
+     },
+     "electronicAddress": {
+      "description": "Reception electronic address in Peppol format \"scheme:identifier\" (e.g. \"0225:123456789\").",
+      "nullable": true,
+      "pattern": "^[^:]+:[^:]+$",
+      "type": "string"
+     },
+     "flowDirection": {
+      "$ref": "#/components/schemas/FlowDirection"
+     },
+     "flowId": {
+      "maxLength": 36,
+      "nullable": true,
+      "type": "string"
+     },
+     "flowMode": {
+      "$ref": "#/components/schemas/FlowMode"
+     },
+     "flowType": {
+      "$ref": "#/components/schemas/FlowType"
+     },
+     "trackingId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "updatedAfter": {
+      "format": "date-time",
+      "nullable": true,
+      "type": "string"
+     },
+     "updatedBefore": {
+      "format": "date-time",
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "SearchFlowParams": {
+    "additionalProperties": false,
+    "properties": {
+     "limit": {
+      "format": "int32",
+      "type": "integer"
+     },
+     "offset": {
+      "format": "int32",
+      "type": "integer"
+     },
+     "where": {
+      "$ref": "#/components/schemas/SearchFlowFilters"
+     }
+    },
+    "required": [
+     "where"
+    ],
+    "type": "object"
+   },
+   "Seller": {
+    "additionalProperties": false,
+    "properties": {
+     "address": {
+      "$ref": "#/components/schemas/SellerAddress"
+     },
+     "businessName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "companyLegalForm": {
+      "nullable": true,
+      "type": "string"
+     },
+     "contact": {
+      "$ref": "#/components/schemas/SellerContact"
+     },
+     "electronicAddress": {
+      "nullable": true,
+      "type": "string"
+     },
+     "identifier": {
+      "items": {
+       "type": "string"
+      },
+      "nullable": true,
+      "type": "array"
+     },
+     "legalRegistrationId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "registrationName": {
+      "nullable": true,
+      "type": "string"
+     },
+     "vatId": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "SellerAddress": {
+    "additionalProperties": false,
+    "properties": {
+     "addressLine1": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine2": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine3": {
+      "nullable": true,
+      "type": "string"
+     },
+     "city": {
+      "nullable": true,
+      "type": "string"
+     },
+     "countryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "postalCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "region": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "SellerAgentAddress": {
+    "additionalProperties": false,
+    "properties": {
+     "addressLine1": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine2": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine3": {
+      "nullable": true,
+      "type": "string"
+     },
+     "city": {
+      "nullable": true,
+      "type": "string"
+     },
+     "countryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "postalCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "region": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "SellerAgentContact": {
+    "additionalProperties": false,
+    "properties": {
+     "email": {
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "nullable": true,
+      "type": "string"
+     },
+     "telephone": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "SellerContact": {
+    "additionalProperties": false,
+    "properties": {
+     "email": {
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "nullable": true,
+      "type": "string"
+     },
+     "telephone": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "TaxBreakdown": {
+    "additionalProperties": false,
+    "properties": {
+     "exemptionReason": {
+      "nullable": true,
+      "type": "string"
+     },
+     "exemptionReasonCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "taxAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "taxCategoryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "taxRate": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "taxableAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     }
+    },
+    "type": "object"
+   },
+   "TaxRepresentative": {
+    "additionalProperties": false,
+    "properties": {
+     "address": {
+      "$ref": "#/components/schemas/TaxRepresentativeAddress"
+     },
+     "name": {
+      "nullable": true,
+      "type": "string"
+     },
+     "vatId": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "TaxRepresentativeAddress": {
+    "additionalProperties": false,
+    "properties": {
+     "addressLine1": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine2": {
+      "nullable": true,
+      "type": "string"
+     },
+     "addressLine3": {
+      "nullable": true,
+      "type": "string"
+     },
+     "city": {
+      "nullable": true,
+      "type": "string"
+     },
+     "countryCode": {
+      "nullable": true,
+      "type": "string"
+     },
+     "countrySubdivision": {
+      "nullable": true,
+      "type": "string"
+     },
+     "postalCode": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "Totals": {
+    "additionalProperties": false,
+    "properties": {
+     "allowances": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "charges": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "dueAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "lineNetAmounts": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "paidAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "roundingAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "taxAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "taxAmountInAccountingCurrency": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "taxExclusiveAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "taxInclusiveAmount": {
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     }
+    },
+    "type": "object"
+   },
+   "TransferAccount": {
+    "additionalProperties": false,
+    "properties": {
+     "accountId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "bankId": {
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "ValidationCountry": {
+    "additionalProperties": false,
+    "enum": [
+     "FR",
+     "BE"
+    ],
+    "type": "string"
+   }
+  },
+  "securitySchemes": {
+   "bearerAuth": {
+    "bearerFormat": "OPAQUE",
+    "scheme": "bearer",
+    "type": "http"
+   },
+   "bearer_client_credentials": {
+    "description": "Client credentials: bearer",
+    "flows": {
+     "clientCredentials": {
+      "scopes": {
+       "agicap:public-api": ""
+      },
+      "tokenUrl": "https://myaccount.agicap.com/connect/token"
+     }
+    },
+    "type": "oauth2"
+   }
+  }
+ },
+ "info": {
+  "contact": {},
+  "description": "Manage e-invoicing flows\n",
+  "title": "E-Invoicing",
+  "version": "v1"
+ },
+ "openapi": "3.0.0",
+ "paths": {
+  "/public/einvoicing/v1/e-reportings/b2c-transactions": {
+   "post": {
+    "description": "Report a B2C transaction for e-reporting purposes.\nThe transaction is associated with a company identified by its SIREN and\naggregated into an e-reporting period based on the transaction date and VAT regime.",
+    "operationId": "AddB2CTransaction",
+    "parameters": [
+     {
+      "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+      "in": "header",
+      "name": "X-FlowMode",
+      "schema": {
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/*+json": {
+       "schema": {
+        "$ref": "#/components/schemas/PublicApiAddB2CTransactionRequest"
+       }
+      },
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PublicApiAddB2CTransactionRequest"
+       }
+      },
+      "text/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PublicApiAddB2CTransactionRequest"
+       }
+      }
+     }
+    },
+    "responses": {
+     "204": {
+      "description": "The B2C transaction has been successfully reported."
+     },
+     "400": {
+      "description": "Error 400 : Bad request — invalid or missing fields."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "404": {
+      "description": "Error 404 : E-reporting configuration not found for the given company."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "Error 500 : Server Internal Error."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Add a B2C transaction",
+    "tags": [
+     "E-Reporting"
+    ]
+   }
+  },
+  "/public/einvoicing/v1/flows": {
+   "post": {
+    "description": "A flow is a single-invoice file, with:\n- an XML/PDF file with the data of the invoice\nThe flow is created with a FlowInfo object, allowing to qualify the flow.\nA flow can be:\n- an invoice (CII, UBL, Factur-X, JsonInvoice...)\n- a lifecycle (CDAR)\n- or an e-reporting file",
+    "operationId": "CreateFlow",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "flowInfo",
+      "required": true,
+      "schema": {
+       "$ref": "#/components/schemas/FlowInfo"
+      }
+     },
+     {
+      "in": "header",
+      "name": "Request-Id",
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     },
+     {
+      "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+      "in": "header",
+      "name": "X-FlowMode",
+      "schema": {
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "encoding": {
+        "file": {
+         "style": "form"
+        }
+       },
+       "schema": {
+        "properties": {
+         "file": {
+          "format": "binary",
+          "type": "string"
+         }
+        },
+        "type": "object"
+       }
+      }
+     }
+    },
+    "responses": {
+     "202": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/FullFlowInfo"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/FullFlowInfo"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/FullFlowInfo"
+        }
+       }
+      },
+      "description": "OK - Response message once the flow has been uploaded. "
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      },
+      "description": "Error 400 : Bad request."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "Error 500 : Server Internal Error."
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      },
+      "description": "Error 503 : Unavailable Resource."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Create a flow",
+    "tags": [
+     "Invoice Flows"
+    ]
+   }
+  },
+  "/public/einvoicing/v1/flows/json/validate": {
+   "post": {
+    "description": "This allows to validate the JSON invoice before uploading it.",
+    "operationId": "ValidateJsonFlow",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "country",
+      "schema": {
+       "$ref": "#/components/schemas/ValidationCountry"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PivotInvoice"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AcknowledgementResult"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AcknowledgementResult"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/AcknowledgementResult"
+        }
+       }
+      },
+      "description": "OK - Response message once the flow has been validated. "
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Validate a JSON invoice.",
+    "tags": [
+     "Invoice Flows"
+    ]
+   }
+  },
+  "/public/einvoicing/v1/flows/search": {
+   "post": {
+    "description": "Retrieves a set of flows matching the provided search criteria:   \n- When setting flowId, do not specify other criteria   \n- Need at least one criterion to be specified   \n- Assuming a logical AND when combining criteria   \n- Assuming a logical OR for criteria allowing a list of values\n\nPagination works with pages:   \n- In the request, provide the page to be returned   \n- In the response, the total count of items",
+    "operationId": "SearchFlow",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "Request-Id",
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "example": {
+        "limit": 25,
+        "offset": 0,
+        "where": {
+         "ackStatus": "Ok",
+         "electronicAddress": "0225:123456789",
+         "flowDirection": "Out",
+         "flowId": "019f7277-202e-78a9-aacc-2b9b519c0458",
+         "flowMode": "Production",
+         "flowType": "CustomerInvoice",
+         "trackingId": "019f7277-202e-79d2-81e4-0880c309eec3",
+         "updatedAfter": "2026-07-17T23:43:57.4867414Z",
+         "updatedBefore": "2026-07-17T23:43:57.4867419Z"
+        }
+       },
+       "schema": {
+        "$ref": "#/components/schemas/SearchFlowParams"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SearchFlowContent"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SearchFlowContent"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/SearchFlowContent"
+        }
+       }
+      },
+      "description": "OK - Response message when returning the results of a search request.   - Holds all the results if code is 200   - Holds partial content if code is 206 "
+     },
+     "206": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SearchFlowContent"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SearchFlowContent"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/SearchFlowContent"
+        }
+       }
+      },
+      "description": "OK - Response message when returning the results of a search request.   - Holds all the results if code is 200   - Holds partial content if code is 206 "
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      },
+      "description": "Error 400 : Bad request."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "Error 500 : Server Internal Error."
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      },
+      "description": "Error 503 : Unavailable Resource."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Select flows upon criteria",
+    "tags": [
+     "Invoice Flows"
+    ]
+   }
+  },
+  "/public/einvoicing/v1/flows/{flowId}": {
+   "get": {
+    "description": "Download a file related to a given flow:\n- an invoice\n- a life cycle\n- an e-reporting",
+    "operationId": "GetFlow",
+    "parameters": [
+     {
+      "description": "Flow identifier",
+      "in": "path",
+      "name": "flowId",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "type": "string"
+      }
+     },
+     {
+      "description": "This parameter allows to provide the type of file to be uploaded, can be either one:\n- Original: the document that has been initially sent/provided by the emitter\n- Converted: the document that has been optionally converted by the system\n- ReadableView: the document that has been optionally generated as the readable file\n- Attachment: one of the attached documents, provide the optional index if needed",
+      "in": "query",
+      "name": "docType",
+      "schema": {
+       "$ref": "#/components/schemas/FlowDocType"
+      }
+     },
+     {
+      "description": "If docType is an Attachment and in case there are several attached documents, it says which one to address",
+      "in": "query",
+      "name": "docIndex",
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "If docType is Converted, it says in which format to convert. By default, it is Json",
+      "in": "query",
+      "name": "docFormat",
+      "schema": {
+       "$ref": "#/components/schemas/FlowDocFormat"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {},
+       "application/pdf": {},
+       "application/xml": {}
+      },
+      "description": "Ok"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      },
+      "description": "Error 400 : Bad request."
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      },
+      "description": "Error 404 : Resource Not Found."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "Error 500 : Server Internal Error."
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       },
+       "text/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       },
+       "text/plain": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      },
+      "description": "Error 503 : Unavailable Resource."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Download a flow",
+    "tags": [
+     "Invoice Flows"
+    ]
+   }
+  }
+ },
+ "servers": [
+  {
+   "url": "https://api.agicap.com"
+  },
+  {
+   "url": "https://api.agicap.internal"
+  }
+ ]
+}

@@ -1,0 +1,130 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Causales API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Causales
+paths:
+  /public/treasury-bank-journal/v1/entities/{entityId}/causales:
+    post:
+      operationId: CreateCausales
+      parameters:
+      - description: Agicap entity identifier
+        example: 456897
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/*+json:
+            example:
+              causales:
+              - code: Causale1Code
+                description: Causale 1 Description
+              - code: Causale2Code
+                description: Causale 2 Description
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CausalesRequestDto'
+          application/json:
+            example:
+              causales:
+              - code: Causale1Code
+                description: Causale 1 Description
+              - code: Causale2Code
+                description: Causale 2 Description
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CausalesRequestDto'
+          text/json:
+            example:
+              causales:
+              - code: Causale1Code
+                description: Causale 1 Description
+              - code: Causale2Code
+                description: Causale 2 Description
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CausalesRequestDto'
+        description: Request body with the list of causales to create
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Create causales
+      tags:
+      - Causales
+components:
+  schemas:
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    CausalesRequestDto:
+      additionalProperties: false
+      properties:
+        causales:
+          items:
+            $ref: '#/components/schemas/CausaleRequestDto'
+          type: array
+      required:
+      - causales
+      type: object
+    CausaleRequestDto:
+      additionalProperties: false
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+      required:
+      - code
+      - description
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

@@ -1,0 +1,53 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/ (4xx/5xx responses across all Agicap Public API specs)
+format: rfc9457
+note: Agicap returns RFC 9457 problem+json for most error responses (application/problem+json observed
+  on 151 operation responses). Error bodies carry type/title/status/detail. This catalog is derived from
+  HTTP status usage across the OpenAPI specs; consult the per-operation responses for schema detail.
+problems:
+- status: 400
+  title: Bad request — the request was malformed or failed validation.
+  media_type: application/problem+json
+  occurrences: 30
+  example_operation: agicap-auth-v1-openapi.json#POST /public/auth/v1/token
+- status: 401
+  title: Unauthorized — missing or invalid access token.
+  media_type: application/json
+  occurrences: 234
+  example_operation: agicap-ar-clients-v1-openapi.json#Delete client addresses
+- status: 403
+  title: Forbidden — the token lacks the required scope or entity access.
+  media_type: application/json
+  occurrences: 234
+  example_operation: agicap-ar-clients-v1-openapi.json#Delete client addresses
+- status: 404
+  title: Not found — the referenced resource does not exist.
+  media_type: application/problem+json
+  occurrences: 10
+  example_operation: agicap-banking-documents-v1-openapi.json#Connections_DisableConnection
+- status: 409
+  title: Conflict — the request conflicts with the current state of the resource.
+  media_type: application/json
+  occurrences: 3
+  example_operation: agicap-events-v1-openapi.json#POST /public/events/v1/webhooks/{id}/disable
+- status: 412
+  title: Precondition failed — a conditional (If-Match/If-None-Match) header was not met.
+  media_type: application/json
+  occurrences: 1
+  example_operation: agicap-httpbin-v1-openapi.json#GET /public/httpbin/v1/etag/{etag}
+- status: 429
+  title: Too many requests — the client has exceeded the rate limit.
+  media_type: application/json
+  occurrences: 234
+  example_operation: agicap-ar-clients-v1-openapi.json#Delete client addresses
+- status: 500
+  title: Internal server error.
+  media_type: application/problem+json
+  occurrences: 139
+  example_operation: agicap-banking-documents-v1-openapi.json#Connections_ListConnections
+- status: 503
+  title: Service unavailable.
+  media_type: application/json
+  occurrences: 3
+  example_operation: agicap-einvoicing-v1-openapi.json#CreateFlow

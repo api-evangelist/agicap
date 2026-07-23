@@ -1,0 +1,24 @@
+generated: '2026-07-17'
+method: searched
+source: https://api.agicap.com/api-details/httpbin-v1
+note: >-
+  Agicap does not publish a full synthetic sandbox with test cards or magic identifiers.
+  It ships a dedicated "Tests" (httpbin) API so integrators can validate authentication,
+  headers, and request/response handling against the live api.agicap.com host before wiring
+  real business endpoints. New product connections additionally require manual back-office
+  activation by Agicap support before documents flow (see business-documents guidelines).
+test_api:
+  name: Tests (httpbin)
+  api_id: httpbin-v1
+  lifecycle: stable
+  spec: openapi/agicap-httpbin-v1-openapi.json
+  base_url: https://api.agicap.com
+  purpose: >-
+    HTTPbin-style echo/diagnostic endpoints to test and validate HTTP calls (auth headers,
+    status codes, request inspection) against the Agicap Public API gateway.
+test_credentials:
+  note: >-
+    Access tokens for testing are obtained through the standard OAuth2 client-credentials
+    flow (scope agicap:public-api) using API credentials generated in the Agicap app under
+    Organization settings > Advanced settings > API settings. No separate test/live key
+    prefixes are published.

@@ -1,0 +1,348 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Dynamic data API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Dynamic data
+paths:
+  /public/httpbin/v1/base64/{value}:
+    get:
+      parameters:
+      - in: path
+        name: value
+        required: true
+        schema:
+          default: SFRUUEJJTiBpcyBhd2Vzb21l
+          type: string
+      responses:
+        '200':
+          description: Decoded base64 content.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Decodes base64url-encoded string.
+      tags:
+      - Dynamic data
+  /public/httpbin/v1/bytes/{n}:
+    get:
+      parameters:
+      - in: path
+        name: n
+        required: true
+        schema:
+          type: int
+      responses:
+        '200':
+          description: Bytes.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns n random bytes generated with given seed
+      tags:
+      - Dynamic data
+  /public/httpbin/v1/delay/{delay}:
+    delete:
+      parameters:
+      - in: path
+        name: delay
+        required: true
+        schema:
+          type: int
+      responses:
+        '200':
+          description: A delayed response.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns a delayed response (max of 10 seconds).
+      tags:
+      - Dynamic data
+    get:
+      parameters:
+      - in: path
+        name: delay
+        required: true
+        schema:
+          type: int
+      responses:
+        '200':
+          description: A delayed response.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns a delayed response (max of 10 seconds).
+      tags:
+      - Dynamic data
+    patch:
+      parameters:
+      - in: path
+        name: delay
+        required: true
+        schema:
+          type: int
+      responses:
+        '200':
+          description: A delayed response.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns a delayed response (max of 10 seconds).
+      tags:
+      - Dynamic data
+    post:
+      parameters:
+      - in: path
+        name: delay
+        required: true
+        schema:
+          type: int
+      responses:
+        '200':
+          description: A delayed response.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns a delayed response (max of 10 seconds).
+      tags:
+      - Dynamic data
+    put:
+      parameters:
+      - in: path
+        name: delay
+        required: true
+        schema:
+          type: int
+      responses:
+        '200':
+          description: A delayed response.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Returns a delayed response (max of 10 seconds).
+      tags:
+      - Dynamic data
+  /public/httpbin/v1/drip:
+    get:
+      parameters:
+      - description: The amount of time (in seconds) over which to drip each byte
+        in: query
+        name: duration
+        schema:
+          default: 2
+          type: number
+      - description: The number of bytes to respond with
+        in: query
+        name: numbytes
+        schema:
+          default: 10
+          type: integer
+      - description: The response code that will be returned
+        in: query
+        name: code
+        schema:
+          default: 200
+          type: integer
+      - description: The amount of time (in seconds) to delay before responding
+        in: query
+        name: delay
+        schema:
+          default: 2
+          type: number
+      responses:
+        '200':
+          description: A dripped response.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Drips data over a duration after an optional initial delay.
+      tags:
+      - Dynamic data
+  /public/httpbin/v1/links/{n}/{offset}:
+    get:
+      parameters:
+      - in: path
+        name: n
+        required: true
+        schema:
+          type: int
+      - in: path
+        name: offset
+        required: true
+        schema:
+          type: int
+      responses:
+        '200':
+          description: HTML links.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Generate a page containing n links to other pages which do the same.
+      tags:
+      - Dynamic data
+  /public/httpbin/v1/range/{numbytes}:
+    get:
+      parameters:
+      - in: path
+        name: numbytes
+        required: true
+        schema:
+          type: int
+      responses:
+        '200':
+          description: Bytes.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Streams n random bytes generated with given seed, at given chunk size per packet.
+      tags:
+      - Dynamic data
+  /public/httpbin/v1/stream-bytes/{n}:
+    get:
+      parameters:
+      - in: path
+        name: n
+        required: true
+        schema:
+          type: int
+      responses:
+        '200':
+          description: Bytes.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Streams n random bytes generated with given seed, at given chunk size per packet.
+      tags:
+      - Dynamic data
+  /public/httpbin/v1/stream/{n}:
+    get:
+      parameters:
+      - in: path
+        name: n
+        required: true
+        schema:
+          type: int
+      responses:
+        '200':
+          description: Streamed JSON responses.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Stream n JSON responses
+      tags:
+      - Dynamic data
+  /public/httpbin/v1/uuid:
+    get:
+      responses:
+        '200':
+          description: A UUID4.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+      security:
+      - client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Return a UUID4.
+      tags:
+      - Dynamic data
+components:
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

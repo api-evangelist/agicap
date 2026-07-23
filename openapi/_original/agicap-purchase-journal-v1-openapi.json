@@ -1,0 +1,1872 @@
+{
+ "components": {
+  "schemas": {
+   "AccountingLineAccountType": {
+    "additionalProperties": false,
+    "enum": [
+     "SupplierAccount",
+     "ExpenseAccount",
+     "VatAccount"
+    ],
+    "type": "string"
+   },
+   "AccountingLinePaymentMethod": {
+    "additionalProperties": false,
+    "enum": [
+     "Check",
+     "CreditCard",
+     "DebitCard",
+     "DirectDebit",
+     "WireTransfer",
+     "Cash",
+     "Paypal",
+     "Giropay",
+     "Girocard",
+     "RIBA",
+     "BillOfExchange",
+     "Compensation",
+     "Other",
+     "None"
+    ],
+    "type": "string"
+   },
+   "ApiErrors": {
+    "additionalProperties": false,
+    "properties": {
+     "type": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "type"
+    ],
+    "type": "object"
+   },
+   "InvoiceDeliveryNoteLineDto": {
+    "additionalProperties": false,
+    "properties": {
+     "deliveryNoteLineItemErpExternalId": {
+      "description": "ERP external identifier of the delivery note line (null when not set)",
+      "nullable": true,
+      "type": "string"
+     },
+     "deliveryNoteNumber": {
+      "description": "delivery note number (null when not set)",
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "InvoiceInformationDto": {
+    "additionalProperties": false,
+    "properties": {
+     "costCenter": {
+      "description": "cost center label (null when not set)",
+      "nullable": true,
+      "type": "string"
+     },
+     "currency": {
+      "description": "invoice currency (null when not set)",
+      "nullable": true,
+      "type": "string"
+     },
+     "lineItems": {
+      "description": "line items, filtered to those matching accountingLines[].lineItemId",
+      "items": {
+       "$ref": "#/components/schemas/InvoiceLineItemDto"
+      },
+      "type": "array"
+     },
+     "linkedPurchaseOrders": {
+      "description": "linked purchase orders (empty when none)",
+      "items": {
+       "$ref": "#/components/schemas/InvoiceLinkedPurchaseOrderDto"
+      },
+      "type": "array"
+     },
+     "natures": {
+      "description": "natures associated with the invoice",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "originalAmountExcludingTaxes": {
+      "description": "original total amount excluding taxes (null when not set)",
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "originalAmountIncludingTaxes": {
+      "description": "original total amount including taxes (null when not set)",
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "reference": {
+      "description": "invoice external reference",
+      "nullable": true,
+      "type": "string"
+     },
+     "status": {
+      "description": "invoice status, passthrough from invoices-management",
+      "type": "string"
+     },
+     "supplier": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/InvoiceSupplierDto"
+       }
+      ],
+      "description": "invoice supplier (null when missing)",
+      "nullable": true
+     }
+    },
+    "required": [
+     "lineItems",
+     "linkedPurchaseOrders",
+     "natures",
+     "status"
+    ],
+    "type": "object"
+   },
+   "InvoiceLineItemDto": {
+    "additionalProperties": false,
+    "properties": {
+     "articleName": {
+      "description": "article name (null when not set)",
+      "nullable": true,
+      "type": "string"
+     },
+     "articleReference": {
+      "description": "article reference (null when not set)",
+      "nullable": true,
+      "type": "string"
+     },
+     "lineItemId": {
+      "description": "identifier of the line item (matches accountingLines[].lineItemId)",
+      "format": "uuid",
+      "type": "string"
+     },
+     "linkedPurchaseOrderLine": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/InvoiceLinkedPurchaseOrderLineDto"
+       }
+      ],
+      "description": "matched line item on the linked purchase order, null when no match",
+      "nullable": true
+     },
+     "quantity": {
+      "description": "quantity (null when not set)",
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "totalAmountExcludingTaxes": {
+      "description": "total amount excluding taxes (null when not set)",
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "unitAmountExcludingTaxes": {
+      "description": "unit amount excluding taxes (null when not set)",
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     }
+    },
+    "required": [
+     "lineItemId"
+    ],
+    "type": "object"
+   },
+   "InvoiceLinkedPurchaseOrderDto": {
+    "additionalProperties": false,
+    "properties": {
+     "amountExcludingTaxes": {
+      "description": "total amount excluding taxes (null when not set)",
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "amountIncludingTaxes": {
+      "description": "total amount including taxes (null when not set)",
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "associatedAmountExcludingTaxes": {
+      "description": "portion of the purchase order amount HT linked to this invoice",
+      "format": "double",
+      "type": "number"
+     },
+     "currency": {
+      "description": "currency (null when not set)",
+      "nullable": true,
+      "type": "string"
+     },
+     "deliveries": {
+      "description": "recorded deliveries (empty for services purchase orders)",
+      "items": {
+       "$ref": "#/components/schemas/LinkedDeliveryDto"
+      },
+      "type": "array"
+     },
+     "deliveryDate": {
+      "description": "expected delivery date (null when not applicable)",
+      "format": "date",
+      "nullable": true,
+      "type": "string"
+     },
+     "deliveryStatus": {
+      "description": "delivery status, passthrough from invoices-management (may carry a specific value for services purchase orders)",
+      "type": "string"
+     },
+     "expectedPaymentDate": {
+      "description": "expected payment date (null when not set)",
+      "format": "date",
+      "nullable": true,
+      "type": "string"
+     },
+     "number": {
+      "description": "purchase order number (null when not set)",
+      "nullable": true,
+      "type": "string"
+     },
+     "purchaseOrderErpExternalId": {
+      "description": "ERP external identifier of the purchase order (null when not set)",
+      "nullable": true,
+      "type": "string"
+     },
+     "purchaseOrderId": {
+      "description": "purchase order identifier",
+      "format": "uuid",
+      "type": "string"
+     },
+     "status": {
+      "description": "purchase order status, passthrough from invoices-management",
+      "type": "string"
+     },
+     "supplier": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/PurchaseOrderSupplierDto"
+       }
+      ],
+      "description": "purchase order supplier (null when not set; id always null today, name carries the display value)",
+      "nullable": true
+     },
+     "title": {
+      "description": "purchase order title",
+      "type": "string"
+     }
+    },
+    "required": [
+     "associatedAmountExcludingTaxes",
+     "deliveries",
+     "deliveryStatus",
+     "purchaseOrderId",
+     "status",
+     "title"
+    ],
+    "type": "object"
+   },
+   "InvoiceLinkedPurchaseOrderLineDto": {
+    "additionalProperties": false,
+    "properties": {
+     "articleName": {
+      "description": "article name (null when not set)",
+      "nullable": true,
+      "type": "string"
+     },
+     "articleReference": {
+      "description": "article reference (null when not set)",
+      "nullable": true,
+      "type": "string"
+     },
+     "billedQuantity": {
+      "description": "billed quantity",
+      "format": "double",
+      "type": "number"
+     },
+     "deliveredQuantity": {
+      "description": "delivered quantity",
+      "format": "double",
+      "type": "number"
+     },
+     "linkedDeliveryNotesLines": {
+      "description": "delivery note lines recorded against this purchase order line (empty when none)",
+      "items": {
+       "$ref": "#/components/schemas/InvoiceDeliveryNoteLineDto"
+      },
+      "type": "array"
+     },
+     "orderedQuantity": {
+      "description": "ordered quantity (null when not set)",
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "purchaseOrderErpExternalId": {
+      "description": "ERP external identifier of the purchase order (null when not set)",
+      "nullable": true,
+      "type": "string"
+     },
+     "purchaseOrderId": {
+      "description": "identifier of the linked purchase order (rapprochement key with linkedPurchaseOrders[].purchaseOrderId)",
+      "format": "uuid",
+      "type": "string"
+     },
+     "purchaseOrderLineItemErpExternalId": {
+      "description": "ERP external identifier of the purchase order line (null when not set)",
+      "nullable": true,
+      "type": "string"
+     },
+     "purchaseOrderLineItemId": {
+      "description": "identifier of the line item on the purchase order",
+      "format": "uuid",
+      "type": "string"
+     },
+     "totalAmountExcludingTaxes": {
+      "description": "total amount excluding taxes (null when not set)",
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     },
+     "unitAmountExcludingTaxes": {
+      "description": "unit amount excluding taxes (null when not set)",
+      "format": "double",
+      "nullable": true,
+      "type": "number"
+     }
+    },
+    "required": [
+     "billedQuantity",
+     "deliveredQuantity",
+     "linkedDeliveryNotesLines",
+     "purchaseOrderId",
+     "purchaseOrderLineItemId"
+    ],
+    "type": "object"
+   },
+   "InvoiceSupplierDto": {
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "description": "supplier identifier (null while invoices-management does not yet expose the ERP vendorId)",
+      "format": "uuid",
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "description": "supplier display name",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name"
+    ],
+    "type": "object"
+   },
+   "LinkedDeliveryDto": {
+    "additionalProperties": false,
+    "properties": {
+     "date": {
+      "description": "delivery date",
+      "format": "date",
+      "type": "string"
+     },
+     "number": {
+      "description": "delivery number (null when not set)",
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "required": [
+     "date"
+    ],
+    "type": "object"
+   },
+   "PagedResult`1<PurchaseJournal.UseCases.Ports.PublicApiPurchaseJournalPresentation>": {
+    "additionalProperties": false,
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/PublicApiPurchaseJournalPresentation"
+      },
+      "type": "array"
+     },
+     "pagination": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/Pagination"
+       }
+      ]
+     }
+    },
+    "required": [
+     "items",
+     "pagination"
+    ],
+    "type": "object"
+   },
+   "Pagination": {
+    "additionalProperties": false,
+    "properties": {
+     "currentPageItemsCount": {
+      "format": "int32",
+      "type": "integer"
+     },
+     "currentPageNumber": {
+      "format": "int32",
+      "type": "integer"
+     },
+     "pageSize": {
+      "format": "int32",
+      "type": "integer"
+     },
+     "pagesCount": {
+      "format": "int32",
+      "type": "integer"
+     },
+     "totalItemsCount": {
+      "format": "int32",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "currentPageItemsCount",
+     "currentPageNumber",
+     "pagesCount",
+     "pageSize",
+     "totalItemsCount"
+    ],
+    "type": "object"
+   },
+   "ProblemDetails": {
+    "additionalProperties": false,
+    "properties": {
+     "detail": {
+      "nullable": true,
+      "type": "string"
+     },
+     "instance": {
+      "nullable": true,
+      "type": "string"
+     },
+     "status": {
+      "format": "int32",
+      "nullable": true,
+      "type": "integer"
+     },
+     "title": {
+      "nullable": true,
+      "type": "string"
+     },
+     "type": {
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "PublicApiEntryErrorDto": {
+    "additionalProperties": false,
+    "properties": {
+     "errorMessage": {
+      "description": "message describing the error",
+      "nullable": true,
+      "type": "string"
+     },
+     "errorType": {
+      "description": "valid types: UNKNOWN_EXPENSE_ACCOUNT, UNKNOWN_VAT_ACCOUNT, UNKNOWN_THIRD_PARTY, UNKNOWN_ANALYTICAL_CODE, UNKNOWN_CURRENCY, OTHER",
+      "type": "string"
+     }
+    },
+    "required": [
+     "errorType"
+    ],
+    "type": "object"
+   },
+   "PublicApiErrorReportDto": {
+    "additionalProperties": false,
+    "properties": {
+     "entriesNotImported": {
+      "items": {
+       "$ref": "#/components/schemas/PublicApiNotImportedEntryDto"
+      },
+      "type": "array"
+     }
+    },
+    "required": [
+     "entriesNotImported"
+    ],
+    "type": "object"
+   },
+   "PublicApiNotImportedEntryDto": {
+    "additionalProperties": false,
+    "properties": {
+     "entryAgicapUniqueId": {
+      "format": "uuid",
+      "type": "string"
+     },
+     "errors": {
+      "items": {
+       "$ref": "#/components/schemas/PublicApiEntryErrorDto"
+      },
+      "type": "array"
+     }
+    },
+    "required": [
+     "entryAgicapUniqueId",
+     "errors"
+    ],
+    "type": "object"
+   },
+   "PublicApiPurchaseJournalPresentation": {
+    "additionalProperties": false,
+    "properties": {
+     "accountingLines": {
+      "description": "for each account to be posted",
+      "items": {
+       "$ref": "#/components/schemas/PurchaseJournalAccountingLinePresentation"
+      },
+      "type": "array"
+     },
+     "agicapUniqueId": {
+      "description": "unique identifier from agicap",
+      "format": "uuid",
+      "type": "string"
+     },
+     "billingDate": {
+      "description": "billing date of the document",
+      "format": "date-time",
+      "type": "string"
+     },
+     "dueDate": {
+      "description": "date when the payment is due",
+      "format": "date",
+      "nullable": true,
+      "type": "string"
+     },
+     "invoiceInformation": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/InvoiceInformationDto"
+       }
+      ],
+      "description": "enriched invoice data, populated only when `?include=invoiceInformation` is passed and `Typology == OwedInvoice`",
+      "nullable": true
+     },
+     "invoiceOrReceiptNumber": {
+      "description": "reference number of the document",
+      "type": "string"
+     },
+     "note": {
+      "description": "description manually entered",
+      "type": "string"
+     },
+     "orderNumbers": {
+      "description": "number of the purchase order",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "originalFileExtension": {
+      "description": "format of the document",
+      "nullable": true,
+      "type": "string"
+     },
+     "originalFileUrl": {
+      "description": "https://agicap.com/invoice1.pdf",
+      "nullable": true,
+      "type": "string"
+     },
+     "paymentMethod": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/AccountingLinePaymentMethod"
+       }
+      ],
+      "description": "payment method",
+      "nullable": true
+     },
+     "performanceDate": {
+      "description": "date when the service occurred (optional)",
+      "format": "date-time",
+      "nullable": true,
+      "type": "string"
+     },
+     "prepaidExpenseEndDate": {
+      "description": "end date if time frame provided",
+      "format": "date",
+      "nullable": true,
+      "type": "string"
+     },
+     "prepaidExpenseStartDate": {
+      "description": "start date if time frame provided",
+      "format": "date",
+      "nullable": true,
+      "type": "string"
+     },
+     "supplierErpExternalId": {
+      "description": "ERP external identifier of the supplier; null for anything other than an invoice or credit note, or when the supplier has no erpId",
+      "nullable": true,
+      "type": "string"
+     },
+     "supplierOrMerchant": {
+      "description": "name of the supplier",
+      "type": "string"
+     },
+     "taxKey": {
+      "deprecated": true,
+      "description": "Deprecated, Use TaxKey on AccountingLines",
+      "nullable": true,
+      "type": "string"
+     },
+     "title": {
+      "description": "title manually entered",
+      "type": "string"
+     },
+     "typology": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/Typology"
+       }
+      ],
+      "description": "type of the source document (discriminant for `InvoiceInformation`)"
+     },
+     "uniqueId": {
+      "description": "unique identifier as string",
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountingLines",
+     "agicapUniqueId",
+     "billingDate",
+     "invoiceOrReceiptNumber",
+     "note",
+     "orderNumbers",
+     "supplierOrMerchant",
+     "title",
+     "typology",
+     "uniqueId"
+    ],
+    "type": "object"
+   },
+   "PurchaseJournalAccountingLinePresentation": {
+    "additionalProperties": false,
+    "properties": {
+     "accountNumber": {
+      "description": "number of the account posted",
+      "type": "string"
+     },
+     "accountType": {
+      "allOf": [
+       {
+        "$ref": "#/components/schemas/AccountingLineAccountType"
+       }
+      ],
+      "description": "type of bookkeeping account"
+     },
+     "accountingCurrency": {
+      "description": "accounting currency",
+      "type": "string"
+     },
+     "additionalAnalyticalCodes": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "codes which are related to the cost bearer",
+      "type": "object"
+     },
+     "analyticalCodes": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "codes linked to the expense account",
+      "type": "object"
+     },
+     "conversionRate": {
+      "description": "conversion rate applied to the amounts",
+      "format": "double",
+      "type": "number"
+     },
+     "convertedCreditAmount": {
+      "description": "amount applied to the converted credit column",
+      "format": "double",
+      "type": "number"
+     },
+     "convertedDebitAmount": {
+      "description": "amount applied to the converted debit column",
+      "format": "double",
+      "type": "number"
+     },
+     "credit": {
+      "description": "amount applied to the credit column",
+      "format": "double",
+      "type": "number"
+     },
+     "currency": {
+      "description": "currency of the document provided",
+      "type": "string"
+     },
+     "debit": {
+      "description": "amount applied to the debit column",
+      "format": "double",
+      "type": "number"
+     },
+     "lineItemId": {
+      "description": "identifier of the line item for invoice accounting purchase typology, null for line of type `SupplierAccount",
+      "format": "uuid",
+      "nullable": true,
+      "type": "string"
+     },
+     "taxKey": {
+      "description": "Tax key of vat account if Account Type is `VatAccount else null.",
+      "nullable": true,
+      "type": "string"
+     },
+     "thirdPartyAccount": {
+      "description": "label for the supplier account",
+      "nullable": true,
+      "type": "string"
+     },
+     "type": {
+      "description": "“G” for General",
+      "type": "string"
+     },
+     "vatAccountName": {
+      "description": "name of the VAT account (or of the reverse charge for reverse-charge entries); null for line of type `SupplierAccount`",
+      "nullable": true,
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountingCurrency",
+     "accountNumber",
+     "accountType",
+     "additionalAnalyticalCodes",
+     "analyticalCodes",
+     "conversionRate",
+     "convertedCreditAmount",
+     "convertedDebitAmount",
+     "credit",
+     "currency",
+     "debit",
+     "type"
+    ],
+    "type": "object"
+   },
+   "PurchaseOrderSupplierDto": {
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "description": "supplier identifier (null while invoices-management does not yet expose the ERP vendorId on purchase orders)",
+      "format": "uuid",
+      "nullable": true,
+      "type": "string"
+     },
+     "name": {
+      "description": "supplier display name",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name"
+    ],
+    "type": "object"
+   },
+   "Typology": {
+    "additionalProperties": false,
+    "enum": [
+     "OwedInvoice",
+     "CreditNote",
+     "CardExpenseReceipt",
+     "CardRefundReceipt",
+     "ExpenseClaim"
+    ],
+    "type": "string"
+   }
+  },
+  "securitySchemes": {
+   "Bearer": {
+    "scheme": "Bearer",
+    "type": "http"
+   },
+   "bearerAuth": {
+    "bearerFormat": "OPAQUE",
+    "scheme": "bearer",
+    "type": "http"
+   },
+   "bearer_client_credentials": {
+    "description": "Client credentials: bearer",
+    "flows": {
+     "clientCredentials": {
+      "scopes": {
+       "agicap:public-api": ""
+      },
+      "tokenUrl": "https://myaccount.agicap.com/connect/token"
+     }
+    },
+    "type": "oauth2"
+   }
+  }
+ },
+ "info": {
+  "contact": {},
+  "description": "This Api allows to export the accounted list of all purchase transactions and reports errors encountered during integration into your accounting software.\n\nPlease refer to the [documentation](https://api.agicap.com/guides/purchase_journal) for more details.\n",
+  "title": "Purchase journal",
+  "version": "v1"
+ },
+ "openapi": "3.0.0",
+ "paths": {
+  "/public/purchase-journal/v1/entities/{entityId}/accounting-purchases": {
+   "get": {
+    "description": "This endpoint retrieves purchase journal accounting entries from your Agicap account for a specific entity.\n\n\n### Query Parameters\n- **LastSynchronizationDate** (string, optional): The date of your last synchronization (need to be stored on your side). Only accounting entries exposed with the button “export to my accounting software” after this date will be returned.\n- **PageSize** (int, optional): The number of entries returned per page. Default is 100. The maximum value is 100.\n- **PageNumber** (int, optional): The page number of the results to retrieve. Used for pagination when fetching purchase journal entries. If not specified, defaults to page 1.\n- **include** (string, optional): Opt-in enrichment selector. Pass `invoiceInformation` to enrich invoice entries with the `invoiceInformation` block. `invoiceInformation` is the only supported value; any other value is ignored. When omitted, the lighter default payload is returned and `invoiceInformation` is `null`.\n\n### Document typology\nEach entry carries a `typology` field that discriminates the source document. Possible values: `OwedInvoice`, `CreditNote`, `CardExpenseReceipt`, `CardRefundReceipt`, `ExpenseClaim`.\n\n### invoiceInformation enrichment (opt-in)\nWhen `?include=invoiceInformation` is passed, entries of typology `OwedInvoice` are enriched with an `invoiceInformation` object. It stays `null` for every other typology and whenever the parameter is omitted. The block contains:\n- **supplier**, **reference**, **currency**, original amounts (excl./incl. taxes), **costCenter**, **natures**.\n- **linkedPurchaseOrders[]**: the purchase orders linked to the invoice (empty when none), each with its own status, amounts, deliveries and the portion of the order amount linked to this invoice.\n- **lineItems[]**: invoice line items, filtered to those matching `accountingLines[].lineItemId`. Each may carry a **linkedPurchaseOrderLine** (the matched purchase-order line, `null` when no match).\n\nThe `status` (on the invoice and on each linked purchase order) and `deliveryStatus` (on each linked purchase order) fields are free-form strings passed through from invoices-management.\n\n#### Enrichment failure\nIf the enrichment cannot be resolved (the bulk invoice gateway or the purchase-order gateway fails), the endpoint returns `500` with error code `PublicApi_InvoiceEnrichmentFailed`. In that case the affected entries are **not** marked as exported and remain returned on a subsequent call, so a retry is safe.",
+    "operationId": "GetAccountingTransactionLines",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "LastSynchronizationDate",
+      "schema": {
+       "format": "date-time",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "PageSize",
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "PageNumber",
+      "schema": {
+       "format": "int32",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Opt-in enrichment selector. Pass `invoiceInformation` to enrich entries of typology `OwedInvoice` with the `invoiceInformation` block (supplier, line items, linked purchase orders). `invoiceInformation` is the only supported value; any other value is ignored. Omit it to keep the lighter default payload.",
+      "in": "query",
+      "name": "Include",
+      "schema": {
+       "description": "Opt-in enrichment selector. Pass `invoiceInformation` to enrich entries of typology `OwedInvoice` with the `invoiceInformation` block (supplier, line items, linked purchase orders). `invoiceInformation` is the only supported value; any other value is ignored. Omit it to keep the lighter default payload.",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "examples": {
+         "withInvoiceInformation": {
+          "value": {
+           "items": [
+            {
+             "accountingLines": [
+              {
+               "accountNumber": "401012",
+               "accountType": "SupplierAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {},
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 96,
+               "convertedDebitAmount": 0,
+               "credit": 120,
+               "currency": "USD",
+               "debit": 0,
+               "lineItemId": null,
+               "taxKey": null,
+               "thirdPartyAccount": "OVH",
+               "type": "G",
+               "vatAccountName": null
+              },
+              {
+               "accountNumber": "6263",
+               "accountType": "ExpenseAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {
+                "BusinessScope": "R&D",
+                "PurchaseType": "Cloud servers"
+               },
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 0,
+               "convertedDebitAmount": 80,
+               "credit": 0,
+               "currency": "USD",
+               "debit": 100,
+               "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+               "taxKey": null,
+               "thirdPartyAccount": null,
+               "type": "G",
+               "vatAccountName": "VAT 20%"
+              },
+              {
+               "accountNumber": "44566",
+               "accountType": "VatAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {},
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 0,
+               "convertedDebitAmount": 16,
+               "credit": 0,
+               "currency": "USD",
+               "debit": 20,
+               "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+               "taxKey": "9",
+               "thirdPartyAccount": null,
+               "type": "G",
+               "vatAccountName": "VAT 20%"
+              }
+             ],
+             "agicapUniqueId": "d3b07384-d9a3-4e5d-8c7c-8f9f1c2b3a4b",
+             "billingDate": "2024-12-16T00:00:00",
+             "dueDate": "2024-12-16",
+             "invoiceInformation": {
+              "costCenter": "IT",
+              "currency": "USD",
+              "lineItems": [
+               {
+                "articleName": "Cloud server XL",
+                "articleReference": "SRV-XL",
+                "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                "linkedPurchaseOrderLine": {
+                 "articleName": "Cloud server XL",
+                 "articleReference": "SRV-XL",
+                 "billedQuantity": 1,
+                 "deliveredQuantity": 1,
+                 "linkedDeliveryNotesLines": [
+                  {
+                   "deliveryNoteLineItemErpExternalId": "ERP-DNL-001",
+                   "deliveryNoteNumber": "BL-001"
+                  },
+                  {
+                   "deliveryNoteLineItemErpExternalId": "ERP-DNL-002",
+                   "deliveryNoteNumber": "BL-002"
+                  }
+                 ],
+                 "orderedQuantity": 1,
+                 "purchaseOrderErpExternalId": "ERP-PO-001",
+                 "purchaseOrderId": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+                 "purchaseOrderLineItemErpExternalId": "ERP-LINE-001",
+                 "purchaseOrderLineItemId": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+                 "totalAmountExcludingTaxes": 100,
+                 "unitAmountExcludingTaxes": 100
+                },
+                "quantity": 1,
+                "totalAmountExcludingTaxes": 100,
+                "unitAmountExcludingTaxes": 100
+               }
+              ],
+              "linkedPurchaseOrders": [
+               {
+                "amountExcludingTaxes": 100,
+                "amountIncludingTaxes": 120,
+                "associatedAmountExcludingTaxes": 100,
+                "currency": "USD",
+                "deliveries": [
+                 {
+                  "date": "2024-12-20",
+                  "number": "DN-001"
+                 }
+                ],
+                "deliveryDate": "2024-12-20",
+                "deliveryStatus": "Delivered",
+                "expectedPaymentDate": "2024-12-31",
+                "number": "PO-2024-001",
+                "purchaseOrderErpExternalId": "ERP-PO-001",
+                "purchaseOrderId": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+                "status": "Received",
+                "supplier": {
+                 "id": null,
+                 "name": "OVH"
+                },
+                "title": "Cloud servers Q4"
+               }
+              ],
+              "natures": [
+               "Cloud"
+              ],
+              "originalAmountExcludingTaxes": 100,
+              "originalAmountIncludingTaxes": 120,
+              "reference": "INV-2024-12-OVH",
+              "status": "Paid",
+              "supplier": {
+               "id": null,
+               "name": "OVH"
+              }
+             },
+             "invoiceOrReceiptNumber": "20241216",
+             "note": "OVH invoice for december",
+             "orderNumbers": [
+              "20241216"
+             ],
+             "originalFileExtension": "pdf",
+             "originalFileUrl": "https://agicap.com/invoice1.pdf",
+             "paymentMethod": "DebitCard",
+             "performanceDate": "2024-12-16T00:00:00",
+             "prepaidExpenseEndDate": "2024-12-16",
+             "prepaidExpenseStartDate": "2024-12-16",
+             "supplierErpExternalId": "ERP-OVH-001",
+             "supplierOrMerchant": "OVH",
+             "taxKey": null,
+             "title": "Invoice OVH December 2024",
+             "typology": "OwedInvoice",
+             "uniqueId": "78dwxxd5"
+            }
+           ],
+           "pagination": {
+            "currentPageItemsCount": 1,
+            "currentPageNumber": 1,
+            "pageSize": 1,
+            "pagesCount": 1,
+            "totalItemsCount": 1
+           }
+          }
+         },
+         "withoutInvoiceInformation": {
+          "value": {
+           "items": [
+            {
+             "accountingLines": [
+              {
+               "accountNumber": "401012",
+               "accountType": "SupplierAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {},
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 96,
+               "convertedDebitAmount": 0,
+               "credit": 120,
+               "currency": "USD",
+               "debit": 0,
+               "lineItemId": null,
+               "taxKey": null,
+               "thirdPartyAccount": "OVH",
+               "type": "G",
+               "vatAccountName": null
+              },
+              {
+               "accountNumber": "6263",
+               "accountType": "ExpenseAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {
+                "BusinessScope": "R&D",
+                "PurchaseType": "Cloud servers"
+               },
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 0,
+               "convertedDebitAmount": 80,
+               "credit": 0,
+               "currency": "USD",
+               "debit": 100,
+               "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+               "taxKey": null,
+               "thirdPartyAccount": null,
+               "type": "G",
+               "vatAccountName": "VAT 20%"
+              },
+              {
+               "accountNumber": "44566",
+               "accountType": "VatAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {},
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 0,
+               "convertedDebitAmount": 16,
+               "credit": 0,
+               "currency": "USD",
+               "debit": 20,
+               "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+               "taxKey": "9",
+               "thirdPartyAccount": null,
+               "type": "G",
+               "vatAccountName": "VAT 20%"
+              }
+             ],
+             "agicapUniqueId": "d3b07384-d9a3-4e5d-8c7c-8f9f1c2b3a4b",
+             "billingDate": "2024-12-16T00:00:00",
+             "dueDate": "2024-12-16",
+             "invoiceInformation": null,
+             "invoiceOrReceiptNumber": "20241216",
+             "note": "OVH invoice for december",
+             "orderNumbers": [
+              "20241216"
+             ],
+             "originalFileExtension": "pdf",
+             "originalFileUrl": "https://agicap.com/invoice1.pdf",
+             "paymentMethod": "DebitCard",
+             "performanceDate": "2024-12-16T00:00:00",
+             "prepaidExpenseEndDate": "2024-12-16",
+             "prepaidExpenseStartDate": "2024-12-16",
+             "supplierErpExternalId": "ERP-OVH-001",
+             "supplierOrMerchant": "OVH",
+             "taxKey": null,
+             "title": "Invoice OVH December 2024",
+             "typology": "OwedInvoice",
+             "uniqueId": "78dwxxd5"
+            }
+           ],
+           "pagination": {
+            "currentPageItemsCount": 1,
+            "currentPageNumber": 1,
+            "pageSize": 1,
+            "pagesCount": 1,
+            "totalItemsCount": 1
+           }
+          }
+         }
+        },
+        "schema": {
+         "$ref": "#/components/schemas/PagedResult`1<PurchaseJournal.UseCases.Ports.PublicApiPurchaseJournalPresentation>"
+        }
+       },
+       "text/json": {
+        "examples": {
+         "withInvoiceInformation": {
+          "value": {
+           "items": [
+            {
+             "accountingLines": [
+              {
+               "accountNumber": "401012",
+               "accountType": "SupplierAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {},
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 96,
+               "convertedDebitAmount": 0,
+               "credit": 120,
+               "currency": "USD",
+               "debit": 0,
+               "lineItemId": null,
+               "taxKey": null,
+               "thirdPartyAccount": "OVH",
+               "type": "G",
+               "vatAccountName": null
+              },
+              {
+               "accountNumber": "6263",
+               "accountType": "ExpenseAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {
+                "BusinessScope": "R&D",
+                "PurchaseType": "Cloud servers"
+               },
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 0,
+               "convertedDebitAmount": 80,
+               "credit": 0,
+               "currency": "USD",
+               "debit": 100,
+               "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+               "taxKey": null,
+               "thirdPartyAccount": null,
+               "type": "G",
+               "vatAccountName": "VAT 20%"
+              },
+              {
+               "accountNumber": "44566",
+               "accountType": "VatAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {},
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 0,
+               "convertedDebitAmount": 16,
+               "credit": 0,
+               "currency": "USD",
+               "debit": 20,
+               "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+               "taxKey": "9",
+               "thirdPartyAccount": null,
+               "type": "G",
+               "vatAccountName": "VAT 20%"
+              }
+             ],
+             "agicapUniqueId": "d3b07384-d9a3-4e5d-8c7c-8f9f1c2b3a4b",
+             "billingDate": "2024-12-16T00:00:00",
+             "dueDate": "2024-12-16",
+             "invoiceInformation": {
+              "costCenter": "IT",
+              "currency": "USD",
+              "lineItems": [
+               {
+                "articleName": "Cloud server XL",
+                "articleReference": "SRV-XL",
+                "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                "linkedPurchaseOrderLine": {
+                 "articleName": "Cloud server XL",
+                 "articleReference": "SRV-XL",
+                 "billedQuantity": 1,
+                 "deliveredQuantity": 1,
+                 "linkedDeliveryNotesLines": [
+                  {
+                   "deliveryNoteLineItemErpExternalId": "ERP-DNL-001",
+                   "deliveryNoteNumber": "BL-001"
+                  },
+                  {
+                   "deliveryNoteLineItemErpExternalId": "ERP-DNL-002",
+                   "deliveryNoteNumber": "BL-002"
+                  }
+                 ],
+                 "orderedQuantity": 1,
+                 "purchaseOrderErpExternalId": "ERP-PO-001",
+                 "purchaseOrderId": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+                 "purchaseOrderLineItemErpExternalId": "ERP-LINE-001",
+                 "purchaseOrderLineItemId": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+                 "totalAmountExcludingTaxes": 100,
+                 "unitAmountExcludingTaxes": 100
+                },
+                "quantity": 1,
+                "totalAmountExcludingTaxes": 100,
+                "unitAmountExcludingTaxes": 100
+               }
+              ],
+              "linkedPurchaseOrders": [
+               {
+                "amountExcludingTaxes": 100,
+                "amountIncludingTaxes": 120,
+                "associatedAmountExcludingTaxes": 100,
+                "currency": "USD",
+                "deliveries": [
+                 {
+                  "date": "2024-12-20",
+                  "number": "DN-001"
+                 }
+                ],
+                "deliveryDate": "2024-12-20",
+                "deliveryStatus": "Delivered",
+                "expectedPaymentDate": "2024-12-31",
+                "number": "PO-2024-001",
+                "purchaseOrderErpExternalId": "ERP-PO-001",
+                "purchaseOrderId": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+                "status": "Received",
+                "supplier": {
+                 "id": null,
+                 "name": "OVH"
+                },
+                "title": "Cloud servers Q4"
+               }
+              ],
+              "natures": [
+               "Cloud"
+              ],
+              "originalAmountExcludingTaxes": 100,
+              "originalAmountIncludingTaxes": 120,
+              "reference": "INV-2024-12-OVH",
+              "status": "Paid",
+              "supplier": {
+               "id": null,
+               "name": "OVH"
+              }
+             },
+             "invoiceOrReceiptNumber": "20241216",
+             "note": "OVH invoice for december",
+             "orderNumbers": [
+              "20241216"
+             ],
+             "originalFileExtension": "pdf",
+             "originalFileUrl": "https://agicap.com/invoice1.pdf",
+             "paymentMethod": "DebitCard",
+             "performanceDate": "2024-12-16T00:00:00",
+             "prepaidExpenseEndDate": "2024-12-16",
+             "prepaidExpenseStartDate": "2024-12-16",
+             "supplierErpExternalId": "ERP-OVH-001",
+             "supplierOrMerchant": "OVH",
+             "taxKey": null,
+             "title": "Invoice OVH December 2024",
+             "typology": "OwedInvoice",
+             "uniqueId": "78dwxxd5"
+            }
+           ],
+           "pagination": {
+            "currentPageItemsCount": 1,
+            "currentPageNumber": 1,
+            "pageSize": 1,
+            "pagesCount": 1,
+            "totalItemsCount": 1
+           }
+          }
+         },
+         "withoutInvoiceInformation": {
+          "value": {
+           "items": [
+            {
+             "accountingLines": [
+              {
+               "accountNumber": "401012",
+               "accountType": "SupplierAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {},
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 96,
+               "convertedDebitAmount": 0,
+               "credit": 120,
+               "currency": "USD",
+               "debit": 0,
+               "lineItemId": null,
+               "taxKey": null,
+               "thirdPartyAccount": "OVH",
+               "type": "G",
+               "vatAccountName": null
+              },
+              {
+               "accountNumber": "6263",
+               "accountType": "ExpenseAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {
+                "BusinessScope": "R&D",
+                "PurchaseType": "Cloud servers"
+               },
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 0,
+               "convertedDebitAmount": 80,
+               "credit": 0,
+               "currency": "USD",
+               "debit": 100,
+               "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+               "taxKey": null,
+               "thirdPartyAccount": null,
+               "type": "G",
+               "vatAccountName": "VAT 20%"
+              },
+              {
+               "accountNumber": "44566",
+               "accountType": "VatAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {},
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 0,
+               "convertedDebitAmount": 16,
+               "credit": 0,
+               "currency": "USD",
+               "debit": 20,
+               "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+               "taxKey": "9",
+               "thirdPartyAccount": null,
+               "type": "G",
+               "vatAccountName": "VAT 20%"
+              }
+             ],
+             "agicapUniqueId": "d3b07384-d9a3-4e5d-8c7c-8f9f1c2b3a4b",
+             "billingDate": "2024-12-16T00:00:00",
+             "dueDate": "2024-12-16",
+             "invoiceInformation": null,
+             "invoiceOrReceiptNumber": "20241216",
+             "note": "OVH invoice for december",
+             "orderNumbers": [
+              "20241216"
+             ],
+             "originalFileExtension": "pdf",
+             "originalFileUrl": "https://agicap.com/invoice1.pdf",
+             "paymentMethod": "DebitCard",
+             "performanceDate": "2024-12-16T00:00:00",
+             "prepaidExpenseEndDate": "2024-12-16",
+             "prepaidExpenseStartDate": "2024-12-16",
+             "supplierErpExternalId": "ERP-OVH-001",
+             "supplierOrMerchant": "OVH",
+             "taxKey": null,
+             "title": "Invoice OVH December 2024",
+             "typology": "OwedInvoice",
+             "uniqueId": "78dwxxd5"
+            }
+           ],
+           "pagination": {
+            "currentPageItemsCount": 1,
+            "currentPageNumber": 1,
+            "pageSize": 1,
+            "pagesCount": 1,
+            "totalItemsCount": 1
+           }
+          }
+         }
+        },
+        "schema": {
+         "$ref": "#/components/schemas/PagedResult`1<PurchaseJournal.UseCases.Ports.PublicApiPurchaseJournalPresentation>"
+        }
+       },
+       "text/plain": {
+        "examples": {
+         "withInvoiceInformation": {
+          "value": {
+           "items": [
+            {
+             "accountingLines": [
+              {
+               "accountNumber": "401012",
+               "accountType": "SupplierAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {},
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 96,
+               "convertedDebitAmount": 0,
+               "credit": 120,
+               "currency": "USD",
+               "debit": 0,
+               "lineItemId": null,
+               "taxKey": null,
+               "thirdPartyAccount": "OVH",
+               "type": "G",
+               "vatAccountName": null
+              },
+              {
+               "accountNumber": "6263",
+               "accountType": "ExpenseAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {
+                "BusinessScope": "R&D",
+                "PurchaseType": "Cloud servers"
+               },
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 0,
+               "convertedDebitAmount": 80,
+               "credit": 0,
+               "currency": "USD",
+               "debit": 100,
+               "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+               "taxKey": null,
+               "thirdPartyAccount": null,
+               "type": "G",
+               "vatAccountName": "VAT 20%"
+              },
+              {
+               "accountNumber": "44566",
+               "accountType": "VatAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {},
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 0,
+               "convertedDebitAmount": 16,
+               "credit": 0,
+               "currency": "USD",
+               "debit": 20,
+               "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+               "taxKey": "9",
+               "thirdPartyAccount": null,
+               "type": "G",
+               "vatAccountName": "VAT 20%"
+              }
+             ],
+             "agicapUniqueId": "d3b07384-d9a3-4e5d-8c7c-8f9f1c2b3a4b",
+             "billingDate": "2024-12-16T00:00:00",
+             "dueDate": "2024-12-16",
+             "invoiceInformation": {
+              "costCenter": "IT",
+              "currency": "USD",
+              "lineItems": [
+               {
+                "articleName": "Cloud server XL",
+                "articleReference": "SRV-XL",
+                "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                "linkedPurchaseOrderLine": {
+                 "articleName": "Cloud server XL",
+                 "articleReference": "SRV-XL",
+                 "billedQuantity": 1,
+                 "deliveredQuantity": 1,
+                 "linkedDeliveryNotesLines": [
+                  {
+                   "deliveryNoteLineItemErpExternalId": "ERP-DNL-001",
+                   "deliveryNoteNumber": "BL-001"
+                  },
+                  {
+                   "deliveryNoteLineItemErpExternalId": "ERP-DNL-002",
+                   "deliveryNoteNumber": "BL-002"
+                  }
+                 ],
+                 "orderedQuantity": 1,
+                 "purchaseOrderErpExternalId": "ERP-PO-001",
+                 "purchaseOrderId": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+                 "purchaseOrderLineItemErpExternalId": "ERP-LINE-001",
+                 "purchaseOrderLineItemId": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+                 "totalAmountExcludingTaxes": 100,
+                 "unitAmountExcludingTaxes": 100
+                },
+                "quantity": 1,
+                "totalAmountExcludingTaxes": 100,
+                "unitAmountExcludingTaxes": 100
+               }
+              ],
+              "linkedPurchaseOrders": [
+               {
+                "amountExcludingTaxes": 100,
+                "amountIncludingTaxes": 120,
+                "associatedAmountExcludingTaxes": 100,
+                "currency": "USD",
+                "deliveries": [
+                 {
+                  "date": "2024-12-20",
+                  "number": "DN-001"
+                 }
+                ],
+                "deliveryDate": "2024-12-20",
+                "deliveryStatus": "Delivered",
+                "expectedPaymentDate": "2024-12-31",
+                "number": "PO-2024-001",
+                "purchaseOrderErpExternalId": "ERP-PO-001",
+                "purchaseOrderId": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+                "status": "Received",
+                "supplier": {
+                 "id": null,
+                 "name": "OVH"
+                },
+                "title": "Cloud servers Q4"
+               }
+              ],
+              "natures": [
+               "Cloud"
+              ],
+              "originalAmountExcludingTaxes": 100,
+              "originalAmountIncludingTaxes": 120,
+              "reference": "INV-2024-12-OVH",
+              "status": "Paid",
+              "supplier": {
+               "id": null,
+               "name": "OVH"
+              }
+             },
+             "invoiceOrReceiptNumber": "20241216",
+             "note": "OVH invoice for december",
+             "orderNumbers": [
+              "20241216"
+             ],
+             "originalFileExtension": "pdf",
+             "originalFileUrl": "https://agicap.com/invoice1.pdf",
+             "paymentMethod": "DebitCard",
+             "performanceDate": "2024-12-16T00:00:00",
+             "prepaidExpenseEndDate": "2024-12-16",
+             "prepaidExpenseStartDate": "2024-12-16",
+             "supplierErpExternalId": "ERP-OVH-001",
+             "supplierOrMerchant": "OVH",
+             "taxKey": null,
+             "title": "Invoice OVH December 2024",
+             "typology": "OwedInvoice",
+             "uniqueId": "78dwxxd5"
+            }
+           ],
+           "pagination": {
+            "currentPageItemsCount": 1,
+            "currentPageNumber": 1,
+            "pageSize": 1,
+            "pagesCount": 1,
+            "totalItemsCount": 1
+           }
+          }
+         },
+         "withoutInvoiceInformation": {
+          "value": {
+           "items": [
+            {
+             "accountingLines": [
+              {
+               "accountNumber": "401012",
+               "accountType": "SupplierAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {},
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 96,
+               "convertedDebitAmount": 0,
+               "credit": 120,
+               "currency": "USD",
+               "debit": 0,
+               "lineItemId": null,
+               "taxKey": null,
+               "thirdPartyAccount": "OVH",
+               "type": "G",
+               "vatAccountName": null
+              },
+              {
+               "accountNumber": "6263",
+               "accountType": "ExpenseAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {
+                "BusinessScope": "R&D",
+                "PurchaseType": "Cloud servers"
+               },
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 0,
+               "convertedDebitAmount": 80,
+               "credit": 0,
+               "currency": "USD",
+               "debit": 100,
+               "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+               "taxKey": null,
+               "thirdPartyAccount": null,
+               "type": "G",
+               "vatAccountName": "VAT 20%"
+              },
+              {
+               "accountNumber": "44566",
+               "accountType": "VatAccount",
+               "accountingCurrency": "EUR",
+               "additionalAnalyticalCodes": {},
+               "analyticalCodes": {},
+               "conversionRate": 0.8,
+               "convertedCreditAmount": 0,
+               "convertedDebitAmount": 16,
+               "credit": 0,
+               "currency": "USD",
+               "debit": 20,
+               "lineItemId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+               "taxKey": "9",
+               "thirdPartyAccount": null,
+               "type": "G",
+               "vatAccountName": "VAT 20%"
+              }
+             ],
+             "agicapUniqueId": "d3b07384-d9a3-4e5d-8c7c-8f9f1c2b3a4b",
+             "billingDate": "2024-12-16T00:00:00",
+             "dueDate": "2024-12-16",
+             "invoiceInformation": null,
+             "invoiceOrReceiptNumber": "20241216",
+             "note": "OVH invoice for december",
+             "orderNumbers": [
+              "20241216"
+             ],
+             "originalFileExtension": "pdf",
+             "originalFileUrl": "https://agicap.com/invoice1.pdf",
+             "paymentMethod": "DebitCard",
+             "performanceDate": "2024-12-16T00:00:00",
+             "prepaidExpenseEndDate": "2024-12-16",
+             "prepaidExpenseStartDate": "2024-12-16",
+             "supplierErpExternalId": "ERP-OVH-001",
+             "supplierOrMerchant": "OVH",
+             "taxKey": null,
+             "title": "Invoice OVH December 2024",
+             "typology": "OwedInvoice",
+             "uniqueId": "78dwxxd5"
+            }
+           ],
+           "pagination": {
+            "currentPageItemsCount": 1,
+            "currentPageNumber": 1,
+            "pageSize": 1,
+            "pagesCount": 1,
+            "totalItemsCount": 1
+           }
+          }
+         }
+        },
+        "schema": {
+         "$ref": "#/components/schemas/PagedResult`1<PurchaseJournal.UseCases.Ports.PublicApiPurchaseJournalPresentation>"
+        }
+       }
+      },
+      "description": "OK"
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Retrieve your purchase journal entries",
+    "tags": [
+     "Purchase journal"
+    ]
+   }
+  },
+  "/public/purchase-journal/v1/entities/{entityId}/accounting-purchases/exported/mark-as-not-imported": {
+   "post": {
+    "description": "Indicates Agicap that some exported purchase entries from Agicap were not correctly imported in the client accounting system.\nYou can report several errors per purchase journal entry. For each error, use the most precise error type whenever possible, and OTHER otherwise.\n\nTo identify the exported purchase journal entry, use the agicapUniqueId provided by Agicap during the retrieval of the purchase journal entries.\nThis means, you need to keep track of which entry in the client accounting system corresponds to the agicapUniqueId. The agicapUniqueId is unique and stable through time. It is returned in the reponse of the [Get accounting purchases](https://api.agicap.com/api-details/purchase-journal-v1#tag/Purchase-journal/operation/AccountingPurchasesPublicApi_GetAccountingTransactionLines).\nThe maximum number of exported purchase journal entries you can report is 1000 per request, if you need to report more, simply call this endpoint as many times as necessary.\n\nAuthorized values for `ErrorType` are:\n- `UNKNOWN_EXPENSE_ACCOUNT`: Use if the expense account doesn't exist or is not active in the accounting system\n- `UNKNOWN_VAT_ACCOUNT`: Use if the VAT account doesn't exist or is not active in the accounting system.\n- `UNKNOWN_THIRD_PARTY`: Use if the supplier account doesn't exist or is not active in the accounting system.\n- `UNKNOWN_ANALYTICAL_CODE`: Use if the analytical code doesn't exist or is not active in the accounting system\n- `UNKNOWN_CURRENCY`: Use if the currency doesn't exist or is not active in the accounting system.\n- `OTHER`: all other types of error\n\nif the error type does not match any of the previous values, `OTHER` will be used.\n\n`ErrorMessage` should provide more details about the error encountered during the import in the client accounting system. The message will be displayed in Agicap.",
+    "operationId": "ReportAccountingPurchaseErrors",
+    "parameters": [
+     {
+      "description": "Agicap entity Id",
+      "in": "path",
+      "name": "entityId",
+      "required": true,
+      "schema": {
+       "description": "Agicap entity Id",
+       "format": "int32",
+       "type": "integer"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/*+json": {
+       "example": {
+        "entriesNotImported": [
+         {
+          "entryAgicapUniqueId": "c578febf-2515-416a-b42a-c85c52bc4635",
+          "errors": [
+           {
+            "errorMessage": "The account number '401012' is not valid.",
+            "errorType": "UNKNOWN_EXPENSE_ACCOUNT"
+           }
+          ]
+         }
+        ]
+       },
+       "schema": {
+        "allOf": [
+         {
+          "$ref": "#/components/schemas/PublicApiErrorReportDto"
+         }
+        ],
+        "description": "Error report"
+       }
+      },
+      "application/json": {
+       "example": {
+        "entriesNotImported": [
+         {
+          "entryAgicapUniqueId": "c578febf-2515-416a-b42a-c85c52bc4635",
+          "errors": [
+           {
+            "errorMessage": "The account number '401012' is not valid.",
+            "errorType": "UNKNOWN_EXPENSE_ACCOUNT"
+           }
+          ]
+         }
+        ]
+       },
+       "schema": {
+        "allOf": [
+         {
+          "$ref": "#/components/schemas/PublicApiErrorReportDto"
+         }
+        ],
+        "description": "Error report"
+       }
+      },
+      "text/json": {
+       "example": {
+        "entriesNotImported": [
+         {
+          "entryAgicapUniqueId": "c578febf-2515-416a-b42a-c85c52bc4635",
+          "errors": [
+           {
+            "errorMessage": "The account number '401012' is not valid.",
+            "errorType": "UNKNOWN_EXPENSE_ACCOUNT"
+           }
+          ]
+         }
+        ]
+       },
+       "schema": {
+        "allOf": [
+         {
+          "$ref": "#/components/schemas/PublicApiErrorReportDto"
+         }
+        ],
+        "description": "Error report"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "OK"
+     },
+     "401": {
+      "description": "Unauthorized request."
+     },
+     "403": {
+      "description": "Forbidden request."
+     },
+     "429": {
+      "description": "Too many requests. Please try again later."
+     },
+     "500": {
+      "content": {
+       "application/problem+json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProblemDetails"
+        }
+       }
+      },
+      "description": "An internal server occurred."
+     }
+    },
+    "security": [
+     {
+      "bearer_client_credentials": [
+       "agicap:public-api"
+      ]
+     },
+     {
+      "bearerAuth": []
+     }
+    ],
+    "summary": "Report errors on exported purchase journal entries",
+    "tags": [
+     "Purchase journal"
+    ]
+   }
+  }
+ },
+ "security": [
+  {
+   "Bearer": []
+  }
+ ],
+ "servers": [
+  {
+   "url": "https://api.agicap.com"
+  },
+  {
+   "url": "https://api.agicap.internal"
+  }
+ ]
+}

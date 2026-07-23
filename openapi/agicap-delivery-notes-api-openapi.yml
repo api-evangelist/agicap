@@ -1,0 +1,455 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Delivery Notes API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Delivery Notes
+paths:
+  /public/business-documents/v2/entities/{entityid}/connections/{connectionid}/delivery-notes:
+    get:
+      operationId: DeliveryNote_GetDeliveryNotes
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      - description: Number of items per page (max 10 000)
+        in: query
+        name: pagesize
+        schema:
+          description: Number of items per page (max 10 000)
+          format: int32
+          type: integer
+      - description: Page index
+        in: query
+        name: pageindex
+        schema:
+          description: Page index
+          format: int32
+          type: integer
+      - description: Unique identifier of the document in the data source
+        explode: false
+        in: query
+        name: externalids
+        schema:
+          description: Unique identifier of the document in the data source
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Will return only documents updated **after** this date
+        in: query
+        name: updatedsince
+        schema:
+          description: Will return only documents updated **after** this date
+          format: date-time
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryNoteDtoPageDto'
+          description: Delivery notes
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Get delivery notes
+      tags:
+      - Delivery Notes
+    post:
+      operationId: DeliveryNote_CreateDeliveryNotes
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CreateDeliveryNoteDto'
+              type: array
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CreateDeliveryNoteDto'
+              type: array
+          text/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CreateDeliveryNoteDto'
+              type: array
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CreatedDocumentDto'
+                type: array
+          description: Ids of the created documents, associated with the provided external identifiers
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Create delivery notes
+      tags:
+      - Delivery Notes
+    put:
+      operationId: DeliveryNote_UpdateDeliveryNotes
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdateDeliveryNoteDto'
+              type: array
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdateDeliveryNoteDto'
+              type: array
+          text/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdateDeliveryNoteDto'
+              type: array
+      responses:
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Update delivery notes
+      tags:
+      - Delivery Notes
+components:
+  schemas:
+    PaginationMetadataDto:
+      additionalProperties: false
+      properties:
+        pageIndex:
+          description: Current page index
+          format: int32
+          type: integer
+        pageItemsCount:
+          description: Number of items on the current page
+          format: int32
+          type: integer
+        pageSize:
+          description: Page size (items per page)
+          format: int32
+          type: integer
+        totalItemsCount:
+          description: Total number of items
+          format: int32
+          type: integer
+      title: PaginationMetadata
+      type: object
+    DeliveryNoteDtoPageDto:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DeliveryNoteDto'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      title: Page
+      type: object
+    DeliveryNoteLineItemDto:
+      additionalProperties: false
+      properties:
+        deliveredQuantity:
+          description: Delivered quantity. Must be strictly positive (> 0).
+          format: double
+          type: number
+        externalId:
+          description: Unique identifier of the line item in the source data
+          minLength: 1
+          type: string
+        purchaseOrderExternalId:
+          description: External identifier of the related purchase order. Must be provided together with purchaseOrderLineItemExternalId, or both must be null.
+          nullable: true
+          type: string
+        purchaseOrderLineItemExternalId:
+          description: External identifier of the related purchase order line item. Must be provided together with purchaseOrderExternalId, or both must be null.
+          nullable: true
+          type: string
+      required:
+      - deliveredQuantity
+      - externalId
+      title: DeliveryNoteLineItem
+      type: object
+    DeliveryNoteDto:
+      additionalProperties: false
+      properties:
+        deliveryDate:
+          description: Delivery date in ISO 8601 format
+          format: date-time
+          type: string
+        deliveryNoteNumber:
+          description: Delivery note number in the source data
+          minLength: 1
+          type: string
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        id:
+          description: Unique identifier generated by Agicap
+          format: uuid
+          type: string
+        lineItems:
+          description: Line items of the delivery note. Empty if none.
+          items:
+            $ref: '#/components/schemas/DeliveryNoteLineItemDto'
+          type: array
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          nullable: true
+          type: object
+      required:
+      - deliveryDate
+      - deliveryNoteNumber
+      - externalId
+      - id
+      title: DeliveryNote
+      type: object
+    UpdateDeliveryNoteDto:
+      additionalProperties: false
+      properties:
+        deliveryDate:
+          description: Delivery date in ISO 8601 format
+          format: date-time
+          type: string
+        deliveryNoteNumber:
+          description: Delivery note number in the source data
+          minLength: 1
+          type: string
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        id:
+          description: Unique identifier generated by Agicap
+          format: uuid
+          type: string
+        lineItems:
+          description: Line items of the delivery note.
+          items:
+            $ref: '#/components/schemas/DeliveryNoteLineItemDto'
+          nullable: true
+          type: array
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          nullable: true
+          type: object
+      required:
+      - deliveryDate
+      - deliveryNoteNumber
+      - externalId
+      - id
+      title: UpdateDeliveryNote
+      type: object
+    CreatedDocumentDto:
+      additionalProperties: false
+      properties:
+        externalId:
+          type: string
+        id:
+          format: uuid
+          type: string
+      title: CreatedDocument
+      type: object
+    CreateDeliveryNoteDto:
+      additionalProperties: false
+      properties:
+        deliveryDate:
+          description: Delivery date in ISO 8601 format
+          format: date-time
+          type: string
+        deliveryNoteNumber:
+          description: Delivery note number in the source data
+          minLength: 1
+          type: string
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        lineItems:
+          description: Line items of the delivery note.
+          items:
+            $ref: '#/components/schemas/DeliveryNoteLineItemDto'
+          nullable: true
+          type: array
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          nullable: true
+          type: object
+      required:
+      - deliveryDate
+      - deliveryNoteNumber
+      - externalId
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

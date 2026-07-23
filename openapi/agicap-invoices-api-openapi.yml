@@ -1,0 +1,403 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Invoices API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Invoices
+paths:
+  /public/invoices-management/v1/entities/{entityId}/invoices:
+    post:
+      description: 'Use this endpoint to retrieve full invoice details for a given list of invoice IDs. It returns all header-level information — supplier, amounts, status, due date, payment method — along with line items and their references to linked purchase order lines.
+
+        This is the primary endpoint to call when creating supplier invoices in an ERP: the line-level link to purchase order lines allows the ERP to automatically match the invoice against the right order and close it upon import.'
+      operationId: post_public-api/invoices-management/v1/entities/{entityid}/invoices
+      parameters:
+      - description: The entity identifier.
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Dto.InvoiceQueryDto'
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Dto.InvoiceQueryDto'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Dto.InvoiceQueryDto'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoicesResponse'
+          description: Your request has been successfully processed.
+        '400':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+          description: Your request is invalid.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearerAuth: []
+      summary: List invoices
+      tags:
+      - Invoices
+  /public/invoices-management/v1/entities/{entityId}/invoices/mark-as-verified:
+    post:
+      description: Marks the specified invoices as verified for the given entity.
+      operationId: post_public-api/invoices-management/v1/entities/{entityid}/invoices/mark-as-verified
+      parameters:
+      - description: The entity identifier.
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Dto.MarkInvoicesAsVerifiedDto'
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Dto.MarkInvoicesAsVerifiedDto'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Dto.MarkInvoicesAsVerifiedDto'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.MarkInvoicesAsVerifiedResponse'
+          description: Your request has been successfully processed.
+        '400':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+          description: Your request is invalid.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearerAuth: []
+      summary: Mark invoices as verified
+      tags:
+      - Invoices
+components:
+  schemas:
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.MarkInvoicesAsVerifiedError:
+      additionalProperties: false
+      description: Invoice verification error
+      properties:
+        exception:
+          description: The exception type
+          type: string
+        message:
+          description: The error message
+          type: string
+      required:
+      - exception
+      - message
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Dto.InvoiceQueryDto:
+      additionalProperties: false
+      properties:
+        invoiceIds:
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - invoiceIds
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.MarkInvoicesAsVerifiedResult:
+      additionalProperties: false
+      description: Invoice verification result
+      properties:
+        error:
+          allOf:
+          - $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.MarkInvoicesAsVerifiedError'
+          description: The error, is any
+          nullable: true
+        invoiceId:
+          description: The invoice identifier
+          format: uuid
+          type: string
+        success:
+          description: Is success
+          type: boolean
+      required:
+      - invoiceId
+      - success
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Dto.MarkInvoicesAsVerifiedDto:
+      additionalProperties: false
+      properties:
+        invoiceIds:
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - invoiceIds
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.MarkInvoicesAsVerifiedResponse:
+      additionalProperties: false
+      description: Invoices verification report
+      properties:
+        results:
+          description: The result
+          items:
+            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.MarkInvoicesAsVerifiedResult'
+          type: array
+      required:
+      - results
+      type: object
+    Microsoft.AspNetCore.Mvc.ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          enum:
+          - Generic_InternalServerError
+          - InvoicesZipDownloadError
+          - Read_Generic_Error
+          - Write_File_InvalidData
+          - Write_File_InvalidFormat
+          - Write_Invoice_Duplicate
+          - Write_Invoice_EmptyFile
+          - Write_Invoice_NotSupportedFileType
+          - Write_Invoice_TooLargeFile
+          - Write_Invoice_Uncompleted
+          - Write_Supplier_NotFound
+          type: string
+      required:
+      - type
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoicesResponse:
+      additionalProperties: false
+      description: Invoices response.
+      properties:
+        invoices:
+          description: The list of invoices.
+          items:
+            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoiceResponse'
+          type: array
+      required:
+      - invoices
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoiceLineItemResponse:
+      additionalProperties: false
+      description: Invoice line item details.
+      properties:
+        articleName:
+          description: The article name.
+          nullable: true
+          type: string
+        articleReference:
+          description: The article reference.
+          nullable: true
+          type: string
+        lineItemId:
+          description: The line item identifier.
+          format: uuid
+          type: string
+        purchaseOrderId:
+          description: The linked purchase order identifier.
+          format: uuid
+          nullable: true
+          type: string
+        purchaseOrderLineItemId:
+          description: The linked purchase order line item identifier.
+          format: uuid
+          nullable: true
+          type: string
+        quantity:
+          description: The quantity.
+          format: double
+          nullable: true
+          type: number
+        totalAmountExcludingTaxes:
+          description: The total amount excluding taxes.
+          format: double
+          nullable: true
+          type: number
+        unitAmountExcludingTaxes:
+          description: The unit amount excluding taxes.
+          format: double
+          nullable: true
+          type: number
+      required:
+      - lineItemId
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoiceLinkedPurchaseOrderResponse:
+      additionalProperties: false
+      description: Purchase order linked to an invoice.
+      properties:
+        associatedAmountExcludingTaxes:
+          description: The amount excluding taxes associated to this invoice.
+          format: double
+          type: number
+        number:
+          description: The purchase order number.
+          nullable: true
+          type: string
+        purchaseOrderId:
+          description: The purchase order identifier.
+          format: uuid
+          type: string
+      required:
+      - associatedAmountExcludingTaxes
+      - purchaseOrderId
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoiceResponse:
+      additionalProperties: false
+      description: Invoice details.
+      properties:
+        billingDate:
+          description: The billing date.
+          format: date
+          nullable: true
+          type: string
+        costCenter:
+          description: The cost center name.
+          nullable: true
+          type: string
+        currency:
+          description: The currency code (ISO 4217).
+          nullable: true
+          type: string
+        dueDate:
+          description: The due date.
+          format: date
+          nullable: true
+          type: string
+        invoiceId:
+          description: The invoice identifier.
+          format: uuid
+          type: string
+        lineItems:
+          description: The invoice line items.
+          items:
+            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoiceLineItemResponse'
+          type: array
+        linkedPurchaseOrders:
+          description: The linked purchase orders.
+          items:
+            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoiceLinkedPurchaseOrderResponse'
+          type: array
+        natures:
+          description: The nature names.
+          items:
+            type: string
+          type: array
+        number:
+          description: The invoice number.
+          nullable: true
+          type: string
+        originalAmountExcludingTaxes:
+          description: The original amount excluding taxes.
+          format: double
+          nullable: true
+          type: number
+        originalAmountIncludingTaxes:
+          description: The original amount including taxes.
+          format: double
+          nullable: true
+          type: number
+        paymentMethod:
+          description: The payment method.
+          nullable: true
+          type: string
+        reference:
+          description: The invoice reference.
+          nullable: true
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/InvoicesManagement.Read.Export.InvoiceStatusForExport'
+          description: The invoice status (Verified, NotVerified).
+        supplier:
+          description: The supplier name.
+          nullable: true
+          type: string
+        title:
+          description: The invoice title.
+          type: string
+      required:
+      - invoiceId
+      - lineItems
+      - linkedPurchaseOrders
+      - natures
+      - status
+      - title
+      type: object
+    InvoicesManagement.Read.Export.InvoiceStatusForExport:
+      additionalProperties: false
+      enum:
+      - Verified
+      - NotVerified
+      type: string
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

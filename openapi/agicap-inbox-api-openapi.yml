@@ -1,0 +1,209 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Inbox API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Inbox
+paths:
+  /public/invoices-management/v1/entities/{entityId}/inbox/documents:
+    get:
+      description: 'Use this endpoint to list the invoices and credit notes currently in the entity''s inbox (documents awaiting OCR verification), each with a temporary download link to its attached file.
+
+        Any document that has an attached file is returned, whatever its type (PDF or image); a document with no attached file is excluded. Provide a last-synchronization date to pull only the documents collected since then.'
+      operationId: get_public-api/invoices-management/v1/entities/{entityid}/inbox/documents
+      parameters:
+      - description: The entity identifier.
+        in: path
+        name: entityId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Only documents collected on or after this ISO-8601 datetime are returned. Omit to return the whole current inbox.
+        in: query
+        name: lastSynchronizationDate
+        schema:
+          format: date-time
+          type: string
+      - description: The maximum number of documents per page, between 1 and 100. Defaults to 100.
+        in: query
+        name: pageSize
+        schema:
+          default: 100
+          format: int32
+          type: integer
+      - description: The zero-based page index. Defaults to 0.
+        in: query
+        name: pageNumber
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentsResponse'
+          description: Your request has been successfully processed.
+        '400':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+          description: Your request is invalid.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearerAuth: []
+      summary: List inbox documents
+      tags:
+      - Inbox
+components:
+  schemas:
+    InvoicesManagement.Shared.App.Ports.FileExtension:
+      additionalProperties: false
+      enum:
+      - Jpg
+      - Pdf
+      - Png
+      - Xml
+      - Unknown
+      type: string
+    InvoicesManagement.Shared.App.PurchaseDocumentType:
+      additionalProperties: false
+      enum:
+      - Invoice
+      - CreditNote
+      - PurchaseOrder
+      - Delivery
+      type: string
+    Microsoft.AspNetCore.Mvc.ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          enum:
+          - Generic_InternalServerError
+          - InvoicesZipDownloadError
+          - Read_Generic_Error
+          - Write_File_InvalidData
+          - Write_File_InvalidFormat
+          - Write_Invoice_Duplicate
+          - Write_Invoice_EmptyFile
+          - Write_Invoice_NotSupportedFileType
+          - Write_Invoice_TooLargeFile
+          - Write_Invoice_Uncompleted
+          - Write_Supplier_NotFound
+          type: string
+      required:
+      - type
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentResponse:
+      additionalProperties: false
+      description: An inbox document with a temporary download link to its attached file.
+      properties:
+        agicapDocumentId:
+          description: The Agicap document identifier, used to later change the document's status.
+          format: uuid
+          type: string
+        extension:
+          allOf:
+          - $ref: '#/components/schemas/InvoicesManagement.Shared.App.Ports.FileExtension'
+          description: The attached file extension (Pdf, Jpg, Png, ...); null when it could not be determined.
+          nullable: true
+        type:
+          allOf:
+          - $ref: '#/components/schemas/InvoicesManagement.Shared.App.PurchaseDocumentType'
+          description: The document type (Invoice, CreditNote).
+        url:
+          description: A temporary, time-limited URL to download the document's attached file.
+          type: string
+      required:
+      - agicapDocumentId
+      - type
+      - url
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentsPaginationResponse:
+      additionalProperties: false
+      description: Pagination details for a page of inbox documents.
+      properties:
+        currentPageItemsCount:
+          description: The number of documents returned on this page.
+          format: int32
+          type: integer
+        currentPageNumber:
+          description: The zero-based index of this page.
+          format: int32
+          type: integer
+        pageSize:
+          description: The maximum number of documents per page.
+          format: int32
+          type: integer
+        pagesCount:
+          description: The total number of pages.
+          format: int32
+          type: integer
+        totalItemsCount:
+          description: The total number of exportable documents in the inbox.
+          format: int32
+          type: integer
+      required:
+      - currentPageItemsCount
+      - currentPageNumber
+      - pagesCount
+      - pageSize
+      - totalItemsCount
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentsResponse:
+      additionalProperties: false
+      description: A page of inbox documents with temporary download links.
+      properties:
+        documents:
+          description: The exportable inbox documents on this page.
+          items:
+            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentResponse'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentsPaginationResponse'
+          description: Pagination details for this page.
+      required:
+      - documents
+      - pagination
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

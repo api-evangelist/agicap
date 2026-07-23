@@ -1,0 +1,156 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Bank accounts API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Bank accounts
+paths:
+  /public/banking-documents/v1/organizations/{organizationId}/bank-accounts:
+    get:
+      operationId: Accounts_ListAccounts
+      parameters:
+      - description: Agicap organization identifier
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: PageNumber
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: PageSize
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Items:
+                - AccountNumber: FR3317569000309529965673W34
+                  ConnectionId: fe8c099b-f80c-4d75-aa76-de0252203745
+                  CreatedAt: '2024-03-07T14:30:10+00:00'
+                  EntityId: 12345
+                Pagination:
+                  CurrentPageItemsCount: 10
+                  CurrentPageNumber: 1
+                  PageSize: 1
+                  PagesCount: 1
+                  TotalItemsCount: 1
+              schema:
+                $ref: '#/components/schemas/AccountSummaryPagedResult'
+          description: Your request has been successfully processed.
+        '400':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Your request is invalid.
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: List bank accounts
+      tags:
+      - Bank accounts
+components:
+  schemas:
+    Pagination:
+      additionalProperties: false
+      properties:
+        CurrentPageItemsCount:
+          format: int32
+          type: integer
+        CurrentPageNumber:
+          format: int32
+          type: integer
+        PageSize:
+          format: int32
+          type: integer
+        PagesCount:
+          format: int32
+          type: integer
+        TotalItemsCount:
+          format: int32
+          type: integer
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    AccountSummary:
+      additionalProperties: false
+      properties:
+        AccountNumber:
+          description: Account number
+          type: string
+        ConnectionId:
+          description: Connection identifier
+          format: uuid
+          type: string
+        CreatedAt:
+          description: Creation date of the bank account in Agicap
+          format: date-time
+          type: string
+        EntityId:
+          description: Agicap entity identifier
+          format: int32
+          type: integer
+      type: object
+    AccountSummaryPagedResult:
+      additionalProperties: false
+      properties:
+        Items:
+          items:
+            $ref: '#/components/schemas/AccountSummary'
+          nullable: true
+          type: array
+        Pagination:
+          $ref: '#/components/schemas/Pagination'
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

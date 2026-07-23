@@ -1,0 +1,1361 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: Clients AR Account reports Supplier Credit Notes API
+  version: v1
+servers:
+- url: https://api.agicap.com
+- url: https://api.agicap.internal
+tags:
+- name: Supplier Credit Notes
+paths:
+  /public/business-documents/v1/entities/{entityid}/connections/{connectionid}/supplier-credit-notes:
+    get:
+      operationId: SupplierCreditNote_GetSupplierCreditNotes
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      - description: Number of items per page (max 10 000)
+        in: query
+        name: pagesize
+        schema:
+          description: Number of items per page (max 10 000)
+          format: int32
+          type: integer
+      - description: Page index
+        in: query
+        name: pageindex
+        schema:
+          description: Page index
+          format: int32
+          type: integer
+      - description: Unique identifier of the document in the data source
+        explode: false
+        in: query
+        name: externalids
+        schema:
+          description: Unique identifier of the document in the data source
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Will return only documents updated **after** this date
+        in: query
+        name: updatedsince
+        schema:
+          description: Will return only documents updated **after** this date
+          format: date-time
+          type: string
+      - description: 'Filter on status. Possible values : draft, available, used, cancelled, deleted'
+        explode: false
+        in: query
+        name: status
+        schema:
+          description: 'Filter on status. Possible values : draft, available, used, cancelled, deleted'
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                items:
+                - accounting:
+                    accountCode: Account code
+                    accountNumber: Account number
+                    amount: 100
+                    currency: EUR
+                  amounts:
+                    remainingAmount: 80
+                    taxesAmount: 20
+                    totalAmount: 200
+                  counterParty:
+                    id: id
+                    name: counter party name
+                  creditNoteNumber: '00341001'
+                  currency: EUR
+                  dueDate: '2024-03-06T14:30:10+00:00'
+                  erpIdentificationFields:
+                    erp field 1: value 1
+                    erp field 2: value 2
+                  externalId: Some External Id
+                  hasReadable: false
+                  id: d062b351-99ac-413a-9bf9-509498499a18
+                  issueDate: '2024-02-06T14:30:10+00:00'
+                  label: supplier credit note label
+                  metadata:
+                    additional field: additional info
+                  referenceInvoiceIds:
+                  - reference invoice id 1
+                  - reference invoice id 2
+                  status: available
+                pagination:
+                  pageIndex: 1
+                  pageItemsCount: 7
+                  pageSize: 10
+                  totalItemsCount: 7
+              schema:
+                $ref: '#/components/schemas/SupplierCreditNoteDtoPageDto'
+          description: Supplier credit notes
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Get supplier credit notes
+      tags:
+      - Supplier Credit Notes
+    post:
+      operationId: SupplierCreditNote_CreateSupplierCreditNotes
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            example:
+            - accounting:
+                accountCode: Account code
+                accountNumber: Account number
+                amount: 100
+                currency: EUR
+              amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              creditNoteNumber: '00341001'
+              currency: EUR
+              dueDate: '2024-03-06T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: supplier credit note label
+              metadata:
+                additional field: additional info
+              referenceInvoiceIds:
+              - reference invoice id 1
+              - reference invoice id 2
+              status: available
+            schema:
+              items:
+                $ref: '#/components/schemas/CreateSupplierCreditNoteDto'
+              type: array
+          application/json:
+            example:
+            - accounting:
+                accountCode: Account code
+                accountNumber: Account number
+                amount: 100
+                currency: EUR
+              amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              creditNoteNumber: '00341001'
+              currency: EUR
+              dueDate: '2024-03-06T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: supplier credit note label
+              metadata:
+                additional field: additional info
+              referenceInvoiceIds:
+              - reference invoice id 1
+              - reference invoice id 2
+              status: available
+            schema:
+              items:
+                $ref: '#/components/schemas/CreateSupplierCreditNoteDto'
+              type: array
+          text/json:
+            example:
+            - accounting:
+                accountCode: Account code
+                accountNumber: Account number
+                amount: 100
+                currency: EUR
+              amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              creditNoteNumber: '00341001'
+              currency: EUR
+              dueDate: '2024-03-06T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: supplier credit note label
+              metadata:
+                additional field: additional info
+              referenceInvoiceIds:
+              - reference invoice id 1
+              - reference invoice id 2
+              status: available
+            schema:
+              items:
+                $ref: '#/components/schemas/CreateSupplierCreditNoteDto'
+              type: array
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CreatedDocumentDto'
+                type: array
+          description: Ids of the created documents, associated with the provided external identifiers
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Create supplier credit notes
+      tags:
+      - Supplier Credit Notes
+    put:
+      operationId: SupplierCreditNote_UpdateSupplierCreditNotes
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdateSupplierCreditNoteDto'
+              type: array
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdateSupplierCreditNoteDto'
+              type: array
+          text/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdateSupplierCreditNoteDto'
+              type: array
+      responses:
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Update supplier credit notes
+      tags:
+      - Supplier Credit Notes
+  /public/business-documents/v2/entities/{entityid}/connections/{connectionid}/supplier-credit-notes:
+    get:
+      operationId: SupplierCreditNote_GetSupplierCreditNotes
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      - description: Number of items per page (max 10 000)
+        in: query
+        name: pagesize
+        schema:
+          description: Number of items per page (max 10 000)
+          format: int32
+          type: integer
+      - description: Page index
+        in: query
+        name: pageindex
+        schema:
+          description: Page index
+          format: int32
+          type: integer
+      - description: Unique identifier of the document in the data source
+        explode: false
+        in: query
+        name: externalids
+        schema:
+          description: Unique identifier of the document in the data source
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Will return only documents updated **after** this date
+        in: query
+        name: updatedsince
+        schema:
+          description: Will return only documents updated **after** this date
+          format: date-time
+          type: string
+      - description: 'Filter on status. Possible values : draft, available, used, cancelled, deleted'
+        explode: false
+        in: query
+        name: status
+        schema:
+          description: 'Filter on status. Possible values : draft, available, used, cancelled, deleted'
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                items:
+                - accounting:
+                    accountCode: Account code
+                    accountNumber: Account number
+                    amount: 100
+                    currency: EUR
+                  amounts:
+                    remainingAmount: 80
+                    taxesAmount: 20
+                    totalAmount: 200
+                  counterParty:
+                    id: id
+                    name: counter party name
+                  creditNoteNumber: '00341001'
+                  currency: EUR
+                  dueDate: '2024-03-06T14:30:10+00:00'
+                  erpIdentificationFields:
+                    erp field 1: value 1
+                    erp field 2: value 2
+                  externalId: Some External Id
+                  hasReadable: false
+                  id: d062b351-99ac-413a-9bf9-509498499a18
+                  issueDate: '2024-02-06T14:30:10+00:00'
+                  label: supplier credit note label
+                  metadata:
+                    additional field: additional info
+                  referenceInvoiceIds:
+                  - reference invoice id 1
+                  - reference invoice id 2
+                  status: available
+                pagination:
+                  pageIndex: 1
+                  pageItemsCount: 7
+                  pageSize: 10
+                  totalItemsCount: 7
+              schema:
+                $ref: '#/components/schemas/SupplierCreditNoteDtoPageDto'
+          description: Supplier credit notes
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Get supplier credit notes
+      tags:
+      - Supplier Credit Notes
+    post:
+      operationId: SupplierCreditNote_CreateSupplierCreditNotesV2
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            example:
+            - accounting:
+                accountCode: Account code
+                accountNumber: Account number
+                amount: 100
+                currency: EUR
+              amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              creditNoteNumber: '00341001'
+              currency: EUR
+              dueDate: '2024-03-06T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: supplier credit note label
+              metadata:
+                additional field: additional info
+              referenceInvoiceIds:
+              - reference invoice id 1
+              - reference invoice id 2
+              status: available
+            schema:
+              items:
+                $ref: '#/components/schemas/CreateSupplierCreditNoteDtoV2'
+              type: array
+          application/json:
+            example:
+            - accounting:
+                accountCode: Account code
+                accountNumber: Account number
+                amount: 100
+                currency: EUR
+              amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              creditNoteNumber: '00341001'
+              currency: EUR
+              dueDate: '2024-03-06T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: supplier credit note label
+              metadata:
+                additional field: additional info
+              referenceInvoiceIds:
+              - reference invoice id 1
+              - reference invoice id 2
+              status: available
+            schema:
+              items:
+                $ref: '#/components/schemas/CreateSupplierCreditNoteDtoV2'
+              type: array
+          text/json:
+            example:
+            - accounting:
+                accountCode: Account code
+                accountNumber: Account number
+                amount: 100
+                currency: EUR
+              amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              creditNoteNumber: '00341001'
+              currency: EUR
+              dueDate: '2024-03-06T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: supplier credit note label
+              metadata:
+                additional field: additional info
+              referenceInvoiceIds:
+              - reference invoice id 1
+              - reference invoice id 2
+              status: available
+            schema:
+              items:
+                $ref: '#/components/schemas/CreateSupplierCreditNoteDtoV2'
+              type: array
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CreatedDocumentDto'
+                type: array
+          description: Ids of the created documents, associated with the provided external identifiers
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Create supplier credit notes
+      tags:
+      - Supplier Credit Notes
+    put:
+      operationId: SupplierCreditNote_UpdateSupplierCreditNotesV2
+      parameters:
+      - description: Agicap entity unique identifier
+        in: path
+        name: entityid
+        required: true
+        schema:
+          description: Agicap entity unique identifier
+          type: string
+      - description: The connection unique identifier
+        in: path
+        name: connectionid
+        required: true
+        schema:
+          description: The connection unique identifier
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/*+json:
+            example:
+            - accounting:
+                accountCode: Account code
+                accountNumber: Account number
+                amount: 100
+                currency: EUR
+              amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              creditNoteNumber: '00341001'
+              currency: EUR
+              dueDate: '2024-03-06T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              id: d062b351-99ac-413a-9bf9-509498499a18
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: supplier credit note label
+              metadata:
+                additional field: additional info
+              referenceInvoiceIds:
+              - reference invoice id 1
+              - reference invoice id 2
+              status: available
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdateSupplierCreditNoteDtoV2'
+              type: array
+          application/json:
+            example:
+            - accounting:
+                accountCode: Account code
+                accountNumber: Account number
+                amount: 100
+                currency: EUR
+              amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              creditNoteNumber: '00341001'
+              currency: EUR
+              dueDate: '2024-03-06T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              id: d062b351-99ac-413a-9bf9-509498499a18
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: supplier credit note label
+              metadata:
+                additional field: additional info
+              referenceInvoiceIds:
+              - reference invoice id 1
+              - reference invoice id 2
+              status: available
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdateSupplierCreditNoteDtoV2'
+              type: array
+          text/json:
+            example:
+            - accounting:
+                accountCode: Account code
+                accountNumber: Account number
+                amount: 100
+                currency: EUR
+              amounts:
+                remainingAmount: 80
+                taxesAmount: 20
+                totalAmount: 200
+              counterParty:
+                id: id
+                name: counter party name
+              creditNoteNumber: '00341001'
+              currency: EUR
+              dueDate: '2024-03-06T14:30:10+00:00'
+              erpIdentificationFields:
+                erp field 1: value 1
+                erp field 2: value 2
+              externalId: Some External Id
+              id: d062b351-99ac-413a-9bf9-509498499a18
+              issueDate: '2024-02-06T14:30:10+00:00'
+              label: supplier credit note label
+              metadata:
+                additional field: additional info
+              referenceInvoiceIds:
+              - reference invoice id 1
+              - reference invoice id 2
+              status: available
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdateSupplierCreditNoteDtoV2'
+              type: array
+      responses:
+        '401':
+          description: Unauthorized request.
+        '403':
+          description: Forbidden request.
+        '429':
+          description: Too many requests. Please try again later.
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  detail:
+                    description: Details of the error
+                    nullable: true
+                    type: string
+                  instance:
+                    nullable: true
+                    type: string
+                  status:
+                    description: Code status
+                    nullable: true
+                    type: integer
+                  title:
+                    description: Name of the error
+                    nullable: true
+                    type: string
+                  type:
+                    description: Type of error
+                    nullable: true
+                    type: string
+                type: object
+          description: An internal server occurred.
+      security:
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearer_client_credentials:
+        - agicap:public-api
+      - bearerAuth: []
+      summary: Update supplier credit notes
+      tags:
+      - Supplier Credit Notes
+components:
+  schemas:
+    CreateSupplierCreditNoteDto:
+      additionalProperties: false
+      properties:
+        accounting:
+          $ref: '#/components/schemas/AccountingDto'
+        amounts:
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDto'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDto'
+        creditNoteNumber:
+          description: Document number in the source data
+          nullable: true
+          type: string
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        label:
+          description: Label of the supplier credit note
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          nullable: true
+          type: object
+        referenceInvoiceIds:
+          description: Array of linked Agicap Invoices ids
+          items:
+            type: string
+          nullable: true
+          type: array
+        status:
+          description: 'Possible values : draft, available, used, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - currency
+      - externalId
+      - status
+      title: CreateSupplierCreditNote
+      type: object
+    AmountsWithRemainingAmountDtoV2:
+      additionalProperties: false
+      properties:
+        remainingAmount:
+          description: Remaining amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+        taxesAmount:
+          description: Taxes amount in the document currency (amount must be positive)
+          format: double
+          type: number
+        totalAmount:
+          description: Total amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+      required:
+      - remainingAmount
+      - taxesAmount
+      - totalAmount
+      title: AmountsWithRemainingAmount
+      type: object
+    UpdateSupplierCreditNoteDtoV2:
+      additionalProperties: false
+      properties:
+        accounting:
+          $ref: '#/components/schemas/AccountingDto'
+        amounts:
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDtoV2'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDtoV2'
+        creditNoteNumber:
+          description: Document number in the source data
+          minLength: 1
+          type: string
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        id:
+          description: Unique identifier generated by Agicap
+          format: uuid
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          type: string
+        label:
+          description: Label of the supplier credit note
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          nullable: true
+          type: object
+        referenceInvoiceIds:
+          description: Array of linked Agicap Invoices ids
+          items:
+            type: string
+          nullable: true
+          type: array
+        status:
+          description: 'Possible values : draft, available, used, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - counterParty
+      - creditNoteNumber
+      - currency
+      - externalId
+      - id
+      - issueDate
+      - status
+      title: UpdateSupplierCreditNote
+      type: object
+    AmountsWithRemainingAmountDto:
+      additionalProperties: false
+      properties:
+        remainingAmount:
+          description: Remaining amount in the document currency.
+          format: double
+          nullable: true
+          type: number
+        taxesAmount:
+          description: Taxes amount in the document currency
+          format: double
+          nullable: true
+          type: number
+        totalAmount:
+          description: Total amount in the document currency.
+          format: double
+          type: number
+      required:
+      - totalAmount
+      title: AmountsWithRemainingAmount
+      type: object
+    CreatedDocumentDto:
+      additionalProperties: false
+      properties:
+        externalId:
+          type: string
+        id:
+          format: uuid
+          type: string
+      title: CreatedDocument
+      type: object
+    AccountingDto:
+      additionalProperties: false
+      properties:
+        accountCode:
+          description: Represents the account Code of the Third Party Account the invoice is linked to.
+          nullable: true
+          type: string
+        accountNumber:
+          description: Represents the account number of the invoice. It is used to classify financial activities and balances within the General Ledger.
+          nullable: true
+          type: string
+        amount:
+          description: Represents the total amount of the invoice in the accounting currency.
+          format: double
+          nullable: true
+          type: number
+        currency:
+          description: Represents the currency used in the accounting process (which can be different from the invoice currency).
+          nullable: true
+          type: string
+      title: InvoiceAccounting
+      type: object
+    PaginationMetadataDto:
+      additionalProperties: false
+      properties:
+        pageIndex:
+          description: Current page index
+          format: int32
+          type: integer
+        pageItemsCount:
+          description: Number of items on the current page
+          format: int32
+          type: integer
+        pageSize:
+          description: Page size (items per page)
+          format: int32
+          type: integer
+        totalItemsCount:
+          description: Total number of items
+          format: int32
+          type: integer
+      title: PaginationMetadata
+      type: object
+    CounterPartyDtoV2:
+      additionalProperties: false
+      properties:
+        id:
+          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
+          minLength: 1
+          type: string
+        name:
+          description: Name of the linked Counterpart (Supplier / Client)
+          minLength: 1
+          type: string
+      required:
+      - id
+      - name
+      title: CounterParty
+      type: object
+    SupplierCreditNoteDto:
+      additionalProperties: false
+      properties:
+        accounting:
+          $ref: '#/components/schemas/AccountingDto'
+        amounts:
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDto'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDto'
+        creditNoteNumber:
+          description: Document number in the source data
+          nullable: true
+          type: string
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        hasReadable:
+          description: Has a readable file attached
+          type: boolean
+        id:
+          description: Unique identifier generated by Agicap
+          format: uuid
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        label:
+          description: Label of the supplier credit note
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          nullable: true
+          type: object
+        referenceInvoiceIds:
+          description: Array of linked Agicap Invoices ids
+          items:
+            type: string
+          nullable: true
+          type: array
+        status:
+          description: 'Possible values : draft, available, used, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - currency
+      - externalId
+      - id
+      - status
+      title: SupplierCreditNote
+      type: object
+    SupplierCreditNoteDtoPageDto:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SupplierCreditNoteDto'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      title: Page
+      type: object
+    CounterPartyDto:
+      additionalProperties: false
+      properties:
+        id:
+          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
+          nullable: true
+          type: string
+        name:
+          description: Name of the linked Counterpart (Supplier / Client)
+          nullable: true
+          type: string
+      title: CounterParty
+      type: object
+    CreateSupplierCreditNoteDtoV2:
+      additionalProperties: false
+      properties:
+        accounting:
+          $ref: '#/components/schemas/AccountingDto'
+        amounts:
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDtoV2'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDtoV2'
+        creditNoteNumber:
+          description: Document number in the source data
+          minLength: 1
+          type: string
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          type: string
+        label:
+          description: Label of the supplier credit note
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          nullable: true
+          type: object
+        referenceInvoiceIds:
+          description: Array of linked Agicap Invoices ids
+          items:
+            type: string
+          nullable: true
+          type: array
+        status:
+          description: 'Possible values : draft, available, used, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - counterParty
+      - creditNoteNumber
+      - currency
+      - externalId
+      - issueDate
+      - status
+      title: CreateSupplierCreditNote
+      type: object
+    UpdateSupplierCreditNoteDto:
+      additionalProperties: false
+      properties:
+        accounting:
+          $ref: '#/components/schemas/AccountingDto'
+        amounts:
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDto'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDto'
+        creditNoteNumber:
+          description: Document number in the source data
+          nullable: true
+          type: string
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        id:
+          description: Unique identifier generated by Agicap
+          format: uuid
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          nullable: true
+          type: string
+        label:
+          description: Label of the supplier credit note
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          nullable: true
+          type: object
+        referenceInvoiceIds:
+          description: Array of linked Agicap Invoices ids
+          items:
+            type: string
+          nullable: true
+          type: array
+        status:
+          description: 'Possible values : draft, available, used, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - currency
+      - externalId
+      - id
+      - status
+      title: UpdateSupplierCreditNote
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    bearerAuth:
+      bearerFormat: OPAQUE
+      scheme: bearer
+      type: http

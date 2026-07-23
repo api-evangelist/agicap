@@ -1,0 +1,45 @@
+generated: '2026-07-17'
+method: searched
+note: >-
+  Probed the /.well-known/ discovery surface on the API host (api.agicap.com), the
+  marketing/app hosts (agicap.com, app.agicap.com), and the OAuth authorization server
+  (myaccount.agicap.com). The developer portal at api.agicap.com is a single-page app
+  that returns 200/text-html for unknown paths, so only documents confirmed by
+  content-type + body are recorded as present.
+hosts:
+  - host: https://api.agicap.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: agicap-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+        note: SPA catch-all (text/html), not a real OIDC document on this host
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        note: SPA catch-all
+      - path: /.well-known/api-catalog
+        status: 404
+        note: >-
+          No RFC 9727 api-catalog document; the machine-readable API catalog is served
+          at https://api.agicap.com/portal-api/apis (JSON list of all 19 API versions)
+  - host: https://agicap.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: agicap-security.txt
+  - host: https://app.agicap.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: agicap-security.txt
+  - host: https://myaccount.agicap.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: agicap-openid-configuration.json
+        note: >-
+          Full OpenID Connect / OAuth 2.0 discovery document for Agicap's IdentityServer
+          authorization server. Advertises authorization_code, client_credentials,
+          refresh_token, implicit, device_code, CIBA and token-exchange grant types,
+          PAR/DPoP support, and scopes_supported (including agicap:public-api).
