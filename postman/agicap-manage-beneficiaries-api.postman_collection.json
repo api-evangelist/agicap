@@ -1,0 +1,2511 @@
+{
+  "info": {
+    "_postman_id": "8fe9be04-9d60-4c70-b211-6020654c207c",
+    "name": "Clients AR Account reports Manage beneficiaries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:08:32.000Z",
+    "updatedAt": "2026-07-28T10:08:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8fe9be04-9d60-4c70-b211-6020654c207c"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "payments",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "Beneficiaries",
+                          "item": [
+                            {
+                              "name": "sync",
+                              "item": [
+                                {
+                                  "name": "{syncId}",
+                                  "item": [
+                                    {
+                                      "name": "Get a beneficiary synchronization report",
+                                      "id": "3003a88b-a4ee-4bdb-a141-ffee14a77386",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/sync/:syncId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            "sync",
+                                            ":syncId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "38c08b13-d78e-49f2-9468-354e9d2a1151",
+                                              "key": "entityId",
+                                              "value": "<integer>",
+                                              "description": "(Required) Agicap entity identifier"
+                                            },
+                                            {
+                                              "id": "7ae7f5c6-9ead-4885-bbc7-6d1ae889cd64",
+                                              "key": "syncId",
+                                              "value": "<uuid>",
+                                              "description": "(Required) Identifier of the synchronization. This ID is obtained using the synchronize beneficiaries endpoint"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Retrieve the status and the per-item errors of a beneficiary synchronization, using the sync identifier returned by the synchronize beneficiaries endpoint."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "49118d42-e417-427a-84cd-6c1b1081d1d5",
+                                          "name": "Your request has been successfully processed.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/sync/:syncId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "payments",
+                                                "v2",
+                                                "entities",
+                                                ":entityId",
+                                                "Beneficiaries",
+                                                "sync",
+                                                ":syncId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "syncId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"createdAt\": \"<dateTime>\",\n  \"errors\": [\n    {\n      \"errorCode\": \"InvalidBankIdentifier\",\n      \"rawData\": \"<string>\",\n      \"rowIndex\": \"<integer>\",\n      \"errorMessage\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"IncompletePostalAddress\",\n      \"rawData\": \"<string>\",\n      \"rowIndex\": \"<integer>\",\n      \"errorMessage\": \"<string>\"\n    }\n  ],\n  \"status\": \"CompletedWithErrors\",\n  \"syncId\": \"<uuid>\",\n  \"finishedAt\": \"<dateTime>\"\n}",
+                                          "createdAt": "2026-07-28T10:08:33.000Z",
+                                          "updatedAt": "2026-07-28T10:08:33.000Z",
+                                          "uid": "35240-49118d42-e417-427a-84cd-6c1b1081d1d5"
+                                        },
+                                        {
+                                          "id": "67b6d77a-a246-450c-88b9-a2f7bda3089d",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/sync/:syncId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "payments",
+                                                "v2",
+                                                "entities",
+                                                ":entityId",
+                                                "Beneficiaries",
+                                                "sync",
+                                                ":syncId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "syncId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:33.000Z",
+                                          "updatedAt": "2026-07-28T10:08:33.000Z",
+                                          "uid": "35240-67b6d77a-a246-450c-88b9-a2f7bda3089d"
+                                        },
+                                        {
+                                          "id": "dacfc46f-a448-4981-a558-70a5fa5e2f53",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/sync/:syncId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "payments",
+                                                "v2",
+                                                "entities",
+                                                ":entityId",
+                                                "Beneficiaries",
+                                                "sync",
+                                                ":syncId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "syncId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:33.000Z",
+                                          "updatedAt": "2026-07-28T10:08:33.000Z",
+                                          "uid": "35240-dacfc46f-a448-4981-a558-70a5fa5e2f53"
+                                        },
+                                        {
+                                          "id": "7ff99850-fc1f-42cd-a714-1ef8c0d98f41",
+                                          "name": "No synchronization was found for the provided sync identifier.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/sync/:syncId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "payments",
+                                                "v2",
+                                                "entities",
+                                                ":entityId",
+                                                "Beneficiaries",
+                                                "sync",
+                                                ":syncId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "syncId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Not Found",
+                                          "code": 404,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"amet_5\": {}\n}",
+                                          "createdAt": "2026-07-28T10:08:33.000Z",
+                                          "updatedAt": "2026-07-28T10:08:33.000Z",
+                                          "uid": "35240-7ff99850-fc1f-42cd-a714-1ef8c0d98f41"
+                                        },
+                                        {
+                                          "id": "d578f70c-e8eb-4515-adef-316426017080",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/sync/:syncId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "payments",
+                                                "v2",
+                                                "entities",
+                                                ":entityId",
+                                                "Beneficiaries",
+                                                "sync",
+                                                ":syncId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "syncId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:33.000Z",
+                                          "updatedAt": "2026-07-28T10:08:33.000Z",
+                                          "uid": "35240-d578f70c-e8eb-4515-adef-316426017080"
+                                        },
+                                        {
+                                          "id": "210edff7-580c-48c9-a3db-1378aa05f590",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/sync/:syncId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "payments",
+                                                "v2",
+                                                "entities",
+                                                ":entityId",
+                                                "Beneficiaries",
+                                                "sync",
+                                                ":syncId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "syncId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"amet_5\": {}\n}",
+                                          "createdAt": "2026-07-28T10:08:33.000Z",
+                                          "updatedAt": "2026-07-28T10:08:33.000Z",
+                                          "uid": "35240-210edff7-580c-48c9-a3db-1378aa05f590"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-3003a88b-a4ee-4bdb-a141-ffee14a77386"
+                                    }
+                                  ],
+                                  "id": "83d5af16-3a28-4800-87bf-b22a67e63170",
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-83d5af16-3a28-4800-87bf-b22a67e63170"
+                                },
+                                {
+                                  "name": "Synchronize beneficiaries",
+                                  "id": "1e97f501-29a3-482b-9fd1-3f46c668ebaf",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "text/plain"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"items\": [\n    {\n      \"erpId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"bankCountry\": \"<string>\",\n      \"bankIdentifier\": \"<string>\",\n      \"bankName\": \"<string>\",\n      \"companyLegalId\": \"<string>\",\n      \"intermediaryBankIdentifier\": \"<string>\",\n      \"localClearingCode\": \"<string>\",\n      \"postalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\",\n        \"zipCode\": \"<string>\"\n      },\n      \"supplierErpIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"erpId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"bankCountry\": \"<string>\",\n      \"bankIdentifier\": \"<string>\",\n      \"bankName\": \"<string>\",\n      \"companyLegalId\": \"<string>\",\n      \"intermediaryBankIdentifier\": \"<string>\",\n      \"localClearingCode\": \"<string>\",\n      \"postalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\",\n        \"zipCode\": \"<string>\"\n      },\n      \"supplierErpIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/sync",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries",
+                                        "sync"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "e2ff5252-1ddf-483b-91ba-17344c36e63c",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Start an asynchronous bulk synchronization of beneficiaries from your ERP. Each item is upserted using its ERP identifier (`erpId`) as the key: an existing beneficiary is updated, otherwise a new one is created.\nThe synchronization is additive: beneficiaries absent from the payload are not deleted (use the delete endpoint to remove one).\nProcessing runs in the background; the returned sync identifier lets you poll the synchronization report."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "64280928-0a48-4838-9a5a-1b2b3d4a0ab3",
+                                      "name": "The beneficiary synchronization has been accepted and is being processed.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "text/plain"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"items\": [\n    {\n      \"erpId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"bankCountry\": \"<string>\",\n      \"bankIdentifier\": \"<string>\",\n      \"bankName\": \"<string>\",\n      \"companyLegalId\": \"<string>\",\n      \"intermediaryBankIdentifier\": \"<string>\",\n      \"localClearingCode\": \"<string>\",\n      \"postalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\",\n        \"zipCode\": \"<string>\"\n      },\n      \"supplierErpIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"erpId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"bankCountry\": \"<string>\",\n      \"bankIdentifier\": \"<string>\",\n      \"bankName\": \"<string>\",\n      \"companyLegalId\": \"<string>\",\n      \"intermediaryBankIdentifier\": \"<string>\",\n      \"localClearingCode\": \"<string>\",\n      \"postalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\",\n        \"zipCode\": \"<string>\"\n      },\n      \"supplierErpIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/sync",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            "sync"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Accepted",
+                                      "code": 202,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "text/plain"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "",
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-64280928-0a48-4838-9a5a-1b2b3d4a0ab3"
+                                    },
+                                    {
+                                      "id": "ad354835-c114-4b45-a7d2-aaa6cc6af4e3",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"items\": [\n    {\n      \"erpId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"bankCountry\": \"<string>\",\n      \"bankIdentifier\": \"<string>\",\n      \"bankName\": \"<string>\",\n      \"companyLegalId\": \"<string>\",\n      \"intermediaryBankIdentifier\": \"<string>\",\n      \"localClearingCode\": \"<string>\",\n      \"postalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\",\n        \"zipCode\": \"<string>\"\n      },\n      \"supplierErpIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"erpId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"bankCountry\": \"<string>\",\n      \"bankIdentifier\": \"<string>\",\n      \"bankName\": \"<string>\",\n      \"companyLegalId\": \"<string>\",\n      \"intermediaryBankIdentifier\": \"<string>\",\n      \"localClearingCode\": \"<string>\",\n      \"postalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\",\n        \"zipCode\": \"<string>\"\n      },\n      \"supplierErpIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/sync",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            "sync"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-ad354835-c114-4b45-a7d2-aaa6cc6af4e3"
+                                    },
+                                    {
+                                      "id": "7e05eb28-3a2b-456e-9666-4ec9327c2e16",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"items\": [\n    {\n      \"erpId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"bankCountry\": \"<string>\",\n      \"bankIdentifier\": \"<string>\",\n      \"bankName\": \"<string>\",\n      \"companyLegalId\": \"<string>\",\n      \"intermediaryBankIdentifier\": \"<string>\",\n      \"localClearingCode\": \"<string>\",\n      \"postalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\",\n        \"zipCode\": \"<string>\"\n      },\n      \"supplierErpIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"erpId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"bankCountry\": \"<string>\",\n      \"bankIdentifier\": \"<string>\",\n      \"bankName\": \"<string>\",\n      \"companyLegalId\": \"<string>\",\n      \"intermediaryBankIdentifier\": \"<string>\",\n      \"localClearingCode\": \"<string>\",\n      \"postalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\",\n        \"zipCode\": \"<string>\"\n      },\n      \"supplierErpIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/sync",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            "sync"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-7e05eb28-3a2b-456e-9666-4ec9327c2e16"
+                                    },
+                                    {
+                                      "id": "2cde70f4-d2a8-4e54-a7d8-6908e73d8942",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"items\": [\n    {\n      \"erpId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"bankCountry\": \"<string>\",\n      \"bankIdentifier\": \"<string>\",\n      \"bankName\": \"<string>\",\n      \"companyLegalId\": \"<string>\",\n      \"intermediaryBankIdentifier\": \"<string>\",\n      \"localClearingCode\": \"<string>\",\n      \"postalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\",\n        \"zipCode\": \"<string>\"\n      },\n      \"supplierErpIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"erpId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"bankCountry\": \"<string>\",\n      \"bankIdentifier\": \"<string>\",\n      \"bankName\": \"<string>\",\n      \"companyLegalId\": \"<string>\",\n      \"intermediaryBankIdentifier\": \"<string>\",\n      \"localClearingCode\": \"<string>\",\n      \"postalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\",\n        \"zipCode\": \"<string>\"\n      },\n      \"supplierErpIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/sync",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            "sync"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-2cde70f4-d2a8-4e54-a7d8-6908e73d8942"
+                                    },
+                                    {
+                                      "id": "ae182d97-cca2-46ff-8d67-d08de9eb972f",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"items\": [\n    {\n      \"erpId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"bankCountry\": \"<string>\",\n      \"bankIdentifier\": \"<string>\",\n      \"bankName\": \"<string>\",\n      \"companyLegalId\": \"<string>\",\n      \"intermediaryBankIdentifier\": \"<string>\",\n      \"localClearingCode\": \"<string>\",\n      \"postalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\",\n        \"zipCode\": \"<string>\"\n      },\n      \"supplierErpIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"erpId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"bankCountry\": \"<string>\",\n      \"bankIdentifier\": \"<string>\",\n      \"bankName\": \"<string>\",\n      \"companyLegalId\": \"<string>\",\n      \"intermediaryBankIdentifier\": \"<string>\",\n      \"localClearingCode\": \"<string>\",\n      \"postalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\",\n        \"zipCode\": \"<string>\"\n      },\n      \"supplierErpIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/sync",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            "sync"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"amet_5\": {}\n}",
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-ae182d97-cca2-46ff-8d67-d08de9eb972f"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-1e97f501-29a3-482b-9fd1-3f46c668ebaf"
+                                }
+                              ],
+                              "id": "df43dfc1-da5d-4f57-aaf9-1d4fc6d751c9",
+                              "createdAt": "2026-07-28T10:08:33.000Z",
+                              "updatedAt": "2026-07-28T10:08:33.000Z",
+                              "uid": "35240-df43dfc1-da5d-4f57-aaf9-1d4fc6d751c9"
+                            },
+                            {
+                              "name": "{beneficiaryId}",
+                              "item": [
+                                {
+                                  "name": "Delete a beneficiary",
+                                  "id": "c5717619-f425-4b20-b107-80f552a10b07",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "text/plain"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/:beneficiaryId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries",
+                                        ":beneficiaryId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "3cf98722-97c3-4413-a054-de7d03bd9c27",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier"
+                                        },
+                                        {
+                                          "id": "817c85b9-ef92-4ce9-994f-4d3d9c4e5f9f",
+                                          "key": "beneficiaryId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) Identifier of the beneficiary in Agicap. This ID is obtained using get beneficiaries endpoint"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Delete a beneficiary from a specific entity, using its identifier (obtained via the get beneficiaries endpoint)"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "5914536f-f73a-4e69-b7f0-975df1daf8b2",
+                                      "name": "The beneficiary has been successfully deleted.",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "text/plain"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/:beneficiaryId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            ":beneficiaryId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "beneficiaryId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "No Content",
+                                      "code": 204,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "text/plain"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "",
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-5914536f-f73a-4e69-b7f0-975df1daf8b2"
+                                    },
+                                    {
+                                      "id": "c0c4494e-c30f-4588-8ad6-5dd2e18542c2",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/:beneficiaryId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            ":beneficiaryId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "beneficiaryId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-c0c4494e-c30f-4588-8ad6-5dd2e18542c2"
+                                    },
+                                    {
+                                      "id": "e3b56c7d-3b94-4884-8953-76fef3c55f64",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/:beneficiaryId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            ":beneficiaryId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "beneficiaryId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-e3b56c7d-3b94-4884-8953-76fef3c55f64"
+                                    },
+                                    {
+                                      "id": "5b053efe-359a-4b43-8dd6-cfe6abb06c4d",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/:beneficiaryId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            ":beneficiaryId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "beneficiaryId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-5b053efe-359a-4b43-8dd6-cfe6abb06c4d"
+                                    },
+                                    {
+                                      "id": "138976d3-d095-4655-b5a4-6a305b805145",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/:beneficiaryId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            ":beneficiaryId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "beneficiaryId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"amet_5\": {}\n}",
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-138976d3-d095-4655-b5a4-6a305b805145"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-c5717619-f425-4b20-b107-80f552a10b07"
+                                },
+                                {
+                                  "name": "Edit a beneficiary",
+                                  "id": "861958aa-da20-4dda-9df5-3bb970415b37",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "text/plain"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"bankAccount\": {\n    \"bankName\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"country\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"intermediaryBankBic\": \"<string>\",\n    \"localClearingCode\": \"<string>\"\n  },\n  \"postalAddress\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"streetName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/:beneficiaryId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries",
+                                        ":beneficiaryId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "9cddc809-bfed-4b9c-9209-a96c02d2e3a4",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier"
+                                        },
+                                        {
+                                          "id": "500155c5-7f37-4db9-bbc9-c9acf868d14b",
+                                          "key": "beneficiaryId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) Identifier of the beneficiary in Agicap. This ID is obtained using get beneficiaries endpoint"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Edit a beneficiary from a specific entity with its detailed information,  using its identifier (obtained via the get beneficiaries endpoint)"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ced084d0-3495-4f7f-9925-6e251f0aa4e9",
+                                      "name": "The beneficiary has been successfully edited.",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "text/plain"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"bankAccount\": {\n    \"bankName\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"country\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"intermediaryBankBic\": \"<string>\",\n    \"localClearingCode\": \"<string>\"\n  },\n  \"postalAddress\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"streetName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/:beneficiaryId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            ":beneficiaryId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "beneficiaryId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "No Content",
+                                      "code": 204,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "text/plain"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "",
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-ced084d0-3495-4f7f-9925-6e251f0aa4e9"
+                                    },
+                                    {
+                                      "id": "625bc79e-dc51-4ff1-bccf-b4d3cced3557",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"bankAccount\": {\n    \"bankName\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"country\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"intermediaryBankBic\": \"<string>\",\n    \"localClearingCode\": \"<string>\"\n  },\n  \"postalAddress\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"streetName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/:beneficiaryId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            ":beneficiaryId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "beneficiaryId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-625bc79e-dc51-4ff1-bccf-b4d3cced3557"
+                                    },
+                                    {
+                                      "id": "7252cf9e-4164-4a3c-b282-6c7086e64d10",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"bankAccount\": {\n    \"bankName\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"country\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"intermediaryBankBic\": \"<string>\",\n    \"localClearingCode\": \"<string>\"\n  },\n  \"postalAddress\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"streetName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/:beneficiaryId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            ":beneficiaryId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "beneficiaryId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-7252cf9e-4164-4a3c-b282-6c7086e64d10"
+                                    },
+                                    {
+                                      "id": "e04ab72b-c8e6-4664-8df9-14f4277a801a",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"bankAccount\": {\n    \"bankName\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"country\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"intermediaryBankBic\": \"<string>\",\n    \"localClearingCode\": \"<string>\"\n  },\n  \"postalAddress\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"streetName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/:beneficiaryId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            ":beneficiaryId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "beneficiaryId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-e04ab72b-c8e6-4664-8df9-14f4277a801a"
+                                    },
+                                    {
+                                      "id": "eb377c5f-623e-4a2c-a179-1afa1bdc1c1a",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"bankAccount\": {\n    \"bankName\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"country\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"intermediaryBankBic\": \"<string>\",\n    \"localClearingCode\": \"<string>\"\n  },\n  \"postalAddress\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"streetName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries/:beneficiaryId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "Beneficiaries",
+                                            ":beneficiaryId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "beneficiaryId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"amet_5\": {}\n}",
+                                      "createdAt": "2026-07-28T10:08:33.000Z",
+                                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                                      "uid": "35240-eb377c5f-623e-4a2c-a179-1afa1bdc1c1a"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-861958aa-da20-4dda-9df5-3bb970415b37"
+                                }
+                              ],
+                              "id": "eccf11e5-6bc8-4e49-857b-61f5bd7cb1f2",
+                              "createdAt": "2026-07-28T10:08:33.000Z",
+                              "updatedAt": "2026-07-28T10:08:33.000Z",
+                              "uid": "35240-eccf11e5-6bc8-4e49-857b-61f5bd7cb1f2"
+                            },
+                            {
+                              "name": "Delete all beneficiaries",
+                              "id": "6f8097d4-72ca-4c1e-888a-5efe470504b7",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/plain"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "payments",
+                                    "v2",
+                                    "entities",
+                                    ":entityId",
+                                    "Beneficiaries"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "0ca4268c-46d8-4d4e-af99-1b160d439900",
+                                      "key": "entityId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Agicap entity identifier"
+                                    }
+                                  ]
+                                },
+                                "description": "Delete all beneficiaries from the specific entity"
+                              },
+                              "response": [
+                                {
+                                  "id": "dc139a28-0d60-41b1-b7d6-a04bf100592a",
+                                  "name": "All beneficiaries have been successfully deleted.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "text/plain"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "text/plain"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "",
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-dc139a28-0d60-41b1-b7d6-a04bf100592a"
+                                },
+                                {
+                                  "id": "f6ba9ece-7ca3-479a-8f32-68c2fc82cd95",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-f6ba9ece-7ca3-479a-8f32-68c2fc82cd95"
+                                },
+                                {
+                                  "id": "a45a0879-e587-4305-9a1d-e1ed62b58cf7",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-a45a0879-e587-4305-9a1d-e1ed62b58cf7"
+                                },
+                                {
+                                  "id": "fcaee102-c2e3-4fa1-b860-742ad5013df4",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-fcaee102-c2e3-4fa1-b860-742ad5013df4"
+                                },
+                                {
+                                  "id": "a6dea004-a1dc-4a25-92d1-4bbe666023f8",
+                                  "name": "An internal server occurred.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"amet_5\": {}\n}",
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-a6dea004-a1dc-4a25-92d1-4bbe666023f8"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:08:33.000Z",
+                              "updatedAt": "2026-07-28T10:08:33.000Z",
+                              "uid": "35240-6f8097d4-72ca-4c1e-888a-5efe470504b7"
+                            },
+                            {
+                              "name": "Get beneficiaries",
+                              "id": "0cdd8f84-cda7-4331-be14-3eabee83d2e6",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "payments",
+                                    "v2",
+                                    "entities",
+                                    ":entityId",
+                                    "Beneficiaries"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "1f226815-044f-4f65-8609-89cd5cfb94e9",
+                                      "key": "entityId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Agicap entity identifier"
+                                    }
+                                  ]
+                                },
+                                "description": "List all existing beneficiaries in the entity, and their detailed information."
+                              },
+                              "response": [
+                                {
+                                  "id": "7f0dcdb2-6b81-4cf2-9132-6e5723ae1ff9",
+                                  "name": "Your request has been successfully processed.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[\n  {\n    \"bankAccount\": {\n      \"bankName\": \"<string>\",\n      \"bic\": \"<string>\",\n      \"country\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"intermediaryBankBic\": \"<string>\",\n      \"localClearingCode\": \"<string>\"\n    },\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"companyLegalIdentifier\": \"<string>\",\n    \"postalAddress\": {\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"number\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\"\n    },\n    \"uncertaintyStatus\": \"NotUncertain\",\n    \"validationStatus\": \"Validated\"\n  },\n  {\n    \"bankAccount\": {\n      \"bankName\": \"<string>\",\n      \"bic\": \"<string>\",\n      \"country\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"intermediaryBankBic\": \"<string>\",\n      \"localClearingCode\": \"<string>\"\n    },\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"companyLegalIdentifier\": \"<string>\",\n    \"postalAddress\": {\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"number\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\"\n    },\n    \"uncertaintyStatus\": \"Uncertain\",\n    \"validationStatus\": \"Validated\"\n  }\n]",
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-7f0dcdb2-6b81-4cf2-9132-6e5723ae1ff9"
+                                },
+                                {
+                                  "id": "1b83a54f-1a0e-4d5d-ab74-c3192d9ea309",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-1b83a54f-1a0e-4d5d-ab74-c3192d9ea309"
+                                },
+                                {
+                                  "id": "0094221a-6bc0-4214-965c-f8091c01f95c",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-0094221a-6bc0-4214-965c-f8091c01f95c"
+                                },
+                                {
+                                  "id": "3ad3e9a8-d75c-46dd-9c24-d148cc040114",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-3ad3e9a8-d75c-46dd-9c24-d148cc040114"
+                                },
+                                {
+                                  "id": "3cfc4265-83fc-48e1-ab93-05da459bbfdb",
+                                  "name": "An internal server occurred.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"amet_5\": {}\n}",
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-3cfc4265-83fc-48e1-ab93-05da459bbfdb"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:08:33.000Z",
+                              "updatedAt": "2026-07-28T10:08:33.000Z",
+                              "uid": "35240-0cdd8f84-cda7-4331-be14-3eabee83d2e6"
+                            },
+                            {
+                              "name": "Create a beneficiary",
+                              "id": "cdbd036f-97c9-4507-b1a7-e810b1b71bd0",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/plain"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"bankAccount\": {\n    \"bankName\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"country\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"intermediaryBankBic\": \"<string>\",\n    \"localClearingCode\": \"<string>\"\n  },\n  \"postalAddress\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"streetName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "payments",
+                                    "v2",
+                                    "entities",
+                                    ":entityId",
+                                    "Beneficiaries"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "1255eb13-131f-48f9-ac50-e1d08801ccf6",
+                                      "key": "entityId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Agicap entity identifier"
+                                    }
+                                  ]
+                                },
+                                "description": "Create a beneficiary in a specific entity with its detailed information."
+                              },
+                              "response": [
+                                {
+                                  "id": "fd3b687b-b2d5-4f1f-8184-12d31b2927d2",
+                                  "name": "The beneficiary has been successfully added.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "text/plain"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"bankAccount\": {\n    \"bankName\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"country\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"intermediaryBankBic\": \"<string>\",\n    \"localClearingCode\": \"<string>\"\n  },\n  \"postalAddress\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"streetName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "text/plain"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "",
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-fd3b687b-b2d5-4f1f-8184-12d31b2927d2"
+                                },
+                                {
+                                  "id": "db1d1937-a007-4cb9-8d25-0cc66cd1dc45",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"bankAccount\": {\n    \"bankName\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"country\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"intermediaryBankBic\": \"<string>\",\n    \"localClearingCode\": \"<string>\"\n  },\n  \"postalAddress\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"streetName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-db1d1937-a007-4cb9-8d25-0cc66cd1dc45"
+                                },
+                                {
+                                  "id": "72df50d0-3895-4b06-b0b8-f3cc6e28d5ee",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"bankAccount\": {\n    \"bankName\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"country\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"intermediaryBankBic\": \"<string>\",\n    \"localClearingCode\": \"<string>\"\n  },\n  \"postalAddress\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"streetName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-72df50d0-3895-4b06-b0b8-f3cc6e28d5ee"
+                                },
+                                {
+                                  "id": "db48e09c-3204-4fba-9705-a5ba0cb062e0",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"bankAccount\": {\n    \"bankName\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"country\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"intermediaryBankBic\": \"<string>\",\n    \"localClearingCode\": \"<string>\"\n  },\n  \"postalAddress\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"streetName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-db48e09c-3204-4fba-9705-a5ba0cb062e0"
+                                },
+                                {
+                                  "id": "d45723d7-2a44-43a9-99d9-5ee3c7d96551",
+                                  "name": "An internal server occurred.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"bankAccount\": {\n    \"bankName\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"country\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"intermediaryBankBic\": \"<string>\",\n    \"localClearingCode\": \"<string>\"\n  },\n  \"postalAddress\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"streetName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/Beneficiaries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "Beneficiaries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"amet_5\": {}\n}",
+                                  "createdAt": "2026-07-28T10:08:33.000Z",
+                                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                                  "uid": "35240-d45723d7-2a44-43a9-99d9-5ee3c7d96551"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:08:33.000Z",
+                              "updatedAt": "2026-07-28T10:08:33.000Z",
+                              "uid": "35240-cdbd036f-97c9-4507-b1a7-e810b1b71bd0"
+                            }
+                          ],
+                          "id": "e14c4368-afb3-4b3a-a6c8-c58d9d623645",
+                          "createdAt": "2026-07-28T10:08:33.000Z",
+                          "updatedAt": "2026-07-28T10:08:33.000Z",
+                          "uid": "35240-e14c4368-afb3-4b3a-a6c8-c58d9d623645"
+                        }
+                      ],
+                      "id": "38e08337-ef74-4e7b-b823-d3cae02ecc58",
+                      "createdAt": "2026-07-28T10:08:33.000Z",
+                      "updatedAt": "2026-07-28T10:08:33.000Z",
+                      "uid": "35240-38e08337-ef74-4e7b-b823-d3cae02ecc58"
+                    }
+                  ],
+                  "id": "b3f3ea3e-6483-4787-ae1d-b661e768d328",
+                  "createdAt": "2026-07-28T10:08:33.000Z",
+                  "updatedAt": "2026-07-28T10:08:33.000Z",
+                  "uid": "35240-b3f3ea3e-6483-4787-ae1d-b661e768d328"
+                }
+              ],
+              "id": "e15882f6-a9b3-4e76-9e74-e535bbb4fbe0",
+              "createdAt": "2026-07-28T10:08:33.000Z",
+              "updatedAt": "2026-07-28T10:08:33.000Z",
+              "uid": "35240-e15882f6-a9b3-4e76-9e74-e535bbb4fbe0"
+            }
+          ],
+          "id": "a5538bd3-d600-4d36-92f1-6702d5ed9ccc",
+          "createdAt": "2026-07-28T10:08:33.000Z",
+          "updatedAt": "2026-07-28T10:08:33.000Z",
+          "uid": "35240-a5538bd3-d600-4d36-92f1-6702d5ed9ccc"
+        }
+      ],
+      "id": "3da7a0ae-fec1-4ee9-9a1a-a2a8cbb235f4",
+      "createdAt": "2026-07-28T10:08:33.000Z",
+      "updatedAt": "2026-07-28T10:08:33.000Z",
+      "uid": "35240-3da7a0ae-fec1-4ee9-9a1a-a2a8cbb235f4"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

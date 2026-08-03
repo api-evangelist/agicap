@@ -1,0 +1,2577 @@
+{
+  "info": {
+    "_postman_id": "33e0d7cb-4b5d-4bac-b767-be80aba09331",
+    "name": "Clients AR Account reports Sales Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:08:51.000Z",
+    "updatedAt": "2026-07-28T10:08:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-33e0d7cb-4b5d-4bac-b767-be80aba09331"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "business-documents",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityid}",
+                      "item": [
+                        {
+                          "name": "connections",
+                          "item": [
+                            {
+                              "name": "{connectionid}",
+                              "item": [
+                                {
+                                  "name": "sales-orders",
+                                  "item": [
+                                    {
+                                      "name": "Get sales orders",
+                                      "id": "2330c52a-8d99-44ac-8a47-7cd82f2f62e1",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "business-documents",
+                                            "v1",
+                                            "entities",
+                                            ":entityid",
+                                            "connections",
+                                            ":connectionid",
+                                            "sales-orders"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Number of items per page (max 10 000)",
+                                              "key": "pagesize",
+                                              "value": "<integer>"
+                                            },
+                                            {
+                                              "description": "Page index",
+                                              "key": "pageindex",
+                                              "value": "<integer>"
+                                            },
+                                            {
+                                              "description": "Unique identifier of the document in the data source",
+                                              "key": "externalids",
+                                              "value": "<string>,<string>"
+                                            },
+                                            {
+                                              "description": "Will return only documents updated **after** this date",
+                                              "key": "updatedsince",
+                                              "value": "<dateTime>"
+                                            },
+                                            {
+                                              "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                              "key": "status",
+                                              "value": "<string>,<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "e6b9eb38-1411-4137-8aba-2f498c9684c8",
+                                              "key": "entityid",
+                                              "value": "<string>",
+                                              "description": "(Required) Agicap entity unique identifier"
+                                            },
+                                            {
+                                              "id": "e5da723f-09f1-4529-a747-2c8165646241",
+                                              "key": "connectionid",
+                                              "value": "<uuid>",
+                                              "description": "(Required) The connection unique identifier"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "1e17eb20-c8c3-4c42-a468-8206139eda91",
+                                          "name": "Sales orders",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"items\": [\n    {\n      \"amounts\": {\n        \"totalAmount\": \"<double>\",\n        \"remainingAmount\": \"<double>\",\n        \"taxesAmount\": \"<double>\"\n      },\n      \"currency\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"status\": \"<string>\",\n      \"counterParty\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"dueDate\": \"<dateTime>\",\n      \"erpIdentificationFields\": {\n        \"sinta\": \"<string>\"\n      },\n      \"issueDate\": \"<dateTime>\",\n      \"label\": \"<string>\",\n      \"metadata\": {\n        \"proident_db3\": \"<string>\",\n        \"eiusmodf4\": \"<string>\"\n      },\n      \"salesOrderNumber\": \"<string>\"\n    },\n    {\n      \"amounts\": {\n        \"totalAmount\": \"<double>\",\n        \"remainingAmount\": \"<double>\",\n        \"taxesAmount\": \"<double>\"\n      },\n      \"currency\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"status\": \"<string>\",\n      \"counterParty\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"dueDate\": \"<dateTime>\",\n      \"erpIdentificationFields\": {\n        \"exercitation_a3b\": \"<string>\",\n        \"Excepteur4f5\": \"<string>\"\n      },\n      \"issueDate\": \"<dateTime>\",\n      \"label\": \"<string>\",\n      \"metadata\": {\n        \"Duise5\": \"<string>\",\n        \"irured3\": \"<string>\"\n      },\n      \"salesOrderNumber\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"pageIndex\": \"<integer>\",\n    \"pageItemsCount\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItemsCount\": \"<integer>\"\n  }\n}",
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-1e17eb20-c8c3-4c42-a468-8206139eda91"
+                                        },
+                                        {
+                                          "id": "1cb6092a-6b5c-45a1-9ad7-e5bf9f021de9",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-1cb6092a-6b5c-45a1-9ad7-e5bf9f021de9"
+                                        },
+                                        {
+                                          "id": "f7a11ac9-659f-4246-ae4e-8d68ffb69319",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-f7a11ac9-659f-4246-ae4e-8d68ffb69319"
+                                        },
+                                        {
+                                          "id": "e33b818b-f8f1-4da5-8e02-e7fbe9725f98",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-e33b818b-f8f1-4da5-8e02-e7fbe9725f98"
+                                        },
+                                        {
+                                          "id": "170d7373-98a0-416f-bf3b-5b4ebc8cbf6f",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-170d7373-98a0-416f-bf3b-5b4ebc8cbf6f"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:08:52.000Z",
+                                      "updatedAt": "2026-07-28T10:08:52.000Z",
+                                      "uid": "35240-2330c52a-8d99-44ac-8a47-7cd82f2f62e1"
+                                    },
+                                    {
+                                      "name": "Create sales orders",
+                                      "id": "61e29615-ede4-4436-aff0-7b60bc874c60",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"eu_f9\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"mollit_bf\": \"<string>\",\n      \"ipsum4df\": \"<string>\",\n      \"qui_73\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"nisi9c\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"occaecat8\": \"<string>\",\n      \"Ut_7_\": \"<string>\",\n      \"ut_97\": \"<string>\",\n      \"sunt_28f\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "business-documents",
+                                            "v1",
+                                            "entities",
+                                            ":entityid",
+                                            "connections",
+                                            ":connectionid",
+                                            "sales-orders"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "900acc7c-1e44-45b1-a776-da34aafac4aa",
+                                              "key": "entityid",
+                                              "value": "<string>",
+                                              "description": "(Required) Agicap entity unique identifier"
+                                            },
+                                            {
+                                              "id": "f25abfc9-d497-4969-a865-37bbd0997802",
+                                              "key": "connectionid",
+                                              "value": "<uuid>",
+                                              "description": "(Required) The connection unique identifier"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "67142c84-dd00-4c9d-951f-d0d08fa7038d",
+                                          "name": "Ids of the created documents, associated with the provided external identifiers",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"eu_f9\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"mollit_bf\": \"<string>\",\n      \"ipsum4df\": \"<string>\",\n      \"qui_73\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"nisi9c\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"occaecat8\": \"<string>\",\n      \"Ut_7_\": \"<string>\",\n      \"ut_97\": \"<string>\",\n      \"sunt_28f\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Created",
+                                          "code": 201,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "[\n  {\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\"\n  },\n  {\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\"\n  }\n]",
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-67142c84-dd00-4c9d-951f-d0d08fa7038d"
+                                        },
+                                        {
+                                          "id": "b88cabb6-615e-4704-b309-32a101a60b7f",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"eu_f9\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"mollit_bf\": \"<string>\",\n      \"ipsum4df\": \"<string>\",\n      \"qui_73\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"nisi9c\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"occaecat8\": \"<string>\",\n      \"Ut_7_\": \"<string>\",\n      \"ut_97\": \"<string>\",\n      \"sunt_28f\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-b88cabb6-615e-4704-b309-32a101a60b7f"
+                                        },
+                                        {
+                                          "id": "2073c1c0-848c-4145-8fc0-a8a7a8ed1b7a",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"eu_f9\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"mollit_bf\": \"<string>\",\n      \"ipsum4df\": \"<string>\",\n      \"qui_73\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"nisi9c\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"occaecat8\": \"<string>\",\n      \"Ut_7_\": \"<string>\",\n      \"ut_97\": \"<string>\",\n      \"sunt_28f\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-2073c1c0-848c-4145-8fc0-a8a7a8ed1b7a"
+                                        },
+                                        {
+                                          "id": "4fbeab0d-8216-4a5b-8e13-0589bec95dea",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"eu_f9\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"mollit_bf\": \"<string>\",\n      \"ipsum4df\": \"<string>\",\n      \"qui_73\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"nisi9c\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"occaecat8\": \"<string>\",\n      \"Ut_7_\": \"<string>\",\n      \"ut_97\": \"<string>\",\n      \"sunt_28f\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-4fbeab0d-8216-4a5b-8e13-0589bec95dea"
+                                        },
+                                        {
+                                          "id": "80abfdae-05b6-4c63-bc95-57ad9cee736c",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"eu_f9\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"mollit_bf\": \"<string>\",\n      \"ipsum4df\": \"<string>\",\n      \"qui_73\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"nisi9c\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"occaecat8\": \"<string>\",\n      \"Ut_7_\": \"<string>\",\n      \"ut_97\": \"<string>\",\n      \"sunt_28f\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-80abfdae-05b6-4c63-bc95-57ad9cee736c"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:08:52.000Z",
+                                      "updatedAt": "2026-07-28T10:08:52.000Z",
+                                      "uid": "35240-61e29615-ede4-4436-aff0-7b60bc874c60"
+                                    },
+                                    {
+                                      "name": "Update sales orders",
+                                      "id": "ebf7b776-d3b7-436b-8a2d-0c08391cf4a8",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"sunt_7\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"enim_90e\": \"<string>\",\n      \"voluptate_ed\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"Duis6f7\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"dolor7f6\": \"<string>\",\n      \"dolore_9\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "business-documents",
+                                            "v1",
+                                            "entities",
+                                            ":entityid",
+                                            "connections",
+                                            ":connectionid",
+                                            "sales-orders"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "a4978844-d0fd-4162-8e2c-be62db80d994",
+                                              "key": "entityid",
+                                              "value": "<string>",
+                                              "description": "(Required) Agicap entity unique identifier"
+                                            },
+                                            {
+                                              "id": "abbfabb6-b086-41de-ac9a-7d51843e3da9",
+                                              "key": "connectionid",
+                                              "value": "<uuid>",
+                                              "description": "(Required) The connection unique identifier"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "3696c2f3-2d79-4ccc-8958-79cae698d656",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"sunt_7\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"enim_90e\": \"<string>\",\n      \"voluptate_ed\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"Duis6f7\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"dolor7f6\": \"<string>\",\n      \"dolore_9\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-3696c2f3-2d79-4ccc-8958-79cae698d656"
+                                        },
+                                        {
+                                          "id": "b0c0bab7-3326-4e11-b1d8-60dda45857b3",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"sunt_7\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"enim_90e\": \"<string>\",\n      \"voluptate_ed\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"Duis6f7\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"dolor7f6\": \"<string>\",\n      \"dolore_9\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-b0c0bab7-3326-4e11-b1d8-60dda45857b3"
+                                        },
+                                        {
+                                          "id": "e3f7a22b-0c4f-4782-a12f-00c5a4ae4eab",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"sunt_7\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"enim_90e\": \"<string>\",\n      \"voluptate_ed\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"Duis6f7\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"dolor7f6\": \"<string>\",\n      \"dolore_9\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-e3f7a22b-0c4f-4782-a12f-00c5a4ae4eab"
+                                        },
+                                        {
+                                          "id": "4079fa37-01cf-4b6d-b379-9443ca2b88a1",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"sunt_7\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"enim_90e\": \"<string>\",\n      \"voluptate_ed\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"Duis6f7\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"dolor7f6\": \"<string>\",\n      \"dolore_9\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-4079fa37-01cf-4b6d-b379-9443ca2b88a1"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:08:52.000Z",
+                                      "updatedAt": "2026-07-28T10:08:52.000Z",
+                                      "uid": "35240-ebf7b776-d3b7-436b-8a2d-0c08391cf4a8"
+                                    }
+                                  ],
+                                  "id": "232b8c6e-3184-4201-8704-cc14eb040c58",
+                                  "createdAt": "2026-07-28T10:08:52.000Z",
+                                  "updatedAt": "2026-07-28T10:08:52.000Z",
+                                  "uid": "35240-232b8c6e-3184-4201-8704-cc14eb040c58"
+                                }
+                              ],
+                              "id": "5d5df051-5b6c-444e-b503-5c6d24e583e1",
+                              "createdAt": "2026-07-28T10:08:52.000Z",
+                              "updatedAt": "2026-07-28T10:08:52.000Z",
+                              "uid": "35240-5d5df051-5b6c-444e-b503-5c6d24e583e1"
+                            }
+                          ],
+                          "id": "b09ed935-09d1-414b-ac12-8ae78aaff62f",
+                          "createdAt": "2026-07-28T10:08:52.000Z",
+                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                          "uid": "35240-b09ed935-09d1-414b-ac12-8ae78aaff62f"
+                        }
+                      ],
+                      "id": "39670bad-4603-4dd1-a452-b542e8933b49",
+                      "createdAt": "2026-07-28T10:08:52.000Z",
+                      "updatedAt": "2026-07-28T10:08:52.000Z",
+                      "uid": "35240-39670bad-4603-4dd1-a452-b542e8933b49"
+                    }
+                  ],
+                  "id": "c1339a53-a918-4abb-89fe-6fba091af730",
+                  "createdAt": "2026-07-28T10:08:52.000Z",
+                  "updatedAt": "2026-07-28T10:08:52.000Z",
+                  "uid": "35240-c1339a53-a918-4abb-89fe-6fba091af730"
+                }
+              ],
+              "id": "0cc4cb8d-b456-4a65-bd32-b102c214e5a2",
+              "createdAt": "2026-07-28T10:08:52.000Z",
+              "updatedAt": "2026-07-28T10:08:52.000Z",
+              "uid": "35240-0cc4cb8d-b456-4a65-bd32-b102c214e5a2"
+            },
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityid}",
+                      "item": [
+                        {
+                          "name": "connections",
+                          "item": [
+                            {
+                              "name": "{connectionid}",
+                              "item": [
+                                {
+                                  "name": "sales-orders",
+                                  "item": [
+                                    {
+                                      "name": "Get sales orders",
+                                      "id": "9c1882ce-8bb7-47f0-a173-8c445848d422",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "business-documents",
+                                            "v2",
+                                            "entities",
+                                            ":entityid",
+                                            "connections",
+                                            ":connectionid",
+                                            "sales-orders"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Number of items per page (max 10 000)",
+                                              "key": "pagesize",
+                                              "value": "<integer>"
+                                            },
+                                            {
+                                              "description": "Page index",
+                                              "key": "pageindex",
+                                              "value": "<integer>"
+                                            },
+                                            {
+                                              "description": "Unique identifier of the document in the data source",
+                                              "key": "externalids",
+                                              "value": "<string>,<string>"
+                                            },
+                                            {
+                                              "description": "Will return only documents updated **after** this date",
+                                              "key": "updatedsince",
+                                              "value": "<dateTime>"
+                                            },
+                                            {
+                                              "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                              "key": "status",
+                                              "value": "<string>,<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "44a53950-29bc-4682-b2f5-d7772d938929",
+                                              "key": "entityid",
+                                              "value": "<string>",
+                                              "description": "(Required) Agicap entity unique identifier"
+                                            },
+                                            {
+                                              "id": "f3438a60-ad62-422a-8e4b-a39a6fcbf1be",
+                                              "key": "connectionid",
+                                              "value": "<uuid>",
+                                              "description": "(Required) The connection unique identifier"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "8da92563-49ff-4963-b98a-995e73492ee2",
+                                          "name": "Sales orders",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"items\": [\n    {\n      \"amounts\": {\n        \"totalAmount\": \"<double>\",\n        \"remainingAmount\": \"<double>\",\n        \"taxesAmount\": \"<double>\"\n      },\n      \"currency\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"status\": \"<string>\",\n      \"counterParty\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"dueDate\": \"<dateTime>\",\n      \"erpIdentificationFields\": {\n        \"sinta\": \"<string>\"\n      },\n      \"issueDate\": \"<dateTime>\",\n      \"label\": \"<string>\",\n      \"metadata\": {\n        \"proident_db3\": \"<string>\",\n        \"eiusmodf4\": \"<string>\"\n      },\n      \"salesOrderNumber\": \"<string>\"\n    },\n    {\n      \"amounts\": {\n        \"totalAmount\": \"<double>\",\n        \"remainingAmount\": \"<double>\",\n        \"taxesAmount\": \"<double>\"\n      },\n      \"currency\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"status\": \"<string>\",\n      \"counterParty\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"dueDate\": \"<dateTime>\",\n      \"erpIdentificationFields\": {\n        \"exercitation_a3b\": \"<string>\",\n        \"Excepteur4f5\": \"<string>\"\n      },\n      \"issueDate\": \"<dateTime>\",\n      \"label\": \"<string>\",\n      \"metadata\": {\n        \"Duise5\": \"<string>\",\n        \"irured3\": \"<string>\"\n      },\n      \"salesOrderNumber\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"pageIndex\": \"<integer>\",\n    \"pageItemsCount\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItemsCount\": \"<integer>\"\n  }\n}",
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-8da92563-49ff-4963-b98a-995e73492ee2"
+                                        },
+                                        {
+                                          "id": "c35316d3-57b7-4b7e-80f7-02899f42594f",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-c35316d3-57b7-4b7e-80f7-02899f42594f"
+                                        },
+                                        {
+                                          "id": "5aae6c87-dd81-4056-b357-685186437729",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-5aae6c87-dd81-4056-b357-685186437729"
+                                        },
+                                        {
+                                          "id": "e1bf3675-2251-4b8b-bf38-1367408819b5",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-e1bf3675-2251-4b8b-bf38-1367408819b5"
+                                        },
+                                        {
+                                          "id": "ac38429a-a818-4a6b-9617-18f8d043256b",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-ac38429a-a818-4a6b-9617-18f8d043256b"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:08:52.000Z",
+                                      "updatedAt": "2026-07-28T10:08:52.000Z",
+                                      "uid": "35240-9c1882ce-8bb7-47f0-a173-8c445848d422"
+                                    },
+                                    {
+                                      "name": "Create sales orders",
+                                      "id": "8790c840-b1f1-4e01-9471-95c2f9c753c0",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"magna519\": \"<string>\",\n      \"reprehenderit_35\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"adipisicinge\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"anim006\": \"<string>\",\n      \"dolor_6e\": \"<string>\",\n      \"aliqua_7\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"irure_\": \"<string>\",\n      \"ipsum43e\": \"<string>\"\n    }\n  }\n]",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "business-documents",
+                                            "v2",
+                                            "entities",
+                                            ":entityid",
+                                            "connections",
+                                            ":connectionid",
+                                            "sales-orders"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "5d03a5f6-7f0f-4632-9964-9b0eca1738be",
+                                              "key": "entityid",
+                                              "value": "<string>",
+                                              "description": "(Required) Agicap entity unique identifier"
+                                            },
+                                            {
+                                              "id": "e9764ae0-db5e-48a7-a68b-afc01a551dab",
+                                              "key": "connectionid",
+                                              "value": "<uuid>",
+                                              "description": "(Required) The connection unique identifier"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "5f515235-dafd-4a73-9049-1961b810e53d",
+                                          "name": "Ids of the created documents, associated with the provided external identifiers",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"magna519\": \"<string>\",\n      \"reprehenderit_35\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"adipisicinge\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"anim006\": \"<string>\",\n      \"dolor_6e\": \"<string>\",\n      \"aliqua_7\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"irure_\": \"<string>\",\n      \"ipsum43e\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Created",
+                                          "code": 201,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "[\n  {\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\"\n  },\n  {\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\"\n  }\n]",
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-5f515235-dafd-4a73-9049-1961b810e53d"
+                                        },
+                                        {
+                                          "id": "98c23af4-6b7b-4af7-9f1d-60a96f348f8c",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"magna519\": \"<string>\",\n      \"reprehenderit_35\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"adipisicinge\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"anim006\": \"<string>\",\n      \"dolor_6e\": \"<string>\",\n      \"aliqua_7\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"irure_\": \"<string>\",\n      \"ipsum43e\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-98c23af4-6b7b-4af7-9f1d-60a96f348f8c"
+                                        },
+                                        {
+                                          "id": "f7bd12f1-de27-436c-a025-b247e5cac025",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"magna519\": \"<string>\",\n      \"reprehenderit_35\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"adipisicinge\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"anim006\": \"<string>\",\n      \"dolor_6e\": \"<string>\",\n      \"aliqua_7\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"irure_\": \"<string>\",\n      \"ipsum43e\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-f7bd12f1-de27-436c-a025-b247e5cac025"
+                                        },
+                                        {
+                                          "id": "4e05ca6c-5e7d-4477-816d-144b8611990c",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"magna519\": \"<string>\",\n      \"reprehenderit_35\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"adipisicinge\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"anim006\": \"<string>\",\n      \"dolor_6e\": \"<string>\",\n      \"aliqua_7\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"irure_\": \"<string>\",\n      \"ipsum43e\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-4e05ca6c-5e7d-4477-816d-144b8611990c"
+                                        },
+                                        {
+                                          "id": "c244c196-6c82-4e54-b9e3-acb886c078fc",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"magna519\": \"<string>\",\n      \"reprehenderit_35\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"adipisicinge\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"anim006\": \"<string>\",\n      \"dolor_6e\": \"<string>\",\n      \"aliqua_7\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"irure_\": \"<string>\",\n      \"ipsum43e\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-c244c196-6c82-4e54-b9e3-acb886c078fc"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:08:52.000Z",
+                                      "updatedAt": "2026-07-28T10:08:52.000Z",
+                                      "uid": "35240-8790c840-b1f1-4e01-9471-95c2f9c753c0"
+                                    },
+                                    {
+                                      "name": "Update sales orders",
+                                      "id": "a0cc5ffd-1486-4c60-ab65-28e958c70118",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"ine\": \"<string>\",\n      \"consequatd4\": \"<string>\",\n      \"Duis_ec2\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"dolor_3e4\": \"<string>\",\n      \"aliquip_e8\": \"<string>\",\n      \"tempor_52\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"tempore8\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"tempor14\": \"<string>\",\n      \"sunt_\": \"<string>\",\n      \"magna_d\": \"<string>\"\n    }\n  }\n]",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "business-documents",
+                                            "v2",
+                                            "entities",
+                                            ":entityid",
+                                            "connections",
+                                            ":connectionid",
+                                            "sales-orders"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "e4e43281-7270-455c-8b59-117bcb7f9a72",
+                                              "key": "entityid",
+                                              "value": "<string>",
+                                              "description": "(Required) Agicap entity unique identifier"
+                                            },
+                                            {
+                                              "id": "2f2e57e5-3c50-4b2e-8ed9-036b5d40383e",
+                                              "key": "connectionid",
+                                              "value": "<uuid>",
+                                              "description": "(Required) The connection unique identifier"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "a1300d17-f535-4158-923d-dcc98375a40f",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"ine\": \"<string>\",\n      \"consequatd4\": \"<string>\",\n      \"Duis_ec2\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"dolor_3e4\": \"<string>\",\n      \"aliquip_e8\": \"<string>\",\n      \"tempor_52\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"tempore8\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"tempor14\": \"<string>\",\n      \"sunt_\": \"<string>\",\n      \"magna_d\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-a1300d17-f535-4158-923d-dcc98375a40f"
+                                        },
+                                        {
+                                          "id": "5c6190e1-c4ab-4538-80a2-e5c57d08bc36",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"ine\": \"<string>\",\n      \"consequatd4\": \"<string>\",\n      \"Duis_ec2\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"dolor_3e4\": \"<string>\",\n      \"aliquip_e8\": \"<string>\",\n      \"tempor_52\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"tempore8\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"tempor14\": \"<string>\",\n      \"sunt_\": \"<string>\",\n      \"magna_d\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-5c6190e1-c4ab-4538-80a2-e5c57d08bc36"
+                                        },
+                                        {
+                                          "id": "5b1fb877-7819-4a32-90b5-227c7161093e",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"ine\": \"<string>\",\n      \"consequatd4\": \"<string>\",\n      \"Duis_ec2\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"dolor_3e4\": \"<string>\",\n      \"aliquip_e8\": \"<string>\",\n      \"tempor_52\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"tempore8\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"tempor14\": \"<string>\",\n      \"sunt_\": \"<string>\",\n      \"magna_d\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-5b1fb877-7819-4a32-90b5-227c7161093e"
+                                        },
+                                        {
+                                          "id": "b630bc94-1827-4cec-807d-9f1d88411a4e",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"ine\": \"<string>\",\n      \"consequatd4\": \"<string>\",\n      \"Duis_ec2\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"dolor_3e4\": \"<string>\",\n      \"aliquip_e8\": \"<string>\",\n      \"tempor_52\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"tempore8\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"tempor14\": \"<string>\",\n      \"sunt_\": \"<string>\",\n      \"magna_d\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/sales-orders",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "sales-orders"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:08:52.000Z",
+                                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                                          "uid": "35240-b630bc94-1827-4cec-807d-9f1d88411a4e"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:08:52.000Z",
+                                      "updatedAt": "2026-07-28T10:08:52.000Z",
+                                      "uid": "35240-a0cc5ffd-1486-4c60-ab65-28e958c70118"
+                                    }
+                                  ],
+                                  "id": "c9514f00-c7c4-49a4-896a-ad234d2ff459",
+                                  "createdAt": "2026-07-28T10:08:52.000Z",
+                                  "updatedAt": "2026-07-28T10:08:52.000Z",
+                                  "uid": "35240-c9514f00-c7c4-49a4-896a-ad234d2ff459"
+                                }
+                              ],
+                              "id": "d21615a5-59db-4888-ab81-c86f0680328f",
+                              "createdAt": "2026-07-28T10:08:52.000Z",
+                              "updatedAt": "2026-07-28T10:08:52.000Z",
+                              "uid": "35240-d21615a5-59db-4888-ab81-c86f0680328f"
+                            }
+                          ],
+                          "id": "72884f5d-e7e9-4440-a5c8-05721b7fb9ad",
+                          "createdAt": "2026-07-28T10:08:52.000Z",
+                          "updatedAt": "2026-07-28T10:08:52.000Z",
+                          "uid": "35240-72884f5d-e7e9-4440-a5c8-05721b7fb9ad"
+                        }
+                      ],
+                      "id": "43c7bb22-5ee5-4d69-842f-575a46679087",
+                      "createdAt": "2026-07-28T10:08:52.000Z",
+                      "updatedAt": "2026-07-28T10:08:52.000Z",
+                      "uid": "35240-43c7bb22-5ee5-4d69-842f-575a46679087"
+                    }
+                  ],
+                  "id": "b052f92d-9366-404c-a1a0-69fb59aaada4",
+                  "createdAt": "2026-07-28T10:08:52.000Z",
+                  "updatedAt": "2026-07-28T10:08:52.000Z",
+                  "uid": "35240-b052f92d-9366-404c-a1a0-69fb59aaada4"
+                }
+              ],
+              "id": "f4328454-0792-4096-ac6c-41034a15366c",
+              "createdAt": "2026-07-28T10:08:52.000Z",
+              "updatedAt": "2026-07-28T10:08:52.000Z",
+              "uid": "35240-f4328454-0792-4096-ac6c-41034a15366c"
+            }
+          ],
+          "id": "03a7bc62-0131-4345-a873-ca933f2ba658",
+          "createdAt": "2026-07-28T10:08:52.000Z",
+          "updatedAt": "2026-07-28T10:08:52.000Z",
+          "uid": "35240-03a7bc62-0131-4345-a873-ca933f2ba658"
+        }
+      ],
+      "id": "68c4df5a-7e79-4ae1-ad4c-0a104c0afb85",
+      "createdAt": "2026-07-28T10:08:52.000Z",
+      "updatedAt": "2026-07-28T10:08:52.000Z",
+      "uid": "35240-68c4df5a-7e79-4ae1-ad4c-0a104c0afb85"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

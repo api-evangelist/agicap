@@ -1,0 +1,1948 @@
+{
+  "info": {
+    "_postman_id": "9e4ccc8e-c960-4744-a110-98d0aea1e086",
+    "name": "Clients AR Account reports Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:07:26.000Z",
+    "updatedAt": "2026-07-28T10:07:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9e4ccc8e-c960-4744-a110-98d0aea1e086"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "auth",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "token",
+                  "item": [
+                    {
+                      "name": "Generate an Access Token",
+                      "id": "627a10db-8156-4ce1-a0d3-99a7755e9978",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The grant type as defined in the OAuth2 specification (must be client_credentials, authorization_code is not yet supported).",
+                              "key": "grant_type",
+                              "value": "client_credentials"
+                            },
+                            {
+                              "description": "(Required) The client identifier generated through the Agicap application.",
+                              "key": "client_id",
+                              "value": ""
+                            },
+                            {
+                              "description": "(Required) The client secret generated through the Agicap application.",
+                              "key": "client_secret",
+                              "value": ""
+                            },
+                            {
+                              "description": "(Required) The scopes list separated by whitespace (should at least contains \"agicap:public-api\").",
+                              "key": "scope",
+                              "value": "agicap:public-api"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/public/auth/v1/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "public",
+                            "auth",
+                            "v1",
+                            "token"
+                          ]
+                        },
+                        "description": "This endpoint generates an access token that will be used with your Public Api call's. The generated token will be placed in the `Authorization` header with value: `\"Bearer YOUR_GENERATED_TOKEN\"`\n\n> The credentials used in the body must be generated from the Agicap application.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "1381c3f4-fda7-4638-ab9f-3798ce57bfc7",
+                          "name": "The generated Access Token object",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) The grant type as defined in the OAuth2 specification (must be client_credentials, authorization_code is not yet supported).",
+                                  "key": "grant_type",
+                                  "value": "client_credentials"
+                                },
+                                {
+                                  "description": "(Required) The client identifier generated through the Agicap application.",
+                                  "key": "client_id",
+                                  "value": ""
+                                },
+                                {
+                                  "description": "(Required) The client secret generated through the Agicap application.",
+                                  "key": "client_secret",
+                                  "value": ""
+                                },
+                                {
+                                  "description": "(Required) The scopes list separated by whitespace (should at least contains \"agicap:public-api\").",
+                                  "key": "scope",
+                                  "value": "agicap:public-api"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/public/auth/v1/token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "public",
+                                "auth",
+                                "v1",
+                                "token"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"access_token\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"scope\": \"<string>\",\n  \"token_type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:07:27.000Z",
+                          "updatedAt": "2026-07-28T10:07:27.000Z",
+                          "uid": "35240-1381c3f4-fda7-4638-ab9f-3798ce57bfc7"
+                        },
+                        {
+                          "id": "67bdbd70-c470-4f6a-ae98-9e753c4943fe",
+                          "name": "Invalid request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) The grant type as defined in the OAuth2 specification (must be client_credentials, authorization_code is not yet supported).",
+                                  "key": "grant_type",
+                                  "value": "client_credentials"
+                                },
+                                {
+                                  "description": "(Required) The client identifier generated through the Agicap application.",
+                                  "key": "client_id",
+                                  "value": ""
+                                },
+                                {
+                                  "description": "(Required) The client secret generated through the Agicap application.",
+                                  "key": "client_secret",
+                                  "value": ""
+                                },
+                                {
+                                  "description": "(Required) The scopes list separated by whitespace (should at least contains \"agicap:public-api\").",
+                                  "key": "scope",
+                                  "value": "agicap:public-api"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/public/auth/v1/token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "public",
+                                "auth",
+                                "v1",
+                                "token"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:07:27.000Z",
+                          "updatedAt": "2026-07-28T10:07:27.000Z",
+                          "uid": "35240-67bdbd70-c470-4f6a-ae98-9e753c4943fe"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T10:07:27.000Z",
+                      "updatedAt": "2026-07-28T10:07:27.000Z",
+                      "uid": "35240-627a10db-8156-4ce1-a0d3-99a7755e9978"
+                    }
+                  ],
+                  "id": "95834676-b03f-455b-a27e-e6234d5a262b",
+                  "createdAt": "2026-07-28T10:07:26.000Z",
+                  "updatedAt": "2026-07-28T10:07:26.000Z",
+                  "uid": "35240-95834676-b03f-455b-a27e-e6234d5a262b"
+                }
+              ],
+              "id": "2aff87d1-b723-4523-8334-b48e54a89224",
+              "createdAt": "2026-07-28T10:07:26.000Z",
+              "updatedAt": "2026-07-28T10:07:26.000Z",
+              "uid": "35240-2aff87d1-b723-4523-8334-b48e54a89224"
+            }
+          ],
+          "id": "5a68bf8f-2c44-4f6e-a5f8-bb163843e68a",
+          "createdAt": "2026-07-28T10:07:26.000Z",
+          "updatedAt": "2026-07-28T10:07:26.000Z",
+          "uid": "35240-5a68bf8f-2c44-4f6e-a5f8-bb163843e68a"
+        },
+        {
+          "name": "httpbin",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "basic-auth",
+                  "item": [
+                    {
+                      "name": "{user}",
+                      "item": [
+                        {
+                          "name": "{passwd}",
+                          "item": [
+                            {
+                              "name": "Prompts the user for authorization using HTTP Basic Auth.",
+                              "id": "ba363a06-3c24-4c48-8ecb-fa017700824d",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/httpbin/v1/basic-auth/:user/:passwd",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "httpbin",
+                                    "v1",
+                                    "basic-auth",
+                                    ":user",
+                                    ":passwd"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "0ec1e7f1-c927-424d-9693-98c107bca30f",
+                                      "key": "user",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "1854f22a-2f48-4445-9f7d-806d6b6dc3db",
+                                      "key": "passwd",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "03ded87a-28b0-4586-85bb-43f32f0b3817",
+                                  "name": "Sucessful authentication.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/httpbin/v1/basic-auth/:user/:passwd",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "httpbin",
+                                        "v1",
+                                        "basic-auth",
+                                        ":user",
+                                        ":passwd"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "user"
+                                        },
+                                        {
+                                          "key": "passwd"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:27.000Z",
+                                  "updatedAt": "2026-07-28T10:07:27.000Z",
+                                  "uid": "35240-03ded87a-28b0-4586-85bb-43f32f0b3817"
+                                },
+                                {
+                                  "id": "21418b76-e1b6-44a8-9632-aa4828ac1cc4",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/httpbin/v1/basic-auth/:user/:passwd",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "httpbin",
+                                        "v1",
+                                        "basic-auth",
+                                        ":user",
+                                        ":passwd"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "user"
+                                        },
+                                        {
+                                          "key": "passwd"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:27.000Z",
+                                  "updatedAt": "2026-07-28T10:07:27.000Z",
+                                  "uid": "35240-21418b76-e1b6-44a8-9632-aa4828ac1cc4"
+                                },
+                                {
+                                  "id": "06a025d3-f34e-41b5-8b2a-9d3aa1cd22fa",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/httpbin/v1/basic-auth/:user/:passwd",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "httpbin",
+                                        "v1",
+                                        "basic-auth",
+                                        ":user",
+                                        ":passwd"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "user"
+                                        },
+                                        {
+                                          "key": "passwd"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:27.000Z",
+                                  "updatedAt": "2026-07-28T10:07:27.000Z",
+                                  "uid": "35240-06a025d3-f34e-41b5-8b2a-9d3aa1cd22fa"
+                                },
+                                {
+                                  "id": "c353a2b7-12ef-4e7e-8dcb-20fb33529c05",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/httpbin/v1/basic-auth/:user/:passwd",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "httpbin",
+                                        "v1",
+                                        "basic-auth",
+                                        ":user",
+                                        ":passwd"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "user"
+                                        },
+                                        {
+                                          "key": "passwd"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:27.000Z",
+                                  "updatedAt": "2026-07-28T10:07:27.000Z",
+                                  "uid": "35240-c353a2b7-12ef-4e7e-8dcb-20fb33529c05"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:27.000Z",
+                              "updatedAt": "2026-07-28T10:07:27.000Z",
+                              "uid": "35240-ba363a06-3c24-4c48-8ecb-fa017700824d"
+                            }
+                          ],
+                          "id": "6fd798f9-e349-4cf8-851f-464adf68b9e2",
+                          "createdAt": "2026-07-28T10:07:26.000Z",
+                          "updatedAt": "2026-07-28T10:07:26.000Z",
+                          "uid": "35240-6fd798f9-e349-4cf8-851f-464adf68b9e2"
+                        }
+                      ],
+                      "id": "930b05e1-c2a0-4308-8e2f-a59a8f557d12",
+                      "createdAt": "2026-07-28T10:07:26.000Z",
+                      "updatedAt": "2026-07-28T10:07:26.000Z",
+                      "uid": "35240-930b05e1-c2a0-4308-8e2f-a59a8f557d12"
+                    }
+                  ],
+                  "id": "2bf38c82-7e47-46b6-b61b-96e10cba418d",
+                  "createdAt": "2026-07-28T10:07:26.000Z",
+                  "updatedAt": "2026-07-28T10:07:26.000Z",
+                  "uid": "35240-2bf38c82-7e47-46b6-b61b-96e10cba418d"
+                },
+                {
+                  "name": "bearer",
+                  "item": [
+                    {
+                      "name": "Prompts the user for authorization using bearer authentication.",
+                      "id": "9f7a431b-32d3-46ea-babe-bd29cf0b804c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/public/httpbin/v1/bearer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "public",
+                            "httpbin",
+                            "v1",
+                            "bearer"
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "8ac3d727-40be-4185-9e06-f2f2ca0d54c0",
+                          "name": "Sucessful authentication.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/public/httpbin/v1/bearer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "public",
+                                "httpbin",
+                                "v1",
+                                "bearer"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T10:07:27.000Z",
+                          "updatedAt": "2026-07-28T10:07:27.000Z",
+                          "uid": "35240-8ac3d727-40be-4185-9e06-f2f2ca0d54c0"
+                        },
+                        {
+                          "id": "864f114a-b80a-4b0a-becf-299efa52d4b2",
+                          "name": "Unauthorized request.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/public/httpbin/v1/bearer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "public",
+                                "httpbin",
+                                "v1",
+                                "bearer"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T10:07:27.000Z",
+                          "updatedAt": "2026-07-28T10:07:27.000Z",
+                          "uid": "35240-864f114a-b80a-4b0a-becf-299efa52d4b2"
+                        },
+                        {
+                          "id": "98fda82c-22f7-4c99-b55f-ba40cb1defb9",
+                          "name": "Forbidden request.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/public/httpbin/v1/bearer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "public",
+                                "httpbin",
+                                "v1",
+                                "bearer"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T10:07:27.000Z",
+                          "updatedAt": "2026-07-28T10:07:27.000Z",
+                          "uid": "35240-98fda82c-22f7-4c99-b55f-ba40cb1defb9"
+                        },
+                        {
+                          "id": "ee722a86-7c69-4667-ab9a-c3dcb0bf16e3",
+                          "name": "Too many requests. Please try again later.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/public/httpbin/v1/bearer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "public",
+                                "httpbin",
+                                "v1",
+                                "bearer"
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T10:07:27.000Z",
+                          "updatedAt": "2026-07-28T10:07:27.000Z",
+                          "uid": "35240-ee722a86-7c69-4667-ab9a-c3dcb0bf16e3"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T10:07:27.000Z",
+                      "updatedAt": "2026-07-28T10:07:27.000Z",
+                      "uid": "35240-9f7a431b-32d3-46ea-babe-bd29cf0b804c"
+                    }
+                  ],
+                  "id": "12f84c54-9e36-4c80-a01d-b1529f348387",
+                  "createdAt": "2026-07-28T10:07:26.000Z",
+                  "updatedAt": "2026-07-28T10:07:26.000Z",
+                  "uid": "35240-12f84c54-9e36-4c80-a01d-b1529f348387"
+                },
+                {
+                  "name": "digest-auth",
+                  "item": [
+                    {
+                      "name": "{qop}",
+                      "item": [
+                        {
+                          "name": "{user}",
+                          "item": [
+                            {
+                              "name": "{passwd}",
+                              "item": [
+                                {
+                                  "name": "{algorithm}",
+                                  "item": [
+                                    {
+                                      "name": "{stale_after}",
+                                      "item": [
+                                        {
+                                          "name": "Prompts the user for authorization using Digest Auth + Algorithm.",
+                                          "id": "af11ec5d-c8ea-4734-a866-acb643c76d0f",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "auth": {
+                                              "type": "bearer",
+                                              "bearer": [
+                                                {
+                                                  "key": "token",
+                                                  "value": "{{bearerToken}}",
+                                                  "type": "string"
+                                                }
+                                              ]
+                                            },
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd/:algorithm/:stale_after",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "httpbin",
+                                                "v1",
+                                                "digest-auth",
+                                                ":qop",
+                                                ":user",
+                                                ":passwd",
+                                                ":algorithm",
+                                                ":stale_after"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "0f15541e-867d-43e7-958e-2421ea1f6ce1",
+                                                  "key": "qop",
+                                                  "value": "<string>",
+                                                  "description": "(Required) auth or auth-int"
+                                                },
+                                                {
+                                                  "id": "c1161ade-c708-4034-9e76-8a330cd9081f",
+                                                  "key": "user",
+                                                  "value": "<string>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "728e6a13-7bc0-4612-97b3-dc12375baeb1",
+                                                  "key": "passwd",
+                                                  "value": "<string>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "13343e8b-a28b-43ec-80bc-80e0ef933709",
+                                                  "key": "algorithm",
+                                                  "value": "MD5",
+                                                  "description": "(Required) MD5, SHA-256, SHA-512"
+                                                },
+                                                {
+                                                  "id": "11bd6c67-6700-4f44-85a4-e9730424a0ff",
+                                                  "key": "stale_after",
+                                                  "value": "never",
+                                                  "description": "(Required) "
+                                                }
+                                              ]
+                                            },
+                                            "description": "allow settings the stale_after argument.\n"
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "1f4adcb6-978c-41c9-bb8b-f35d25f0f4ca",
+                                              "name": "Sucessful authentication.",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd/:algorithm/:stale_after",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "public",
+                                                    "httpbin",
+                                                    "v1",
+                                                    "digest-auth",
+                                                    ":qop",
+                                                    ":user",
+                                                    ":passwd",
+                                                    ":algorithm",
+                                                    ":stale_after"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "qop"
+                                                    },
+                                                    {
+                                                      "key": "user"
+                                                    },
+                                                    {
+                                                      "key": "passwd"
+                                                    },
+                                                    {
+                                                      "key": "algorithm"
+                                                    },
+                                                    {
+                                                      "key": "stale_after"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-07-28T10:07:27.000Z",
+                                              "updatedAt": "2026-07-28T10:07:27.000Z",
+                                              "uid": "35240-1f4adcb6-978c-41c9-bb8b-f35d25f0f4ca"
+                                            },
+                                            {
+                                              "id": "be75e8dc-0989-4d90-8f5d-a23023ac161f",
+                                              "name": "Unauthorized request.",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd/:algorithm/:stale_after",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "public",
+                                                    "httpbin",
+                                                    "v1",
+                                                    "digest-auth",
+                                                    ":qop",
+                                                    ":user",
+                                                    ":passwd",
+                                                    ":algorithm",
+                                                    ":stale_after"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "qop"
+                                                    },
+                                                    {
+                                                      "key": "user"
+                                                    },
+                                                    {
+                                                      "key": "passwd"
+                                                    },
+                                                    {
+                                                      "key": "algorithm"
+                                                    },
+                                                    {
+                                                      "key": "stale_after"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Unauthorized",
+                                              "code": 401,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-07-28T10:07:27.000Z",
+                                              "updatedAt": "2026-07-28T10:07:27.000Z",
+                                              "uid": "35240-be75e8dc-0989-4d90-8f5d-a23023ac161f"
+                                            },
+                                            {
+                                              "id": "fd7f2916-7c64-45b1-8a9b-0e9b317c84b7",
+                                              "name": "Forbidden request.",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd/:algorithm/:stale_after",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "public",
+                                                    "httpbin",
+                                                    "v1",
+                                                    "digest-auth",
+                                                    ":qop",
+                                                    ":user",
+                                                    ":passwd",
+                                                    ":algorithm",
+                                                    ":stale_after"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "qop"
+                                                    },
+                                                    {
+                                                      "key": "user"
+                                                    },
+                                                    {
+                                                      "key": "passwd"
+                                                    },
+                                                    {
+                                                      "key": "algorithm"
+                                                    },
+                                                    {
+                                                      "key": "stale_after"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Forbidden",
+                                              "code": 403,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-07-28T10:07:27.000Z",
+                                              "updatedAt": "2026-07-28T10:07:27.000Z",
+                                              "uid": "35240-fd7f2916-7c64-45b1-8a9b-0e9b317c84b7"
+                                            },
+                                            {
+                                              "id": "27d14860-7527-496d-b0d1-8a9ba92d6338",
+                                              "name": "Too many requests. Please try again later.",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd/:algorithm/:stale_after",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "public",
+                                                    "httpbin",
+                                                    "v1",
+                                                    "digest-auth",
+                                                    ":qop",
+                                                    ":user",
+                                                    ":passwd",
+                                                    ":algorithm",
+                                                    ":stale_after"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "qop"
+                                                    },
+                                                    {
+                                                      "key": "user"
+                                                    },
+                                                    {
+                                                      "key": "passwd"
+                                                    },
+                                                    {
+                                                      "key": "algorithm"
+                                                    },
+                                                    {
+                                                      "key": "stale_after"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Too Many Requests",
+                                              "code": 429,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-07-28T10:07:27.000Z",
+                                              "updatedAt": "2026-07-28T10:07:27.000Z",
+                                              "uid": "35240-27d14860-7527-496d-b0d1-8a9ba92d6338"
+                                            }
+                                          ],
+                                          "createdAt": "2026-07-28T10:07:27.000Z",
+                                          "updatedAt": "2026-07-28T10:07:27.000Z",
+                                          "uid": "35240-af11ec5d-c8ea-4734-a866-acb643c76d0f"
+                                        }
+                                      ],
+                                      "id": "bac79842-8c58-4e5f-b0e2-48494e613311",
+                                      "createdAt": "2026-07-28T10:07:26.000Z",
+                                      "updatedAt": "2026-07-28T10:07:26.000Z",
+                                      "uid": "35240-bac79842-8c58-4e5f-b0e2-48494e613311"
+                                    },
+                                    {
+                                      "name": "Prompts the user for authorization using Digest Auth + Algorithm.",
+                                      "id": "190642ef-3996-4764-bcb9-3ee6803b3d05",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd/:algorithm",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "httpbin",
+                                            "v1",
+                                            "digest-auth",
+                                            ":qop",
+                                            ":user",
+                                            ":passwd",
+                                            ":algorithm"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "c706d366-1ab4-447b-af8b-35912aab00ac",
+                                              "key": "qop",
+                                              "value": "<string>",
+                                              "description": "(Required) auth or auth-int"
+                                            },
+                                            {
+                                              "id": "fdff71e3-3686-4985-9176-66aab845f96a",
+                                              "key": "user",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "fdee81ea-38d5-4d13-b459-40ef2748bf66",
+                                              "key": "passwd",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "29b77b68-cd27-406f-845b-00609c4d2972",
+                                              "key": "algorithm",
+                                              "value": "MD5",
+                                              "description": "(Required) MD5, SHA-256, SHA-512"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "82d61357-ea4b-41db-866d-e36c7d7241a6",
+                                          "name": "Sucessful authentication.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd/:algorithm",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "httpbin",
+                                                "v1",
+                                                "digest-auth",
+                                                ":qop",
+                                                ":user",
+                                                ":passwd",
+                                                ":algorithm"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "qop"
+                                                },
+                                                {
+                                                  "key": "user"
+                                                },
+                                                {
+                                                  "key": "passwd"
+                                                },
+                                                {
+                                                  "key": "algorithm"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:27.000Z",
+                                          "updatedAt": "2026-07-28T10:07:27.000Z",
+                                          "uid": "35240-82d61357-ea4b-41db-866d-e36c7d7241a6"
+                                        },
+                                        {
+                                          "id": "6a0e5e3b-c1b1-40f1-87a3-63cb75e1bb18",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd/:algorithm",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "httpbin",
+                                                "v1",
+                                                "digest-auth",
+                                                ":qop",
+                                                ":user",
+                                                ":passwd",
+                                                ":algorithm"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "qop"
+                                                },
+                                                {
+                                                  "key": "user"
+                                                },
+                                                {
+                                                  "key": "passwd"
+                                                },
+                                                {
+                                                  "key": "algorithm"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:27.000Z",
+                                          "updatedAt": "2026-07-28T10:07:27.000Z",
+                                          "uid": "35240-6a0e5e3b-c1b1-40f1-87a3-63cb75e1bb18"
+                                        },
+                                        {
+                                          "id": "ba3b26be-0f47-4d08-b1e8-06d754ba3d93",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd/:algorithm",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "httpbin",
+                                                "v1",
+                                                "digest-auth",
+                                                ":qop",
+                                                ":user",
+                                                ":passwd",
+                                                ":algorithm"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "qop"
+                                                },
+                                                {
+                                                  "key": "user"
+                                                },
+                                                {
+                                                  "key": "passwd"
+                                                },
+                                                {
+                                                  "key": "algorithm"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:27.000Z",
+                                          "updatedAt": "2026-07-28T10:07:27.000Z",
+                                          "uid": "35240-ba3b26be-0f47-4d08-b1e8-06d754ba3d93"
+                                        },
+                                        {
+                                          "id": "4c0d05b1-2886-42cf-9913-ad2ac65f481f",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd/:algorithm",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "httpbin",
+                                                "v1",
+                                                "digest-auth",
+                                                ":qop",
+                                                ":user",
+                                                ":passwd",
+                                                ":algorithm"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "qop"
+                                                },
+                                                {
+                                                  "key": "user"
+                                                },
+                                                {
+                                                  "key": "passwd"
+                                                },
+                                                {
+                                                  "key": "algorithm"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:27.000Z",
+                                          "updatedAt": "2026-07-28T10:07:27.000Z",
+                                          "uid": "35240-4c0d05b1-2886-42cf-9913-ad2ac65f481f"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:07:27.000Z",
+                                      "updatedAt": "2026-07-28T10:07:27.000Z",
+                                      "uid": "35240-190642ef-3996-4764-bcb9-3ee6803b3d05"
+                                    }
+                                  ],
+                                  "id": "d938ec8b-d25c-415d-adbd-80738c020b1a",
+                                  "createdAt": "2026-07-28T10:07:26.000Z",
+                                  "updatedAt": "2026-07-28T10:07:26.000Z",
+                                  "uid": "35240-d938ec8b-d25c-415d-adbd-80738c020b1a"
+                                },
+                                {
+                                  "name": "Prompts the user for authorization using Digest Auth.",
+                                  "id": "d3d3682a-4767-4faf-a953-eef8fd92a11f",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "httpbin",
+                                        "v1",
+                                        "digest-auth",
+                                        ":qop",
+                                        ":user",
+                                        ":passwd"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "82409b41-0903-4676-8645-62178f619cb7",
+                                          "key": "qop",
+                                          "value": "<string>",
+                                          "description": "(Required) auth or auth-int"
+                                        },
+                                        {
+                                          "id": "849e0896-fd40-4542-9995-7cd443d833a5",
+                                          "key": "user",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "4344c1ee-6486-4b24-8f04-b4658efd0896",
+                                          "key": "passwd",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "50eb57c7-7d11-4fc7-b5a6-c8c96bf89608",
+                                      "name": "Sucessful authentication.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "httpbin",
+                                            "v1",
+                                            "digest-auth",
+                                            ":qop",
+                                            ":user",
+                                            ":passwd"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "qop"
+                                            },
+                                            {
+                                              "key": "user"
+                                            },
+                                            {
+                                              "key": "passwd"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:27.000Z",
+                                      "updatedAt": "2026-07-28T10:07:27.000Z",
+                                      "uid": "35240-50eb57c7-7d11-4fc7-b5a6-c8c96bf89608"
+                                    },
+                                    {
+                                      "id": "2be02405-f2e9-44e1-b51c-348723a6eb02",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "httpbin",
+                                            "v1",
+                                            "digest-auth",
+                                            ":qop",
+                                            ":user",
+                                            ":passwd"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "qop"
+                                            },
+                                            {
+                                              "key": "user"
+                                            },
+                                            {
+                                              "key": "passwd"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:27.000Z",
+                                      "updatedAt": "2026-07-28T10:07:27.000Z",
+                                      "uid": "35240-2be02405-f2e9-44e1-b51c-348723a6eb02"
+                                    },
+                                    {
+                                      "id": "b2a04f9b-1303-4175-8cc7-3ae31bfd96af",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "httpbin",
+                                            "v1",
+                                            "digest-auth",
+                                            ":qop",
+                                            ":user",
+                                            ":passwd"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "qop"
+                                            },
+                                            {
+                                              "key": "user"
+                                            },
+                                            {
+                                              "key": "passwd"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:27.000Z",
+                                      "updatedAt": "2026-07-28T10:07:27.000Z",
+                                      "uid": "35240-b2a04f9b-1303-4175-8cc7-3ae31bfd96af"
+                                    },
+                                    {
+                                      "id": "41ff0e2d-4980-4910-88e9-4f0590825fb6",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/httpbin/v1/digest-auth/:qop/:user/:passwd",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "httpbin",
+                                            "v1",
+                                            "digest-auth",
+                                            ":qop",
+                                            ":user",
+                                            ":passwd"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "qop"
+                                            },
+                                            {
+                                              "key": "user"
+                                            },
+                                            {
+                                              "key": "passwd"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:27.000Z",
+                                      "updatedAt": "2026-07-28T10:07:27.000Z",
+                                      "uid": "35240-41ff0e2d-4980-4910-88e9-4f0590825fb6"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:07:27.000Z",
+                                  "updatedAt": "2026-07-28T10:07:27.000Z",
+                                  "uid": "35240-d3d3682a-4767-4faf-a953-eef8fd92a11f"
+                                }
+                              ],
+                              "id": "7603090b-b98d-4e1d-97aa-912b1abc5916",
+                              "createdAt": "2026-07-28T10:07:26.000Z",
+                              "updatedAt": "2026-07-28T10:07:26.000Z",
+                              "uid": "35240-7603090b-b98d-4e1d-97aa-912b1abc5916"
+                            }
+                          ],
+                          "id": "ab0b4d0c-fd1e-482f-a0cb-adb69d2690df",
+                          "createdAt": "2026-07-28T10:07:26.000Z",
+                          "updatedAt": "2026-07-28T10:07:26.000Z",
+                          "uid": "35240-ab0b4d0c-fd1e-482f-a0cb-adb69d2690df"
+                        }
+                      ],
+                      "id": "7ece48f2-2a9e-45a1-8925-41b7a6a1dda4",
+                      "createdAt": "2026-07-28T10:07:26.000Z",
+                      "updatedAt": "2026-07-28T10:07:26.000Z",
+                      "uid": "35240-7ece48f2-2a9e-45a1-8925-41b7a6a1dda4"
+                    }
+                  ],
+                  "id": "763fc986-914f-42e1-8526-116328e24370",
+                  "createdAt": "2026-07-28T10:07:26.000Z",
+                  "updatedAt": "2026-07-28T10:07:26.000Z",
+                  "uid": "35240-763fc986-914f-42e1-8526-116328e24370"
+                },
+                {
+                  "name": "hidden-basic-auth",
+                  "item": [
+                    {
+                      "name": "{user}",
+                      "item": [
+                        {
+                          "name": "{passwd}",
+                          "item": [
+                            {
+                              "name": "Prompts the user for authorization using HTTP Basic Auth.",
+                              "id": "776a06a6-a238-4f8f-a7a1-68bda5045fa8",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/httpbin/v1/hidden-basic-auth/:user/:passwd",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "httpbin",
+                                    "v1",
+                                    "hidden-basic-auth",
+                                    ":user",
+                                    ":passwd"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "bce7e4a5-b926-41a0-b3a0-20df99512167",
+                                      "key": "user",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "c349201a-410d-436c-b8f9-2eb08a7a771e",
+                                      "key": "passwd",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "ccdc41e4-f20c-4fb4-b632-05f4b4400417",
+                                  "name": "Sucessful authentication.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/httpbin/v1/hidden-basic-auth/:user/:passwd",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "httpbin",
+                                        "v1",
+                                        "hidden-basic-auth",
+                                        ":user",
+                                        ":passwd"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "user"
+                                        },
+                                        {
+                                          "key": "passwd"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:27.000Z",
+                                  "updatedAt": "2026-07-28T10:07:27.000Z",
+                                  "uid": "35240-ccdc41e4-f20c-4fb4-b632-05f4b4400417"
+                                },
+                                {
+                                  "id": "bf1cf61d-668d-4e0f-9a85-4873a087af6a",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/httpbin/v1/hidden-basic-auth/:user/:passwd",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "httpbin",
+                                        "v1",
+                                        "hidden-basic-auth",
+                                        ":user",
+                                        ":passwd"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "user"
+                                        },
+                                        {
+                                          "key": "passwd"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:27.000Z",
+                                  "updatedAt": "2026-07-28T10:07:27.000Z",
+                                  "uid": "35240-bf1cf61d-668d-4e0f-9a85-4873a087af6a"
+                                },
+                                {
+                                  "id": "4a902709-c0bf-4a49-b72f-cbf0f182075e",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/httpbin/v1/hidden-basic-auth/:user/:passwd",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "httpbin",
+                                        "v1",
+                                        "hidden-basic-auth",
+                                        ":user",
+                                        ":passwd"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "user"
+                                        },
+                                        {
+                                          "key": "passwd"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:27.000Z",
+                                  "updatedAt": "2026-07-28T10:07:27.000Z",
+                                  "uid": "35240-4a902709-c0bf-4a49-b72f-cbf0f182075e"
+                                },
+                                {
+                                  "id": "5e69d8f3-7e8b-4fc8-871e-3bc5cde77c6a",
+                                  "name": "Unsuccessful authentication.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/httpbin/v1/hidden-basic-auth/:user/:passwd",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "httpbin",
+                                        "v1",
+                                        "hidden-basic-auth",
+                                        ":user",
+                                        ":passwd"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "user"
+                                        },
+                                        {
+                                          "key": "passwd"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:27.000Z",
+                                  "updatedAt": "2026-07-28T10:07:27.000Z",
+                                  "uid": "35240-5e69d8f3-7e8b-4fc8-871e-3bc5cde77c6a"
+                                },
+                                {
+                                  "id": "2c9ad7c6-76e4-414b-804b-be260cb4f9f3",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/httpbin/v1/hidden-basic-auth/:user/:passwd",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "httpbin",
+                                        "v1",
+                                        "hidden-basic-auth",
+                                        ":user",
+                                        ":passwd"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "user"
+                                        },
+                                        {
+                                          "key": "passwd"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:27.000Z",
+                                  "updatedAt": "2026-07-28T10:07:27.000Z",
+                                  "uid": "35240-2c9ad7c6-76e4-414b-804b-be260cb4f9f3"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:27.000Z",
+                              "updatedAt": "2026-07-28T10:07:27.000Z",
+                              "uid": "35240-776a06a6-a238-4f8f-a7a1-68bda5045fa8"
+                            }
+                          ],
+                          "id": "aa010a5c-ab64-4013-b0ad-105d4c93043e",
+                          "createdAt": "2026-07-28T10:07:26.000Z",
+                          "updatedAt": "2026-07-28T10:07:26.000Z",
+                          "uid": "35240-aa010a5c-ab64-4013-b0ad-105d4c93043e"
+                        }
+                      ],
+                      "id": "bee49373-f7f7-4aab-b33a-b4bb1277bfa6",
+                      "createdAt": "2026-07-28T10:07:26.000Z",
+                      "updatedAt": "2026-07-28T10:07:26.000Z",
+                      "uid": "35240-bee49373-f7f7-4aab-b33a-b4bb1277bfa6"
+                    }
+                  ],
+                  "id": "0d1013f1-c9ba-4372-9117-160b567f9751",
+                  "createdAt": "2026-07-28T10:07:26.000Z",
+                  "updatedAt": "2026-07-28T10:07:26.000Z",
+                  "uid": "35240-0d1013f1-c9ba-4372-9117-160b567f9751"
+                }
+              ],
+              "id": "a9168e93-3c17-4dc0-9af8-1f56bbe6a72f",
+              "createdAt": "2026-07-28T10:07:26.000Z",
+              "updatedAt": "2026-07-28T10:07:26.000Z",
+              "uid": "35240-a9168e93-3c17-4dc0-9af8-1f56bbe6a72f"
+            }
+          ],
+          "id": "06d3dce6-7bd2-41cf-a779-2a21a77ce13c",
+          "createdAt": "2026-07-28T10:07:26.000Z",
+          "updatedAt": "2026-07-28T10:07:26.000Z",
+          "uid": "35240-06d3dce6-7bd2-41cf-a779-2a21a77ce13c"
+        }
+      ],
+      "id": "f02e5ee3-9eb0-409b-8a79-ad798aa66fa4",
+      "createdAt": "2026-07-28T10:07:26.000Z",
+      "updatedAt": "2026-07-28T10:07:26.000Z",
+      "uid": "35240-f02e5ee3-9eb0-409b-8a79-ad798aa66fa4"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

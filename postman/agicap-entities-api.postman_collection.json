@@ -1,0 +1,701 @@
+{
+  "info": {
+    "_postman_id": "c07905d8-f437-4e93-b4be-4b3543f53d44",
+    "name": "Clients AR Account reports Entities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:07:55.000Z",
+    "updatedAt": "2026-07-28T10:07:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c07905d8-f437-4e93-b4be-4b3543f53d44"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "organizations",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "{organizationId}",
+                  "item": [
+                    {
+                      "name": "entities",
+                      "item": [
+                        {
+                          "name": "List organization's entities",
+                          "id": "045b5a14-6441-4e4b-a1c8-2186b1d89060",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/public/organizations/v1/:organizationId/entities?pageNumber=<integer>&pageSize=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "public",
+                                "organizations",
+                                "v1",
+                                ":organizationId",
+                                "entities"
+                              ],
+                              "query": [
+                                {
+                                  "key": "pageNumber",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "key": "pageSize",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f9e58b44-b28d-45fa-a886-24cfa027df68",
+                                  "key": "organizationId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Retrieve all entities belonging to the organizationId specified in the url."
+                          },
+                          "response": [
+                            {
+                              "id": "7bd063e5-7b3b-4113-8807-a0c7d368d124",
+                              "name": "All entities belonging to the specified organization.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/organizations/v1/:organizationId/entities?pageNumber=<integer>&pageSize=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "organizations",
+                                    "v1",
+                                    ":organizationId",
+                                    "entities"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "pageNumber",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "pageSize",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"currentPageItemsCount\": \"<integer>\",\n    \"currentPageNumber\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"pagesCount\": \"<integer>\",\n    \"totalItemsCount\": \"<integer>\"\n  }\n}",
+                              "createdAt": "2026-07-28T10:07:56.000Z",
+                              "updatedAt": "2026-07-28T10:07:56.000Z",
+                              "uid": "35240-7bd063e5-7b3b-4113-8807-a0c7d368d124"
+                            },
+                            {
+                              "id": "c0e8b29c-7257-4843-b992-f20111b6923c",
+                              "name": "Unauthorized request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/organizations/v1/:organizationId/entities?pageNumber=<integer>&pageSize=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "organizations",
+                                    "v1",
+                                    ":organizationId",
+                                    "entities"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "pageNumber",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "pageSize",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:07:56.000Z",
+                              "updatedAt": "2026-07-28T10:07:56.000Z",
+                              "uid": "35240-c0e8b29c-7257-4843-b992-f20111b6923c"
+                            },
+                            {
+                              "id": "92f63060-eafa-4eea-9236-2615f1508756",
+                              "name": "Forbidden request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/organizations/v1/:organizationId/entities?pageNumber=<integer>&pageSize=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "organizations",
+                                    "v1",
+                                    ":organizationId",
+                                    "entities"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "pageNumber",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "pageSize",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:07:56.000Z",
+                              "updatedAt": "2026-07-28T10:07:56.000Z",
+                              "uid": "35240-92f63060-eafa-4eea-9236-2615f1508756"
+                            },
+                            {
+                              "id": "3c76b3a8-5d78-46a5-b8f6-5d1f31370f20",
+                              "name": "Too many requests. Please try again later.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/organizations/v1/:organizationId/entities?pageNumber=<integer>&pageSize=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "organizations",
+                                    "v1",
+                                    ":organizationId",
+                                    "entities"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "pageNumber",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "pageSize",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:07:56.000Z",
+                              "updatedAt": "2026-07-28T10:07:56.000Z",
+                              "uid": "35240-3c76b3a8-5d78-46a5-b8f6-5d1f31370f20"
+                            },
+                            {
+                              "id": "56f8c867-1a9c-414a-ba52-45c9bcb19fdf",
+                              "name": "An internal server occurred.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/organizations/v1/:organizationId/entities?pageNumber=<integer>&pageSize=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "organizations",
+                                    "v1",
+                                    ":organizationId",
+                                    "entities"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "pageNumber",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "pageSize",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:07:56.000Z",
+                              "updatedAt": "2026-07-28T10:07:56.000Z",
+                              "uid": "35240-56f8c867-1a9c-414a-ba52-45c9bcb19fdf"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T10:07:55.000Z",
+                          "updatedAt": "2026-07-28T10:07:55.000Z",
+                          "uid": "35240-045b5a14-6441-4e4b-a1c8-2186b1d89060"
+                        }
+                      ],
+                      "id": "29ddb438-5878-46ae-aff7-2fd16fb2919e",
+                      "createdAt": "2026-07-28T10:07:55.000Z",
+                      "updatedAt": "2026-07-28T10:07:55.000Z",
+                      "uid": "35240-29ddb438-5878-46ae-aff7-2fd16fb2919e"
+                    }
+                  ],
+                  "id": "127a9710-20cb-4db4-be56-685a664d8bb3",
+                  "createdAt": "2026-07-28T10:07:55.000Z",
+                  "updatedAt": "2026-07-28T10:07:55.000Z",
+                  "uid": "35240-127a9710-20cb-4db4-be56-685a664d8bb3"
+                },
+                {
+                  "name": "List organizations",
+                  "id": "3a230b25-22b9-4b85-b827-f7560b2ed34a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/public/organizations/v1?pageNumber=<integer>&pageSize=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "public",
+                        "organizations",
+                        "v1"
+                      ],
+                      "query": [
+                        {
+                          "key": "pageNumber",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "pageSize",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all organizations accessible with the provided access token."
+                  },
+                  "response": [
+                    {
+                      "id": "1bda7683-e803-45a4-820e-ada21fd5c8a2",
+                      "name": "All accessible organizations.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/public/organizations/v1?pageNumber=<integer>&pageSize=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "public",
+                            "organizations",
+                            "v1"
+                          ],
+                          "query": [
+                            {
+                              "key": "pageNumber",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "pageSize",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"currentPageItemsCount\": \"<integer>\",\n    \"currentPageNumber\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"pagesCount\": \"<integer>\",\n    \"totalItemsCount\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T10:07:56.000Z",
+                      "updatedAt": "2026-07-28T10:07:56.000Z",
+                      "uid": "35240-1bda7683-e803-45a4-820e-ada21fd5c8a2"
+                    },
+                    {
+                      "id": "3c695c05-8f0b-48f2-a992-784f6564066f",
+                      "name": "Unauthorized request.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/public/organizations/v1?pageNumber=<integer>&pageSize=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "public",
+                            "organizations",
+                            "v1"
+                          ],
+                          "query": [
+                            {
+                              "key": "pageNumber",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "pageSize",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T10:07:56.000Z",
+                      "updatedAt": "2026-07-28T10:07:56.000Z",
+                      "uid": "35240-3c695c05-8f0b-48f2-a992-784f6564066f"
+                    },
+                    {
+                      "id": "8400c2aa-15c6-4b2a-a70f-176a10e5831d",
+                      "name": "Forbidden request.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/public/organizations/v1?pageNumber=<integer>&pageSize=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "public",
+                            "organizations",
+                            "v1"
+                          ],
+                          "query": [
+                            {
+                              "key": "pageNumber",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "pageSize",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T10:07:56.000Z",
+                      "updatedAt": "2026-07-28T10:07:56.000Z",
+                      "uid": "35240-8400c2aa-15c6-4b2a-a70f-176a10e5831d"
+                    },
+                    {
+                      "id": "398725a8-a32e-479e-ad6b-864a566ce0ba",
+                      "name": "Too many requests. Please try again later.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/public/organizations/v1?pageNumber=<integer>&pageSize=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "public",
+                            "organizations",
+                            "v1"
+                          ],
+                          "query": [
+                            {
+                              "key": "pageNumber",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "pageSize",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T10:07:56.000Z",
+                      "updatedAt": "2026-07-28T10:07:56.000Z",
+                      "uid": "35240-398725a8-a32e-479e-ad6b-864a566ce0ba"
+                    },
+                    {
+                      "id": "be57bc4b-a95e-400d-bc56-ce7fc9b8a48e",
+                      "name": "An internal server occurred.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/public/organizations/v1?pageNumber=<integer>&pageSize=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "public",
+                            "organizations",
+                            "v1"
+                          ],
+                          "query": [
+                            {
+                              "key": "pageNumber",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "pageSize",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T10:07:56.000Z",
+                      "updatedAt": "2026-07-28T10:07:56.000Z",
+                      "uid": "35240-be57bc4b-a95e-400d-bc56-ce7fc9b8a48e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T10:07:55.000Z",
+                  "updatedAt": "2026-07-28T10:07:55.000Z",
+                  "uid": "35240-3a230b25-22b9-4b85-b827-f7560b2ed34a"
+                }
+              ],
+              "id": "b5871a97-63ca-420b-a0cf-325ba5399dc8",
+              "createdAt": "2026-07-28T10:07:55.000Z",
+              "updatedAt": "2026-07-28T10:07:55.000Z",
+              "uid": "35240-b5871a97-63ca-420b-a0cf-325ba5399dc8"
+            }
+          ],
+          "id": "3950ce7c-6fbe-4864-81c4-54bcabe924d3",
+          "createdAt": "2026-07-28T10:07:55.000Z",
+          "updatedAt": "2026-07-28T10:07:55.000Z",
+          "uid": "35240-3950ce7c-6fbe-4864-81c4-54bcabe924d3"
+        }
+      ],
+      "id": "3a7a0ea1-e118-4067-8dcd-89241ee6d44c",
+      "createdAt": "2026-07-28T10:07:55.000Z",
+      "updatedAt": "2026-07-28T10:07:55.000Z",
+      "uid": "35240-3a7a0ea1-e118-4067-8dcd-89241ee6d44c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

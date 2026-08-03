@@ -1,0 +1,2577 @@
+{
+  "info": {
+    "_postman_id": "88ab41f8-abf6-4a65-b18c-b63a2e259a7f",
+    "name": "Clients AR Account reports Client Quotes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:07:45.000Z",
+    "updatedAt": "2026-07-28T10:07:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-88ab41f8-abf6-4a65-b18c-b63a2e259a7f"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "business-documents",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityid}",
+                      "item": [
+                        {
+                          "name": "connections",
+                          "item": [
+                            {
+                              "name": "{connectionid}",
+                              "item": [
+                                {
+                                  "name": "client-quotes",
+                                  "item": [
+                                    {
+                                      "name": "Get client quotes",
+                                      "id": "6a1db614-ff4d-43ed-be1c-8096a7ba0585",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "business-documents",
+                                            "v1",
+                                            "entities",
+                                            ":entityid",
+                                            "connections",
+                                            ":connectionid",
+                                            "client-quotes"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Number of items per page (max 10 000)",
+                                              "key": "pagesize",
+                                              "value": "<integer>"
+                                            },
+                                            {
+                                              "description": "Page index",
+                                              "key": "pageindex",
+                                              "value": "<integer>"
+                                            },
+                                            {
+                                              "description": "Unique identifier of the document in the data source",
+                                              "key": "externalids",
+                                              "value": "<string>,<string>"
+                                            },
+                                            {
+                                              "description": "Will return only documents updated **after** this date",
+                                              "key": "updatedsince",
+                                              "value": "<dateTime>"
+                                            },
+                                            {
+                                              "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                              "key": "status",
+                                              "value": "<string>,<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "9c895327-2f86-45b7-b475-760e9f80a9ba",
+                                              "key": "entityid",
+                                              "value": "<string>",
+                                              "description": "(Required) Agicap entity unique identifier"
+                                            },
+                                            {
+                                              "id": "8ffa6214-f171-4644-923b-7e4e4df1983e",
+                                              "key": "connectionid",
+                                              "value": "<uuid>",
+                                              "description": "(Required) The connection unique identifier"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "a5c3d11d-abb3-4d0c-84b5-cfc7836c30a1",
+                                          "name": "Client quotes",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"items\": [\n    {\n      \"amounts\": {\n        \"totalAmount\": \"<double>\",\n        \"remainingAmount\": \"<double>\",\n        \"taxesAmount\": \"<double>\"\n      },\n      \"currency\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"status\": \"<string>\",\n      \"counterParty\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"dueDate\": \"<dateTime>\",\n      \"erpIdentificationFields\": {\n        \"quid\": \"<string>\",\n        \"fugiat41f\": \"<string>\"\n      },\n      \"issueDate\": \"<dateTime>\",\n      \"label\": \"<string>\",\n      \"metadata\": {\n        \"nonbe\": \"<string>\",\n        \"aute_d2f\": \"<string>\"\n      },\n      \"quoteNumber\": \"<string>\"\n    },\n    {\n      \"amounts\": {\n        \"totalAmount\": \"<double>\",\n        \"remainingAmount\": \"<double>\",\n        \"taxesAmount\": \"<double>\"\n      },\n      \"currency\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"status\": \"<string>\",\n      \"counterParty\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"dueDate\": \"<dateTime>\",\n      \"erpIdentificationFields\": {\n        \"eub2d\": \"<string>\",\n        \"esse_9\": \"<string>\"\n      },\n      \"issueDate\": \"<dateTime>\",\n      \"label\": \"<string>\",\n      \"metadata\": {\n        \"enim_66\": \"<string>\",\n        \"velit05d\": \"<string>\"\n      },\n      \"quoteNumber\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"pageIndex\": \"<integer>\",\n    \"pageItemsCount\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItemsCount\": \"<integer>\"\n  }\n}",
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-a5c3d11d-abb3-4d0c-84b5-cfc7836c30a1"
+                                        },
+                                        {
+                                          "id": "ce2f4a7c-1885-4b9e-b8fe-fbd490be1fcd",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-ce2f4a7c-1885-4b9e-b8fe-fbd490be1fcd"
+                                        },
+                                        {
+                                          "id": "1c8a84fc-a8a7-4954-ba75-c2856491801a",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-1c8a84fc-a8a7-4954-ba75-c2856491801a"
+                                        },
+                                        {
+                                          "id": "6f78e5e1-c842-48a8-85ff-724b907c22e9",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-6f78e5e1-c842-48a8-85ff-724b907c22e9"
+                                        },
+                                        {
+                                          "id": "60179e54-210e-4102-8ff9-7d73a4b661b6",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-60179e54-210e-4102-8ff9-7d73a4b661b6"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:07:46.000Z",
+                                      "updatedAt": "2026-07-28T10:07:46.000Z",
+                                      "uid": "35240-6a1db614-ff4d-43ed-be1c-8096a7ba0585"
+                                    },
+                                    {
+                                      "name": "Create client quotes",
+                                      "id": "f6a1717e-b895-4694-a5c9-dd1d207dbdb3",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"aute__80\": \"<string>\",\n      \"ut2\": \"<string>\",\n      \"temporf_6\": \"<string>\",\n      \"aliquip_a3b\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"exercitation2\": \"<string>\",\n      \"amet_3\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"amet_7f6\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"do_c\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  }\n]",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "business-documents",
+                                            "v1",
+                                            "entities",
+                                            ":entityid",
+                                            "connections",
+                                            ":connectionid",
+                                            "client-quotes"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "cec20211-107a-48f4-8ead-a60b9fc0f036",
+                                              "key": "entityid",
+                                              "value": "<string>",
+                                              "description": "(Required) Agicap entity unique identifier"
+                                            },
+                                            {
+                                              "id": "5b02a92f-b959-4856-bce4-072d3804b227",
+                                              "key": "connectionid",
+                                              "value": "<uuid>",
+                                              "description": "(Required) The connection unique identifier"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "97ad1f7e-d3af-4505-bbcf-a6ce93791464",
+                                          "name": "Ids of the created documents, associated with the provided external identifiers",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"aute__80\": \"<string>\",\n      \"ut2\": \"<string>\",\n      \"temporf_6\": \"<string>\",\n      \"aliquip_a3b\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"exercitation2\": \"<string>\",\n      \"amet_3\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"amet_7f6\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"do_c\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Created",
+                                          "code": 201,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "[\n  {\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\"\n  },\n  {\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\"\n  }\n]",
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-97ad1f7e-d3af-4505-bbcf-a6ce93791464"
+                                        },
+                                        {
+                                          "id": "5d38e3e6-6b8b-4776-ae92-b0e06ef8e4ae",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"aute__80\": \"<string>\",\n      \"ut2\": \"<string>\",\n      \"temporf_6\": \"<string>\",\n      \"aliquip_a3b\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"exercitation2\": \"<string>\",\n      \"amet_3\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"amet_7f6\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"do_c\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-5d38e3e6-6b8b-4776-ae92-b0e06ef8e4ae"
+                                        },
+                                        {
+                                          "id": "5963f069-535f-40de-bf98-788b263880c1",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"aute__80\": \"<string>\",\n      \"ut2\": \"<string>\",\n      \"temporf_6\": \"<string>\",\n      \"aliquip_a3b\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"exercitation2\": \"<string>\",\n      \"amet_3\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"amet_7f6\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"do_c\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-5963f069-535f-40de-bf98-788b263880c1"
+                                        },
+                                        {
+                                          "id": "56b715c5-4463-4ce3-b97c-6ed6f0810fdc",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"aute__80\": \"<string>\",\n      \"ut2\": \"<string>\",\n      \"temporf_6\": \"<string>\",\n      \"aliquip_a3b\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"exercitation2\": \"<string>\",\n      \"amet_3\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"amet_7f6\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"do_c\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-56b715c5-4463-4ce3-b97c-6ed6f0810fdc"
+                                        },
+                                        {
+                                          "id": "134f98fc-c6cf-4c7d-a022-c0be7b63abae",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"aute__80\": \"<string>\",\n      \"ut2\": \"<string>\",\n      \"temporf_6\": \"<string>\",\n      \"aliquip_a3b\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"exercitation2\": \"<string>\",\n      \"amet_3\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"amet_7f6\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"do_c\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-134f98fc-c6cf-4c7d-a022-c0be7b63abae"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:07:46.000Z",
+                                      "updatedAt": "2026-07-28T10:07:46.000Z",
+                                      "uid": "35240-f6a1717e-b895-4694-a5c9-dd1d207dbdb3"
+                                    },
+                                    {
+                                      "name": "Update client quotes",
+                                      "id": "92d22510-ddb7-4d21-a7b7-62c3a5cc9522",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"aliquip_f81\": \"<string>\",\n      \"et_9c2\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"tempor665\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"enim_9\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"laborum_79e\": \"<string>\",\n      \"pariatur6\": \"<string>\",\n      \"ipsumd2\": \"<string>\",\n      \"ea1\": \"<string>\",\n      \"in_2\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  }\n]",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "business-documents",
+                                            "v1",
+                                            "entities",
+                                            ":entityid",
+                                            "connections",
+                                            ":connectionid",
+                                            "client-quotes"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "881a8ffa-4980-44b7-8d3d-ad4d6619434e",
+                                              "key": "entityid",
+                                              "value": "<string>",
+                                              "description": "(Required) Agicap entity unique identifier"
+                                            },
+                                            {
+                                              "id": "21a46a0f-ad8b-4cd8-8f5f-3f9b89e465c6",
+                                              "key": "connectionid",
+                                              "value": "<uuid>",
+                                              "description": "(Required) The connection unique identifier"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "b568cfd7-6a02-4463-a85b-9d8147258581",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"aliquip_f81\": \"<string>\",\n      \"et_9c2\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"tempor665\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"enim_9\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"laborum_79e\": \"<string>\",\n      \"pariatur6\": \"<string>\",\n      \"ipsumd2\": \"<string>\",\n      \"ea1\": \"<string>\",\n      \"in_2\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-b568cfd7-6a02-4463-a85b-9d8147258581"
+                                        },
+                                        {
+                                          "id": "5e1dcf75-9b88-4b97-801b-2a2dd91f47e8",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"aliquip_f81\": \"<string>\",\n      \"et_9c2\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"tempor665\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"enim_9\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"laborum_79e\": \"<string>\",\n      \"pariatur6\": \"<string>\",\n      \"ipsumd2\": \"<string>\",\n      \"ea1\": \"<string>\",\n      \"in_2\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-5e1dcf75-9b88-4b97-801b-2a2dd91f47e8"
+                                        },
+                                        {
+                                          "id": "208e8c5b-6f04-4b37-b3b0-8bc6e51a05e8",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"aliquip_f81\": \"<string>\",\n      \"et_9c2\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"tempor665\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"enim_9\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"laborum_79e\": \"<string>\",\n      \"pariatur6\": \"<string>\",\n      \"ipsumd2\": \"<string>\",\n      \"ea1\": \"<string>\",\n      \"in_2\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-208e8c5b-6f04-4b37-b3b0-8bc6e51a05e8"
+                                        },
+                                        {
+                                          "id": "5241d1bb-dc8f-48ab-a717-e6448aa62101",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"aliquip_f81\": \"<string>\",\n      \"et_9c2\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"tempor665\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"enim_9\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"laborum_79e\": \"<string>\",\n      \"pariatur6\": \"<string>\",\n      \"ipsumd2\": \"<string>\",\n      \"ea1\": \"<string>\",\n      \"in_2\": \"<string>\"\n    },\n    \"quoteNumber\": \"<string>\"\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v1/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v1",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-5241d1bb-dc8f-48ab-a717-e6448aa62101"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:07:46.000Z",
+                                      "updatedAt": "2026-07-28T10:07:46.000Z",
+                                      "uid": "35240-92d22510-ddb7-4d21-a7b7-62c3a5cc9522"
+                                    }
+                                  ],
+                                  "id": "0fc34d29-38a2-47de-acfc-0b0357fae8ec",
+                                  "createdAt": "2026-07-28T10:07:46.000Z",
+                                  "updatedAt": "2026-07-28T10:07:46.000Z",
+                                  "uid": "35240-0fc34d29-38a2-47de-acfc-0b0357fae8ec"
+                                }
+                              ],
+                              "id": "3dec537a-b587-4b6a-a631-9247c10fb135",
+                              "createdAt": "2026-07-28T10:07:46.000Z",
+                              "updatedAt": "2026-07-28T10:07:46.000Z",
+                              "uid": "35240-3dec537a-b587-4b6a-a631-9247c10fb135"
+                            }
+                          ],
+                          "id": "86876be1-5656-4bfe-98fb-1f11fd8d1a92",
+                          "createdAt": "2026-07-28T10:07:46.000Z",
+                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                          "uid": "35240-86876be1-5656-4bfe-98fb-1f11fd8d1a92"
+                        }
+                      ],
+                      "id": "8e9a0cf9-7d14-4370-b76b-958e831f5e4c",
+                      "createdAt": "2026-07-28T10:07:46.000Z",
+                      "updatedAt": "2026-07-28T10:07:46.000Z",
+                      "uid": "35240-8e9a0cf9-7d14-4370-b76b-958e831f5e4c"
+                    }
+                  ],
+                  "id": "1040eeb7-f21c-44f6-a309-1f5c7db14143",
+                  "createdAt": "2026-07-28T10:07:46.000Z",
+                  "updatedAt": "2026-07-28T10:07:46.000Z",
+                  "uid": "35240-1040eeb7-f21c-44f6-a309-1f5c7db14143"
+                }
+              ],
+              "id": "7774501d-9d4a-4601-a5a7-1cf2d972acdc",
+              "createdAt": "2026-07-28T10:07:46.000Z",
+              "updatedAt": "2026-07-28T10:07:46.000Z",
+              "uid": "35240-7774501d-9d4a-4601-a5a7-1cf2d972acdc"
+            },
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityid}",
+                      "item": [
+                        {
+                          "name": "connections",
+                          "item": [
+                            {
+                              "name": "{connectionid}",
+                              "item": [
+                                {
+                                  "name": "client-quotes",
+                                  "item": [
+                                    {
+                                      "name": "Get client quotes",
+                                      "id": "5dfdcd6b-d250-443b-bed8-83a5f7909a0b",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "business-documents",
+                                            "v2",
+                                            "entities",
+                                            ":entityid",
+                                            "connections",
+                                            ":connectionid",
+                                            "client-quotes"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Number of items per page (max 10 000)",
+                                              "key": "pagesize",
+                                              "value": "<integer>"
+                                            },
+                                            {
+                                              "description": "Page index",
+                                              "key": "pageindex",
+                                              "value": "<integer>"
+                                            },
+                                            {
+                                              "description": "Unique identifier of the document in the data source",
+                                              "key": "externalids",
+                                              "value": "<string>,<string>"
+                                            },
+                                            {
+                                              "description": "Will return only documents updated **after** this date",
+                                              "key": "updatedsince",
+                                              "value": "<dateTime>"
+                                            },
+                                            {
+                                              "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                              "key": "status",
+                                              "value": "<string>,<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "2433b41e-853a-4dc3-a070-1ab04d616195",
+                                              "key": "entityid",
+                                              "value": "<string>",
+                                              "description": "(Required) Agicap entity unique identifier"
+                                            },
+                                            {
+                                              "id": "3350ef74-7f3f-4b60-9168-a34dd8b48107",
+                                              "key": "connectionid",
+                                              "value": "<uuid>",
+                                              "description": "(Required) The connection unique identifier"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "adc146b8-ce55-4b65-99d2-3c7923e8cb1b",
+                                          "name": "Client quotes",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"items\": [\n    {\n      \"amounts\": {\n        \"totalAmount\": \"<double>\",\n        \"remainingAmount\": \"<double>\",\n        \"taxesAmount\": \"<double>\"\n      },\n      \"currency\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"status\": \"<string>\",\n      \"counterParty\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"dueDate\": \"<dateTime>\",\n      \"erpIdentificationFields\": {\n        \"quid\": \"<string>\",\n        \"fugiat41f\": \"<string>\"\n      },\n      \"issueDate\": \"<dateTime>\",\n      \"label\": \"<string>\",\n      \"metadata\": {\n        \"nonbe\": \"<string>\",\n        \"aute_d2f\": \"<string>\"\n      },\n      \"quoteNumber\": \"<string>\"\n    },\n    {\n      \"amounts\": {\n        \"totalAmount\": \"<double>\",\n        \"remainingAmount\": \"<double>\",\n        \"taxesAmount\": \"<double>\"\n      },\n      \"currency\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"status\": \"<string>\",\n      \"counterParty\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"dueDate\": \"<dateTime>\",\n      \"erpIdentificationFields\": {\n        \"eub2d\": \"<string>\",\n        \"esse_9\": \"<string>\"\n      },\n      \"issueDate\": \"<dateTime>\",\n      \"label\": \"<string>\",\n      \"metadata\": {\n        \"enim_66\": \"<string>\",\n        \"velit05d\": \"<string>\"\n      },\n      \"quoteNumber\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"pageIndex\": \"<integer>\",\n    \"pageItemsCount\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItemsCount\": \"<integer>\"\n  }\n}",
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-adc146b8-ce55-4b65-99d2-3c7923e8cb1b"
+                                        },
+                                        {
+                                          "id": "2d3be9a7-60b8-49a5-870c-009942119f3b",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-2d3be9a7-60b8-49a5-870c-009942119f3b"
+                                        },
+                                        {
+                                          "id": "3f2861f9-5a7c-4bb1-9b6f-8efd5f167d03",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-3f2861f9-5a7c-4bb1-9b6f-8efd5f167d03"
+                                        },
+                                        {
+                                          "id": "d26241fe-3d33-4c24-9b1c-8a6fb8f660c5",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-d26241fe-3d33-4c24-9b1c-8a6fb8f660c5"
+                                        },
+                                        {
+                                          "id": "c485bc62-253b-41d9-892d-3f2fcaf15f2f",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes?pagesize=<integer>&pageindex=<integer>&externalids=<string>,<string>&updatedsince=<dateTime>&status=<string>,<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Number of items per page (max 10 000)",
+                                                  "key": "pagesize",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Page index",
+                                                  "key": "pageindex",
+                                                  "value": "<integer>"
+                                                },
+                                                {
+                                                  "description": "Unique identifier of the document in the data source",
+                                                  "key": "externalids",
+                                                  "value": "<string>,<string>"
+                                                },
+                                                {
+                                                  "description": "Will return only documents updated **after** this date",
+                                                  "key": "updatedsince",
+                                                  "value": "<dateTime>"
+                                                },
+                                                {
+                                                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted",
+                                                  "key": "status",
+                                                  "value": "<string>,<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-c485bc62-253b-41d9-892d-3f2fcaf15f2f"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:07:46.000Z",
+                                      "updatedAt": "2026-07-28T10:07:46.000Z",
+                                      "uid": "35240-5dfdcd6b-d250-443b-bed8-83a5f7909a0b"
+                                    },
+                                    {
+                                      "name": "Create client quotes",
+                                      "id": "74ca1ecd-ac2d-4a12-881b-0d13b193aee4",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"velitfc\": \"<string>\",\n      \"adipisicing_97\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"velit_4_\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"magna76\": \"<string>\",\n      \"velit79_\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"est_3e\": \"<string>\"\n    }\n  }\n]",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "business-documents",
+                                            "v2",
+                                            "entities",
+                                            ":entityid",
+                                            "connections",
+                                            ":connectionid",
+                                            "client-quotes"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "23d3ef81-605e-4835-9d3f-8c43327674eb",
+                                              "key": "entityid",
+                                              "value": "<string>",
+                                              "description": "(Required) Agicap entity unique identifier"
+                                            },
+                                            {
+                                              "id": "4daef530-1a6f-409a-b2cf-94721d678b78",
+                                              "key": "connectionid",
+                                              "value": "<uuid>",
+                                              "description": "(Required) The connection unique identifier"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "4badf4f1-5435-4704-90f4-f1f693544b4d",
+                                          "name": "Ids of the created documents, associated with the provided external identifiers",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"velitfc\": \"<string>\",\n      \"adipisicing_97\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"velit_4_\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"magna76\": \"<string>\",\n      \"velit79_\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"est_3e\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Created",
+                                          "code": 201,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "[\n  {\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\"\n  },\n  {\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\"\n  }\n]",
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-4badf4f1-5435-4704-90f4-f1f693544b4d"
+                                        },
+                                        {
+                                          "id": "75645abb-ca02-4250-8671-726d8b617399",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"velitfc\": \"<string>\",\n      \"adipisicing_97\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"velit_4_\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"magna76\": \"<string>\",\n      \"velit79_\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"est_3e\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-75645abb-ca02-4250-8671-726d8b617399"
+                                        },
+                                        {
+                                          "id": "636531a3-0cda-4431-a191-217fa10c2ac4",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"velitfc\": \"<string>\",\n      \"adipisicing_97\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"velit_4_\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"magna76\": \"<string>\",\n      \"velit79_\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"est_3e\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-636531a3-0cda-4431-a191-217fa10c2ac4"
+                                        },
+                                        {
+                                          "id": "9c5924ff-2d0b-40c6-b04b-ae72732d7d6d",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"velitfc\": \"<string>\",\n      \"adipisicing_97\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"velit_4_\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"magna76\": \"<string>\",\n      \"velit79_\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"est_3e\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-9c5924ff-2d0b-40c6-b04b-ae72732d7d6d"
+                                        },
+                                        {
+                                          "id": "31bf7828-9e02-4da4-ba4d-7c6cbfc5aec2",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"velitfc\": \"<string>\",\n      \"adipisicing_97\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"velit_4_\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"magna76\": \"<string>\",\n      \"velit79_\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"est_3e\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-31bf7828-9e02-4da4-ba4d-7c6cbfc5aec2"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:07:46.000Z",
+                                      "updatedAt": "2026-07-28T10:07:46.000Z",
+                                      "uid": "35240-74ca1ecd-ac2d-4a12-881b-0d13b193aee4"
+                                    },
+                                    {
+                                      "name": "Update client quotes",
+                                      "id": "2797b419-74b0-465f-ad2a-266a5e1ab30d",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"id899\": \"<string>\",\n      \"anim_1b\": \"<string>\",\n      \"consectetur_9e\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"id99d\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"veniam424\": \"<string>\",\n      \"laborum6b\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"Excepteur_7\": \"<string>\"\n    }\n  }\n]",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "business-documents",
+                                            "v2",
+                                            "entities",
+                                            ":entityid",
+                                            "connections",
+                                            ":connectionid",
+                                            "client-quotes"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "6401c15b-5090-42e2-b86b-2a5dca8b905f",
+                                              "key": "entityid",
+                                              "value": "<string>",
+                                              "description": "(Required) Agicap entity unique identifier"
+                                            },
+                                            {
+                                              "id": "62e0c193-0c44-47c8-b950-61a1ef05d12f",
+                                              "key": "connectionid",
+                                              "value": "<uuid>",
+                                              "description": "(Required) The connection unique identifier"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "f84cf3bc-8a81-4dd4-b9dc-283431f3afe5",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"id899\": \"<string>\",\n      \"anim_1b\": \"<string>\",\n      \"consectetur_9e\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"id99d\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"veniam424\": \"<string>\",\n      \"laborum6b\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"Excepteur_7\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-f84cf3bc-8a81-4dd4-b9dc-283431f3afe5"
+                                        },
+                                        {
+                                          "id": "0c52a0d2-10a5-4dcc-a587-cb81f428270f",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"id899\": \"<string>\",\n      \"anim_1b\": \"<string>\",\n      \"consectetur_9e\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"id99d\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"veniam424\": \"<string>\",\n      \"laborum6b\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"Excepteur_7\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-0c52a0d2-10a5-4dcc-a587-cb81f428270f"
+                                        },
+                                        {
+                                          "id": "b3fe426d-7c6d-407b-9a55-4a904d5bb53c",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"id899\": \"<string>\",\n      \"anim_1b\": \"<string>\",\n      \"consectetur_9e\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"id99d\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"veniam424\": \"<string>\",\n      \"laborum6b\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"Excepteur_7\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-b3fe426d-7c6d-407b-9a55-4a904d5bb53c"
+                                        },
+                                        {
+                                          "id": "8d47ba5d-4dad-4d18-ad3c-6b2f7ad59df1",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"id899\": \"<string>\",\n      \"anim_1b\": \"<string>\",\n      \"consectetur_9e\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"id99d\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"quoteNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"veniam424\": \"<string>\",\n      \"laborum6b\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"Excepteur_7\": \"<string>\"\n    }\n  }\n]",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/business-documents/v2/entities/:entityid/connections/:connectionid/client-quotes",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "business-documents",
+                                                "v2",
+                                                "entities",
+                                                ":entityid",
+                                                "connections",
+                                                ":connectionid",
+                                                "client-quotes"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityid"
+                                                },
+                                                {
+                                                  "key": "connectionid"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:07:46.000Z",
+                                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                                          "uid": "35240-8d47ba5d-4dad-4d18-ad3c-6b2f7ad59df1"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:07:46.000Z",
+                                      "updatedAt": "2026-07-28T10:07:46.000Z",
+                                      "uid": "35240-2797b419-74b0-465f-ad2a-266a5e1ab30d"
+                                    }
+                                  ],
+                                  "id": "0609f4a8-aa61-4bc6-baca-d290d7490772",
+                                  "createdAt": "2026-07-28T10:07:46.000Z",
+                                  "updatedAt": "2026-07-28T10:07:46.000Z",
+                                  "uid": "35240-0609f4a8-aa61-4bc6-baca-d290d7490772"
+                                }
+                              ],
+                              "id": "bbb407d5-e646-4c61-b028-1657ed574f13",
+                              "createdAt": "2026-07-28T10:07:46.000Z",
+                              "updatedAt": "2026-07-28T10:07:46.000Z",
+                              "uid": "35240-bbb407d5-e646-4c61-b028-1657ed574f13"
+                            }
+                          ],
+                          "id": "bdf1be5d-68da-4cd0-a66c-04b2dcaba4c2",
+                          "createdAt": "2026-07-28T10:07:46.000Z",
+                          "updatedAt": "2026-07-28T10:07:46.000Z",
+                          "uid": "35240-bdf1be5d-68da-4cd0-a66c-04b2dcaba4c2"
+                        }
+                      ],
+                      "id": "02c9c48b-2dc1-4c79-b417-2a4c5a23f13b",
+                      "createdAt": "2026-07-28T10:07:46.000Z",
+                      "updatedAt": "2026-07-28T10:07:46.000Z",
+                      "uid": "35240-02c9c48b-2dc1-4c79-b417-2a4c5a23f13b"
+                    }
+                  ],
+                  "id": "96930c67-336a-4b0b-b794-fa01a01e4019",
+                  "createdAt": "2026-07-28T10:07:46.000Z",
+                  "updatedAt": "2026-07-28T10:07:46.000Z",
+                  "uid": "35240-96930c67-336a-4b0b-b794-fa01a01e4019"
+                }
+              ],
+              "id": "83d9006c-44d2-4026-a2d7-e95f9d36c1c6",
+              "createdAt": "2026-07-28T10:07:46.000Z",
+              "updatedAt": "2026-07-28T10:07:46.000Z",
+              "uid": "35240-83d9006c-44d2-4026-a2d7-e95f9d36c1c6"
+            }
+          ],
+          "id": "7a232d63-5c21-4f1d-a09b-ee3e62553072",
+          "createdAt": "2026-07-28T10:07:46.000Z",
+          "updatedAt": "2026-07-28T10:07:46.000Z",
+          "uid": "35240-7a232d63-5c21-4f1d-a09b-ee3e62553072"
+        }
+      ],
+      "id": "8270e1e1-b565-467c-b92f-578d1076fd92",
+      "createdAt": "2026-07-28T10:07:46.000Z",
+      "updatedAt": "2026-07-28T10:07:46.000Z",
+      "uid": "35240-8270e1e1-b565-467c-b92f-578d1076fd92"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

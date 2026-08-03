@@ -1,0 +1,938 @@
+{
+  "info": {
+    "_postman_id": "d7a30353-75bb-4158-b6ab-af2c29815fc9",
+    "name": "Clients AR Account reports Financings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:07:59.000Z",
+    "updatedAt": "2026-07-28T10:07:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d7a30353-75bb-4158-b6ab-af2c29815fc9"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "intragroup-financing",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "borrowers",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "financings",
+                          "item": [
+                            {
+                              "name": "List financings where entity is borrower",
+                              "id": "c0649fdc-6195-4d8a-97c5-19a45b76eed6",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/intragroup-financing/v1/borrowers/:entityId/financings?offset=<integer>&limit=<integer>&fromDate=<date>&untilDate=<date>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "intragroup-financing",
+                                    "v1",
+                                    "borrowers",
+                                    ":entityId",
+                                    "financings"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Offset value. Minimum 0. Default 0.",
+                                      "key": "offset",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Limit value. Minimum 1. Maximum 100. Default 50.",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Date format is YYYY-MM-DD",
+                                      "key": "fromDate",
+                                      "value": "<date>"
+                                    },
+                                    {
+                                      "description": "Date format is YYYY-MM-DD",
+                                      "key": "untilDate",
+                                      "value": "<date>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "53a21ea7-ff5f-4f61-b3e4-f4e7e50c831a",
+                                      "key": "entityId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Financings between the entity and all other lenders. Will not return financings where entity is lender."
+                              },
+                              "response": [
+                                {
+                                  "id": "921aaa0c-5052-4f73-942f-3b8b712ba6bb",
+                                  "name": "List financing where entity is borrower.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/intragroup-financing/v1/borrowers/:entityId/financings?offset=<integer>&limit=<integer>&fromDate=<date>&untilDate=<date>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "intragroup-financing",
+                                        "v1",
+                                        "borrowers",
+                                        ":entityId",
+                                        "financings"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Offset value. Minimum 0. Default 0.",
+                                          "key": "offset",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Limit value. Minimum 1. Maximum 100. Default 50.",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "fromDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "untilDate",
+                                          "value": "<date>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"accruedInterests\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<double>\"\n      },\n      \"balance\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<double>\"\n      },\n      \"borrower\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"id\": \"<uuid>\",\n      \"lender\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"startDate\": \"<date>\"\n    },\n    {\n      \"accruedInterests\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<double>\"\n      },\n      \"balance\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<double>\"\n      },\n      \"borrower\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"id\": \"<uuid>\",\n      \"lender\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"startDate\": \"<date>\"\n    }\n  ],\n  \"offset\": {\n    \"current\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"next\": \"<integer>\",\n    \"previous\": \"<integer>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T10:07:59.000Z",
+                                  "updatedAt": "2026-07-28T10:07:59.000Z",
+                                  "uid": "35240-921aaa0c-5052-4f73-942f-3b8b712ba6bb"
+                                },
+                                {
+                                  "id": "e3b5c1f6-0d84-4e4f-a79b-62b0a955a3cb",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/intragroup-financing/v1/borrowers/:entityId/financings?offset=<integer>&limit=<integer>&fromDate=<date>&untilDate=<date>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "intragroup-financing",
+                                        "v1",
+                                        "borrowers",
+                                        ":entityId",
+                                        "financings"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Offset value. Minimum 0. Default 0.",
+                                          "key": "offset",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Limit value. Minimum 1. Maximum 100. Default 50.",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "fromDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "untilDate",
+                                          "value": "<date>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:59.000Z",
+                                  "updatedAt": "2026-07-28T10:07:59.000Z",
+                                  "uid": "35240-e3b5c1f6-0d84-4e4f-a79b-62b0a955a3cb"
+                                },
+                                {
+                                  "id": "cd38d685-33be-43d5-982d-ecfaf6e3e24e",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/intragroup-financing/v1/borrowers/:entityId/financings?offset=<integer>&limit=<integer>&fromDate=<date>&untilDate=<date>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "intragroup-financing",
+                                        "v1",
+                                        "borrowers",
+                                        ":entityId",
+                                        "financings"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Offset value. Minimum 0. Default 0.",
+                                          "key": "offset",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Limit value. Minimum 1. Maximum 100. Default 50.",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "fromDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "untilDate",
+                                          "value": "<date>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:59.000Z",
+                                  "updatedAt": "2026-07-28T10:07:59.000Z",
+                                  "uid": "35240-cd38d685-33be-43d5-982d-ecfaf6e3e24e"
+                                },
+                                {
+                                  "id": "42182525-e551-47b5-a8c0-f8c290332fad",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/intragroup-financing/v1/borrowers/:entityId/financings?offset=<integer>&limit=<integer>&fromDate=<date>&untilDate=<date>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "intragroup-financing",
+                                        "v1",
+                                        "borrowers",
+                                        ":entityId",
+                                        "financings"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Offset value. Minimum 0. Default 0.",
+                                          "key": "offset",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Limit value. Minimum 1. Maximum 100. Default 50.",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "fromDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "untilDate",
+                                          "value": "<date>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:59.000Z",
+                                  "updatedAt": "2026-07-28T10:07:59.000Z",
+                                  "uid": "35240-42182525-e551-47b5-a8c0-f8c290332fad"
+                                },
+                                {
+                                  "id": "c28607f2-945d-40a0-841c-698d55807d01",
+                                  "name": "An internal server occurred.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/intragroup-financing/v1/borrowers/:entityId/financings?offset=<integer>&limit=<integer>&fromDate=<date>&untilDate=<date>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "intragroup-financing",
+                                        "v1",
+                                        "borrowers",
+                                        ":entityId",
+                                        "financings"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Offset value. Minimum 0. Default 0.",
+                                          "key": "offset",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Limit value. Minimum 1. Maximum 100. Default 50.",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "fromDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "untilDate",
+                                          "value": "<date>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T10:07:59.000Z",
+                                  "updatedAt": "2026-07-28T10:07:59.000Z",
+                                  "uid": "35240-c28607f2-945d-40a0-841c-698d55807d01"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:59.000Z",
+                              "updatedAt": "2026-07-28T10:07:59.000Z",
+                              "uid": "35240-c0649fdc-6195-4d8a-97c5-19a45b76eed6"
+                            }
+                          ],
+                          "id": "0ba0dea0-4ebb-4248-acde-51f43970e55e",
+                          "createdAt": "2026-07-28T10:07:59.000Z",
+                          "updatedAt": "2026-07-28T10:07:59.000Z",
+                          "uid": "35240-0ba0dea0-4ebb-4248-acde-51f43970e55e"
+                        }
+                      ],
+                      "id": "920a53e6-f769-4a30-a07f-1ca0803fc554",
+                      "createdAt": "2026-07-28T10:07:59.000Z",
+                      "updatedAt": "2026-07-28T10:07:59.000Z",
+                      "uid": "35240-920a53e6-f769-4a30-a07f-1ca0803fc554"
+                    }
+                  ],
+                  "id": "5b6941e1-5138-44ad-a786-b30fa4a007cd",
+                  "createdAt": "2026-07-28T10:07:59.000Z",
+                  "updatedAt": "2026-07-28T10:07:59.000Z",
+                  "uid": "35240-5b6941e1-5138-44ad-a786-b30fa4a007cd"
+                },
+                {
+                  "name": "lenders",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "financings",
+                          "item": [
+                            {
+                              "name": "List financings where entity is lender",
+                              "id": "2f89c22a-8652-4a61-bbcc-b9137d00951f",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/intragroup-financing/v1/lenders/:entityId/financings?offset=<integer>&limit=<integer>&fromDate=<date>&untilDate=<date>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "intragroup-financing",
+                                    "v1",
+                                    "lenders",
+                                    ":entityId",
+                                    "financings"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Offset value. Minimum 0. Default 0.",
+                                      "key": "offset",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Limit value. Minimum 1. Maximum 100. Default 50.",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Date format is YYYY-MM-DD",
+                                      "key": "fromDate",
+                                      "value": "<date>"
+                                    },
+                                    {
+                                      "description": "Date format is YYYY-MM-DD",
+                                      "key": "untilDate",
+                                      "value": "<date>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "67bf3fed-e64f-400c-8b8c-118b9b88224b",
+                                      "key": "entityId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Financings from the entity to all other borrowers. Will not return financings where entity is borrower."
+                              },
+                              "response": [
+                                {
+                                  "id": "4f383740-237b-4c7f-8644-2930b0503fd4",
+                                  "name": "List financings where entity is lender.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/intragroup-financing/v1/lenders/:entityId/financings?offset=<integer>&limit=<integer>&fromDate=<date>&untilDate=<date>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "intragroup-financing",
+                                        "v1",
+                                        "lenders",
+                                        ":entityId",
+                                        "financings"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Offset value. Minimum 0. Default 0.",
+                                          "key": "offset",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Limit value. Minimum 1. Maximum 100. Default 50.",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "fromDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "untilDate",
+                                          "value": "<date>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"accruedInterests\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<double>\"\n      },\n      \"balance\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<double>\"\n      },\n      \"borrower\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"id\": \"<uuid>\",\n      \"lender\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"startDate\": \"<date>\"\n    },\n    {\n      \"accruedInterests\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<double>\"\n      },\n      \"balance\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<double>\"\n      },\n      \"borrower\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"id\": \"<uuid>\",\n      \"lender\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"startDate\": \"<date>\"\n    }\n  ],\n  \"offset\": {\n    \"current\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"next\": \"<integer>\",\n    \"previous\": \"<integer>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T10:07:59.000Z",
+                                  "updatedAt": "2026-07-28T10:07:59.000Z",
+                                  "uid": "35240-4f383740-237b-4c7f-8644-2930b0503fd4"
+                                },
+                                {
+                                  "id": "f4938635-884a-438b-b76f-c1bd61d26067",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/intragroup-financing/v1/lenders/:entityId/financings?offset=<integer>&limit=<integer>&fromDate=<date>&untilDate=<date>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "intragroup-financing",
+                                        "v1",
+                                        "lenders",
+                                        ":entityId",
+                                        "financings"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Offset value. Minimum 0. Default 0.",
+                                          "key": "offset",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Limit value. Minimum 1. Maximum 100. Default 50.",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "fromDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "untilDate",
+                                          "value": "<date>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:59.000Z",
+                                  "updatedAt": "2026-07-28T10:07:59.000Z",
+                                  "uid": "35240-f4938635-884a-438b-b76f-c1bd61d26067"
+                                },
+                                {
+                                  "id": "65274df3-99f2-40dd-a62f-d2dfbe4d8742",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/intragroup-financing/v1/lenders/:entityId/financings?offset=<integer>&limit=<integer>&fromDate=<date>&untilDate=<date>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "intragroup-financing",
+                                        "v1",
+                                        "lenders",
+                                        ":entityId",
+                                        "financings"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Offset value. Minimum 0. Default 0.",
+                                          "key": "offset",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Limit value. Minimum 1. Maximum 100. Default 50.",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "fromDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "untilDate",
+                                          "value": "<date>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:59.000Z",
+                                  "updatedAt": "2026-07-28T10:07:59.000Z",
+                                  "uid": "35240-65274df3-99f2-40dd-a62f-d2dfbe4d8742"
+                                },
+                                {
+                                  "id": "00d1b113-87f9-4df2-9159-2e340b809b65",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/intragroup-financing/v1/lenders/:entityId/financings?offset=<integer>&limit=<integer>&fromDate=<date>&untilDate=<date>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "intragroup-financing",
+                                        "v1",
+                                        "lenders",
+                                        ":entityId",
+                                        "financings"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Offset value. Minimum 0. Default 0.",
+                                          "key": "offset",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Limit value. Minimum 1. Maximum 100. Default 50.",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "fromDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "untilDate",
+                                          "value": "<date>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:59.000Z",
+                                  "updatedAt": "2026-07-28T10:07:59.000Z",
+                                  "uid": "35240-00d1b113-87f9-4df2-9159-2e340b809b65"
+                                },
+                                {
+                                  "id": "60c77811-a6cc-4e24-ac5c-0d74bbd3fea8",
+                                  "name": "An internal server occurred.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/intragroup-financing/v1/lenders/:entityId/financings?offset=<integer>&limit=<integer>&fromDate=<date>&untilDate=<date>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "intragroup-financing",
+                                        "v1",
+                                        "lenders",
+                                        ":entityId",
+                                        "financings"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Offset value. Minimum 0. Default 0.",
+                                          "key": "offset",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Limit value. Minimum 1. Maximum 100. Default 50.",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "fromDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "Date format is YYYY-MM-DD",
+                                          "key": "untilDate",
+                                          "value": "<date>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T10:07:59.000Z",
+                                  "updatedAt": "2026-07-28T10:07:59.000Z",
+                                  "uid": "35240-60c77811-a6cc-4e24-ac5c-0d74bbd3fea8"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:59.000Z",
+                              "updatedAt": "2026-07-28T10:07:59.000Z",
+                              "uid": "35240-2f89c22a-8652-4a61-bbcc-b9137d00951f"
+                            }
+                          ],
+                          "id": "098595f8-98d0-44e4-befd-457ef4267081",
+                          "createdAt": "2026-07-28T10:07:59.000Z",
+                          "updatedAt": "2026-07-28T10:07:59.000Z",
+                          "uid": "35240-098595f8-98d0-44e4-befd-457ef4267081"
+                        }
+                      ],
+                      "id": "a5e52529-07bd-47f5-a947-760fa0ff0944",
+                      "createdAt": "2026-07-28T10:07:59.000Z",
+                      "updatedAt": "2026-07-28T10:07:59.000Z",
+                      "uid": "35240-a5e52529-07bd-47f5-a947-760fa0ff0944"
+                    }
+                  ],
+                  "id": "96aa65e1-75be-4412-b2fe-58aac2e71e94",
+                  "createdAt": "2026-07-28T10:07:59.000Z",
+                  "updatedAt": "2026-07-28T10:07:59.000Z",
+                  "uid": "35240-96aa65e1-75be-4412-b2fe-58aac2e71e94"
+                }
+              ],
+              "id": "cd0325d2-be85-4421-a5a1-329a2700b73d",
+              "createdAt": "2026-07-28T10:07:59.000Z",
+              "updatedAt": "2026-07-28T10:07:59.000Z",
+              "uid": "35240-cd0325d2-be85-4421-a5a1-329a2700b73d"
+            }
+          ],
+          "id": "a697d5b9-3ae5-4015-a4c1-a703897e3ac6",
+          "createdAt": "2026-07-28T10:07:59.000Z",
+          "updatedAt": "2026-07-28T10:07:59.000Z",
+          "uid": "35240-a697d5b9-3ae5-4015-a4c1-a703897e3ac6"
+        }
+      ],
+      "id": "c6b972b3-0be8-4f7f-8b44-68fe85bb43b8",
+      "createdAt": "2026-07-28T10:07:59.000Z",
+      "updatedAt": "2026-07-28T10:07:59.000Z",
+      "uid": "35240-c6b972b3-0be8-4f7f-8b44-68fe85bb43b8"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

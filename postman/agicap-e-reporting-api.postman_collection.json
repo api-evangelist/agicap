@@ -1,0 +1,529 @@
+{
+  "info": {
+    "_postman_id": "baa5ce3c-fb64-4613-82c8-235e9c259cd4",
+    "name": "Clients AR Account reports E-Reporting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:07:54.000Z",
+    "updatedAt": "2026-07-28T10:07:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-baa5ce3c-fb64-4613-82c8-235e9c259cd4"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "einvoicing",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "e-reportings",
+                  "item": [
+                    {
+                      "name": "b2c-transactions",
+                      "item": [
+                        {
+                          "name": "Add a B2C transaction",
+                          "id": "70e1110e-49d4-45dd-8c6a-0e174483e26f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                                "key": "X-FlowMode",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"category\": \"ProvisionOfService\",\n  \"currencyCode\": \"MGA\",\n  \"entityId\": \"<integer>\",\n  \"legalRegistrationId\": \"<string>\",\n  \"transactionDate\": \"<date>\",\n  \"transactionDetails\": [\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/public/einvoicing/v1/e-reportings/b2c-transactions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "public",
+                                "einvoicing",
+                                "v1",
+                                "e-reportings",
+                                "b2c-transactions"
+                              ]
+                            },
+                            "description": "Report a B2C transaction for e-reporting purposes.\nThe transaction is associated with a company identified by its SIREN and\naggregated into an e-reporting period based on the transaction date and VAT regime."
+                          },
+                          "response": [
+                            {
+                              "id": "95c50841-f95e-4886-b501-35a396b2f8e7",
+                              "name": "The B2C transaction has been successfully reported.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                                    "key": "X-FlowMode",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"category\": \"ProvisionOfService\",\n  \"currencyCode\": \"MGA\",\n  \"entityId\": \"<integer>\",\n  \"legalRegistrationId\": \"<string>\",\n  \"transactionDate\": \"<date>\",\n  \"transactionDetails\": [\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/einvoicing/v1/e-reportings/b2c-transactions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "einvoicing",
+                                    "v1",
+                                    "e-reportings",
+                                    "b2c-transactions"
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:07:55.000Z",
+                              "updatedAt": "2026-07-28T10:07:55.000Z",
+                              "uid": "35240-95c50841-f95e-4886-b501-35a396b2f8e7"
+                            },
+                            {
+                              "id": "4693af65-090a-4a8d-a150-0115214c7438",
+                              "name": "Error 400 : Bad request \u2014 invalid or missing fields.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                                    "key": "X-FlowMode",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"category\": \"ProvisionOfService\",\n  \"currencyCode\": \"MGA\",\n  \"entityId\": \"<integer>\",\n  \"legalRegistrationId\": \"<string>\",\n  \"transactionDate\": \"<date>\",\n  \"transactionDetails\": [\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/einvoicing/v1/e-reportings/b2c-transactions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "einvoicing",
+                                    "v1",
+                                    "e-reportings",
+                                    "b2c-transactions"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:07:55.000Z",
+                              "updatedAt": "2026-07-28T10:07:55.000Z",
+                              "uid": "35240-4693af65-090a-4a8d-a150-0115214c7438"
+                            },
+                            {
+                              "id": "bce9c6c2-db0d-4ec8-b036-860546ca6aa3",
+                              "name": "Unauthorized request.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                                    "key": "X-FlowMode",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"category\": \"ProvisionOfService\",\n  \"currencyCode\": \"MGA\",\n  \"entityId\": \"<integer>\",\n  \"legalRegistrationId\": \"<string>\",\n  \"transactionDate\": \"<date>\",\n  \"transactionDetails\": [\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/einvoicing/v1/e-reportings/b2c-transactions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "einvoicing",
+                                    "v1",
+                                    "e-reportings",
+                                    "b2c-transactions"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:07:55.000Z",
+                              "updatedAt": "2026-07-28T10:07:55.000Z",
+                              "uid": "35240-bce9c6c2-db0d-4ec8-b036-860546ca6aa3"
+                            },
+                            {
+                              "id": "94e6cc1d-6212-48ad-8bec-9459c06f10ff",
+                              "name": "Forbidden request.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                                    "key": "X-FlowMode",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"category\": \"ProvisionOfService\",\n  \"currencyCode\": \"MGA\",\n  \"entityId\": \"<integer>\",\n  \"legalRegistrationId\": \"<string>\",\n  \"transactionDate\": \"<date>\",\n  \"transactionDetails\": [\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/einvoicing/v1/e-reportings/b2c-transactions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "einvoicing",
+                                    "v1",
+                                    "e-reportings",
+                                    "b2c-transactions"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:07:55.000Z",
+                              "updatedAt": "2026-07-28T10:07:55.000Z",
+                              "uid": "35240-94e6cc1d-6212-48ad-8bec-9459c06f10ff"
+                            },
+                            {
+                              "id": "28215c38-7a6f-4301-b15d-362bc998a199",
+                              "name": "Error 404 : E-reporting configuration not found for the given company.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                                    "key": "X-FlowMode",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"category\": \"ProvisionOfService\",\n  \"currencyCode\": \"MGA\",\n  \"entityId\": \"<integer>\",\n  \"legalRegistrationId\": \"<string>\",\n  \"transactionDate\": \"<date>\",\n  \"transactionDetails\": [\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/einvoicing/v1/e-reportings/b2c-transactions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "einvoicing",
+                                    "v1",
+                                    "e-reportings",
+                                    "b2c-transactions"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:07:55.000Z",
+                              "updatedAt": "2026-07-28T10:07:55.000Z",
+                              "uid": "35240-28215c38-7a6f-4301-b15d-362bc998a199"
+                            },
+                            {
+                              "id": "98f2b742-548b-439d-9818-a4d06d3bf968",
+                              "name": "Too many requests. Please try again later.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                                    "key": "X-FlowMode",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"category\": \"ProvisionOfService\",\n  \"currencyCode\": \"MGA\",\n  \"entityId\": \"<integer>\",\n  \"legalRegistrationId\": \"<string>\",\n  \"transactionDate\": \"<date>\",\n  \"transactionDetails\": [\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/einvoicing/v1/e-reportings/b2c-transactions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "einvoicing",
+                                    "v1",
+                                    "e-reportings",
+                                    "b2c-transactions"
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:07:55.000Z",
+                              "updatedAt": "2026-07-28T10:07:55.000Z",
+                              "uid": "35240-98f2b742-548b-439d-9818-a4d06d3bf968"
+                            },
+                            {
+                              "id": "d5f15314-ebfc-4d68-ad8b-799f60fe4228",
+                              "name": "Error 500 : Server Internal Error.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                                    "key": "X-FlowMode",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"category\": \"ProvisionOfService\",\n  \"currencyCode\": \"MGA\",\n  \"entityId\": \"<integer>\",\n  \"legalRegistrationId\": \"<string>\",\n  \"transactionDate\": \"<date>\",\n  \"transactionDetails\": [\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"taxableAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/einvoicing/v1/e-reportings/b2c-transactions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "einvoicing",
+                                    "v1",
+                                    "e-reportings",
+                                    "b2c-transactions"
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:07:55.000Z",
+                              "updatedAt": "2026-07-28T10:07:55.000Z",
+                              "uid": "35240-d5f15314-ebfc-4d68-ad8b-799f60fe4228"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T10:07:55.000Z",
+                          "updatedAt": "2026-07-28T10:07:55.000Z",
+                          "uid": "35240-70e1110e-49d4-45dd-8c6a-0e174483e26f"
+                        }
+                      ],
+                      "id": "803f2247-aa53-45b4-9c29-b82717cb1562",
+                      "createdAt": "2026-07-28T10:07:55.000Z",
+                      "updatedAt": "2026-07-28T10:07:55.000Z",
+                      "uid": "35240-803f2247-aa53-45b4-9c29-b82717cb1562"
+                    }
+                  ],
+                  "id": "5af7337e-bb6d-4cce-904c-50a01b76b0f1",
+                  "createdAt": "2026-07-28T10:07:55.000Z",
+                  "updatedAt": "2026-07-28T10:07:55.000Z",
+                  "uid": "35240-5af7337e-bb6d-4cce-904c-50a01b76b0f1"
+                }
+              ],
+              "id": "bd47e273-2c9c-497a-95ea-52dd00c83a37",
+              "createdAt": "2026-07-28T10:07:55.000Z",
+              "updatedAt": "2026-07-28T10:07:55.000Z",
+              "uid": "35240-bd47e273-2c9c-497a-95ea-52dd00c83a37"
+            }
+          ],
+          "id": "506dd1b1-3678-46f9-855f-0c30c531f50d",
+          "createdAt": "2026-07-28T10:07:55.000Z",
+          "updatedAt": "2026-07-28T10:07:55.000Z",
+          "uid": "35240-506dd1b1-3678-46f9-855f-0c30c531f50d"
+        }
+      ],
+      "id": "78cdae6f-efc5-46f7-8194-4f3e23ced664",
+      "createdAt": "2026-07-28T10:07:55.000Z",
+      "updatedAt": "2026-07-28T10:07:55.000Z",
+      "uid": "35240-78cdae6f-efc5-46f7-8194-4f3e23ced664"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

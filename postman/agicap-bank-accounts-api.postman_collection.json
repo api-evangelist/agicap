@@ -1,0 +1,481 @@
+{
+  "info": {
+    "_postman_id": "28a74c54-8d64-4946-8a46-7e0b878b7306",
+    "name": "Clients AR Account reports Bank accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:07:29.000Z",
+    "updatedAt": "2026-07-28T10:07:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-28a74c54-8d64-4946-8a46-7e0b878b7306"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "banking-documents",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "organizations",
+                  "item": [
+                    {
+                      "name": "{organizationId}",
+                      "item": [
+                        {
+                          "name": "bank-accounts",
+                          "item": [
+                            {
+                              "name": "List bank accounts",
+                              "id": "a8a14b26-b1fe-4e30-a675-1de88a43df46",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/banking-documents/v1/organizations/:organizationId/bank-accounts?PageNumber=<integer>&PageSize=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "banking-documents",
+                                    "v1",
+                                    "organizations",
+                                    ":organizationId",
+                                    "bank-accounts"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "PageNumber",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "PageSize",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "13f094ce-5d09-4854-95a4-70390f08ab4d",
+                                      "key": "organizationId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) Agicap organization identifier"
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "ee90adf1-09a3-453a-bd8f-2f8e622a8b2f",
+                                  "name": "Your request has been successfully processed.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/banking-documents/v1/organizations/:organizationId/bank-accounts?PageNumber=<integer>&PageSize=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "banking-documents",
+                                        "v1",
+                                        "organizations",
+                                        ":organizationId",
+                                        "bank-accounts"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "PageNumber",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "PageSize",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"Items\": [\n    {\n      \"AccountNumber\": \"<string>\",\n      \"ConnectionId\": \"<uuid>\",\n      \"CreatedAt\": \"<dateTime>\",\n      \"EntityId\": \"<integer>\"\n    },\n    {\n      \"AccountNumber\": \"<string>\",\n      \"ConnectionId\": \"<uuid>\",\n      \"CreatedAt\": \"<dateTime>\",\n      \"EntityId\": \"<integer>\"\n    }\n  ],\n  \"Pagination\": {\n    \"CurrentPageItemsCount\": \"<integer>\",\n    \"CurrentPageNumber\": \"<integer>\",\n    \"PageSize\": \"<integer>\",\n    \"PagesCount\": \"<integer>\",\n    \"TotalItemsCount\": \"<integer>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T10:07:30.000Z",
+                                  "updatedAt": "2026-07-28T10:07:30.000Z",
+                                  "uid": "35240-ee90adf1-09a3-453a-bd8f-2f8e622a8b2f"
+                                },
+                                {
+                                  "id": "c495c70d-78ea-4fee-84f7-9f52dcab2442",
+                                  "name": "Your request is invalid.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/banking-documents/v1/organizations/:organizationId/bank-accounts?PageNumber=<integer>&PageSize=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "banking-documents",
+                                        "v1",
+                                        "organizations",
+                                        ":organizationId",
+                                        "bank-accounts"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "PageNumber",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "PageSize",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T10:07:30.000Z",
+                                  "updatedAt": "2026-07-28T10:07:30.000Z",
+                                  "uid": "35240-c495c70d-78ea-4fee-84f7-9f52dcab2442"
+                                },
+                                {
+                                  "id": "074eddee-a305-4e07-b7b7-2c87bc8fc240",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/banking-documents/v1/organizations/:organizationId/bank-accounts?PageNumber=<integer>&PageSize=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "banking-documents",
+                                        "v1",
+                                        "organizations",
+                                        ":organizationId",
+                                        "bank-accounts"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "PageNumber",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "PageSize",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:30.000Z",
+                                  "updatedAt": "2026-07-28T10:07:30.000Z",
+                                  "uid": "35240-074eddee-a305-4e07-b7b7-2c87bc8fc240"
+                                },
+                                {
+                                  "id": "ed95ae13-d93b-4167-9304-5f169e3b08b9",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/banking-documents/v1/organizations/:organizationId/bank-accounts?PageNumber=<integer>&PageSize=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "banking-documents",
+                                        "v1",
+                                        "organizations",
+                                        ":organizationId",
+                                        "bank-accounts"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "PageNumber",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "PageSize",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:30.000Z",
+                                  "updatedAt": "2026-07-28T10:07:30.000Z",
+                                  "uid": "35240-ed95ae13-d93b-4167-9304-5f169e3b08b9"
+                                },
+                                {
+                                  "id": "3f567f20-e09e-4085-b64d-ca9d04fa0858",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/banking-documents/v1/organizations/:organizationId/bank-accounts?PageNumber=<integer>&PageSize=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "banking-documents",
+                                        "v1",
+                                        "organizations",
+                                        ":organizationId",
+                                        "bank-accounts"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "PageNumber",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "PageSize",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:30.000Z",
+                                  "updatedAt": "2026-07-28T10:07:30.000Z",
+                                  "uid": "35240-3f567f20-e09e-4085-b64d-ca9d04fa0858"
+                                },
+                                {
+                                  "id": "01b81dd1-d9fb-4819-b9ab-3e5c81bd6802",
+                                  "name": "An internal server occurred.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/banking-documents/v1/organizations/:organizationId/bank-accounts?PageNumber=<integer>&PageSize=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "banking-documents",
+                                        "v1",
+                                        "organizations",
+                                        ":organizationId",
+                                        "bank-accounts"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "PageNumber",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "PageSize",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T10:07:30.000Z",
+                                  "updatedAt": "2026-07-28T10:07:30.000Z",
+                                  "uid": "35240-01b81dd1-d9fb-4819-b9ab-3e5c81bd6802"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:29.000Z",
+                              "updatedAt": "2026-07-28T10:07:29.000Z",
+                              "uid": "35240-a8a14b26-b1fe-4e30-a675-1de88a43df46"
+                            }
+                          ],
+                          "id": "6b20d486-72ba-468d-9d1b-371592679e47",
+                          "createdAt": "2026-07-28T10:07:29.000Z",
+                          "updatedAt": "2026-07-28T10:07:29.000Z",
+                          "uid": "35240-6b20d486-72ba-468d-9d1b-371592679e47"
+                        }
+                      ],
+                      "id": "b68c948a-8560-4ad0-bfeb-23b133858576",
+                      "createdAt": "2026-07-28T10:07:29.000Z",
+                      "updatedAt": "2026-07-28T10:07:29.000Z",
+                      "uid": "35240-b68c948a-8560-4ad0-bfeb-23b133858576"
+                    }
+                  ],
+                  "id": "061549a2-11bd-4b81-b2b0-1668ac852f29",
+                  "createdAt": "2026-07-28T10:07:29.000Z",
+                  "updatedAt": "2026-07-28T10:07:29.000Z",
+                  "uid": "35240-061549a2-11bd-4b81-b2b0-1668ac852f29"
+                }
+              ],
+              "id": "41bc3018-55a3-4d8c-be6f-65917c4de256",
+              "createdAt": "2026-07-28T10:07:29.000Z",
+              "updatedAt": "2026-07-28T10:07:29.000Z",
+              "uid": "35240-41bc3018-55a3-4d8c-be6f-65917c4de256"
+            }
+          ],
+          "id": "00466650-68cf-4fa5-8ca8-0455cd135e9c",
+          "createdAt": "2026-07-28T10:07:29.000Z",
+          "updatedAt": "2026-07-28T10:07:29.000Z",
+          "uid": "35240-00466650-68cf-4fa5-8ca8-0455cd135e9c"
+        }
+      ],
+      "id": "992c5c09-9941-4562-a42e-b13e76c2a74d",
+      "createdAt": "2026-07-28T10:07:29.000Z",
+      "updatedAt": "2026-07-28T10:07:29.000Z",
+      "uid": "35240-992c5c09-9941-4562-a42e-b13e76c2a74d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

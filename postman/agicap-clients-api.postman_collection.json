@@ -1,0 +1,1438 @@
+{
+  "info": {
+    "_postman_id": "595c2b8a-01d7-49ce-8e0f-912daf5c260d",
+    "name": "AR Account reports Clients API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:07:47.000Z",
+    "updatedAt": "2026-07-28T10:07:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-595c2b8a-01d7-49ce-8e0f-912daf5c260d"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "ar-clients",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "clients",
+                          "item": [
+                            {
+                              "name": "Delete clients",
+                              "id": "303f9a3f-37f8-405c-8a84-5f146c1cce63",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"externalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "ar-clients",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "clients"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "0a24d931-faac-4264-8191-0aa976ac2986",
+                                      "key": "entityId",
+                                      "value": "<number>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Delete clients in bulk by externalId. A client with linked invoices or credit notes cannot be deleted."
+                              },
+                              "response": [
+                                {
+                                  "id": "d605a1de-c998-429a-80dd-abf2e352d908",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"externalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"deleted\": [\n    {\n      \"id\": \"<string>\",\n      \"externalId\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"externalId\": \"<string>\"\n    }\n  ],\n  \"notDeleted\": [\n    {\n      \"externalId\": \"<string>\",\n      \"reason\": \"CLIENT_HAS_DOCUMENTS\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"reason\": \"CLIENT_NOT_FOUND\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-d605a1de-c998-429a-80dd-abf2e352d908"
+                                },
+                                {
+                                  "id": "29cf225b-946c-4486-b488-0accd5a4f484",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"externalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-29cf225b-946c-4486-b488-0accd5a4f484"
+                                },
+                                {
+                                  "id": "80dfbb53-0cb6-486d-857f-485e536279c9",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"externalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-80dfbb53-0cb6-486d-857f-485e536279c9"
+                                },
+                                {
+                                  "id": "806f124b-b232-4ec3-8d72-72a66f88861c",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"externalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-806f124b-b232-4ec3-8d72-72a66f88861c"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:47.000Z",
+                              "updatedAt": "2026-07-28T10:07:47.000Z",
+                              "uid": "35240-303f9a3f-37f8-405c-8a84-5f146c1cce63"
+                            },
+                            {
+                              "name": "List clients",
+                              "id": "355b9acd-67d9-41de-8b9c-5318befc0153",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients?pageSize=<number>&clientExternalIds=<string>&clientExternalIds=<string>&clientIds=<string>&clientIds=<string>&name=<string>&reference=<string>&sortBy=outstandingAmount&sortDirection=asc&token=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "ar-clients",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "clients"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "pageSize",
+                                      "value": "<number>"
+                                    },
+                                    {
+                                      "description": "Filter clients by external identifiers. Supports multiple values.",
+                                      "key": "clientExternalIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter clients by external identifiers. Supports multiple values.",
+                                      "key": "clientExternalIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter clients by their Agicap identifier (UUID). Supports multiple values.",
+                                      "key": "clientIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter clients by their Agicap identifier (UUID). Supports multiple values.",
+                                      "key": "clientIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter clients whose name contains this value (case-insensitive).",
+                                      "key": "name",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter clients whose business reference contains this value (case-insensitive).",
+                                      "key": "reference",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Field to sort clients by. Defaults to a stable identifier order when omitted.",
+                                      "key": "sortBy",
+                                      "value": "outstandingAmount"
+                                    },
+                                    {
+                                      "description": "Sort direction. Defaults to ascending.",
+                                      "key": "sortDirection",
+                                      "value": "asc"
+                                    },
+                                    {
+                                      "description": "Opaque pagination token for retrieving the next page",
+                                      "key": "token",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "a27d06ef-84ab-4a07-8968-ead768c2340b",
+                                      "key": "entityId",
+                                      "value": "<number>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve a paginated list of clients for the given entity."
+                              },
+                              "response": [
+                                {
+                                  "id": "967f2fa2-e881-484c-90de-ec0b48f0851b",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients?pageSize=<number>&clientExternalIds=<string>&clientIds=<string>&name=<string>&reference=<string>&sortBy=outstandingAmount&sortDirection=asc&token=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "<number>"
+                                        },
+                                        {
+                                          "description": "Filter clients by external identifiers. Supports multiple values.",
+                                          "key": "clientExternalIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter clients by their Agicap identifier (UUID). Supports multiple values.",
+                                          "key": "clientIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter clients whose name contains this value (case-insensitive).",
+                                          "key": "name",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter clients whose business reference contains this value (case-insensitive).",
+                                          "key": "reference",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field to sort clients by. Defaults to a stable identifier order when omitted.",
+                                          "key": "sortBy",
+                                          "value": "outstandingAmount"
+                                        },
+                                        {
+                                          "description": "Sort direction. Defaults to ascending.",
+                                          "key": "sortDirection",
+                                          "value": "asc"
+                                        },
+                                        {
+                                          "description": "Opaque pagination token for retrieving the next page",
+                                          "key": "token",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"legalId\": \"<string>\",\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"outstandingAmountSummary\": [\n        {\n          \"roundedAmount\": \"<number>\",\n          \"currencyCode\": \"COP\",\n          \"convertedRoundedAmount\": \"<number>\",\n          \"convertedCurrencyCode\": \"GNF\"\n        },\n        {\n          \"roundedAmount\": \"<number>\",\n          \"currencyCode\": \"MXV\",\n          \"convertedRoundedAmount\": \"<number>\",\n          \"convertedCurrencyCode\": \"SGD\"\n        }\n      ],\n      \"dueAmountSummary\": [\n        {\n          \"dueAmount\": \"<number>\",\n          \"currencyCode\": \"COU\",\n          \"convertedDueAmount\": \"<number>\",\n          \"convertedCurrencyCode\": \"BGN\"\n        },\n        {\n          \"dueAmount\": \"<number>\",\n          \"currencyCode\": \"IQD\",\n          \"convertedDueAmount\": \"<number>\",\n          \"convertedCurrencyCode\": \"KES\"\n        }\n      ],\n      \"averagePaymentDelay\": \"<number>\",\n      \"numberOfContacts\": \"<number>\",\n      \"consolidatedOutstandingAmount\": \"<number>\",\n      \"consolidatedDueAmount\": \"<number>\",\n      \"consolidatedCurrency\": \"GEL\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"legalId\": \"<string>\",\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"outstandingAmountSummary\": [\n        {\n          \"roundedAmount\": \"<number>\",\n          \"currencyCode\": \"PHP\",\n          \"convertedRoundedAmount\": \"<number>\",\n          \"convertedCurrencyCode\": \"SHP\"\n        },\n        {\n          \"roundedAmount\": \"<number>\",\n          \"currencyCode\": \"UYW\",\n          \"convertedRoundedAmount\": \"<number>\",\n          \"convertedCurrencyCode\": \"MVR\"\n        }\n      ],\n      \"dueAmountSummary\": [\n        {\n          \"dueAmount\": \"<number>\",\n          \"currencyCode\": \"PAB\",\n          \"convertedDueAmount\": \"<number>\",\n          \"convertedCurrencyCode\": \"MVR\"\n        },\n        {\n          \"dueAmount\": \"<number>\",\n          \"currencyCode\": \"KRW\",\n          \"convertedDueAmount\": \"<number>\",\n          \"convertedCurrencyCode\": \"HUF\"\n        }\n      ],\n      \"averagePaymentDelay\": \"<number>\",\n      \"numberOfContacts\": \"<number>\",\n      \"consolidatedOutstandingAmount\": \"<number>\",\n      \"consolidatedDueAmount\": \"<number>\",\n      \"consolidatedCurrency\": \"MMK\"\n    }\n  ],\n  \"pagination\": {\n    \"before\": \"<string>\",\n    \"after\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-967f2fa2-e881-484c-90de-ec0b48f0851b"
+                                },
+                                {
+                                  "id": "8ae5f9b7-b785-4712-9ab8-524921372be9",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients?pageSize=<number>&clientExternalIds=<string>&clientIds=<string>&name=<string>&reference=<string>&sortBy=outstandingAmount&sortDirection=asc&token=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "<number>"
+                                        },
+                                        {
+                                          "description": "Filter clients by external identifiers. Supports multiple values.",
+                                          "key": "clientExternalIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter clients by their Agicap identifier (UUID). Supports multiple values.",
+                                          "key": "clientIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter clients whose name contains this value (case-insensitive).",
+                                          "key": "name",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter clients whose business reference contains this value (case-insensitive).",
+                                          "key": "reference",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field to sort clients by. Defaults to a stable identifier order when omitted.",
+                                          "key": "sortBy",
+                                          "value": "outstandingAmount"
+                                        },
+                                        {
+                                          "description": "Sort direction. Defaults to ascending.",
+                                          "key": "sortDirection",
+                                          "value": "asc"
+                                        },
+                                        {
+                                          "description": "Opaque pagination token for retrieving the next page",
+                                          "key": "token",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-8ae5f9b7-b785-4712-9ab8-524921372be9"
+                                },
+                                {
+                                  "id": "496ab911-5340-40d7-9c8a-122564be276a",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients?pageSize=<number>&clientExternalIds=<string>&clientIds=<string>&name=<string>&reference=<string>&sortBy=outstandingAmount&sortDirection=asc&token=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "<number>"
+                                        },
+                                        {
+                                          "description": "Filter clients by external identifiers. Supports multiple values.",
+                                          "key": "clientExternalIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter clients by their Agicap identifier (UUID). Supports multiple values.",
+                                          "key": "clientIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter clients whose name contains this value (case-insensitive).",
+                                          "key": "name",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter clients whose business reference contains this value (case-insensitive).",
+                                          "key": "reference",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field to sort clients by. Defaults to a stable identifier order when omitted.",
+                                          "key": "sortBy",
+                                          "value": "outstandingAmount"
+                                        },
+                                        {
+                                          "description": "Sort direction. Defaults to ascending.",
+                                          "key": "sortDirection",
+                                          "value": "asc"
+                                        },
+                                        {
+                                          "description": "Opaque pagination token for retrieving the next page",
+                                          "key": "token",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-496ab911-5340-40d7-9c8a-122564be276a"
+                                },
+                                {
+                                  "id": "7ec560d9-f587-40d4-99e2-40b4aa14ec20",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients?pageSize=<number>&clientExternalIds=<string>&clientIds=<string>&name=<string>&reference=<string>&sortBy=outstandingAmount&sortDirection=asc&token=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "<number>"
+                                        },
+                                        {
+                                          "description": "Filter clients by external identifiers. Supports multiple values.",
+                                          "key": "clientExternalIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter clients by their Agicap identifier (UUID). Supports multiple values.",
+                                          "key": "clientIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter clients whose name contains this value (case-insensitive).",
+                                          "key": "name",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter clients whose business reference contains this value (case-insensitive).",
+                                          "key": "reference",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field to sort clients by. Defaults to a stable identifier order when omitted.",
+                                          "key": "sortBy",
+                                          "value": "outstandingAmount"
+                                        },
+                                        {
+                                          "description": "Sort direction. Defaults to ascending.",
+                                          "key": "sortDirection",
+                                          "value": "asc"
+                                        },
+                                        {
+                                          "description": "Opaque pagination token for retrieving the next page",
+                                          "key": "token",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-7ec560d9-f587-40d4-99e2-40b4aa14ec20"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:47.000Z",
+                              "updatedAt": "2026-07-28T10:07:47.000Z",
+                              "uid": "35240-355b9acd-67d9-41de-8b9c-5318befc0153"
+                            },
+                            {
+                              "name": "Create clients",
+                              "id": "817f899e-bab9-4578-b390-1d6dac22a73c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"clients\": [\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"legalId\": \"<string>\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"legalId\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "ar-clients",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "clients"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "f773caef-f5f2-48b5-83de-5d4143fe48ed",
+                                      "key": "entityId",
+                                      "value": "<number>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Create clients in bulk. Clients with an already existing externalId are ignored. Maximum 1000 items per request."
+                              },
+                              "response": [
+                                {
+                                  "id": "82a3128f-511a-4c18-9f09-bae15f80a99f",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clients\": [\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"legalId\": \"<string>\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"legalId\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"created\": [\n    {\n      \"id\": \"<string>\",\n      \"externalId\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"externalId\": \"<string>\"\n    }\n  ],\n  \"notCreated\": [\n    {\n      \"externalId\": \"<string>\",\n      \"reason\": \"DUPLICATED_EXTERNAL_ID\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"reason\": \"DUPLICATED_EXTERNAL_ID\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-82a3128f-511a-4c18-9f09-bae15f80a99f"
+                                },
+                                {
+                                  "id": "c513ed6d-dd8e-442f-8886-76571c46f5a3",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clients\": [\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"legalId\": \"<string>\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"legalId\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-c513ed6d-dd8e-442f-8886-76571c46f5a3"
+                                },
+                                {
+                                  "id": "d9bc714a-9073-4706-a1b2-4094cfcdfe39",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clients\": [\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"legalId\": \"<string>\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"legalId\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-d9bc714a-9073-4706-a1b2-4094cfcdfe39"
+                                },
+                                {
+                                  "id": "84a02da1-ef94-4f5c-b47e-1f93fa57d7c4",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clients\": [\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"legalId\": \"<string>\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"legalId\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-84a02da1-ef94-4f5c-b47e-1f93fa57d7c4"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:47.000Z",
+                              "updatedAt": "2026-07-28T10:07:47.000Z",
+                              "uid": "35240-817f899e-bab9-4578-b390-1d6dac22a73c"
+                            },
+                            {
+                              "name": "Update clients",
+                              "id": "9ad12ec1-c203-44f5-b295-11f7c98c0e43",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"clients\": [\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"id\": \"<string>\",\n      \"legalId\": \"<string>\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"id\": \"<string>\",\n      \"legalId\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "ar-clients",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "clients"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "c8d05926-f364-40a6-8126-4ef57b6606f6",
+                                      "key": "entityId",
+                                      "value": "<number>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Update clients in bulk by Agicap ID or externalId (Agicap ID takes priority). Non-existing clients are ignored. Maximum 1000 items per request."
+                              },
+                              "response": [
+                                {
+                                  "id": "a44dc98c-95a6-44b1-b34f-d37e8fc4e97c",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clients\": [\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"id\": \"<string>\",\n      \"legalId\": \"<string>\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"id\": \"<string>\",\n      \"legalId\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"updated\": [\n    {\n      \"id\": \"<string>\",\n      \"externalId\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"externalId\": \"<string>\"\n    }\n  ],\n  \"notUpdated\": [\n    {\n      \"externalId\": \"<string>\",\n      \"reason\": \"EXTERNAL_ID_CONFLICT\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"reason\": \"EXTERNAL_ID_CONFLICT\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-a44dc98c-95a6-44b1-b34f-d37e8fc4e97c"
+                                },
+                                {
+                                  "id": "d4579ef7-0f6c-48b5-b475-645b357a799a",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clients\": [\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"id\": \"<string>\",\n      \"legalId\": \"<string>\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"id\": \"<string>\",\n      \"legalId\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-d4579ef7-0f6c-48b5-b475-645b357a799a"
+                                },
+                                {
+                                  "id": "e46c9e19-2441-4638-b825-c1934b9b8049",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clients\": [\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"id\": \"<string>\",\n      \"legalId\": \"<string>\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"id\": \"<string>\",\n      \"legalId\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-e46c9e19-2441-4638-b825-c1934b9b8049"
+                                },
+                                {
+                                  "id": "6cb87085-0a67-48e2-bc2d-368b61091091",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clients\": [\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"id\": \"<string>\",\n      \"legalId\": \"<string>\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"electronicInvoicingAddress\": \"<string>\",\n      \"id\": \"<string>\",\n      \"legalId\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/clients",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "clients"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:47.000Z",
+                                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                                  "uid": "35240-6cb87085-0a67-48e2-bc2d-368b61091091"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:47.000Z",
+                              "updatedAt": "2026-07-28T10:07:47.000Z",
+                              "uid": "35240-9ad12ec1-c203-44f5-b295-11f7c98c0e43"
+                            }
+                          ],
+                          "id": "aec0e66a-1b05-42b4-a815-f580cf3fec41",
+                          "createdAt": "2026-07-28T10:07:47.000Z",
+                          "updatedAt": "2026-07-28T10:07:47.000Z",
+                          "uid": "35240-aec0e66a-1b05-42b4-a815-f580cf3fec41"
+                        }
+                      ],
+                      "id": "565aa834-fb0f-4869-b076-e8570161847c",
+                      "createdAt": "2026-07-28T10:07:47.000Z",
+                      "updatedAt": "2026-07-28T10:07:47.000Z",
+                      "uid": "35240-565aa834-fb0f-4869-b076-e8570161847c"
+                    }
+                  ],
+                  "id": "a7bd03c9-c835-4f04-ac67-1e48f458b88b",
+                  "createdAt": "2026-07-28T10:07:47.000Z",
+                  "updatedAt": "2026-07-28T10:07:47.000Z",
+                  "uid": "35240-a7bd03c9-c835-4f04-ac67-1e48f458b88b"
+                }
+              ],
+              "id": "d6aa0954-2256-4d9f-9584-c37a54bf7a2c",
+              "createdAt": "2026-07-28T10:07:47.000Z",
+              "updatedAt": "2026-07-28T10:07:47.000Z",
+              "uid": "35240-d6aa0954-2256-4d9f-9584-c37a54bf7a2c"
+            }
+          ],
+          "id": "95d536ad-ffc4-4ba6-8594-3867ca9d0078",
+          "createdAt": "2026-07-28T10:07:47.000Z",
+          "updatedAt": "2026-07-28T10:07:47.000Z",
+          "uid": "35240-95d536ad-ffc4-4ba6-8594-3867ca9d0078"
+        }
+      ],
+      "id": "4d3f6ffe-baf9-4d2b-a877-c4413cb7ddff",
+      "createdAt": "2026-07-28T10:07:47.000Z",
+      "updatedAt": "2026-07-28T10:07:47.000Z",
+      "uid": "35240-4d3f6ffe-baf9-4d2b-a877-c4413cb7ddff"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

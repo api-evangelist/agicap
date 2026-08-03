@@ -1,0 +1,1308 @@
+{
+  "info": {
+    "_postman_id": "8f308ffe-8ae6-4d10-bf67-576247dd30c8",
+    "name": "Clients AR Account reports Client addresses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:07:41.000Z",
+    "updatedAt": "2026-07-28T10:07:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8f308ffe-8ae6-4d10-bf67-576247dd30c8"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "ar-clients",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "client-addresses",
+                          "item": [
+                            {
+                              "name": "Delete client addresses",
+                              "id": "b5221f0f-cdcc-42ec-b08c-926297bf9855",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"clientExternalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "ar-clients",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "client-addresses"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "dcf76c81-070a-47a2-97e1-694e3a04bd25",
+                                      "key": "entityId",
+                                      "value": "<number>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Delete client addresses in bulk by clientExternalId. Maximum 1000 items per request."
+                              },
+                              "response": [
+                                {
+                                  "id": "68d01139-41ae-45e8-9ce3-168a11bfc920",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientExternalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"deleted\": [\n    {\n      \"clientExternalId\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\"\n    }\n  ],\n  \"notDeleted\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"reason\": \"CLIENT_NOT_FOUND\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"reason\": \"ADDRESS_NOT_FOUND\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-68d01139-41ae-45e8-9ce3-168a11bfc920"
+                                },
+                                {
+                                  "id": "b8c38463-ac6a-4c73-8b0f-6d66ba4f6e20",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientExternalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-b8c38463-ac6a-4c73-8b0f-6d66ba4f6e20"
+                                },
+                                {
+                                  "id": "5a462fdc-4d64-41cb-84f3-fca5c4697842",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientExternalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-5a462fdc-4d64-41cb-84f3-fca5c4697842"
+                                },
+                                {
+                                  "id": "1837f55e-947a-4ce5-9f31-4ba8b9961c72",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientExternalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-1837f55e-947a-4ce5-9f31-4ba8b9961c72"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:42.000Z",
+                              "updatedAt": "2026-07-28T10:07:42.000Z",
+                              "uid": "35240-b5221f0f-cdcc-42ec-b08c-926297bf9855"
+                            },
+                            {
+                              "name": "List client addresses",
+                              "id": "550c3e1c-67a6-44c4-901d-0a8ad30285a3",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses?pageSize=<number>&clientExternalIds=<string>&clientExternalIds=<string>&token=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "ar-clients",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "client-addresses"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "pageSize",
+                                      "value": "<number>"
+                                    },
+                                    {
+                                      "description": "Filter client addresses by client external identifiers. Supports multiple values.",
+                                      "key": "clientExternalIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter client addresses by client external identifiers. Supports multiple values.",
+                                      "key": "clientExternalIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Opaque pagination token for retrieving the next page",
+                                      "key": "token",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "0f88183f-100b-4f33-9e27-410dea97669b",
+                                      "key": "entityId",
+                                      "value": "<number>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve a paginated list of client addresses for the given entity."
+                              },
+                              "response": [
+                                {
+                                  "id": "2f9258cf-6c85-4c3a-a07b-fbfdf3e719ee",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses?pageSize=<number>&clientExternalIds=<string>&token=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "<number>"
+                                        },
+                                        {
+                                          "description": "Filter client addresses by client external identifiers. Supports multiple values.",
+                                          "key": "clientExternalIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Opaque pagination token for retrieving the next page",
+                                          "key": "token",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"clientId\": \"<string>\",\n      \"clientExternalId\": \"<string>\",\n      \"address\": {\n        \"name\": \"<string>\",\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"city\": \"<string>\",\n        \"country\": \"RUS\"\n      }\n    },\n    {\n      \"clientId\": \"<string>\",\n      \"clientExternalId\": \"<string>\",\n      \"address\": {\n        \"name\": \"<string>\",\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"city\": \"<string>\",\n        \"country\": \"SVN\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"before\": \"<string>\",\n    \"after\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-2f9258cf-6c85-4c3a-a07b-fbfdf3e719ee"
+                                },
+                                {
+                                  "id": "d82255a4-91a8-448f-bd31-f26dc9fa71c3",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses?pageSize=<number>&clientExternalIds=<string>&token=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "<number>"
+                                        },
+                                        {
+                                          "description": "Filter client addresses by client external identifiers. Supports multiple values.",
+                                          "key": "clientExternalIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Opaque pagination token for retrieving the next page",
+                                          "key": "token",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-d82255a4-91a8-448f-bd31-f26dc9fa71c3"
+                                },
+                                {
+                                  "id": "bdea7b39-798a-4d4f-a3d7-bc48012b27b6",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses?pageSize=<number>&clientExternalIds=<string>&token=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "<number>"
+                                        },
+                                        {
+                                          "description": "Filter client addresses by client external identifiers. Supports multiple values.",
+                                          "key": "clientExternalIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Opaque pagination token for retrieving the next page",
+                                          "key": "token",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-bdea7b39-798a-4d4f-a3d7-bc48012b27b6"
+                                },
+                                {
+                                  "id": "698a9592-b48e-4c34-87b5-01c680b4e5fb",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses?pageSize=<number>&clientExternalIds=<string>&token=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "<number>"
+                                        },
+                                        {
+                                          "description": "Filter client addresses by client external identifiers. Supports multiple values.",
+                                          "key": "clientExternalIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Opaque pagination token for retrieving the next page",
+                                          "key": "token",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-698a9592-b48e-4c34-87b5-01c680b4e5fb"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:42.000Z",
+                              "updatedAt": "2026-07-28T10:07:42.000Z",
+                              "uid": "35240-550c3e1c-67a6-44c4-901d-0a8ad30285a3"
+                            },
+                            {
+                              "name": "Create client addresses",
+                              "id": "28de1ce4-90ea-494b-9fe6-795c74c6133e",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"IRN\",\n      \"line2\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"ZAF\",\n      \"line2\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "ar-clients",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "client-addresses"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "3ced2be2-3604-4d73-9fe4-009b59e67289",
+                                      "key": "entityId",
+                                      "value": "<number>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Create client addresses in bulk by clientExternalId. Maximum 1000 items per request."
+                              },
+                              "response": [
+                                {
+                                  "id": "81a2088a-8c63-4cc5-b993-a7709dd35ced",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"IRN\",\n      \"line2\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"ZAF\",\n      \"line2\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"created\": [\n    {\n      \"clientExternalId\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\"\n    }\n  ],\n  \"notCreated\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"reason\": \"CLIENT_ADDRESS_ALREADY_EXISTS\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"reason\": \"CLIENT_ADDRESS_ALREADY_EXISTS\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-81a2088a-8c63-4cc5-b993-a7709dd35ced"
+                                },
+                                {
+                                  "id": "41228e7a-0eb0-4305-93f0-832e7d0160fa",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"IRN\",\n      \"line2\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"ZAF\",\n      \"line2\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-41228e7a-0eb0-4305-93f0-832e7d0160fa"
+                                },
+                                {
+                                  "id": "7611f082-154c-4422-b615-12e70d6112c8",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"IRN\",\n      \"line2\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"ZAF\",\n      \"line2\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-7611f082-154c-4422-b615-12e70d6112c8"
+                                },
+                                {
+                                  "id": "10dcbaf8-d922-4a59-a4f7-4b19ec64bf3f",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"IRN\",\n      \"line2\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"ZAF\",\n      \"line2\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-10dcbaf8-d922-4a59-a4f7-4b19ec64bf3f"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:42.000Z",
+                              "updatedAt": "2026-07-28T10:07:42.000Z",
+                              "uid": "35240-28de1ce4-90ea-494b-9fe6-795c74c6133e"
+                            },
+                            {
+                              "name": "Update client addresses",
+                              "id": "d75c055a-f428-4caf-bff0-a50311b596b5",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"PHL\",\n      \"line2\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"MTQ\",\n      \"line2\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "ar-clients",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "client-addresses"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "4d85fcac-a2b6-47b2-afcb-5dbdec586d1f",
+                                      "key": "entityId",
+                                      "value": "<number>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Update client addresses in bulk by clientExternalId. Non-existing clients or clients without an address are ignored. Maximum 1000 items per request."
+                              },
+                              "response": [
+                                {
+                                  "id": "fec3abf0-731c-451f-9a27-f84b26f69613",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"PHL\",\n      \"line2\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"MTQ\",\n      \"line2\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"updated\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"GGY\",\n      \"line2\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"EST\",\n      \"line2\": \"<string>\"\n    }\n  ],\n  \"notUpdated\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"reason\": \"ADDRESS_NOT_FOUND\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"reason\": \"CLIENT_NOT_FOUND\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-fec3abf0-731c-451f-9a27-f84b26f69613"
+                                },
+                                {
+                                  "id": "1dfb2711-f951-4ae0-b92f-3659ff5dae5e",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"PHL\",\n      \"line2\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"MTQ\",\n      \"line2\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-1dfb2711-f951-4ae0-b92f-3659ff5dae5e"
+                                },
+                                {
+                                  "id": "5f9aa433-dfba-42ac-a007-6c6681bcc3ee",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"PHL\",\n      \"line2\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"MTQ\",\n      \"line2\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-5f9aa433-dfba-42ac-a007-6c6681bcc3ee"
+                                },
+                                {
+                                  "id": "c05d500b-19f9-481e-af07-a1b2dfff3899",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"PHL\",\n      \"line2\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"MTQ\",\n      \"line2\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/client-addresses",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "client-addresses"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:42.000Z",
+                                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                                  "uid": "35240-c05d500b-19f9-481e-af07-a1b2dfff3899"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:42.000Z",
+                              "updatedAt": "2026-07-28T10:07:42.000Z",
+                              "uid": "35240-d75c055a-f428-4caf-bff0-a50311b596b5"
+                            }
+                          ],
+                          "id": "ac102525-9805-4e6a-a17c-50b2c5057269",
+                          "createdAt": "2026-07-28T10:07:42.000Z",
+                          "updatedAt": "2026-07-28T10:07:42.000Z",
+                          "uid": "35240-ac102525-9805-4e6a-a17c-50b2c5057269"
+                        }
+                      ],
+                      "id": "2636f415-05c1-435e-8706-922e06246a13",
+                      "createdAt": "2026-07-28T10:07:42.000Z",
+                      "updatedAt": "2026-07-28T10:07:42.000Z",
+                      "uid": "35240-2636f415-05c1-435e-8706-922e06246a13"
+                    }
+                  ],
+                  "id": "b60af91d-582e-4dd0-8c19-165c045bfa49",
+                  "createdAt": "2026-07-28T10:07:42.000Z",
+                  "updatedAt": "2026-07-28T10:07:42.000Z",
+                  "uid": "35240-b60af91d-582e-4dd0-8c19-165c045bfa49"
+                }
+              ],
+              "id": "53b10c1a-7918-42b5-bdaf-99f8dcf43482",
+              "createdAt": "2026-07-28T10:07:42.000Z",
+              "updatedAt": "2026-07-28T10:07:42.000Z",
+              "uid": "35240-53b10c1a-7918-42b5-bdaf-99f8dcf43482"
+            }
+          ],
+          "id": "60d7f264-e415-44f1-8866-6b9e4d305075",
+          "createdAt": "2026-07-28T10:07:42.000Z",
+          "updatedAt": "2026-07-28T10:07:42.000Z",
+          "uid": "35240-60d7f264-e415-44f1-8866-6b9e4d305075"
+        }
+      ],
+      "id": "fcf5d884-713e-4cc1-ae99-565dba00ae9b",
+      "createdAt": "2026-07-28T10:07:42.000Z",
+      "updatedAt": "2026-07-28T10:07:42.000Z",
+      "uid": "35240-fcf5d884-713e-4cc1-ae99-565dba00ae9b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

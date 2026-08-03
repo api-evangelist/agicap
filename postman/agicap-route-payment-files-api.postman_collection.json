@@ -1,0 +1,2054 @@
+{
+  "info": {
+    "_postman_id": "ae7211f1-672b-466d-bece-89a8ffb04d64",
+    "name": "Clients AR Account reports Route payment files API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:08:50.000Z",
+    "updatedAt": "2026-07-28T10:08:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ae7211f1-672b-466d-bece-89a8ffb04d64"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "payments",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "payments-files",
+                          "item": [
+                            {
+                              "name": "import",
+                              "item": [
+                                {
+                                  "name": "Route payment file",
+                                  "id": "bfb3a032-d950-4e22-846b-c6983952dce7",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "multipart/form-data"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "text/plain"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "formdata",
+                                      "formdata": [
+                                        {
+                                          "description": "(Required) File to be routed. In .xml or .txt format",
+                                          "key": "file",
+                                          "type": "file",
+                                          "value": null
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/payments-files/import",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "payments-files",
+                                        "import"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "b8f7458e-4d28-41a9-af8a-e4095c8de03c",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Route payment files into Agicap in any standard banking format. Once imported, the files are processed and sent to the bank without any modifications.<br/>Supported Formats: the API supports all standard banking formats in `.xml` and `.txt`\n\n**Required OAuth scopes:**\n\n- `agicap:public-api`\n- `public-api:import_payment_files`"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "6df22e3d-28b0-4422-8ac6-61be7246fcca",
+                                      "name": "The remittance has been successfully imported.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "text/plain"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "file",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/payments-files/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "payments-files",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "No Content",
+                                      "code": 204,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "text/plain"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "",
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-6df22e3d-28b0-4422-8ac6-61be7246fcca"
+                                    },
+                                    {
+                                      "id": "b81114bf-e578-4e9c-b370-c4d74b6890e2",
+                                      "name": "Bad Request",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "file",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/payments-files/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "payments-files",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"additionalInformations\": [\n    {\n      \"iban\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"iban\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-b81114bf-e578-4e9c-b370-c4d74b6890e2"
+                                    },
+                                    {
+                                      "id": "5347e526-e561-4e0c-9122-aa01c24265b1",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "file",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/payments-files/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "payments-files",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-5347e526-e561-4e0c-9122-aa01c24265b1"
+                                    },
+                                    {
+                                      "id": "b7f5c2a7-8cbe-4725-b49c-bc77bcdf3ae5",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "file",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/payments-files/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "payments-files",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-b7f5c2a7-8cbe-4725-b49c-bc77bcdf3ae5"
+                                    },
+                                    {
+                                      "id": "3823e98b-e8fe-41a9-86dd-eb9c024eea6f",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "file",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/payments-files/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "payments-files",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-3823e98b-e8fe-41a9-86dd-eb9c024eea6f"
+                                    },
+                                    {
+                                      "id": "e68692c6-65fa-4360-8eac-265857c9c092",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "file",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/payments-files/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "payments-files",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-e68692c6-65fa-4360-8eac-265857c9c092"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:08:51.000Z",
+                                  "updatedAt": "2026-07-28T10:08:51.000Z",
+                                  "uid": "35240-bfb3a032-d950-4e22-846b-c6983952dce7"
+                                }
+                              ],
+                              "id": "032dfff0-45be-4043-b65b-5a31cc45a4df",
+                              "createdAt": "2026-07-28T10:08:51.000Z",
+                              "updatedAt": "2026-07-28T10:08:51.000Z",
+                              "uid": "35240-032dfff0-45be-4043-b65b-5a31cc45a4df"
+                            },
+                            {
+                              "name": "secured-import",
+                              "item": [
+                                {
+                                  "name": "Route payment files with signed beneficiaries",
+                                  "id": "9b1959ae-2692-43e4-845d-e52639f46691",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "multipart/form-data"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "text/plain"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "formdata",
+                                      "formdata": [
+                                        {
+                                          "description": "(Required) Boolean indicating whether confidentiality flag in file must be removed or kept",
+                                          "key": "keepConfidentiality",
+                                          "value": "<boolean>",
+                                          "type": "text"
+                                        },
+                                        {
+                                          "description": "(Required) File to be routed. In .xml or .txt format",
+                                          "key": "remittanceFile",
+                                          "type": "file",
+                                          "value": null
+                                        },
+                                        {
+                                          "description": "(Required) Json file containing account numbers with their signature",
+                                          "key": "signaturesJsonFile",
+                                          "type": "file",
+                                          "value": null
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/payments-files/secured-import",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "payments-files",
+                                        "secured-import"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "c2e78f19-c2e3-4c80-8680-ca068a7e232f",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Do not use except if you received dedicated instruction from Agicap\u2019s team. More documentation to come on this use case.\n\n**Required OAuth scopes:**\n\n- `agicap:public-api`\n- `public-api:import_payment_files_with_signed_beneficiaries`"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "6c89f42f-132a-4812-b3f4-76a9ce5a201d",
+                                      "name": "The remittance has been successfully imported.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "text/plain"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Boolean indicating whether confidentiality flag in file must be removed or kept",
+                                              "key": "keepConfidentiality",
+                                              "value": "<boolean>",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "remittanceFile",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "(Required) Json file containing account numbers with their signature",
+                                              "key": "signaturesJsonFile",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/payments-files/secured-import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "payments-files",
+                                            "secured-import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "No Content",
+                                      "code": 204,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "text/plain"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "",
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-6c89f42f-132a-4812-b3f4-76a9ce5a201d"
+                                    },
+                                    {
+                                      "id": "da38518d-8822-43a6-8940-707315011edc",
+                                      "name": "Bad Request",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Boolean indicating whether confidentiality flag in file must be removed or kept",
+                                              "key": "keepConfidentiality",
+                                              "value": "<boolean>",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "remittanceFile",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "(Required) Json file containing account numbers with their signature",
+                                              "key": "signaturesJsonFile",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/payments-files/secured-import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "payments-files",
+                                            "secured-import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"additionalInformations\": [\n    {\n      \"iban\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"iban\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-da38518d-8822-43a6-8940-707315011edc"
+                                    },
+                                    {
+                                      "id": "1bcd509b-4806-449a-9bf3-66eac530079a",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Boolean indicating whether confidentiality flag in file must be removed or kept",
+                                              "key": "keepConfidentiality",
+                                              "value": "<boolean>",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "remittanceFile",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "(Required) Json file containing account numbers with their signature",
+                                              "key": "signaturesJsonFile",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/payments-files/secured-import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "payments-files",
+                                            "secured-import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-1bcd509b-4806-449a-9bf3-66eac530079a"
+                                    },
+                                    {
+                                      "id": "626ed20d-08ac-472f-9d99-c7372a13ef51",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Boolean indicating whether confidentiality flag in file must be removed or kept",
+                                              "key": "keepConfidentiality",
+                                              "value": "<boolean>",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "remittanceFile",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "(Required) Json file containing account numbers with their signature",
+                                              "key": "signaturesJsonFile",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/payments-files/secured-import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "payments-files",
+                                            "secured-import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-626ed20d-08ac-472f-9d99-c7372a13ef51"
+                                    },
+                                    {
+                                      "id": "e4cbb556-bd79-491d-a1e3-d4a1c103a3ea",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Boolean indicating whether confidentiality flag in file must be removed or kept",
+                                              "key": "keepConfidentiality",
+                                              "value": "<boolean>",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "remittanceFile",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "(Required) Json file containing account numbers with their signature",
+                                              "key": "signaturesJsonFile",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/payments-files/secured-import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "payments-files",
+                                            "secured-import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-e4cbb556-bd79-491d-a1e3-d4a1c103a3ea"
+                                    },
+                                    {
+                                      "id": "29bbad3f-b391-487c-8279-5ae9e87f1b26",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Boolean indicating whether confidentiality flag in file must be removed or kept",
+                                              "key": "keepConfidentiality",
+                                              "value": "<boolean>",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "remittanceFile",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "(Required) Json file containing account numbers with their signature",
+                                              "key": "signaturesJsonFile",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/payments-files/secured-import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "payments-files",
+                                            "secured-import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-29bbad3f-b391-487c-8279-5ae9e87f1b26"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:08:51.000Z",
+                                  "updatedAt": "2026-07-28T10:08:51.000Z",
+                                  "uid": "35240-9b1959ae-2692-43e4-845d-e52639f46691"
+                                }
+                              ],
+                              "id": "dad70a57-dc73-42c4-8bd9-f7b9bc516b0e",
+                              "createdAt": "2026-07-28T10:08:51.000Z",
+                              "updatedAt": "2026-07-28T10:08:51.000Z",
+                              "uid": "35240-dad70a57-dc73-42c4-8bd9-f7b9bc516b0e"
+                            }
+                          ],
+                          "id": "0b64f1d9-a92e-4720-8491-33e3e27cc098",
+                          "createdAt": "2026-07-28T10:08:51.000Z",
+                          "updatedAt": "2026-07-28T10:08:51.000Z",
+                          "uid": "35240-0b64f1d9-a92e-4720-8491-33e3e27cc098"
+                        },
+                        {
+                          "name": "remittances",
+                          "item": [
+                            {
+                              "name": "import",
+                              "item": [
+                                {
+                                  "name": "Route payment file",
+                                  "id": "155bfea6-dd32-4d34-9c60-4abb1bd47447",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "multipart/form-data"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "text/plain"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "formdata",
+                                      "formdata": [
+                                        {
+                                          "description": "(Required) File to be routed. In .xml or .txt format",
+                                          "key": "file",
+                                          "type": "file",
+                                          "value": null
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/remittances/import",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "remittances",
+                                        "import"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "d6cb5148-a960-40e8-a024-00d6dba98fcc",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Route payment files into Agicap in any standard banking format. Once imported, the files are processed and sent to the bank without any modifications.<br/>Supported Formats: the API supports all standard banking formats in `.xml` and `.txt`<br/><b>Deprecated:</b> Use public-api/payments/v2/entities/{entityId:int}/payments-files/import instead\n\n**Required OAuth scopes:**\n\n- `agicap:public-api`\n- `public-api:import_payment_files`"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "c397ad25-d401-403c-ac0f-355eef523b95",
+                                      "name": "The remittance has been successfully imported.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "text/plain"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "file",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/remittances/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "remittances",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "No Content",
+                                      "code": 204,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "text/plain"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "",
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-c397ad25-d401-403c-ac0f-355eef523b95"
+                                    },
+                                    {
+                                      "id": "ebb582e2-4476-4f51-8f4f-1a958dc7e19a",
+                                      "name": "Bad Request",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "file",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/remittances/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "remittances",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"additionalInformations\": [\n    {\n      \"iban\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"iban\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-ebb582e2-4476-4f51-8f4f-1a958dc7e19a"
+                                    },
+                                    {
+                                      "id": "d47f488a-9120-412e-8c53-21095f0047be",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "file",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/remittances/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "remittances",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-d47f488a-9120-412e-8c53-21095f0047be"
+                                    },
+                                    {
+                                      "id": "47142bab-3d8d-426e-aabf-a443ee200400",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "file",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/remittances/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "remittances",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-47142bab-3d8d-426e-aabf-a443ee200400"
+                                    },
+                                    {
+                                      "id": "22e566c2-cef4-4a9e-aa41-042ca0afdcd8",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "file",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/remittances/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "remittances",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-22e566c2-cef4-4a9e-aa41-042ca0afdcd8"
+                                    },
+                                    {
+                                      "id": "a349b09b-9486-4f18-b5b3-fd541f852a09",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "file",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/remittances/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "remittances",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-a349b09b-9486-4f18-b5b3-fd541f852a09"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:08:51.000Z",
+                                  "updatedAt": "2026-07-28T10:08:51.000Z",
+                                  "uid": "35240-155bfea6-dd32-4d34-9c60-4abb1bd47447"
+                                }
+                              ],
+                              "id": "1c56ee33-bc30-49f1-8704-67cd095087ca",
+                              "createdAt": "2026-07-28T10:08:51.000Z",
+                              "updatedAt": "2026-07-28T10:08:51.000Z",
+                              "uid": "35240-1c56ee33-bc30-49f1-8704-67cd095087ca"
+                            },
+                            {
+                              "name": "secured-import",
+                              "item": [
+                                {
+                                  "name": "Route payment files with signed beneficiaries",
+                                  "id": "558d5ca0-b102-4b52-bf5b-fbe8a142956c",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "multipart/form-data"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "text/plain"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "formdata",
+                                      "formdata": [
+                                        {
+                                          "description": "(Required) Boolean indicating whether confidentiality flag in file must be removed or kept",
+                                          "key": "keepConfidentiality",
+                                          "value": "<boolean>",
+                                          "type": "text"
+                                        },
+                                        {
+                                          "description": "(Required) File to be routed. In .xml or .txt format",
+                                          "key": "remittanceFile",
+                                          "type": "file",
+                                          "value": null
+                                        },
+                                        {
+                                          "description": "(Required) Json file containing account numbers with their signature",
+                                          "key": "signaturesJsonFile",
+                                          "type": "file",
+                                          "value": null
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/remittances/secured-import",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "payments",
+                                        "v2",
+                                        "entities",
+                                        ":entityId",
+                                        "remittances",
+                                        "secured-import"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "c65580f5-13d3-47f7-b412-44f26a39ba17",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Do not use except if you received dedicated instruction from Agicap\u2019s team. More documentation to come on this use case.<br/><b>Deprecated:</b> Use public-api/payments/v2/entities/{entityId:int}/payments-files/secured-import instead\n\n**Required OAuth scopes:**\n\n- `agicap:public-api`\n- `public-api:import_payment_files_with_signed_beneficiaries`"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "9c903ccc-2229-4734-9799-cf309be5a2ab",
+                                      "name": "The remittance has been successfully imported.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "text/plain"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Boolean indicating whether confidentiality flag in file must be removed or kept",
+                                              "key": "keepConfidentiality",
+                                              "value": "<boolean>",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "remittanceFile",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "(Required) Json file containing account numbers with their signature",
+                                              "key": "signaturesJsonFile",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/remittances/secured-import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "remittances",
+                                            "secured-import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "No Content",
+                                      "code": 204,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "text/plain"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "",
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-9c903ccc-2229-4734-9799-cf309be5a2ab"
+                                    },
+                                    {
+                                      "id": "a5d3a949-5517-4881-9eaa-15cc3e2bb61e",
+                                      "name": "Bad Request",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Boolean indicating whether confidentiality flag in file must be removed or kept",
+                                              "key": "keepConfidentiality",
+                                              "value": "<boolean>",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "remittanceFile",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "(Required) Json file containing account numbers with their signature",
+                                              "key": "signaturesJsonFile",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/remittances/secured-import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "remittances",
+                                            "secured-import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"additionalInformations\": [\n    {\n      \"iban\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"iban\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-a5d3a949-5517-4881-9eaa-15cc3e2bb61e"
+                                    },
+                                    {
+                                      "id": "8fbd2fca-3460-4f77-b316-4a906f64eecd",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Boolean indicating whether confidentiality flag in file must be removed or kept",
+                                              "key": "keepConfidentiality",
+                                              "value": "<boolean>",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "remittanceFile",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "(Required) Json file containing account numbers with their signature",
+                                              "key": "signaturesJsonFile",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/remittances/secured-import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "remittances",
+                                            "secured-import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-8fbd2fca-3460-4f77-b316-4a906f64eecd"
+                                    },
+                                    {
+                                      "id": "8684770a-ab02-4335-a3db-acf3a319694b",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Boolean indicating whether confidentiality flag in file must be removed or kept",
+                                              "key": "keepConfidentiality",
+                                              "value": "<boolean>",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "remittanceFile",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "(Required) Json file containing account numbers with their signature",
+                                              "key": "signaturesJsonFile",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/remittances/secured-import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "remittances",
+                                            "secured-import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-8684770a-ab02-4335-a3db-acf3a319694b"
+                                    },
+                                    {
+                                      "id": "ddba38c5-e6e6-474b-aee9-da1c7626fdb4",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Boolean indicating whether confidentiality flag in file must be removed or kept",
+                                              "key": "keepConfidentiality",
+                                              "value": "<boolean>",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "remittanceFile",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "(Required) Json file containing account numbers with their signature",
+                                              "key": "signaturesJsonFile",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/remittances/secured-import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "remittances",
+                                            "secured-import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-ddba38c5-e6e6-474b-aee9-da1c7626fdb4"
+                                    },
+                                    {
+                                      "id": "5ed75c05-e779-4d9d-87c3-186684959f6c",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Boolean indicating whether confidentiality flag in file must be removed or kept",
+                                              "key": "keepConfidentiality",
+                                              "value": "<boolean>",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "description": "(Required) File to be routed. In .xml or .txt format",
+                                              "key": "remittanceFile",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "(Required) Json file containing account numbers with their signature",
+                                              "key": "signaturesJsonFile",
+                                              "type": "file"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/payments/v2/entities/:entityId/remittances/secured-import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "payments",
+                                            "v2",
+                                            "entities",
+                                            ":entityId",
+                                            "remittances",
+                                            "secured-import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:51.000Z",
+                                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                                      "uid": "35240-5ed75c05-e779-4d9d-87c3-186684959f6c"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:08:51.000Z",
+                                  "updatedAt": "2026-07-28T10:08:51.000Z",
+                                  "uid": "35240-558d5ca0-b102-4b52-bf5b-fbe8a142956c"
+                                }
+                              ],
+                              "id": "5b90bc44-697a-414f-aa63-a0e78529d615",
+                              "createdAt": "2026-07-28T10:08:51.000Z",
+                              "updatedAt": "2026-07-28T10:08:51.000Z",
+                              "uid": "35240-5b90bc44-697a-414f-aa63-a0e78529d615"
+                            }
+                          ],
+                          "id": "fab917b1-3103-4cfc-8bcb-98bad22623d1",
+                          "createdAt": "2026-07-28T10:08:51.000Z",
+                          "updatedAt": "2026-07-28T10:08:51.000Z",
+                          "uid": "35240-fab917b1-3103-4cfc-8bcb-98bad22623d1"
+                        }
+                      ],
+                      "id": "0b1cba5e-2c76-48b6-a434-dda9aa0313b4",
+                      "createdAt": "2026-07-28T10:08:51.000Z",
+                      "updatedAt": "2026-07-28T10:08:51.000Z",
+                      "uid": "35240-0b1cba5e-2c76-48b6-a434-dda9aa0313b4"
+                    }
+                  ],
+                  "id": "986fa470-ec85-4005-8eb2-744ac097e6a9",
+                  "createdAt": "2026-07-28T10:08:51.000Z",
+                  "updatedAt": "2026-07-28T10:08:51.000Z",
+                  "uid": "35240-986fa470-ec85-4005-8eb2-744ac097e6a9"
+                }
+              ],
+              "id": "3f938931-c902-48e5-84c9-eb7113bd77dc",
+              "createdAt": "2026-07-28T10:08:51.000Z",
+              "updatedAt": "2026-07-28T10:08:51.000Z",
+              "uid": "35240-3f938931-c902-48e5-84c9-eb7113bd77dc"
+            }
+          ],
+          "id": "1ec3c2c8-63d6-4722-a439-429f6fdce30f",
+          "createdAt": "2026-07-28T10:08:51.000Z",
+          "updatedAt": "2026-07-28T10:08:51.000Z",
+          "uid": "35240-1ec3c2c8-63d6-4722-a439-429f6fdce30f"
+        }
+      ],
+      "id": "b0814ab5-f6da-407a-935a-8f4554ef9862",
+      "createdAt": "2026-07-28T10:08:51.000Z",
+      "updatedAt": "2026-07-28T10:08:51.000Z",
+      "uid": "35240-b0814ab5-f6da-407a-935a-8f4554ef9862"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

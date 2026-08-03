@@ -1,0 +1,1308 @@
+{
+  "info": {
+    "_postman_id": "50e84c53-0a9d-422b-ada5-d950f89abf5a",
+    "name": "Clients AR Account reports Credit limit API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:07:51.000Z",
+    "updatedAt": "2026-07-28T10:07:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-50e84c53-0a9d-422b-ada5-d950f89abf5a"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "client-risk",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "credit-limits",
+                          "item": [
+                            {
+                              "name": "Delete client credit limits",
+                              "id": "ab267df2-c305-483b-abfd-8817989d39aa",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"clientExternalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "client-risk",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "credit-limits"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "fdd9a52c-c43b-48e5-9a20-fa6a3dfb1542",
+                                      "key": "entityId",
+                                      "value": "<number>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Delete client credit limits in bulk by clientExternalId. Maximum 1000 items per request."
+                              },
+                              "response": [
+                                {
+                                  "id": "e8ca8b62-163b-402a-ad3f-10e18f86090d",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientExternalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"deleted\": [\n    {\n      \"clientExternalId\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\"\n    }\n  ],\n  \"notDeleted\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"reason\": \"CREDIT_LIMIT_NOT_FOUND\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"reason\": \"CREDIT_LIMIT_NOT_FOUND\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-e8ca8b62-163b-402a-ad3f-10e18f86090d"
+                                },
+                                {
+                                  "id": "652b1507-10ce-4e79-b3b3-d85ab4cefcc6",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientExternalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-652b1507-10ce-4e79-b3b3-d85ab4cefcc6"
+                                },
+                                {
+                                  "id": "8ff4d8f5-fcd0-465c-9365-97e175285c50",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientExternalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-8ff4d8f5-fcd0-465c-9365-97e175285c50"
+                                },
+                                {
+                                  "id": "9682d52b-e0c6-45b3-a957-2d04e5900eea",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"clientExternalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-9682d52b-e0c6-45b3-a957-2d04e5900eea"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:51.000Z",
+                              "updatedAt": "2026-07-28T10:07:51.000Z",
+                              "uid": "35240-ab267df2-c305-483b-abfd-8817989d39aa"
+                            },
+                            {
+                              "name": "List client credit limits",
+                              "id": "61b4dc63-ce51-4802-b51d-243b156c12b9",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits?pageSize=<number>&clientExternalIds=<string>&clientExternalIds=<string>&token=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "client-risk",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "credit-limits"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "pageSize",
+                                      "value": "<number>"
+                                    },
+                                    {
+                                      "description": "Filter credit limits by client external identifiers. Supports multiple values.",
+                                      "key": "clientExternalIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter credit limits by client external identifiers. Supports multiple values.",
+                                      "key": "clientExternalIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Opaque pagination token for retrieving the next page",
+                                      "key": "token",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "9af10dc0-6abc-4cb9-8175-9bb4fcc63b30",
+                                      "key": "entityId",
+                                      "value": "<number>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve a paginated list of client credit limits for the given entity."
+                              },
+                              "response": [
+                                {
+                                  "id": "f51c49bb-9634-4912-b487-7f8766a616f7",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits?pageSize=<number>&clientExternalIds=<string>&token=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "<number>"
+                                        },
+                                        {
+                                          "description": "Filter credit limits by client external identifiers. Supports multiple values.",
+                                          "key": "clientExternalIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Opaque pagination token for retrieving the next page",
+                                          "key": "token",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"clientId\": \"<string>\",\n      \"clientExternalId\": \"<string>\",\n      \"creditLimit\": {\n        \"limitCents\": \"<number>\",\n        \"limit\": \"<number>\",\n        \"currency\": \"VES\"\n      }\n    },\n    {\n      \"clientId\": \"<string>\",\n      \"clientExternalId\": \"<string>\",\n      \"creditLimit\": {\n        \"limitCents\": \"<number>\",\n        \"limit\": \"<number>\",\n        \"currency\": \"SGD\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"before\": \"<string>\",\n    \"after\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-f51c49bb-9634-4912-b487-7f8766a616f7"
+                                },
+                                {
+                                  "id": "1f26aece-541d-49cf-bbfe-79e798790495",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits?pageSize=<number>&clientExternalIds=<string>&token=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "<number>"
+                                        },
+                                        {
+                                          "description": "Filter credit limits by client external identifiers. Supports multiple values.",
+                                          "key": "clientExternalIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Opaque pagination token for retrieving the next page",
+                                          "key": "token",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-1f26aece-541d-49cf-bbfe-79e798790495"
+                                },
+                                {
+                                  "id": "39db9595-3c77-4add-bac2-0644714bb25d",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits?pageSize=<number>&clientExternalIds=<string>&token=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "<number>"
+                                        },
+                                        {
+                                          "description": "Filter credit limits by client external identifiers. Supports multiple values.",
+                                          "key": "clientExternalIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Opaque pagination token for retrieving the next page",
+                                          "key": "token",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-39db9595-3c77-4add-bac2-0644714bb25d"
+                                },
+                                {
+                                  "id": "187cedfd-a889-4691-bc1c-22bed7bdcdc5",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits?pageSize=<number>&clientExternalIds=<string>&token=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "<number>"
+                                        },
+                                        {
+                                          "description": "Filter credit limits by client external identifiers. Supports multiple values.",
+                                          "key": "clientExternalIds",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Opaque pagination token for retrieving the next page",
+                                          "key": "token",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-187cedfd-a889-4691-bc1c-22bed7bdcdc5"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:51.000Z",
+                              "updatedAt": "2026-07-28T10:07:51.000Z",
+                              "uid": "35240-61b4dc63-ce51-4802-b51d-243b156c12b9"
+                            },
+                            {
+                              "name": "Create client credit limits",
+                              "id": "e72bd1e3-6fae-44b7-955c-5ee48861d9e7",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"creditLimits\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"THB\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"VUV\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "client-risk",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "credit-limits"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "9f9903c1-0303-44e2-ae3b-47ed1ec1aa3f",
+                                      "key": "entityId",
+                                      "value": "<number>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Create client credit limits in bulk by clientExternalId. Maximum 1000 items per request."
+                              },
+                              "response": [
+                                {
+                                  "id": "33f58d07-c20b-4969-b469-04a132ce48e9",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"creditLimits\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"THB\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"VUV\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"created\": [\n    {\n      \"clientExternalId\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\"\n    }\n  ],\n  \"notCreated\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"reason\": \"CLIENT_NOT_FOUND\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"reason\": \"CLIENT_NOT_FOUND\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-33f58d07-c20b-4969-b469-04a132ce48e9"
+                                },
+                                {
+                                  "id": "b802ad3b-a481-4229-9c03-3afa569a62ca",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"creditLimits\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"THB\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"VUV\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-b802ad3b-a481-4229-9c03-3afa569a62ca"
+                                },
+                                {
+                                  "id": "620da1d5-4536-4fbc-993d-854c12acbe5f",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"creditLimits\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"THB\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"VUV\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-620da1d5-4536-4fbc-993d-854c12acbe5f"
+                                },
+                                {
+                                  "id": "7a4ccf2c-75a1-4c2b-939a-7c5e4298c425",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"creditLimits\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"THB\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"VUV\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-7a4ccf2c-75a1-4c2b-939a-7c5e4298c425"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:51.000Z",
+                              "updatedAt": "2026-07-28T10:07:51.000Z",
+                              "uid": "35240-e72bd1e3-6fae-44b7-955c-5ee48861d9e7"
+                            },
+                            {
+                              "name": "Update client credit limits",
+                              "id": "86a27ab0-bbe1-4e9e-a34b-a3e001c6a222",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"creditLimits\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"BYR\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"UYU\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "client-risk",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "credit-limits"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "1cea63f9-b5ae-4859-b7cb-06f857e1dd3b",
+                                      "key": "entityId",
+                                      "value": "<number>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Update client credit limits in bulk by clientExternalId. Non-existing clients or clients without a credit limit are ignored. Maximum 1000 items per request."
+                              },
+                              "response": [
+                                {
+                                  "id": "a828a852-26fe-45b3-a9a5-b73d9a5acb66",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"creditLimits\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"BYR\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"UYU\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"updated\": [\n    {\n      \"clientExternalId\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\"\n    }\n  ],\n  \"notUpdated\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"reason\": \"CLIENT_NOT_FOUND\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"reason\": \"CREDIT_LIMIT_NOT_FOUND\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-a828a852-26fe-45b3-a9a5-b73d9a5acb66"
+                                },
+                                {
+                                  "id": "54429e18-0cb6-40e7-b17f-dfa9a557c51c",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"creditLimits\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"BYR\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"UYU\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-54429e18-0cb6-40e7-b17f-dfa9a557c51c"
+                                },
+                                {
+                                  "id": "ff56cc00-b280-4741-835b-564bb60347a2",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"creditLimits\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"BYR\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"UYU\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-ff56cc00-b280-4741-835b-564bb60347a2"
+                                },
+                                {
+                                  "id": "0f63cbf0-9072-445d-86c7-a4c4b9bcd5a3",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"creditLimits\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"BYR\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"limitCents\": \"<number>\",\n      \"currency\": \"UYU\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/client-risk/v1/entities/:entityId/credit-limits",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "client-risk",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "credit-limits"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:51.000Z",
+                                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                                  "uid": "35240-0f63cbf0-9072-445d-86c7-a4c4b9bcd5a3"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:51.000Z",
+                              "updatedAt": "2026-07-28T10:07:51.000Z",
+                              "uid": "35240-86a27ab0-bbe1-4e9e-a34b-a3e001c6a222"
+                            }
+                          ],
+                          "id": "a5f2285e-ae8f-49d0-9678-bcf5ebf0cd2e",
+                          "createdAt": "2026-07-28T10:07:51.000Z",
+                          "updatedAt": "2026-07-28T10:07:51.000Z",
+                          "uid": "35240-a5f2285e-ae8f-49d0-9678-bcf5ebf0cd2e"
+                        }
+                      ],
+                      "id": "476f11df-a16b-4151-9045-12bde83d329b",
+                      "createdAt": "2026-07-28T10:07:51.000Z",
+                      "updatedAt": "2026-07-28T10:07:51.000Z",
+                      "uid": "35240-476f11df-a16b-4151-9045-12bde83d329b"
+                    }
+                  ],
+                  "id": "9d07a17e-e9ea-438c-b9f8-ba9cd2d86e6a",
+                  "createdAt": "2026-07-28T10:07:51.000Z",
+                  "updatedAt": "2026-07-28T10:07:51.000Z",
+                  "uid": "35240-9d07a17e-e9ea-438c-b9f8-ba9cd2d86e6a"
+                }
+              ],
+              "id": "0690a1e0-649c-4dbe-b553-fc1622f990c9",
+              "createdAt": "2026-07-28T10:07:51.000Z",
+              "updatedAt": "2026-07-28T10:07:51.000Z",
+              "uid": "35240-0690a1e0-649c-4dbe-b553-fc1622f990c9"
+            }
+          ],
+          "id": "79821c2c-412d-4f7d-861b-66694b4eb6cb",
+          "createdAt": "2026-07-28T10:07:51.000Z",
+          "updatedAt": "2026-07-28T10:07:51.000Z",
+          "uid": "35240-79821c2c-412d-4f7d-861b-66694b4eb6cb"
+        }
+      ],
+      "id": "6a1df8b1-9bb8-410c-8f4e-28a40653f75c",
+      "createdAt": "2026-07-28T10:07:51.000Z",
+      "updatedAt": "2026-07-28T10:07:51.000Z",
+      "uid": "35240-6a1df8b1-9bb8-410c-8f4e-28a40653f75c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

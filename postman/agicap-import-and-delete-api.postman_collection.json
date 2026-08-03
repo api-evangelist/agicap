@@ -1,0 +1,1822 @@
+{
+  "info": {
+    "_postman_id": "9b2ce9f0-4220-4f0d-ab5e-ce3f4323b62f",
+    "name": "Clients AR Account reports Import and delete API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:08:02.000Z",
+    "updatedAt": "2026-07-28T10:08:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9b2ce9f0-4220-4f0d-ab5e-ce3f4323b62f"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "chart-of-accounts",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "accounting-accounts",
+                          "item": [
+                            {
+                              "name": "delete",
+                              "item": [
+                                {
+                                  "name": "Delete the accounting accounts identified by their number.",
+                                  "id": "48bf03bf-227d-49b4-8925-119bb5e5733c",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"accountingAccountNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/delete",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "chart-of-accounts",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "accounting-accounts",
+                                        "delete"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "510ed630-fcb1-4ad0-8fa1-4e6362edb4d5",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier"
+                                        }
+                                      ]
+                                    },
+                                    "description": "You can only delete 1000 accounting accounts per call, if you want to delete more, you need to call this endpoint multiple times."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "71e51810-64d5-45bc-b978-bb69c8a62f06",
+                                      "name": "OK",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"accountingAccountNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/delete",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "accounting-accounts",
+                                            "delete"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:03.000Z",
+                                      "updatedAt": "2026-07-28T10:08:03.000Z",
+                                      "uid": "35240-71e51810-64d5-45bc-b978-bb69c8a62f06"
+                                    },
+                                    {
+                                      "id": "3625466a-2563-40c5-af6d-58189f9b290f",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"accountingAccountNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/delete",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "accounting-accounts",
+                                            "delete"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:03.000Z",
+                                      "updatedAt": "2026-07-28T10:08:03.000Z",
+                                      "uid": "35240-3625466a-2563-40c5-af6d-58189f9b290f"
+                                    },
+                                    {
+                                      "id": "c73948b6-6a72-4934-9d7e-1de03df2ee79",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"accountingAccountNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/delete",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "accounting-accounts",
+                                            "delete"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:03.000Z",
+                                      "updatedAt": "2026-07-28T10:08:03.000Z",
+                                      "uid": "35240-c73948b6-6a72-4934-9d7e-1de03df2ee79"
+                                    },
+                                    {
+                                      "id": "1b4a01c0-3358-4e59-a10c-2a79ef6ec5da",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"accountingAccountNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/delete",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "accounting-accounts",
+                                            "delete"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:03.000Z",
+                                      "updatedAt": "2026-07-28T10:08:03.000Z",
+                                      "uid": "35240-1b4a01c0-3358-4e59-a10c-2a79ef6ec5da"
+                                    },
+                                    {
+                                      "id": "7f827eb7-de77-44ce-bb69-be67af6361b7",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"accountingAccountNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/delete",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "accounting-accounts",
+                                            "delete"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:03.000Z",
+                                      "updatedAt": "2026-07-28T10:08:03.000Z",
+                                      "uid": "35240-7f827eb7-de77-44ce-bb69-be67af6361b7"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:08:03.000Z",
+                                  "updatedAt": "2026-07-28T10:08:03.000Z",
+                                  "uid": "35240-48bf03bf-227d-49b4-8925-119bb5e5733c"
+                                }
+                              ],
+                              "id": "56709d67-52ec-4f4a-8192-c5e2ed7eb9ba",
+                              "createdAt": "2026-07-28T10:08:03.000Z",
+                              "updatedAt": "2026-07-28T10:08:03.000Z",
+                              "uid": "35240-56709d67-52ec-4f4a-8192-c5e2ed7eb9ba"
+                            },
+                            {
+                              "name": "import",
+                              "item": [
+                                {
+                                  "name": "{importId}",
+                                  "item": [
+                                    {
+                                      "name": "Import accounting accounts.",
+                                      "id": "3fee3749-1fd9-47fc-b2e7-a9b0dad2d0dc",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"accountingAccounts\": [\n    {\n      \"accountingAccountName\": \"<string>\",\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingAccountType\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"taxKey\": \"<string>\",\n      \"vatRate\": \"<double>\"\n    },\n    {\n      \"accountingAccountName\": \"<string>\",\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingAccountType\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"taxKey\": \"<string>\",\n      \"vatRate\": \"<double>\"\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/import/:importId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "accounting-accounts",
+                                            "import",
+                                            ":importId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "54bcc8a9-96a8-4748-a22e-20f7b4119e59",
+                                              "key": "entityId",
+                                              "value": "<integer>",
+                                              "description": "(Required) Agicap entity identifier"
+                                            },
+                                            {
+                                              "id": "898442ce-b8bc-4ae0-b3ed-0e6569b95b77",
+                                              "key": "importId",
+                                              "value": "<uuid>",
+                                              "description": "(Required) Unique ID of the import, provided by the caller. In case of network issue, use the same\nunique ID to retry."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Create new accounting accounts asynchronously.\n\nAccounting accounts can only be of the following types : Bank, Client, Supplier, Expense, Product, Vat and Other.\n\nAccounting accounts with types not in the list above won't be created.\n<p>\n    Vat Rate is only relevant for Vat accounting accounts, and Vat Rate must be between 0 and 1 (example : 0.15 for 15%).\n    Tax Key is only relevant for Vat accounting accounts, and Tax Key must be under 300 characters.\n    If the Vat Rate is not provided, the existing rate is kept (if any), the behavior is the same for the Tax Key.\n</p>\nAccounting accounts import size is limited to 5000 per batch.\n\nAccounting account number is unique for an entity, if ever you re-import accounting account info that already exists in our system, we won't create a\nduplicate.\n\nThe response HttpStatus code will be different when calling multiple times with the same `importId`:\n\n- For the first call with an `importId`, a 202 (Accepted) response will be returned notifying that the import requested was taken into account.\n\n- A 200 (Ok) response will be returned for subsequent calls with the same `importId`.\n\nFor both status codes, the response body will contain import details, see the ImportResponse description for more information."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "196c6163-bd3e-4e1e-862d-d820980cbb2f",
+                                          "name": "OK",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"accountingAccounts\": [\n    {\n      \"accountingAccountName\": \"<string>\",\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingAccountType\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"taxKey\": \"<string>\",\n      \"vatRate\": \"<double>\"\n    },\n    {\n      \"accountingAccountName\": \"<string>\",\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingAccountType\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"taxKey\": \"<string>\",\n      \"vatRate\": \"<double>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/import/:importId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "accounting-accounts",
+                                                "import",
+                                                ":importId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "importId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"importDate\": \"<string>\",\n  \"importId\": \"<uuid>\",\n  \"importStatus\": \"<string>\",\n  \"failureReason\": \"<string>\",\n  \"importSummary\": {\n    \"importedCount\": \"<integer>\",\n    \"notImportedCount\": \"<integer>\"\n  }\n}",
+                                          "createdAt": "2026-07-28T10:08:03.000Z",
+                                          "updatedAt": "2026-07-28T10:08:03.000Z",
+                                          "uid": "35240-196c6163-bd3e-4e1e-862d-d820980cbb2f"
+                                        },
+                                        {
+                                          "id": "26662367-4674-47c4-ae37-a327af5f8cd6",
+                                          "name": "Accepted",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"accountingAccounts\": [\n    {\n      \"accountingAccountName\": \"<string>\",\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingAccountType\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"taxKey\": \"<string>\",\n      \"vatRate\": \"<double>\"\n    },\n    {\n      \"accountingAccountName\": \"<string>\",\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingAccountType\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"taxKey\": \"<string>\",\n      \"vatRate\": \"<double>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/import/:importId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "accounting-accounts",
+                                                "import",
+                                                ":importId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "importId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Accepted",
+                                          "code": 202,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"importDate\": \"<string>\",\n  \"importId\": \"<uuid>\",\n  \"importStatus\": \"<string>\",\n  \"failureReason\": \"<string>\",\n  \"importSummary\": {\n    \"importedCount\": \"<integer>\",\n    \"notImportedCount\": \"<integer>\"\n  }\n}",
+                                          "createdAt": "2026-07-28T10:08:03.000Z",
+                                          "updatedAt": "2026-07-28T10:08:03.000Z",
+                                          "uid": "35240-26662367-4674-47c4-ae37-a327af5f8cd6"
+                                        },
+                                        {
+                                          "id": "2253f14c-f878-4e63-8220-83d471b32712",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"accountingAccounts\": [\n    {\n      \"accountingAccountName\": \"<string>\",\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingAccountType\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"taxKey\": \"<string>\",\n      \"vatRate\": \"<double>\"\n    },\n    {\n      \"accountingAccountName\": \"<string>\",\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingAccountType\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"taxKey\": \"<string>\",\n      \"vatRate\": \"<double>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/import/:importId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "accounting-accounts",
+                                                "import",
+                                                ":importId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "importId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:03.000Z",
+                                          "updatedAt": "2026-07-28T10:08:03.000Z",
+                                          "uid": "35240-2253f14c-f878-4e63-8220-83d471b32712"
+                                        },
+                                        {
+                                          "id": "10fc1036-50a7-42bd-aedc-8164a1921290",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"accountingAccounts\": [\n    {\n      \"accountingAccountName\": \"<string>\",\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingAccountType\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"taxKey\": \"<string>\",\n      \"vatRate\": \"<double>\"\n    },\n    {\n      \"accountingAccountName\": \"<string>\",\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingAccountType\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"taxKey\": \"<string>\",\n      \"vatRate\": \"<double>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/import/:importId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "accounting-accounts",
+                                                "import",
+                                                ":importId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "importId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:03.000Z",
+                                          "updatedAt": "2026-07-28T10:08:03.000Z",
+                                          "uid": "35240-10fc1036-50a7-42bd-aedc-8164a1921290"
+                                        },
+                                        {
+                                          "id": "c5664602-a085-4770-92a7-a9414d3c6e81",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"accountingAccounts\": [\n    {\n      \"accountingAccountName\": \"<string>\",\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingAccountType\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"taxKey\": \"<string>\",\n      \"vatRate\": \"<double>\"\n    },\n    {\n      \"accountingAccountName\": \"<string>\",\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingAccountType\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"taxKey\": \"<string>\",\n      \"vatRate\": \"<double>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/import/:importId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "accounting-accounts",
+                                                "import",
+                                                ":importId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "importId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:03.000Z",
+                                          "updatedAt": "2026-07-28T10:08:03.000Z",
+                                          "uid": "35240-c5664602-a085-4770-92a7-a9414d3c6e81"
+                                        },
+                                        {
+                                          "id": "13747036-8ef9-4d7b-b98e-a3c4ff0603bb",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"accountingAccounts\": [\n    {\n      \"accountingAccountName\": \"<string>\",\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingAccountType\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"taxKey\": \"<string>\",\n      \"vatRate\": \"<double>\"\n    },\n    {\n      \"accountingAccountName\": \"<string>\",\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingAccountType\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"taxKey\": \"<string>\",\n      \"vatRate\": \"<double>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/import/:importId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "accounting-accounts",
+                                                "import",
+                                                ":importId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "importId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:08:03.000Z",
+                                          "updatedAt": "2026-07-28T10:08:03.000Z",
+                                          "uid": "35240-13747036-8ef9-4d7b-b98e-a3c4ff0603bb"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:08:03.000Z",
+                                      "updatedAt": "2026-07-28T10:08:03.000Z",
+                                      "uid": "35240-3fee3749-1fd9-47fc-b2e7-a9b0dad2d0dc"
+                                    }
+                                  ],
+                                  "id": "47b7eb6d-60cf-4dcb-876e-98ffe0e69ea8",
+                                  "createdAt": "2026-07-28T10:08:03.000Z",
+                                  "updatedAt": "2026-07-28T10:08:03.000Z",
+                                  "uid": "35240-47b7eb6d-60cf-4dcb-876e-98ffe0e69ea8"
+                                }
+                              ],
+                              "id": "064989d3-c373-42e0-b5d5-bd81d72c5a72",
+                              "createdAt": "2026-07-28T10:08:03.000Z",
+                              "updatedAt": "2026-07-28T10:08:03.000Z",
+                              "uid": "35240-064989d3-c373-42e0-b5d5-bd81d72c5a72"
+                            }
+                          ],
+                          "id": "603781a4-5129-47f3-b108-bff2494b3479",
+                          "createdAt": "2026-07-28T10:08:03.000Z",
+                          "updatedAt": "2026-07-28T10:08:03.000Z",
+                          "uid": "35240-603781a4-5129-47f3-b108-bff2494b3479"
+                        },
+                        {
+                          "name": "third-parties",
+                          "item": [
+                            {
+                              "name": "delete",
+                              "item": [
+                                {
+                                  "name": "Delete the third parties identified by their code.",
+                                  "id": "371a434d-8f6e-4d21-975f-e467860e8214",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"thirdPartyCodes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/third-parties/delete",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "chart-of-accounts",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "third-parties",
+                                        "delete"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "e5f8baaa-826a-41a5-8377-d3c14f9f5c4a",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier"
+                                        }
+                                      ]
+                                    },
+                                    "description": "You can only delete 1000 third parties per call, if you want to delete more, you need to call this endpoint multiple times."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "cb944e89-1771-456c-86fd-2340cd0b620f",
+                                      "name": "OK",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"thirdPartyCodes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/third-parties/delete",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "third-parties",
+                                            "delete"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:03.000Z",
+                                      "updatedAt": "2026-07-28T10:08:03.000Z",
+                                      "uid": "35240-cb944e89-1771-456c-86fd-2340cd0b620f"
+                                    },
+                                    {
+                                      "id": "fc0b02ed-9e5c-4616-836e-becc0ead24b2",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"thirdPartyCodes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/third-parties/delete",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "third-parties",
+                                            "delete"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:03.000Z",
+                                      "updatedAt": "2026-07-28T10:08:03.000Z",
+                                      "uid": "35240-fc0b02ed-9e5c-4616-836e-becc0ead24b2"
+                                    },
+                                    {
+                                      "id": "40bef8be-0d5e-46ae-9e41-992ce14fa2e5",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"thirdPartyCodes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/third-parties/delete",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "third-parties",
+                                            "delete"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:03.000Z",
+                                      "updatedAt": "2026-07-28T10:08:03.000Z",
+                                      "uid": "35240-40bef8be-0d5e-46ae-9e41-992ce14fa2e5"
+                                    },
+                                    {
+                                      "id": "7db4264d-e69d-4270-9051-6330dfc20aa7",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"thirdPartyCodes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/third-parties/delete",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "third-parties",
+                                            "delete"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:03.000Z",
+                                      "updatedAt": "2026-07-28T10:08:03.000Z",
+                                      "uid": "35240-7db4264d-e69d-4270-9051-6330dfc20aa7"
+                                    },
+                                    {
+                                      "id": "765fd084-ba04-4290-a773-6734ed1bce8e",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"thirdPartyCodes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/third-parties/delete",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "third-parties",
+                                            "delete"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:03.000Z",
+                                      "updatedAt": "2026-07-28T10:08:03.000Z",
+                                      "uid": "35240-765fd084-ba04-4290-a773-6734ed1bce8e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:08:03.000Z",
+                                  "updatedAt": "2026-07-28T10:08:03.000Z",
+                                  "uid": "35240-371a434d-8f6e-4d21-975f-e467860e8214"
+                                }
+                              ],
+                              "id": "e54f5cdd-8ef3-4cb4-b51d-aee3170d1c8d",
+                              "createdAt": "2026-07-28T10:08:03.000Z",
+                              "updatedAt": "2026-07-28T10:08:03.000Z",
+                              "uid": "35240-e54f5cdd-8ef3-4cb4-b51d-aee3170d1c8d"
+                            },
+                            {
+                              "name": "import",
+                              "item": [
+                                {
+                                  "name": "{importId}",
+                                  "item": [
+                                    {
+                                      "name": "Import Third Parties.",
+                                      "id": "494b30cf-4f03-4b78-8901-30d5ef561e37",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"thirdParties\": [\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"thirdPartyCode\": \"<string>\",\n      \"thirdPartyName\": \"<string>\",\n      \"externalId\": \"<string>\"\n    },\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"thirdPartyCode\": \"<string>\",\n      \"thirdPartyName\": \"<string>\",\n      \"externalId\": \"<string>\"\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/third-parties/import/:importId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "third-parties",
+                                            "import",
+                                            ":importId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "338cffc0-7686-4c41-a553-bac3ddb45c9e",
+                                              "key": "entityId",
+                                              "value": "<integer>",
+                                              "description": "(Required) Agicap entity identifier"
+                                            },
+                                            {
+                                              "id": "4a9b0710-7622-421d-8276-ed425d3ced0a",
+                                              "key": "importId",
+                                              "value": "<uuid>",
+                                              "description": "(Required) Unique ID of the import, provided by the caller. In case of network issue, use the same\nunique ID to retry."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Create new third parties asynchronously.\n\nThird Parties can only be created for accounting account types : Client, Supplier, Expense, Product, Vat and Other.\n\nThird Parties import size is limited to 5000 per batch.\n\nIf you import a third party on an accounting account typed as \u201cBank\u201d in Agicap, it won\u2019t be created.\n\nThe accounting account must exist for third parties to be created, unknown accounting accounts won't be created.\n\nThird party code is unique for an accounting account, if ever you re-import third party info that already exists in our system, we won't create a\nduplicate.\n\nThe response HttpStatus code will be different when calling multiple times with the same `importId`:\n\n- For the first call with an `importId`, a 202 (Accepted) response will be returned notifying that the import requested was taken into account.\n\n- A 200 (Ok) response will be returned for subsequent calls with the same `importId`.\n\nFor both status codes, the response body will contain import details, see the ImportThirdPartiesResponse description for more information."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "32cbb908-e8f5-4961-be26-bcc15e78eb6d",
+                                          "name": "OK",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"thirdParties\": [\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"thirdPartyCode\": \"<string>\",\n      \"thirdPartyName\": \"<string>\",\n      \"externalId\": \"<string>\"\n    },\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"thirdPartyCode\": \"<string>\",\n      \"thirdPartyName\": \"<string>\",\n      \"externalId\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/third-parties/import/:importId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "third-parties",
+                                                "import",
+                                                ":importId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "importId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"importDate\": \"<string>\",\n  \"importId\": \"<uuid>\",\n  \"importStatus\": \"<string>\",\n  \"failureReason\": \"<string>\",\n  \"importSummary\": {\n    \"importedCount\": \"<integer>\",\n    \"notImportedCount\": \"<integer>\"\n  }\n}",
+                                          "createdAt": "2026-07-28T10:08:03.000Z",
+                                          "updatedAt": "2026-07-28T10:08:03.000Z",
+                                          "uid": "35240-32cbb908-e8f5-4961-be26-bcc15e78eb6d"
+                                        },
+                                        {
+                                          "id": "d8371153-58c2-41c1-979d-656f005d8f74",
+                                          "name": "Accepted",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"thirdParties\": [\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"thirdPartyCode\": \"<string>\",\n      \"thirdPartyName\": \"<string>\",\n      \"externalId\": \"<string>\"\n    },\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"thirdPartyCode\": \"<string>\",\n      \"thirdPartyName\": \"<string>\",\n      \"externalId\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/third-parties/import/:importId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "third-parties",
+                                                "import",
+                                                ":importId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "importId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Accepted",
+                                          "code": 202,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"importDate\": \"<string>\",\n  \"importId\": \"<uuid>\",\n  \"importStatus\": \"<string>\",\n  \"failureReason\": \"<string>\",\n  \"importSummary\": {\n    \"importedCount\": \"<integer>\",\n    \"notImportedCount\": \"<integer>\"\n  }\n}",
+                                          "createdAt": "2026-07-28T10:08:03.000Z",
+                                          "updatedAt": "2026-07-28T10:08:03.000Z",
+                                          "uid": "35240-d8371153-58c2-41c1-979d-656f005d8f74"
+                                        },
+                                        {
+                                          "id": "facf884d-6186-46c8-b20a-3b077f82faee",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"thirdParties\": [\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"thirdPartyCode\": \"<string>\",\n      \"thirdPartyName\": \"<string>\",\n      \"externalId\": \"<string>\"\n    },\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"thirdPartyCode\": \"<string>\",\n      \"thirdPartyName\": \"<string>\",\n      \"externalId\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/third-parties/import/:importId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "third-parties",
+                                                "import",
+                                                ":importId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "importId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:03.000Z",
+                                          "updatedAt": "2026-07-28T10:08:03.000Z",
+                                          "uid": "35240-facf884d-6186-46c8-b20a-3b077f82faee"
+                                        },
+                                        {
+                                          "id": "ba78acda-5d37-4c9d-bb50-1ca776213565",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"thirdParties\": [\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"thirdPartyCode\": \"<string>\",\n      \"thirdPartyName\": \"<string>\",\n      \"externalId\": \"<string>\"\n    },\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"thirdPartyCode\": \"<string>\",\n      \"thirdPartyName\": \"<string>\",\n      \"externalId\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/third-parties/import/:importId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "third-parties",
+                                                "import",
+                                                ":importId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "importId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:03.000Z",
+                                          "updatedAt": "2026-07-28T10:08:03.000Z",
+                                          "uid": "35240-ba78acda-5d37-4c9d-bb50-1ca776213565"
+                                        },
+                                        {
+                                          "id": "4f583dc2-5002-4687-b4ce-6537585a3b54",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"thirdParties\": [\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"thirdPartyCode\": \"<string>\",\n      \"thirdPartyName\": \"<string>\",\n      \"externalId\": \"<string>\"\n    },\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"thirdPartyCode\": \"<string>\",\n      \"thirdPartyName\": \"<string>\",\n      \"externalId\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/third-parties/import/:importId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "third-parties",
+                                                "import",
+                                                ":importId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "importId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:03.000Z",
+                                          "updatedAt": "2026-07-28T10:08:03.000Z",
+                                          "uid": "35240-4f583dc2-5002-4687-b4ce-6537585a3b54"
+                                        },
+                                        {
+                                          "id": "726f9e93-5b34-4e22-97fe-cea8b172813c",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"thirdParties\": [\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"thirdPartyCode\": \"<string>\",\n      \"thirdPartyName\": \"<string>\",\n      \"externalId\": \"<string>\"\n    },\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"thirdPartyCode\": \"<string>\",\n      \"thirdPartyName\": \"<string>\",\n      \"externalId\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/third-parties/import/:importId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "third-parties",
+                                                "import",
+                                                ":importId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                },
+                                                {
+                                                  "key": "importId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:08:03.000Z",
+                                          "updatedAt": "2026-07-28T10:08:03.000Z",
+                                          "uid": "35240-726f9e93-5b34-4e22-97fe-cea8b172813c"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:08:03.000Z",
+                                      "updatedAt": "2026-07-28T10:08:03.000Z",
+                                      "uid": "35240-494b30cf-4f03-4b78-8901-30d5ef561e37"
+                                    }
+                                  ],
+                                  "id": "24c39de1-b20c-4896-8ba3-10f61d7fec10",
+                                  "createdAt": "2026-07-28T10:08:03.000Z",
+                                  "updatedAt": "2026-07-28T10:08:03.000Z",
+                                  "uid": "35240-24c39de1-b20c-4896-8ba3-10f61d7fec10"
+                                }
+                              ],
+                              "id": "27c1a871-7cf9-4a20-a721-193853802f45",
+                              "createdAt": "2026-07-28T10:08:03.000Z",
+                              "updatedAt": "2026-07-28T10:08:03.000Z",
+                              "uid": "35240-27c1a871-7cf9-4a20-a721-193853802f45"
+                            }
+                          ],
+                          "id": "65f0ea70-d232-4d0d-8293-e69d1d731101",
+                          "createdAt": "2026-07-28T10:08:03.000Z",
+                          "updatedAt": "2026-07-28T10:08:03.000Z",
+                          "uid": "35240-65f0ea70-d232-4d0d-8293-e69d1d731101"
+                        }
+                      ],
+                      "id": "042a59fd-688b-4379-8794-2644a99584fc",
+                      "createdAt": "2026-07-28T10:08:03.000Z",
+                      "updatedAt": "2026-07-28T10:08:03.000Z",
+                      "uid": "35240-042a59fd-688b-4379-8794-2644a99584fc"
+                    }
+                  ],
+                  "id": "e504e9ff-7439-4f1a-9198-aad185918583",
+                  "createdAt": "2026-07-28T10:08:03.000Z",
+                  "updatedAt": "2026-07-28T10:08:03.000Z",
+                  "uid": "35240-e504e9ff-7439-4f1a-9198-aad185918583"
+                }
+              ],
+              "id": "8a86511f-c415-4fb0-bacc-81d0ec274e87",
+              "createdAt": "2026-07-28T10:08:03.000Z",
+              "updatedAt": "2026-07-28T10:08:03.000Z",
+              "uid": "35240-8a86511f-c415-4fb0-bacc-81d0ec274e87"
+            }
+          ],
+          "id": "e2454cca-7b25-4cf5-bf91-e92186ba08a4",
+          "createdAt": "2026-07-28T10:08:03.000Z",
+          "updatedAt": "2026-07-28T10:08:03.000Z",
+          "uid": "35240-e2454cca-7b25-4cf5-bf91-e92186ba08a4"
+        }
+      ],
+      "id": "2dc54e5c-3f34-4168-9131-367b35d7e90f",
+      "createdAt": "2026-07-28T10:08:03.000Z",
+      "updatedAt": "2026-07-28T10:08:03.000Z",
+      "uid": "35240-2dc54e5c-3f34-4168-9131-367b35d7e90f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

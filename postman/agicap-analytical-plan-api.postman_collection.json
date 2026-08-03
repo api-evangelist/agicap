@@ -1,0 +1,1551 @@
+{
+  "info": {
+    "_postman_id": "8c5cdf51-ca6a-4052-8196-9758eb2774f4",
+    "name": "Clients AR Account reports Analytical Plan API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:07:22.000Z",
+    "updatedAt": "2026-07-28T10:07:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8c5cdf51-ca6a-4052-8196-9758eb2774f4"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "chart-of-accounts",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "analytical-plan",
+                          "item": [
+                            {
+                              "name": "axes",
+                              "item": [
+                                {
+                                  "name": "bulk-create",
+                                  "item": [
+                                    {
+                                      "name": "Bulk create analytical axes for an entity.",
+                                      "id": "a903ac8a-de4c-48e8-9668-c6760717a48d",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"analyticalAxes\": [\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-create",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "analytical-plan",
+                                            "axes",
+                                            "bulk-create"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "82b467d2-61b0-422f-a8e6-a59f8db810bd",
+                                              "key": "entityId",
+                                              "value": "<integer>",
+                                              "description": "(Required) Agicap entity identifier"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Create multiple analytical axes with their codes in a single call.\n\nEach axe is processed independently: if one fails, the others are still created.\n\nThe response contains a per-item report indicating success or failure for each axe."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "7b0c9496-8e45-4ea1-917b-14b6b79aaf85",
+                                          "name": "OK",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxes\": [\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-create",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-create"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"results\": [\n    {\n      \"id\": \"<uuid>\",\n      \"success\": \"<boolean>\",\n      \"errorMessage\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"success\": \"<boolean>\",\n      \"errorMessage\": \"<string>\"\n    }\n  ]\n}",
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-7b0c9496-8e45-4ea1-917b-14b6b79aaf85"
+                                        },
+                                        {
+                                          "id": "9b010077-977f-43ce-805d-95b71a42337b",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxes\": [\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-create",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-create"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-9b010077-977f-43ce-805d-95b71a42337b"
+                                        },
+                                        {
+                                          "id": "0b7befd6-bd91-4780-b20a-061052048075",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxes\": [\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-create",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-create"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-0b7befd6-bd91-4780-b20a-061052048075"
+                                        },
+                                        {
+                                          "id": "4f91312e-545c-4a5e-8fa6-e067f9695dcb",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxes\": [\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-create",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-create"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-4f91312e-545c-4a5e-8fa6-e067f9695dcb"
+                                        },
+                                        {
+                                          "id": "d944c07b-1f6e-42a1-8a47-354a0000891a",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxes\": [\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-create",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-create"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-d944c07b-1f6e-42a1-8a47-354a0000891a"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:07:22.000Z",
+                                      "updatedAt": "2026-07-28T10:07:22.000Z",
+                                      "uid": "35240-a903ac8a-de4c-48e8-9668-c6760717a48d"
+                                    }
+                                  ],
+                                  "id": "e2323085-7e51-4d60-9b21-98023b7f113b",
+                                  "createdAt": "2026-07-28T10:07:22.000Z",
+                                  "updatedAt": "2026-07-28T10:07:22.000Z",
+                                  "uid": "35240-e2323085-7e51-4d60-9b21-98023b7f113b"
+                                },
+                                {
+                                  "name": "bulk-delete",
+                                  "item": [
+                                    {
+                                      "name": "Bulk delete analytical axes for an entity.",
+                                      "id": "cbc6ba2f-cb8d-4cef-a59c-007d102d3813",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"analyticalAxeIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-delete",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "analytical-plan",
+                                            "axes",
+                                            "bulk-delete"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "77cbe4f2-cbe1-4923-b295-65201c74e733",
+                                              "key": "entityId",
+                                              "value": "<integer>",
+                                              "description": "(Required) Agicap entity identifier"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Delete multiple analytical axes in a single call.\n\nEach axe is processed independently: if one fails, the others are still deleted.\n\nThe response contains a per-item report indicating success or failure for each axe."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "3f93e3a2-51a2-4d7d-920c-1c3fd6df2f1d",
+                                          "name": "OK",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxeIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-delete",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-delete"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"results\": [\n    {\n      \"id\": \"<uuid>\",\n      \"success\": \"<boolean>\",\n      \"errorMessage\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"success\": \"<boolean>\",\n      \"errorMessage\": \"<string>\"\n    }\n  ]\n}",
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-3f93e3a2-51a2-4d7d-920c-1c3fd6df2f1d"
+                                        },
+                                        {
+                                          "id": "6ab5af79-b68c-46e9-bffc-7684372c5a16",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxeIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-delete",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-delete"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-6ab5af79-b68c-46e9-bffc-7684372c5a16"
+                                        },
+                                        {
+                                          "id": "eac54c17-b488-4233-9077-d803498aff51",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxeIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-delete",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-delete"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-eac54c17-b488-4233-9077-d803498aff51"
+                                        },
+                                        {
+                                          "id": "8c1bc6c3-e527-4ebb-82da-b3b062882bbf",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxeIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-delete",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-delete"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-8c1bc6c3-e527-4ebb-82da-b3b062882bbf"
+                                        },
+                                        {
+                                          "id": "a3fa8e12-1ae3-424e-916f-63ce56e90b47",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxeIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-delete",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-delete"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-a3fa8e12-1ae3-424e-916f-63ce56e90b47"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:07:22.000Z",
+                                      "updatedAt": "2026-07-28T10:07:22.000Z",
+                                      "uid": "35240-cbc6ba2f-cb8d-4cef-a59c-007d102d3813"
+                                    }
+                                  ],
+                                  "id": "95ffbb01-5648-4c8b-8ebd-1ee664c437a6",
+                                  "createdAt": "2026-07-28T10:07:22.000Z",
+                                  "updatedAt": "2026-07-28T10:07:22.000Z",
+                                  "uid": "35240-95ffbb01-5648-4c8b-8ebd-1ee664c437a6"
+                                },
+                                {
+                                  "name": "bulk-update",
+                                  "item": [
+                                    {
+                                      "name": "Bulk update analytical axes for an entity.",
+                                      "id": "cd85810f-a77f-40c4-98d4-58fa87a3431b",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"analyticalAxes\": [\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-update",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "analytical-plan",
+                                            "axes",
+                                            "bulk-update"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "953ef23d-e951-44dd-9afd-585b2fc0b0b4",
+                                              "key": "entityId",
+                                              "value": "<integer>",
+                                              "description": "(Required) Agicap entity identifier"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Update multiple analytical axes and their codes in a single call.\n\nEach axe is processed independently: if one fails, the others are still updated.\n\nThe response contains a per-item report indicating success or failure for each axe."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "9fdeef8f-e1d6-413a-8bd7-dd8fbfc8330e",
+                                          "name": "OK",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxes\": [\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-update",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-update"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"results\": [\n    {\n      \"id\": \"<uuid>\",\n      \"success\": \"<boolean>\",\n      \"errorMessage\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"success\": \"<boolean>\",\n      \"errorMessage\": \"<string>\"\n    }\n  ]\n}",
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-9fdeef8f-e1d6-413a-8bd7-dd8fbfc8330e"
+                                        },
+                                        {
+                                          "id": "927d3ed4-1291-4441-9c17-affd318e0cbe",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxes\": [\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-update",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-update"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-927d3ed4-1291-4441-9c17-affd318e0cbe"
+                                        },
+                                        {
+                                          "id": "fcaf3796-90c1-4a06-8359-d0b4d7eb56e3",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxes\": [\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-update",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-update"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-fcaf3796-90c1-4a06-8359-d0b4d7eb56e3"
+                                        },
+                                        {
+                                          "id": "b51d57e4-88fa-4673-a83d-52515d6a7404",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxes\": [\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-update",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-update"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-b51d57e4-88fa-4673-a83d-52515d6a7404"
+                                        },
+                                        {
+                                          "id": "24ef795a-433d-412d-b6b4-48d73ed5b630",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"analyticalAxes\": [\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-update",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "chart-of-accounts",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "analytical-plan",
+                                                "axes",
+                                                "bulk-update"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:07:22.000Z",
+                                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                                          "uid": "35240-24ef795a-433d-412d-b6b4-48d73ed5b630"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:07:22.000Z",
+                                      "updatedAt": "2026-07-28T10:07:22.000Z",
+                                      "uid": "35240-cd85810f-a77f-40c4-98d4-58fa87a3431b"
+                                    }
+                                  ],
+                                  "id": "5e04210c-e6b6-4d65-926e-e5b8827c880a",
+                                  "createdAt": "2026-07-28T10:07:22.000Z",
+                                  "updatedAt": "2026-07-28T10:07:22.000Z",
+                                  "uid": "35240-5e04210c-e6b6-4d65-926e-e5b8827c880a"
+                                },
+                                {
+                                  "name": "Get the analytical plan axes for an entity.",
+                                  "id": "f15bfc2d-8446-4e97-8b21-d08aa0910096",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "chart-of-accounts",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "analytical-plan",
+                                        "axes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "dd6ccdf9-d123-4ae1-b2b4-9dad7c1b1ca2",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Returns all analytical axes and their codes for the given entity."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "28f3e2e5-b36b-4d21-af3d-b1f535dd3c59",
+                                      "name": "OK",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "analytical-plan",
+                                            "axes"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"axes\": [\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"codes\": [\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T10:07:22.000Z",
+                                      "updatedAt": "2026-07-28T10:07:22.000Z",
+                                      "uid": "35240-28f3e2e5-b36b-4d21-af3d-b1f535dd3c59"
+                                    },
+                                    {
+                                      "id": "0c4a1056-57ea-4ec6-b7f9-9b4faca228c3",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "analytical-plan",
+                                            "axes"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:22.000Z",
+                                      "updatedAt": "2026-07-28T10:07:22.000Z",
+                                      "uid": "35240-0c4a1056-57ea-4ec6-b7f9-9b4faca228c3"
+                                    },
+                                    {
+                                      "id": "41f0260a-1258-4bbf-aa66-214c1e265bd9",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "analytical-plan",
+                                            "axes"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:22.000Z",
+                                      "updatedAt": "2026-07-28T10:07:22.000Z",
+                                      "uid": "35240-41f0260a-1258-4bbf-aa66-214c1e265bd9"
+                                    },
+                                    {
+                                      "id": "b22dafb8-06d9-406c-910b-06e3f68bddac",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "analytical-plan",
+                                            "axes"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:22.000Z",
+                                      "updatedAt": "2026-07-28T10:07:22.000Z",
+                                      "uid": "35240-b22dafb8-06d9-406c-910b-06e3f68bddac"
+                                    },
+                                    {
+                                      "id": "1ba9e20e-fd33-43a7-8737-28cab1828dc2",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "chart-of-accounts",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "analytical-plan",
+                                            "axes"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:07:22.000Z",
+                                      "updatedAt": "2026-07-28T10:07:22.000Z",
+                                      "uid": "35240-1ba9e20e-fd33-43a7-8737-28cab1828dc2"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:07:22.000Z",
+                                  "updatedAt": "2026-07-28T10:07:22.000Z",
+                                  "uid": "35240-f15bfc2d-8446-4e97-8b21-d08aa0910096"
+                                }
+                              ],
+                              "id": "61e47608-f635-4ed9-8828-2640c6af775b",
+                              "createdAt": "2026-07-28T10:07:22.000Z",
+                              "updatedAt": "2026-07-28T10:07:22.000Z",
+                              "uid": "35240-61e47608-f635-4ed9-8828-2640c6af775b"
+                            }
+                          ],
+                          "id": "cf43db6c-4172-49b3-9ce0-c839ab1b32d4",
+                          "createdAt": "2026-07-28T10:07:22.000Z",
+                          "updatedAt": "2026-07-28T10:07:22.000Z",
+                          "uid": "35240-cf43db6c-4172-49b3-9ce0-c839ab1b32d4"
+                        }
+                      ],
+                      "id": "e3358e1a-05ca-4c1f-933c-20d3e418ae4a",
+                      "createdAt": "2026-07-28T10:07:22.000Z",
+                      "updatedAt": "2026-07-28T10:07:22.000Z",
+                      "uid": "35240-e3358e1a-05ca-4c1f-933c-20d3e418ae4a"
+                    }
+                  ],
+                  "id": "ee624f4b-a38c-4099-9a82-7ba18103082e",
+                  "createdAt": "2026-07-28T10:07:22.000Z",
+                  "updatedAt": "2026-07-28T10:07:22.000Z",
+                  "uid": "35240-ee624f4b-a38c-4099-9a82-7ba18103082e"
+                }
+              ],
+              "id": "4d6bf5fa-5bfd-4e71-a079-b0f15bf59be4",
+              "createdAt": "2026-07-28T10:07:22.000Z",
+              "updatedAt": "2026-07-28T10:07:22.000Z",
+              "uid": "35240-4d6bf5fa-5bfd-4e71-a079-b0f15bf59be4"
+            }
+          ],
+          "id": "d5f57f66-d6d6-4cd6-9c74-90d58ddea4df",
+          "createdAt": "2026-07-28T10:07:22.000Z",
+          "updatedAt": "2026-07-28T10:07:22.000Z",
+          "uid": "35240-d5f57f66-d6d6-4cd6-9c74-90d58ddea4df"
+        }
+      ],
+      "id": "5aaf67f7-c6ef-4191-8f55-d3ccd83f4113",
+      "createdAt": "2026-07-28T10:07:22.000Z",
+      "updatedAt": "2026-07-28T10:07:22.000Z",
+      "uid": "35240-5aaf67f7-c6ef-4191-8f55-d3ccd83f4113"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

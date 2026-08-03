@@ -1,0 +1,378 @@
+{
+  "info": {
+    "_postman_id": "5295a4d7-5009-4529-8f6e-4c941a05bce3",
+    "name": "Clients AR Account reports User rights API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:08:58.000Z",
+    "updatedAt": "2026-07-28T10:08:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5295a4d7-5009-4529-8f6e-4c941a05bce3"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "ar-clients",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "user-rights",
+                          "item": [
+                            {
+                              "name": "Assign users to clients by external id",
+                              "id": "3c4d25ad-b766-4a13-9c46-a5e47a78ba0c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"assignments\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"agicapUserEmails\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"agicapUserEmails\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/user-rights",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "ar-clients",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "user-rights"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "3e991b54-8cad-4c98-929f-cf16e536b708",
+                                      "key": "entityId",
+                                      "value": "<number>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Assign Agicap users to clients in bulk by user email and client external ID. Assignment will replace existing client assignations for the assigned users."
+                              },
+                              "response": [
+                                {
+                                  "id": "c699ae0e-2b4b-4abf-a5c9-5f600db85feb",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"assignments\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"agicapUserEmails\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"agicapUserEmails\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/user-rights",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "user-rights"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"assigned\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"agicapUserEmails\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"agicapUserEmails\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"notAssigned\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"failures\": [\n        {\n          \"agicapUserEmail\": \"<string>\",\n          \"reason\": \"CLIENT_NOT_FOUND\"\n        },\n        {\n          \"agicapUserEmail\": \"<string>\",\n          \"reason\": \"USER_NOT_FOUND\"\n        }\n      ]\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"failures\": [\n        {\n          \"agicapUserEmail\": \"<string>\",\n          \"reason\": \"USER_NOT_FOUND\"\n        },\n        {\n          \"agicapUserEmail\": \"<string>\",\n          \"reason\": \"CLIENT_NOT_FOUND\"\n        }\n      ]\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T10:08:59.000Z",
+                                  "updatedAt": "2026-07-28T10:08:59.000Z",
+                                  "uid": "35240-c699ae0e-2b4b-4abf-a5c9-5f600db85feb"
+                                },
+                                {
+                                  "id": "7d038c55-7425-4813-9a5f-faed985d0203",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"assignments\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"agicapUserEmails\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"agicapUserEmails\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/user-rights",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "user-rights"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:59.000Z",
+                                  "updatedAt": "2026-07-28T10:08:59.000Z",
+                                  "uid": "35240-7d038c55-7425-4813-9a5f-faed985d0203"
+                                },
+                                {
+                                  "id": "bda4d703-75b4-4211-883e-ed4d300da110",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"assignments\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"agicapUserEmails\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"agicapUserEmails\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/user-rights",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "user-rights"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:59.000Z",
+                                  "updatedAt": "2026-07-28T10:08:59.000Z",
+                                  "uid": "35240-bda4d703-75b4-4211-883e-ed4d300da110"
+                                },
+                                {
+                                  "id": "0375d67f-22c4-460d-a0ce-8beaaa435544",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"assignments\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"agicapUserEmails\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"agicapUserEmails\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/ar-clients/v1/entities/:entityId/user-rights",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "ar-clients",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "user-rights"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:59.000Z",
+                                  "updatedAt": "2026-07-28T10:08:59.000Z",
+                                  "uid": "35240-0375d67f-22c4-460d-a0ce-8beaaa435544"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:08:59.000Z",
+                              "updatedAt": "2026-07-28T10:08:59.000Z",
+                              "uid": "35240-3c4d25ad-b766-4a13-9c46-a5e47a78ba0c"
+                            }
+                          ],
+                          "id": "75353b9a-41fd-4ac6-abf6-a3b36a67119d",
+                          "createdAt": "2026-07-28T10:08:59.000Z",
+                          "updatedAt": "2026-07-28T10:08:59.000Z",
+                          "uid": "35240-75353b9a-41fd-4ac6-abf6-a3b36a67119d"
+                        }
+                      ],
+                      "id": "3bb876b1-ed21-4520-8640-435d6a15884f",
+                      "createdAt": "2026-07-28T10:08:59.000Z",
+                      "updatedAt": "2026-07-28T10:08:59.000Z",
+                      "uid": "35240-3bb876b1-ed21-4520-8640-435d6a15884f"
+                    }
+                  ],
+                  "id": "f3cba86c-5441-42f4-9c52-38cb4977b741",
+                  "createdAt": "2026-07-28T10:08:59.000Z",
+                  "updatedAt": "2026-07-28T10:08:59.000Z",
+                  "uid": "35240-f3cba86c-5441-42f4-9c52-38cb4977b741"
+                }
+              ],
+              "id": "4e7ac902-b3b6-465d-a614-29c6d8d0201d",
+              "createdAt": "2026-07-28T10:08:59.000Z",
+              "updatedAt": "2026-07-28T10:08:59.000Z",
+              "uid": "35240-4e7ac902-b3b6-465d-a614-29c6d8d0201d"
+            }
+          ],
+          "id": "4ec696a8-efda-465d-bd11-116180becd65",
+          "createdAt": "2026-07-28T10:08:59.000Z",
+          "updatedAt": "2026-07-28T10:08:59.000Z",
+          "uid": "35240-4ec696a8-efda-465d-bd11-116180becd65"
+        }
+      ],
+      "id": "63500acf-92af-4ccd-8a87-b5e01f213f43",
+      "createdAt": "2026-07-28T10:08:59.000Z",
+      "updatedAt": "2026-07-28T10:08:59.000Z",
+      "uid": "35240-63500acf-92af-4ccd-8a87-b5e01f213f43"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

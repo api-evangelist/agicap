@@ -1,0 +1,843 @@
+{
+  "info": {
+    "_postman_id": "f764bb97-6683-44c5-b8d3-255606d99138",
+    "name": "Clients AR Account reports Financial investments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:07:58.000Z",
+    "updatedAt": "2026-07-28T10:07:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f764bb97-6683-44c5-b8d3-255606d99138"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "financial-investments",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "investments",
+                          "item": [
+                            {
+                              "name": "List financial investments by entity",
+                              "id": "320915de-eeb1-4a95-b4d6-c6d86111ad6f",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/financial-investments/v1/entities/:entityId/investments?offset=0&limit=1000&currencies=<string>&currencies=<string>&maturityDateFrom=<date>&maturityDateTo=<date>&maturityDateSort=1&showPastInvestments=true",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "financial-investments",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "investments"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "offset",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "limit",
+                                      "value": "1000"
+                                    },
+                                    {
+                                      "key": "currencies",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "currencies",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "maturityDateFrom",
+                                      "value": "<date>"
+                                    },
+                                    {
+                                      "key": "maturityDateTo",
+                                      "value": "<date>"
+                                    },
+                                    {
+                                      "key": "maturityDateSort",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "key": "showPastInvestments",
+                                      "value": "true"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "91e199f0-07ec-4649-b3eb-67689765809b",
+                                      "key": "entityId",
+                                      "value": "<integer>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Returns the full list of all financial investments for a given entity."
+                              },
+                              "response": [
+                                {
+                                  "id": "ec15e162-a003-45ee-a254-7f534e23a820",
+                                  "name": "All financial investments for given entity.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/financial-investments/v1/entities/:entityId/investments?offset=0&limit=1000&currencies=<string>&maturityDateFrom=<date>&maturityDateTo=<date>&maturityDateSort=1&showPastInvestments=true",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "financial-investments",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "investments"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "offset",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "key": "limit",
+                                          "value": "1000"
+                                        },
+                                        {
+                                          "key": "currencies",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "maturityDateFrom",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "key": "maturityDateTo",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "key": "maturityDateSort",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "key": "showPastInvestments",
+                                          "value": "true"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"amount\": \"<double>\",\n      \"closingDate\": \"<date>\",\n      \"currency\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"maturityDate\": \"<date>\",\n      \"name\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"amount\": \"<double>\",\n      \"closingDate\": \"<date>\",\n      \"currency\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"maturityDate\": \"<date>\",\n      \"name\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"offset\": {\n    \"current\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"next\": \"<integer>\",\n    \"previous\": \"<integer>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T10:07:58.000Z",
+                                  "updatedAt": "2026-07-28T10:07:58.000Z",
+                                  "uid": "35240-ec15e162-a003-45ee-a254-7f534e23a820"
+                                },
+                                {
+                                  "id": "17f882f9-6a91-4127-9269-f1d27fb6ab1f",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/financial-investments/v1/entities/:entityId/investments?offset=0&limit=1000&currencies=<string>&maturityDateFrom=<date>&maturityDateTo=<date>&maturityDateSort=1&showPastInvestments=true",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "financial-investments",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "investments"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "offset",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "key": "limit",
+                                          "value": "1000"
+                                        },
+                                        {
+                                          "key": "currencies",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "maturityDateFrom",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "key": "maturityDateTo",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "key": "maturityDateSort",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "key": "showPastInvestments",
+                                          "value": "true"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:58.000Z",
+                                  "updatedAt": "2026-07-28T10:07:58.000Z",
+                                  "uid": "35240-17f882f9-6a91-4127-9269-f1d27fb6ab1f"
+                                },
+                                {
+                                  "id": "a345faf8-61f4-4530-9722-408cbb78dc64",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/financial-investments/v1/entities/:entityId/investments?offset=0&limit=1000&currencies=<string>&maturityDateFrom=<date>&maturityDateTo=<date>&maturityDateSort=1&showPastInvestments=true",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "financial-investments",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "investments"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "offset",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "key": "limit",
+                                          "value": "1000"
+                                        },
+                                        {
+                                          "key": "currencies",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "maturityDateFrom",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "key": "maturityDateTo",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "key": "maturityDateSort",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "key": "showPastInvestments",
+                                          "value": "true"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:58.000Z",
+                                  "updatedAt": "2026-07-28T10:07:58.000Z",
+                                  "uid": "35240-a345faf8-61f4-4530-9722-408cbb78dc64"
+                                },
+                                {
+                                  "id": "6b4e9432-52ec-42df-a723-7039bf9bcb6f",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/financial-investments/v1/entities/:entityId/investments?offset=0&limit=1000&currencies=<string>&maturityDateFrom=<date>&maturityDateTo=<date>&maturityDateSort=1&showPastInvestments=true",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "financial-investments",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "investments"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "offset",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "key": "limit",
+                                          "value": "1000"
+                                        },
+                                        {
+                                          "key": "currencies",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "maturityDateFrom",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "key": "maturityDateTo",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "key": "maturityDateSort",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "key": "showPastInvestments",
+                                          "value": "true"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:58.000Z",
+                                  "updatedAt": "2026-07-28T10:07:58.000Z",
+                                  "uid": "35240-6b4e9432-52ec-42df-a723-7039bf9bcb6f"
+                                },
+                                {
+                                  "id": "5f552683-001a-424e-a396-3e718300d61c",
+                                  "name": "An internal server occurred.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/financial-investments/v1/entities/:entityId/investments?offset=0&limit=1000&currencies=<string>&maturityDateFrom=<date>&maturityDateTo=<date>&maturityDateSort=1&showPastInvestments=true",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "financial-investments",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "investments"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "offset",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "key": "limit",
+                                          "value": "1000"
+                                        },
+                                        {
+                                          "key": "currencies",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "maturityDateFrom",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "key": "maturityDateTo",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "key": "maturityDateSort",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "key": "showPastInvestments",
+                                          "value": "true"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T10:07:58.000Z",
+                                  "updatedAt": "2026-07-28T10:07:58.000Z",
+                                  "uid": "35240-5f552683-001a-424e-a396-3e718300d61c"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:58.000Z",
+                              "updatedAt": "2026-07-28T10:07:58.000Z",
+                              "uid": "35240-320915de-eeb1-4a95-b4d6-c6d86111ad6f"
+                            }
+                          ],
+                          "id": "afb2c470-94e2-43a8-a6f5-fcd87841f47d",
+                          "createdAt": "2026-07-28T10:07:58.000Z",
+                          "updatedAt": "2026-07-28T10:07:58.000Z",
+                          "uid": "35240-afb2c470-94e2-43a8-a6f5-fcd87841f47d"
+                        }
+                      ],
+                      "id": "580674b6-9a9e-467c-b32f-f4826c29a43d",
+                      "createdAt": "2026-07-28T10:07:58.000Z",
+                      "updatedAt": "2026-07-28T10:07:58.000Z",
+                      "uid": "35240-580674b6-9a9e-467c-b32f-f4826c29a43d"
+                    }
+                  ],
+                  "id": "1028fa37-f912-4474-bbfc-aca22f6ffa30",
+                  "createdAt": "2026-07-28T10:07:58.000Z",
+                  "updatedAt": "2026-07-28T10:07:58.000Z",
+                  "uid": "35240-1028fa37-f912-4474-bbfc-aca22f6ffa30"
+                },
+                {
+                  "name": "investments",
+                  "item": [
+                    {
+                      "name": "{id}",
+                      "item": [
+                        {
+                          "name": "Get financial investment details",
+                          "id": "e6b55919-3d7e-44ad-80d0-f94a84b9ddff",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/public/financial-investments/v1/investments/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "public",
+                                "financial-investments",
+                                "v1",
+                                "investments",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7dd03d9f-1d4f-4f88-be91-c14b5dbb1abf",
+                                  "key": "id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Returns all information of a given financial investment along with its instalments. Investment id can be retrieved via the 'List financial investments' request"
+                          },
+                          "response": [
+                            {
+                              "id": "36864df7-31ff-41fc-b065-880bae8e56c9",
+                              "name": "Details of the financial investment.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/financial-investments/v1/investments/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "financial-investments",
+                                    "v1",
+                                    "investments",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"amount\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"entityId\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"interests\": {\n    \"accrued\": {\n      \"lastMonth\": \"<double>\",\n      \"lastYear\": \"<double>\",\n      \"thisMonth\": \"<double>\",\n      \"thisYear\": \"<double>\"\n    },\n    \"due\": \"<double>\"\n  },\n  \"maturityDate\": \"<date>\",\n  \"name\": \"<string>\",\n  \"rate\": \"<double>\",\n  \"status\": \"<string>\",\n  \"subscriptionDate\": \"<date>\"\n}",
+                              "createdAt": "2026-07-28T10:07:58.000Z",
+                              "updatedAt": "2026-07-28T10:07:58.000Z",
+                              "uid": "35240-36864df7-31ff-41fc-b065-880bae8e56c9"
+                            },
+                            {
+                              "id": "0d7c5af7-4415-4d6c-964c-507b4e38622d",
+                              "name": "Unauthorized request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/financial-investments/v1/investments/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "financial-investments",
+                                    "v1",
+                                    "investments",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:07:58.000Z",
+                              "updatedAt": "2026-07-28T10:07:58.000Z",
+                              "uid": "35240-0d7c5af7-4415-4d6c-964c-507b4e38622d"
+                            },
+                            {
+                              "id": "b91606fb-35c9-4090-961d-52869f6f0141",
+                              "name": "Forbidden request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/financial-investments/v1/investments/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "financial-investments",
+                                    "v1",
+                                    "investments",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:07:58.000Z",
+                              "updatedAt": "2026-07-28T10:07:58.000Z",
+                              "uid": "35240-b91606fb-35c9-4090-961d-52869f6f0141"
+                            },
+                            {
+                              "id": "8ad18ea4-f310-43a1-ad56-d43fc6aed062",
+                              "name": "Too many requests. Please try again later.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/financial-investments/v1/investments/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "financial-investments",
+                                    "v1",
+                                    "investments",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:07:58.000Z",
+                              "updatedAt": "2026-07-28T10:07:58.000Z",
+                              "uid": "35240-8ad18ea4-f310-43a1-ad56-d43fc6aed062"
+                            },
+                            {
+                              "id": "f7e76f5a-dffa-4625-ad96-c87f9796da68",
+                              "name": "An internal server occurred.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/financial-investments/v1/investments/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "financial-investments",
+                                    "v1",
+                                    "investments",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:07:58.000Z",
+                              "updatedAt": "2026-07-28T10:07:58.000Z",
+                              "uid": "35240-f7e76f5a-dffa-4625-ad96-c87f9796da68"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T10:07:58.000Z",
+                          "updatedAt": "2026-07-28T10:07:58.000Z",
+                          "uid": "35240-e6b55919-3d7e-44ad-80d0-f94a84b9ddff"
+                        }
+                      ],
+                      "id": "03dfa0cb-6e1a-4d3b-a37c-b7ea177f6168",
+                      "createdAt": "2026-07-28T10:07:58.000Z",
+                      "updatedAt": "2026-07-28T10:07:58.000Z",
+                      "uid": "35240-03dfa0cb-6e1a-4d3b-a37c-b7ea177f6168"
+                    }
+                  ],
+                  "id": "175232ed-b439-4890-92c6-2242ce547626",
+                  "createdAt": "2026-07-28T10:07:58.000Z",
+                  "updatedAt": "2026-07-28T10:07:58.000Z",
+                  "uid": "35240-175232ed-b439-4890-92c6-2242ce547626"
+                }
+              ],
+              "id": "e3db8586-587c-466f-b5b7-f0ab133a383a",
+              "createdAt": "2026-07-28T10:07:58.000Z",
+              "updatedAt": "2026-07-28T10:07:58.000Z",
+              "uid": "35240-e3db8586-587c-466f-b5b7-f0ab133a383a"
+            }
+          ],
+          "id": "8d0023e0-39ff-42fe-a063-0779e2cfc4bb",
+          "createdAt": "2026-07-28T10:07:58.000Z",
+          "updatedAt": "2026-07-28T10:07:58.000Z",
+          "uid": "35240-8d0023e0-39ff-42fe-a063-0779e2cfc4bb"
+        }
+      ],
+      "id": "8e70a5a7-6103-4318-931a-190ea3100fd0",
+      "createdAt": "2026-07-28T10:07:58.000Z",
+      "updatedAt": "2026-07-28T10:07:58.000Z",
+      "uid": "35240-8e70a5a7-6103-4318-931a-190ea3100fd0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

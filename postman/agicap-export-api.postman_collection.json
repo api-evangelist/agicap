@@ -1,0 +1,2063 @@
+{
+  "info": {
+    "_postman_id": "ddf1cd6a-4dfa-48d3-accb-ead80951b7b2",
+    "name": "Clients AR Account reports Export API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:07:56.000Z",
+    "updatedAt": "2026-07-28T10:07:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ddf1cd6a-4dfa-48d3-accb-ead80951b7b2"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "treasury-bank-journal",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "exported-bank-journal-entries",
+                          "item": [
+                            {
+                              "name": "mark-as-imported",
+                              "item": [
+                                {
+                                  "name": "Indicates Agicap that some exported bank journal entries from Agicap were successfully imported in the client accounting system.",
+                                  "id": "c80c80bc-410d-4af6-b5e4-cafffa807b42",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"entriesImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exported-bank-journal-entries/mark-as-imported",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "treasury-bank-journal",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "exported-bank-journal-entries",
+                                        "mark-as-imported"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "9234f46e-603b-48ff-9dba-c0827b7e7db6",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Indicates Agicap that some exported bank journal entries from Agicap were successfully imported in the client accounting system.\n\n\nTo identify the exported bank journal entry, use the agicapUniqueId provided by Agicap during the export (see the POST Export operation response)\n\n\nEntries with pending corrections will have their corrections cancelled.\n\nUnknown agicapUniqueId values are silently ignored.\n\n\nThe maximum number of exported bank journal entries you can report is 1000 per request, if you need to report more,\nsimply call this endpoint as many times as necessary."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "c313c0b1-28ce-4be0-a2ba-b93fe2312373",
+                                      "name": "OK",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"entriesImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exported-bank-journal-entries/mark-as-imported",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exported-bank-journal-entries",
+                                            "mark-as-imported"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-c313c0b1-28ce-4be0-a2ba-b93fe2312373"
+                                    },
+                                    {
+                                      "id": "91369a95-98e1-421e-b162-9052cb68499e",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"entriesImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exported-bank-journal-entries/mark-as-imported",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exported-bank-journal-entries",
+                                            "mark-as-imported"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-91369a95-98e1-421e-b162-9052cb68499e"
+                                    },
+                                    {
+                                      "id": "540f8086-3704-4f57-a398-7d14339ae8d1",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"entriesImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exported-bank-journal-entries/mark-as-imported",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exported-bank-journal-entries",
+                                            "mark-as-imported"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-540f8086-3704-4f57-a398-7d14339ae8d1"
+                                    },
+                                    {
+                                      "id": "770e8a5c-6ef0-46e5-9960-1f464bcc1e66",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"entriesImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exported-bank-journal-entries/mark-as-imported",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exported-bank-journal-entries",
+                                            "mark-as-imported"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-770e8a5c-6ef0-46e5-9960-1f464bcc1e66"
+                                    },
+                                    {
+                                      "id": "db7a7a70-2a8a-4d91-9e49-f6df2109b6b4",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"entriesImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exported-bank-journal-entries/mark-as-imported",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exported-bank-journal-entries",
+                                            "mark-as-imported"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-db7a7a70-2a8a-4d91-9e49-f6df2109b6b4"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:07:57.000Z",
+                                  "updatedAt": "2026-07-28T10:07:57.000Z",
+                                  "uid": "35240-c80c80bc-410d-4af6-b5e4-cafffa807b42"
+                                }
+                              ],
+                              "id": "1c3d670f-0538-418d-9816-13edbffbfead",
+                              "createdAt": "2026-07-28T10:07:57.000Z",
+                              "updatedAt": "2026-07-28T10:07:57.000Z",
+                              "uid": "35240-1c3d670f-0538-418d-9816-13edbffbfead"
+                            },
+                            {
+                              "name": "mark-as-not-imported",
+                              "item": [
+                                {
+                                  "name": "Indicates Agicap that some exported bank journal entries from Agicap were not correctly imported in the client accounting system.",
+                                  "id": "ef3e378b-fbac-4864-8e71-3c9d729a2522",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"UNKNOWN_ACCOUNTING_ACCOUNT\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"UNKNOWN_ANALYTICAL_CODE\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"UNKNOWN_ANALYTICAL_CODE\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"OTHER\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exported-bank-journal-entries/mark-as-not-imported",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "treasury-bank-journal",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "exported-bank-journal-entries",
+                                        "mark-as-not-imported"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "689d784a-b66d-4a56-95e8-4b3e8559d08b",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Indicates Agicap that some exported bank journal entries from Agicap were not correctly imported in the client accounting system.\n\n\nYou can report several errors per bank journal entry. For each error, use the most precise error type whenever possible, and OTHER otherwise.\n\n\nTo identify the exported bank journal entry, use the agicapUniqueId provided by Agicap during the export (see the POST Export operation response)\n\nThis means, you need to keep track of which entry in the client accounting system corresponds to the agicapUniqueId.\n\n\nThe maximum number of exported bank journal entries you can report is 1000 per request, if you need to report more,\nsimply call this endpoint as many times as necessary.\n\n\nIn the example of an export response below, the id to use is \"agicapUniqueId\": \"f7f7ed5c-943c-4385-aa8d-145fd76b2fa1\":\n<pre>\n    POST /public-api/treasury-bank-journal/v1/entities/{entityId}/exports/{exportId}\n    {\n      \"exportId\": \"7397d1b5-d76d-43d2-a153-2bcff5e57455\",\n      \"year\": 2024,\n      \"bankJournalExportIndexInYear\": 1,\n      \"entityName\": \"Contoso\",\n      \"entries\": [\n        {\n          \"indexInYear\": 57,\n          \"indexInExport\": 1,\n          \"agicapUniqueId\": \"f7f7ed5c-943c-4385-aa8d-145fd76b2fa1\",   -- this is the id to use !\n          \"name\": \"ACME Payment\",\n          ... other fields omitted for brevity.\n        }\n      ]\n    }\n</pre>"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "00251eb9-2003-4f5d-b61a-4460e5f7999b",
+                                      "name": "OK",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"UNKNOWN_ACCOUNTING_ACCOUNT\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"UNKNOWN_ANALYTICAL_CODE\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"UNKNOWN_ANALYTICAL_CODE\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"OTHER\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exported-bank-journal-entries/mark-as-not-imported",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exported-bank-journal-entries",
+                                            "mark-as-not-imported"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-00251eb9-2003-4f5d-b61a-4460e5f7999b"
+                                    },
+                                    {
+                                      "id": "916f80ac-92d2-457c-9359-3ec65850d02e",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"UNKNOWN_ACCOUNTING_ACCOUNT\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"UNKNOWN_ANALYTICAL_CODE\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"UNKNOWN_ANALYTICAL_CODE\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"OTHER\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exported-bank-journal-entries/mark-as-not-imported",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exported-bank-journal-entries",
+                                            "mark-as-not-imported"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-916f80ac-92d2-457c-9359-3ec65850d02e"
+                                    },
+                                    {
+                                      "id": "fbf2e69f-15d1-4e28-838a-b5aa7ec72876",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"UNKNOWN_ACCOUNTING_ACCOUNT\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"UNKNOWN_ANALYTICAL_CODE\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"UNKNOWN_ANALYTICAL_CODE\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"OTHER\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exported-bank-journal-entries/mark-as-not-imported",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exported-bank-journal-entries",
+                                            "mark-as-not-imported"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-fbf2e69f-15d1-4e28-838a-b5aa7ec72876"
+                                    },
+                                    {
+                                      "id": "ca10bfb2-08c4-480c-b496-e53c96ef9029",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"UNKNOWN_ACCOUNTING_ACCOUNT\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"UNKNOWN_ANALYTICAL_CODE\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"UNKNOWN_ANALYTICAL_CODE\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"OTHER\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exported-bank-journal-entries/mark-as-not-imported",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exported-bank-journal-entries",
+                                            "mark-as-not-imported"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-ca10bfb2-08c4-480c-b496-e53c96ef9029"
+                                    },
+                                    {
+                                      "id": "0cd6b8bb-0ce3-4fcf-8a6d-c3cad1daa5aa",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"UNKNOWN_ACCOUNTING_ACCOUNT\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"UNKNOWN_ANALYTICAL_CODE\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"UNKNOWN_ANALYTICAL_CODE\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"OTHER\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exported-bank-journal-entries/mark-as-not-imported",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exported-bank-journal-entries",
+                                            "mark-as-not-imported"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-0cd6b8bb-0ce3-4fcf-8a6d-c3cad1daa5aa"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:07:57.000Z",
+                                  "updatedAt": "2026-07-28T10:07:57.000Z",
+                                  "uid": "35240-ef3e378b-fbac-4864-8e71-3c9d729a2522"
+                                }
+                              ],
+                              "id": "50f5c01b-2c29-4772-8f6c-dacf4f27abfb",
+                              "createdAt": "2026-07-28T10:07:57.000Z",
+                              "updatedAt": "2026-07-28T10:07:57.000Z",
+                              "uid": "35240-50f5c01b-2c29-4772-8f6c-dacf4f27abfb"
+                            }
+                          ],
+                          "id": "55aa23d9-10be-4da2-9ad9-cfd6c6fd8b3e",
+                          "createdAt": "2026-07-28T10:07:57.000Z",
+                          "updatedAt": "2026-07-28T10:07:57.000Z",
+                          "uid": "35240-55aa23d9-10be-4da2-9ad9-cfd6c6fd8b3e"
+                        },
+                        {
+                          "name": "exports",
+                          "item": [
+                            {
+                              "name": "{exportId}",
+                              "item": [
+                                {
+                                  "name": "Get an existing bank journal entries export.",
+                                  "id": "ef49c455-605c-4195-86b4-534d8366c25c",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "treasury-bank-journal",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "exports",
+                                        ":exportId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "cd9042d4-326e-46d5-a962-3d2d3603f14c",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier"
+                                        },
+                                        {
+                                          "id": "7bc5c56a-769b-4a9f-b12c-02b81e770f60",
+                                          "key": "exportId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) Unique ID of an existing bank journal export."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Retrieve an existing bank journal export by its identifier, with all its entries.\n\nThe bank journal export is returned as a JSON payload.\n\nIf the export is not found an error is returned."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "c2553fb9-1d04-4b69-bdbe-f0bb9854c9cc",
+                                      "name": "OK",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exports",
+                                            ":exportId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "exportId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"bankJournalExportIndexInYear\": \"<integer>\",\n  \"entityName\": \"<string>\",\n  \"entries\": [\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingCurrency\": \"<string>\",\n      \"agicapUniqueId\": \"<uuid>\",\n      \"bankAccountName\": \"<string>\",\n      \"counterparts\": [\n        {\n          \"accountingAccountNumber\": \"<string>\",\n          \"accountingAccountType\": \"EXPENSE\",\n          \"analyticalCodes\": {\n            \"exercitation_2\": \"<string>\",\n            \"irurefb\": \"<string>\"\n          },\n          \"name\": \"<string>\",\n          \"originalCurrency\": \"<string>\",\n          \"accountingAccountExternalId\": \"<string>\",\n          \"accountingCurrency\": \"<string>\",\n          \"creditInAccountingCurrency\": \"<double>\",\n          \"creditInOriginalCurrency\": \"<double>\",\n          \"customFields\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            }\n          ],\n          \"debitInAccountingCurrency\": \"<double>\",\n          \"debitInOriginalCurrency\": \"<double>\",\n          \"document\": {\n            \"documentType\": \"<string>\",\n            \"originalDueDate\": \"<date>\",\n            \"uniqueId\": \"<string>\",\n            \"documentIssueDate\": \"<dateTime>\",\n            \"documentReference\": \"<string>\",\n            \"externalEntityId\": \"<string>\",\n            \"externalId\": \"<string>\"\n          },\n          \"exchangeRate\": \"<double>\",\n          \"journalCode\": \"<string>\",\n          \"linkedExportedEntry\": {\n            \"agicapUniqueId\": \"<uuid>\",\n            \"exportEntryReference\": \"<string>\"\n          },\n          \"taxKey\": \"<string>\",\n          \"thirdPartyCode\": \"<string>\",\n          \"thirdPartyExternalId\": \"<string>\",\n          \"thirdPartyName\": \"<string>\"\n        },\n        {\n          \"accountingAccountNumber\": \"<string>\",\n          \"accountingAccountType\": \"PRODUCT\",\n          \"analyticalCodes\": {\n            \"nostrud_1\": \"<string>\",\n            \"mollit_aec\": \"<string>\",\n            \"non_d\": \"<string>\",\n            \"irure3f\": \"<string>\"\n          },\n          \"name\": \"<string>\",\n          \"originalCurrency\": \"<string>\",\n          \"accountingAccountExternalId\": \"<string>\",\n          \"accountingCurrency\": \"<string>\",\n          \"creditInAccountingCurrency\": \"<double>\",\n          \"creditInOriginalCurrency\": \"<double>\",\n          \"customFields\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            }\n          ],\n          \"debitInAccountingCurrency\": \"<double>\",\n          \"debitInOriginalCurrency\": \"<double>\",\n          \"document\": {\n            \"documentType\": \"<string>\",\n            \"originalDueDate\": \"<date>\",\n            \"uniqueId\": \"<string>\",\n            \"documentIssueDate\": \"<dateTime>\",\n            \"documentReference\": \"<string>\",\n            \"externalEntityId\": \"<string>\",\n            \"externalId\": \"<string>\"\n          },\n          \"exchangeRate\": \"<double>\",\n          \"journalCode\": \"<string>\",\n          \"linkedExportedEntry\": {\n            \"agicapUniqueId\": \"<uuid>\",\n            \"exportEntryReference\": \"<string>\"\n          },\n          \"taxKey\": \"<string>\",\n          \"thirdPartyCode\": \"<string>\",\n          \"thirdPartyExternalId\": \"<string>\",\n          \"thirdPartyName\": \"<string>\"\n        }\n      ],\n      \"exportEntryReference\": \"<string>\",\n      \"indexInExport\": \"<integer>\",\n      \"indexInYear\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"originalCurrency\": \"<string>\",\n      \"paymentDate\": \"<date>\",\n      \"type\": \"<string>\",\n      \"accountingAccountExternalId\": \"<string>\",\n      \"causale\": \"<string>\",\n      \"creditInAccountingCurrency\": \"<double>\",\n      \"creditInOriginalCurrency\": \"<double>\",\n      \"debitInAccountingCurrency\": \"<double>\",\n      \"debitInOriginalCurrency\": \"<double>\",\n      \"entryMemo\": \"<string>\",\n      \"exchangeRate\": \"<double>\",\n      \"journalCode\": \"<string>\"\n    },\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingCurrency\": \"<string>\",\n      \"agicapUniqueId\": \"<uuid>\",\n      \"bankAccountName\": \"<string>\",\n      \"counterparts\": [\n        {\n          \"accountingAccountNumber\": \"<string>\",\n          \"accountingAccountType\": \"BANK\",\n          \"analyticalCodes\": {\n            \"id_4\": \"<string>\",\n            \"cupidatat_d\": \"<string>\"\n          },\n          \"name\": \"<string>\",\n          \"originalCurrency\": \"<string>\",\n          \"accountingAccountExternalId\": \"<string>\",\n          \"accountingCurrency\": \"<string>\",\n          \"creditInAccountingCurrency\": \"<double>\",\n          \"creditInOriginalCurrency\": \"<double>\",\n          \"customFields\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            }\n          ],\n          \"debitInAccountingCurrency\": \"<double>\",\n          \"debitInOriginalCurrency\": \"<double>\",\n          \"document\": {\n            \"documentType\": \"<string>\",\n            \"originalDueDate\": \"<date>\",\n            \"uniqueId\": \"<string>\",\n            \"documentIssueDate\": \"<dateTime>\",\n            \"documentReference\": \"<string>\",\n            \"externalEntityId\": \"<string>\",\n            \"externalId\": \"<string>\"\n          },\n          \"exchangeRate\": \"<double>\",\n          \"journalCode\": \"<string>\",\n          \"linkedExportedEntry\": {\n            \"agicapUniqueId\": \"<uuid>\",\n            \"exportEntryReference\": \"<string>\"\n          },\n          \"taxKey\": \"<string>\",\n          \"thirdPartyCode\": \"<string>\",\n          \"thirdPartyExternalId\": \"<string>\",\n          \"thirdPartyName\": \"<string>\"\n        },\n        {\n          \"accountingAccountNumber\": \"<string>\",\n          \"accountingAccountType\": \"OTHER\",\n          \"analyticalCodes\": {\n            \"irure32\": \"<string>\",\n            \"dolore_5f\": \"<string>\",\n            \"occaecat9f\": \"<string>\"\n          },\n          \"name\": \"<string>\",\n          \"originalCurrency\": \"<string>\",\n          \"accountingAccountExternalId\": \"<string>\",\n          \"accountingCurrency\": \"<string>\",\n          \"creditInAccountingCurrency\": \"<double>\",\n          \"creditInOriginalCurrency\": \"<double>\",\n          \"customFields\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            }\n          ],\n          \"debitInAccountingCurrency\": \"<double>\",\n          \"debitInOriginalCurrency\": \"<double>\",\n          \"document\": {\n            \"documentType\": \"<string>\",\n            \"originalDueDate\": \"<date>\",\n            \"uniqueId\": \"<string>\",\n            \"documentIssueDate\": \"<dateTime>\",\n            \"documentReference\": \"<string>\",\n            \"externalEntityId\": \"<string>\",\n            \"externalId\": \"<string>\"\n          },\n          \"exchangeRate\": \"<double>\",\n          \"journalCode\": \"<string>\",\n          \"linkedExportedEntry\": {\n            \"agicapUniqueId\": \"<uuid>\",\n            \"exportEntryReference\": \"<string>\"\n          },\n          \"taxKey\": \"<string>\",\n          \"thirdPartyCode\": \"<string>\",\n          \"thirdPartyExternalId\": \"<string>\",\n          \"thirdPartyName\": \"<string>\"\n        }\n      ],\n      \"exportEntryReference\": \"<string>\",\n      \"indexInExport\": \"<integer>\",\n      \"indexInYear\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"originalCurrency\": \"<string>\",\n      \"paymentDate\": \"<date>\",\n      \"type\": \"<string>\",\n      \"accountingAccountExternalId\": \"<string>\",\n      \"causale\": \"<string>\",\n      \"creditInAccountingCurrency\": \"<double>\",\n      \"creditInOriginalCurrency\": \"<double>\",\n      \"debitInAccountingCurrency\": \"<double>\",\n      \"debitInOriginalCurrency\": \"<double>\",\n      \"entryMemo\": \"<string>\",\n      \"exchangeRate\": \"<double>\",\n      \"journalCode\": \"<string>\"\n    }\n  ],\n  \"exportId\": \"<uuid>\",\n  \"year\": \"<integer>\"\n}",
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-c2553fb9-1d04-4b69-bdbe-f0bb9854c9cc"
+                                    },
+                                    {
+                                      "id": "7658b2f9-30de-4f1b-ae30-723daed49150",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exports",
+                                            ":exportId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "exportId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-7658b2f9-30de-4f1b-ae30-723daed49150"
+                                    },
+                                    {
+                                      "id": "515fb1f3-7c58-4988-8f5d-0cea52969dc9",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exports",
+                                            ":exportId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "exportId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-515fb1f3-7c58-4988-8f5d-0cea52969dc9"
+                                    },
+                                    {
+                                      "id": "afe5eea5-5f94-4322-9c62-994f4420b028",
+                                      "name": "Not Found",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exports",
+                                            ":exportId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "exportId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-afe5eea5-5f94-4322-9c62-994f4420b028"
+                                    },
+                                    {
+                                      "id": "6c8054b4-7e5c-466e-9f5c-37c2741f2bc6",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exports",
+                                            ":exportId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "exportId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-6c8054b4-7e5c-466e-9f5c-37c2741f2bc6"
+                                    },
+                                    {
+                                      "id": "ead8ee16-b99a-4be8-83b0-3cc0e8fdec7a",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exports",
+                                            ":exportId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "exportId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-ead8ee16-b99a-4be8-83b0-3cc0e8fdec7a"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:07:57.000Z",
+                                  "updatedAt": "2026-07-28T10:07:57.000Z",
+                                  "uid": "35240-ef49c455-605c-4195-86b4-534d8366c25c"
+                                },
+                                {
+                                  "name": "Export bank journal entries ready to be exported.",
+                                  "id": "ff7a5dc3-8c7b-43ed-abc7-cda8bb6ba82f",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"currentExportCounts\": {\n    \"currentBankJournalEntriesCountInYear\": \"<integer>\",\n    \"currentBankJournalsCountInYear\": \"<integer>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "treasury-bank-journal",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "exports",
+                                        ":exportId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "6b1663b5-76a1-4ecf-bb3c-dacba7a5aba7",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier"
+                                        },
+                                        {
+                                          "id": "154a6f93-57c2-411c-8c71-c2382e1ffe04",
+                                          "key": "exportId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) Unique ID of the export, provided by the caller. In case of network problem, use the same\nunique ID to retry."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Export all the bank journal entries ready to be exported. You need to provide the export id as a Guid\n\nThe bank journal entries will become exported instead of ready to be exported and won't be exportable anymore, they can be retrieved later on with the same\n`exportId` with the <strong>GET Export</strong> endpoint.\n\nThe bank journal is returned as a JSON payload.\n\nThe maximum number of entries in a bank journal is limited (currently 5000), if you have more entries to export, simply export several journals with\ndifferent `exportId`.\n\nNote that the exported counterparts custom fields include the ERP identification fields from business document when imported in Agicap.<hr /><p><b>This section is only for ERPs requiring the count of bank journals and bank journal entries created during the year</b></p><b>If your ERP does not require these counts, you can simply specify an empty request body (\"\" or \"{}\").</b><p>\n    For the first export of the year via Agicap, if a user has already created bank journals <strong>outside Agicap</strong> and its ERP needs to know\n    these counts, you can specify where to start the counts of bank journal and bank journal entries in the current year, by specifying in the request\n    body a <i>currentExportCounts</i> object and set the appropriate values in <i>currentBankJournalsCountInYear</i> and\n    <i>currentBankJournalEntriesCountInYear</i> fields.\n</p><p><b>Warning:</b> This must be done only once, the request will fail if you try to set these counts multiple times.\n</p>"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "46d75288-98c8-4f5c-8707-90dc940bee9f",
+                                      "name": "OK",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"currentExportCounts\": {\n    \"currentBankJournalEntriesCountInYear\": \"<integer>\",\n    \"currentBankJournalsCountInYear\": \"<integer>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exports",
+                                            ":exportId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "exportId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"bankJournalExportIndexInYear\": \"<integer>\",\n  \"entityName\": \"<string>\",\n  \"entries\": [\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingCurrency\": \"<string>\",\n      \"agicapUniqueId\": \"<uuid>\",\n      \"bankAccountName\": \"<string>\",\n      \"counterparts\": [\n        {\n          \"accountingAccountNumber\": \"<string>\",\n          \"accountingAccountType\": \"PRODUCT\",\n          \"analyticalCodes\": {\n            \"labore_8a\": \"<string>\"\n          },\n          \"name\": \"<string>\",\n          \"originalCurrency\": \"<string>\",\n          \"accountingAccountExternalId\": \"<string>\",\n          \"accountingCurrency\": \"<string>\",\n          \"creditInAccountingCurrency\": \"<double>\",\n          \"creditInOriginalCurrency\": \"<double>\",\n          \"customFields\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            }\n          ],\n          \"debitInAccountingCurrency\": \"<double>\",\n          \"debitInOriginalCurrency\": \"<double>\",\n          \"document\": {\n            \"documentType\": \"<string>\",\n            \"originalDueDate\": \"<date>\",\n            \"uniqueId\": \"<string>\",\n            \"documentIssueDate\": \"<dateTime>\",\n            \"documentReference\": \"<string>\",\n            \"externalEntityId\": \"<string>\",\n            \"externalId\": \"<string>\"\n          },\n          \"exchangeRate\": \"<double>\",\n          \"journalCode\": \"<string>\",\n          \"linkedExportedEntry\": {\n            \"agicapUniqueId\": \"<uuid>\",\n            \"exportEntryReference\": \"<string>\"\n          },\n          \"taxKey\": \"<string>\",\n          \"thirdPartyCode\": \"<string>\",\n          \"thirdPartyExternalId\": \"<string>\",\n          \"thirdPartyName\": \"<string>\"\n        },\n        {\n          \"accountingAccountNumber\": \"<string>\",\n          \"accountingAccountType\": \"PRODUCT\",\n          \"analyticalCodes\": {\n            \"reprehenderite_\": \"<string>\",\n            \"nostrud_e\": \"<string>\"\n          },\n          \"name\": \"<string>\",\n          \"originalCurrency\": \"<string>\",\n          \"accountingAccountExternalId\": \"<string>\",\n          \"accountingCurrency\": \"<string>\",\n          \"creditInAccountingCurrency\": \"<double>\",\n          \"creditInOriginalCurrency\": \"<double>\",\n          \"customFields\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            }\n          ],\n          \"debitInAccountingCurrency\": \"<double>\",\n          \"debitInOriginalCurrency\": \"<double>\",\n          \"document\": {\n            \"documentType\": \"<string>\",\n            \"originalDueDate\": \"<date>\",\n            \"uniqueId\": \"<string>\",\n            \"documentIssueDate\": \"<dateTime>\",\n            \"documentReference\": \"<string>\",\n            \"externalEntityId\": \"<string>\",\n            \"externalId\": \"<string>\"\n          },\n          \"exchangeRate\": \"<double>\",\n          \"journalCode\": \"<string>\",\n          \"linkedExportedEntry\": {\n            \"agicapUniqueId\": \"<uuid>\",\n            \"exportEntryReference\": \"<string>\"\n          },\n          \"taxKey\": \"<string>\",\n          \"thirdPartyCode\": \"<string>\",\n          \"thirdPartyExternalId\": \"<string>\",\n          \"thirdPartyName\": \"<string>\"\n        }\n      ],\n      \"exportEntryReference\": \"<string>\",\n      \"indexInExport\": \"<integer>\",\n      \"indexInYear\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"originalCurrency\": \"<string>\",\n      \"paymentDate\": \"<date>\",\n      \"type\": \"<string>\",\n      \"accountingAccountExternalId\": \"<string>\",\n      \"causale\": \"<string>\",\n      \"creditInAccountingCurrency\": \"<double>\",\n      \"creditInOriginalCurrency\": \"<double>\",\n      \"debitInAccountingCurrency\": \"<double>\",\n      \"debitInOriginalCurrency\": \"<double>\",\n      \"entryMemo\": \"<string>\",\n      \"exchangeRate\": \"<double>\",\n      \"journalCode\": \"<string>\"\n    },\n    {\n      \"accountingAccountNumber\": \"<string>\",\n      \"accountingCurrency\": \"<string>\",\n      \"agicapUniqueId\": \"<uuid>\",\n      \"bankAccountName\": \"<string>\",\n      \"counterparts\": [\n        {\n          \"accountingAccountNumber\": \"<string>\",\n          \"accountingAccountType\": \"VAT\",\n          \"analyticalCodes\": {\n            \"laboris2e\": \"<string>\"\n          },\n          \"name\": \"<string>\",\n          \"originalCurrency\": \"<string>\",\n          \"accountingAccountExternalId\": \"<string>\",\n          \"accountingCurrency\": \"<string>\",\n          \"creditInAccountingCurrency\": \"<double>\",\n          \"creditInOriginalCurrency\": \"<double>\",\n          \"customFields\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            }\n          ],\n          \"debitInAccountingCurrency\": \"<double>\",\n          \"debitInOriginalCurrency\": \"<double>\",\n          \"document\": {\n            \"documentType\": \"<string>\",\n            \"originalDueDate\": \"<date>\",\n            \"uniqueId\": \"<string>\",\n            \"documentIssueDate\": \"<dateTime>\",\n            \"documentReference\": \"<string>\",\n            \"externalEntityId\": \"<string>\",\n            \"externalId\": \"<string>\"\n          },\n          \"exchangeRate\": \"<double>\",\n          \"journalCode\": \"<string>\",\n          \"linkedExportedEntry\": {\n            \"agicapUniqueId\": \"<uuid>\",\n            \"exportEntryReference\": \"<string>\"\n          },\n          \"taxKey\": \"<string>\",\n          \"thirdPartyCode\": \"<string>\",\n          \"thirdPartyExternalId\": \"<string>\",\n          \"thirdPartyName\": \"<string>\"\n        },\n        {\n          \"accountingAccountNumber\": \"<string>\",\n          \"accountingAccountType\": \"OTHER\",\n          \"analyticalCodes\": {\n            \"sit_0c\": \"<string>\"\n          },\n          \"name\": \"<string>\",\n          \"originalCurrency\": \"<string>\",\n          \"accountingAccountExternalId\": \"<string>\",\n          \"accountingCurrency\": \"<string>\",\n          \"creditInAccountingCurrency\": \"<double>\",\n          \"creditInOriginalCurrency\": \"<double>\",\n          \"customFields\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\"\n            }\n          ],\n          \"debitInAccountingCurrency\": \"<double>\",\n          \"debitInOriginalCurrency\": \"<double>\",\n          \"document\": {\n            \"documentType\": \"<string>\",\n            \"originalDueDate\": \"<date>\",\n            \"uniqueId\": \"<string>\",\n            \"documentIssueDate\": \"<dateTime>\",\n            \"documentReference\": \"<string>\",\n            \"externalEntityId\": \"<string>\",\n            \"externalId\": \"<string>\"\n          },\n          \"exchangeRate\": \"<double>\",\n          \"journalCode\": \"<string>\",\n          \"linkedExportedEntry\": {\n            \"agicapUniqueId\": \"<uuid>\",\n            \"exportEntryReference\": \"<string>\"\n          },\n          \"taxKey\": \"<string>\",\n          \"thirdPartyCode\": \"<string>\",\n          \"thirdPartyExternalId\": \"<string>\",\n          \"thirdPartyName\": \"<string>\"\n        }\n      ],\n      \"exportEntryReference\": \"<string>\",\n      \"indexInExport\": \"<integer>\",\n      \"indexInYear\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"originalCurrency\": \"<string>\",\n      \"paymentDate\": \"<date>\",\n      \"type\": \"<string>\",\n      \"accountingAccountExternalId\": \"<string>\",\n      \"causale\": \"<string>\",\n      \"creditInAccountingCurrency\": \"<double>\",\n      \"creditInOriginalCurrency\": \"<double>\",\n      \"debitInAccountingCurrency\": \"<double>\",\n      \"debitInOriginalCurrency\": \"<double>\",\n      \"entryMemo\": \"<string>\",\n      \"exchangeRate\": \"<double>\",\n      \"journalCode\": \"<string>\"\n    }\n  ],\n  \"exportId\": \"<uuid>\",\n  \"year\": \"<integer>\"\n}",
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-46d75288-98c8-4f5c-8707-90dc940bee9f"
+                                    },
+                                    {
+                                      "id": "af3cf349-d911-470e-8339-3297672fc75f",
+                                      "name": "No Content",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"currentExportCounts\": {\n    \"currentBankJournalEntriesCountInYear\": \"<integer>\",\n    \"currentBankJournalsCountInYear\": \"<integer>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exports",
+                                            ":exportId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "exportId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "No Content",
+                                      "code": 204,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-af3cf349-d911-470e-8339-3297672fc75f"
+                                    },
+                                    {
+                                      "id": "7ca97a8b-68c5-41f5-920e-831ecd752ced",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"currentExportCounts\": {\n    \"currentBankJournalEntriesCountInYear\": \"<integer>\",\n    \"currentBankJournalsCountInYear\": \"<integer>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exports",
+                                            ":exportId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "exportId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-7ca97a8b-68c5-41f5-920e-831ecd752ced"
+                                    },
+                                    {
+                                      "id": "335a3b29-b1ed-45a0-bea9-0391b28ba92c",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"currentExportCounts\": {\n    \"currentBankJournalEntriesCountInYear\": \"<integer>\",\n    \"currentBankJournalsCountInYear\": \"<integer>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exports",
+                                            ":exportId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "exportId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-335a3b29-b1ed-45a0-bea9-0391b28ba92c"
+                                    },
+                                    {
+                                      "id": "97bd8e7d-46c4-4412-b5d1-db9536f74ae6",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"currentExportCounts\": {\n    \"currentBankJournalEntriesCountInYear\": \"<integer>\",\n    \"currentBankJournalsCountInYear\": \"<integer>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exports",
+                                            ":exportId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "exportId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-97bd8e7d-46c4-4412-b5d1-db9536f74ae6"
+                                    },
+                                    {
+                                      "id": "4cf0e15e-4033-47e3-bf71-4ff18e951aff",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"currentExportCounts\": {\n    \"currentBankJournalEntriesCountInYear\": \"<integer>\",\n    \"currentBankJournalsCountInYear\": \"<integer>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "treasury-bank-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "exports",
+                                            ":exportId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "exportId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:07:57.000Z",
+                                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                                      "uid": "35240-4cf0e15e-4033-47e3-bf71-4ff18e951aff"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:07:57.000Z",
+                                  "updatedAt": "2026-07-28T10:07:57.000Z",
+                                  "uid": "35240-ff7a5dc3-8c7b-43ed-abc7-cda8bb6ba82f"
+                                }
+                              ],
+                              "id": "07042052-02c2-4af0-9ab1-4ed14665abcb",
+                              "createdAt": "2026-07-28T10:07:57.000Z",
+                              "updatedAt": "2026-07-28T10:07:57.000Z",
+                              "uid": "35240-07042052-02c2-4af0-9ab1-4ed14665abcb"
+                            },
+                            {
+                              "name": "Returns a list of bank journal entries export summaries.",
+                              "id": "2fe07e20-a151-4f77-92cb-fa68c4c03e72",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports?before=<string>&after=<string>&size=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "treasury-bank-journal",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "exports"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "When specified, returns bank journals whose export date is before the given UTC date time",
+                                      "key": "before",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "When specified, returns bank journals whose export date is after the given UTC date time",
+                                      "key": "after",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) Number of bank journals to return",
+                                      "key": "size",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "e379fd4d-2a8e-48a7-885f-6fcc1c9b1260",
+                                      "key": "entityId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Agicap entity identifier"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns a list of short summaries of bank journal entries previous exports, without their entries.\n\nYou can then use `exportId` of a summary to call the <strong>GET Export</strong> endpoint to retrieve the export content with its entries.\n\nThe query pagination is based on a mandatory timestamp cursor whose value is specified either with the `after` parameter or the\n`before` parameter (but not both).\n\nIt returns (at most) `size` bank journal exports whose export dates are either:\n\n\n- strictly after the given `after` parameter if specified, the results ordered chronologically (from oldest to newest)\n\n- strictly before the given `before` parameter if specified, the results in reverse chronological order (from newest to oldest)\n\n\nBoth `after` and `before` parameters are ISO8601 date-time format interpreted in UTC, examples:\n\n\n- `2024-11-01`\n- `2024-11-01T14:30:00`\n- `2024-11-01T14:30:00Z`\n- `2024-11-01T14:30:00.123Z`\n\nNote that the server can return less than the `size` items requested if it deems the value too big, in this case, query again by using the\nreturned cursor value as a new starting point.\n\nIn the response if the cursor `after` value is null, this means there is no value `after` that, same goes for the\n`before` value.\n\nExample:\n\n\n- Query 1: `/public-api/treasury-bank-journal/v1/entities/42/exports?size=10&after=2024-11-01`\n\n- Response: 10 bank journals returned chronologically, the last one at `2024-11-07T14:30:00Z` which is the value of the returned cursor `after`\nfield\n\n\nTo get the next bank journal exports, use the returned cursor `after` field value as the `after` parameter,\nremember that bank journals at this date are excluded so you won't get the last bank journal of the previous response again.\n\n\n- Query 2: `/public-api/treasury-bank-journal/v1/entities/42/exports?size=10&after=2024-11-07T14:30:00Z`\n\n- Response: 7 bank journal exports returned, since there are no more bank journal exports to get, the returned cursor `after` field is null\n\n\nThe `before` parameter works the same way, but instead of going in chronological order, it goes backward, the newest export is first and the oldest\nlast."
+                              },
+                              "response": [
+                                {
+                                  "id": "1e7a3fcf-7485-4f64-b0ac-d663889f9fd8",
+                                  "name": "OK",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports?before=<string>&after=<string>&size=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "treasury-bank-journal",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "exports"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "When specified, returns bank journals whose export date is before the given UTC date time",
+                                          "key": "before",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "When specified, returns bank journals whose export date is after the given UTC date time",
+                                          "key": "after",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "(Required) Number of bank journals to return",
+                                          "key": "size",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"cursor\": {\n    \"size\": \"<integer>\",\n    \"after\": \"<string>\",\n    \"before\": \"<string>\"\n  },\n  \"items\": [\n    {\n      \"exportDateUtc\": \"<string>\",\n      \"exportId\": \"<uuid>\",\n      \"exportIndexInYear\": \"<integer>\",\n      \"exportYear\": \"<integer>\",\n      \"indexInYearOfFirstEntryInBankJournal\": \"<integer>\",\n      \"indexInYearOfLastEntryInBankJournal\": \"<integer>\",\n      \"numberOfEntries\": \"<integer>\"\n    },\n    {\n      \"exportDateUtc\": \"<string>\",\n      \"exportId\": \"<uuid>\",\n      \"exportIndexInYear\": \"<integer>\",\n      \"exportYear\": \"<integer>\",\n      \"indexInYearOfFirstEntryInBankJournal\": \"<integer>\",\n      \"indexInYearOfLastEntryInBankJournal\": \"<integer>\",\n      \"numberOfEntries\": \"<integer>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T10:07:57.000Z",
+                                  "updatedAt": "2026-07-28T10:07:57.000Z",
+                                  "uid": "35240-1e7a3fcf-7485-4f64-b0ac-d663889f9fd8"
+                                },
+                                {
+                                  "id": "574add55-5042-4e22-b004-1d2ca65c00f9",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports?before=<string>&after=<string>&size=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "treasury-bank-journal",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "exports"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "When specified, returns bank journals whose export date is before the given UTC date time",
+                                          "key": "before",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "When specified, returns bank journals whose export date is after the given UTC date time",
+                                          "key": "after",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "(Required) Number of bank journals to return",
+                                          "key": "size",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:57.000Z",
+                                  "updatedAt": "2026-07-28T10:07:57.000Z",
+                                  "uid": "35240-574add55-5042-4e22-b004-1d2ca65c00f9"
+                                },
+                                {
+                                  "id": "80120218-aaa1-4c35-bfa2-63de98bde7a4",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports?before=<string>&after=<string>&size=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "treasury-bank-journal",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "exports"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "When specified, returns bank journals whose export date is before the given UTC date time",
+                                          "key": "before",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "When specified, returns bank journals whose export date is after the given UTC date time",
+                                          "key": "after",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "(Required) Number of bank journals to return",
+                                          "key": "size",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:57.000Z",
+                                  "updatedAt": "2026-07-28T10:07:57.000Z",
+                                  "uid": "35240-80120218-aaa1-4c35-bfa2-63de98bde7a4"
+                                },
+                                {
+                                  "id": "751bdc3b-272d-46b2-95cb-7fb3d2d76094",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports?before=<string>&after=<string>&size=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "treasury-bank-journal",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "exports"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "When specified, returns bank journals whose export date is before the given UTC date time",
+                                          "key": "before",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "When specified, returns bank journals whose export date is after the given UTC date time",
+                                          "key": "after",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "(Required) Number of bank journals to return",
+                                          "key": "size",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:07:57.000Z",
+                                  "updatedAt": "2026-07-28T10:07:57.000Z",
+                                  "uid": "35240-751bdc3b-272d-46b2-95cb-7fb3d2d76094"
+                                },
+                                {
+                                  "id": "0f6df98d-0e30-4436-94ff-eff0b5535947",
+                                  "name": "An internal server occurred.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/treasury-bank-journal/v1/entities/:entityId/exports?before=<string>&after=<string>&size=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "treasury-bank-journal",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "exports"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "When specified, returns bank journals whose export date is before the given UTC date time",
+                                          "key": "before",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "When specified, returns bank journals whose export date is after the given UTC date time",
+                                          "key": "after",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "(Required) Number of bank journals to return",
+                                          "key": "size",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T10:07:57.000Z",
+                                  "updatedAt": "2026-07-28T10:07:57.000Z",
+                                  "uid": "35240-0f6df98d-0e30-4436-94ff-eff0b5535947"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:07:57.000Z",
+                              "updatedAt": "2026-07-28T10:07:57.000Z",
+                              "uid": "35240-2fe07e20-a151-4f77-92cb-fa68c4c03e72"
+                            }
+                          ],
+                          "id": "d98c479b-fb68-4a95-89b2-d2ab749ded0c",
+                          "createdAt": "2026-07-28T10:07:57.000Z",
+                          "updatedAt": "2026-07-28T10:07:57.000Z",
+                          "uid": "35240-d98c479b-fb68-4a95-89b2-d2ab749ded0c"
+                        }
+                      ],
+                      "id": "2b8fc39d-4ad3-4215-9023-a256fd55f77e",
+                      "createdAt": "2026-07-28T10:07:57.000Z",
+                      "updatedAt": "2026-07-28T10:07:57.000Z",
+                      "uid": "35240-2b8fc39d-4ad3-4215-9023-a256fd55f77e"
+                    }
+                  ],
+                  "id": "002726ad-71f6-4e0a-a920-e772ac120213",
+                  "createdAt": "2026-07-28T10:07:57.000Z",
+                  "updatedAt": "2026-07-28T10:07:57.000Z",
+                  "uid": "35240-002726ad-71f6-4e0a-a920-e772ac120213"
+                }
+              ],
+              "id": "e45ee50f-a6e8-4065-96e2-d9ec057b20fc",
+              "createdAt": "2026-07-28T10:07:57.000Z",
+              "updatedAt": "2026-07-28T10:07:57.000Z",
+              "uid": "35240-e45ee50f-a6e8-4065-96e2-d9ec057b20fc"
+            }
+          ],
+          "id": "bc88bcbd-6959-475f-8ffa-4bfcc3e6d427",
+          "createdAt": "2026-07-28T10:07:57.000Z",
+          "updatedAt": "2026-07-28T10:07:57.000Z",
+          "uid": "35240-bc88bcbd-6959-475f-8ffa-4bfcc3e6d427"
+        }
+      ],
+      "id": "50532ba5-61d8-4b3c-a146-88bc39d377a5",
+      "createdAt": "2026-07-28T10:07:57.000Z",
+      "updatedAt": "2026-07-28T10:07:57.000Z",
+      "uid": "35240-50532ba5-61d8-4b3c-a146-88bc39d377a5"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

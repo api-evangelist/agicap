@@ -1,0 +1,547 @@
+{
+  "info": {
+    "_postman_id": "a9df1eb7-88b9-43f0-b9a1-c1909722c2f5",
+    "name": "Clients AR Account reports Inbox API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:08:06.000Z",
+    "updatedAt": "2026-07-28T10:08:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a9df1eb7-88b9-43f0-b9a1-c1909722c2f5"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "invoices-management",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "inbox",
+                          "item": [
+                            {
+                              "name": "documents",
+                              "item": [
+                                {
+                                  "name": "List inbox documents",
+                                  "id": "510b7d3c-73f4-4b41-bd3c-daaf3aa8fe33",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/invoices-management/v1/entities/:entityId/inbox/documents?lastSynchronizationDate=<dateTime>&pageSize=100&pageNumber=0",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "invoices-management",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "inbox",
+                                        "documents"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Only documents collected on or after this ISO-8601 datetime are returned. Omit to return the whole current inbox.",
+                                          "key": "lastSynchronizationDate",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "The maximum number of documents per page, between 1 and 100. Defaults to 100.",
+                                          "key": "pageSize",
+                                          "value": "100"
+                                        },
+                                        {
+                                          "description": "The zero-based page index. Defaults to 0.",
+                                          "key": "pageNumber",
+                                          "value": "0"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "d59c69f9-9f55-4a7e-8871-1cce5e1f1ba2",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) The entity identifier."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Use this endpoint to list the invoices and credit notes currently in the entity's inbox (documents awaiting OCR verification), each with a temporary download link to its attached file.\nAny document that has an attached file is returned, whatever its type (PDF or image); a document with no attached file is excluded. Provide a last-synchronization date to pull only the documents collected since then."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a73a3557-2bb9-4fe6-8054-58d0e8bb2de7",
+                                      "name": "Your request has been successfully processed.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/invoices-management/v1/entities/:entityId/inbox/documents?lastSynchronizationDate=<dateTime>&pageSize=100&pageNumber=0",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "invoices-management",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "inbox",
+                                            "documents"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Only documents collected on or after this ISO-8601 datetime are returned. Omit to return the whole current inbox.",
+                                              "key": "lastSynchronizationDate",
+                                              "value": "<dateTime>"
+                                            },
+                                            {
+                                              "description": "The maximum number of documents per page, between 1 and 100. Defaults to 100.",
+                                              "key": "pageSize",
+                                              "value": "100"
+                                            },
+                                            {
+                                              "description": "The zero-based page index. Defaults to 0.",
+                                              "key": "pageNumber",
+                                              "value": "0"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"documents\": [\n    {\n      \"agicapDocumentId\": \"<uuid>\",\n      \"type\": \"Delivery\",\n      \"url\": \"<string>\",\n      \"extension\": \"Xml\"\n    },\n    {\n      \"agicapDocumentId\": \"<uuid>\",\n      \"type\": \"PurchaseOrder\",\n      \"url\": \"<string>\",\n      \"extension\": \"Xml\"\n    }\n  ],\n  \"pagination\": {\n    \"currentPageItemsCount\": \"<integer>\",\n    \"currentPageNumber\": \"<integer>\",\n    \"pagesCount\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItemsCount\": \"<integer>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T10:08:06.000Z",
+                                      "updatedAt": "2026-07-28T10:08:06.000Z",
+                                      "uid": "35240-a73a3557-2bb9-4fe6-8054-58d0e8bb2de7"
+                                    },
+                                    {
+                                      "id": "3617bcf3-03ef-43f8-af38-a62d7c09b280",
+                                      "name": "Your request is invalid.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/invoices-management/v1/entities/:entityId/inbox/documents?lastSynchronizationDate=<dateTime>&pageSize=100&pageNumber=0",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "invoices-management",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "inbox",
+                                            "documents"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Only documents collected on or after this ISO-8601 datetime are returned. Omit to return the whole current inbox.",
+                                              "key": "lastSynchronizationDate",
+                                              "value": "<dateTime>"
+                                            },
+                                            {
+                                              "description": "The maximum number of documents per page, between 1 and 100. Defaults to 100.",
+                                              "key": "pageSize",
+                                              "value": "100"
+                                            },
+                                            {
+                                              "description": "The zero-based page index. Defaults to 0.",
+                                              "key": "pageNumber",
+                                              "value": "0"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"type\": \"Write_Invoice_TooLargeFile\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:06.000Z",
+                                      "updatedAt": "2026-07-28T10:08:06.000Z",
+                                      "uid": "35240-3617bcf3-03ef-43f8-af38-a62d7c09b280"
+                                    },
+                                    {
+                                      "id": "d9d647b8-ba64-43bd-9787-14ba21158e9c",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/invoices-management/v1/entities/:entityId/inbox/documents?lastSynchronizationDate=<dateTime>&pageSize=100&pageNumber=0",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "invoices-management",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "inbox",
+                                            "documents"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Only documents collected on or after this ISO-8601 datetime are returned. Omit to return the whole current inbox.",
+                                              "key": "lastSynchronizationDate",
+                                              "value": "<dateTime>"
+                                            },
+                                            {
+                                              "description": "The maximum number of documents per page, between 1 and 100. Defaults to 100.",
+                                              "key": "pageSize",
+                                              "value": "100"
+                                            },
+                                            {
+                                              "description": "The zero-based page index. Defaults to 0.",
+                                              "key": "pageNumber",
+                                              "value": "0"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:06.000Z",
+                                      "updatedAt": "2026-07-28T10:08:06.000Z",
+                                      "uid": "35240-d9d647b8-ba64-43bd-9787-14ba21158e9c"
+                                    },
+                                    {
+                                      "id": "4a9f55cb-ebab-44ba-bd3d-f1d5d5aa5e2d",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/invoices-management/v1/entities/:entityId/inbox/documents?lastSynchronizationDate=<dateTime>&pageSize=100&pageNumber=0",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "invoices-management",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "inbox",
+                                            "documents"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Only documents collected on or after this ISO-8601 datetime are returned. Omit to return the whole current inbox.",
+                                              "key": "lastSynchronizationDate",
+                                              "value": "<dateTime>"
+                                            },
+                                            {
+                                              "description": "The maximum number of documents per page, between 1 and 100. Defaults to 100.",
+                                              "key": "pageSize",
+                                              "value": "100"
+                                            },
+                                            {
+                                              "description": "The zero-based page index. Defaults to 0.",
+                                              "key": "pageNumber",
+                                              "value": "0"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:06.000Z",
+                                      "updatedAt": "2026-07-28T10:08:06.000Z",
+                                      "uid": "35240-4a9f55cb-ebab-44ba-bd3d-f1d5d5aa5e2d"
+                                    },
+                                    {
+                                      "id": "a0a404fa-1896-4bf8-9a84-13814d7243f5",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/invoices-management/v1/entities/:entityId/inbox/documents?lastSynchronizationDate=<dateTime>&pageSize=100&pageNumber=0",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "invoices-management",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "inbox",
+                                            "documents"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Only documents collected on or after this ISO-8601 datetime are returned. Omit to return the whole current inbox.",
+                                              "key": "lastSynchronizationDate",
+                                              "value": "<dateTime>"
+                                            },
+                                            {
+                                              "description": "The maximum number of documents per page, between 1 and 100. Defaults to 100.",
+                                              "key": "pageSize",
+                                              "value": "100"
+                                            },
+                                            {
+                                              "description": "The zero-based page index. Defaults to 0.",
+                                              "key": "pageNumber",
+                                              "value": "0"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:06.000Z",
+                                      "updatedAt": "2026-07-28T10:08:06.000Z",
+                                      "uid": "35240-a0a404fa-1896-4bf8-9a84-13814d7243f5"
+                                    },
+                                    {
+                                      "id": "998b3568-cdc8-48ca-946e-485808ecf471",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/invoices-management/v1/entities/:entityId/inbox/documents?lastSynchronizationDate=<dateTime>&pageSize=100&pageNumber=0",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "invoices-management",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "inbox",
+                                            "documents"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Only documents collected on or after this ISO-8601 datetime are returned. Omit to return the whole current inbox.",
+                                              "key": "lastSynchronizationDate",
+                                              "value": "<dateTime>"
+                                            },
+                                            {
+                                              "description": "The maximum number of documents per page, between 1 and 100. Defaults to 100.",
+                                              "key": "pageSize",
+                                              "value": "100"
+                                            },
+                                            {
+                                              "description": "The zero-based page index. Defaults to 0.",
+                                              "key": "pageNumber",
+                                              "value": "0"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"type\": \"Write_Invoice_TooLargeFile\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:06.000Z",
+                                      "updatedAt": "2026-07-28T10:08:06.000Z",
+                                      "uid": "35240-998b3568-cdc8-48ca-946e-485808ecf471"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:08:06.000Z",
+                                  "updatedAt": "2026-07-28T10:08:06.000Z",
+                                  "uid": "35240-510b7d3c-73f4-4b41-bd3c-daaf3aa8fe33"
+                                }
+                              ],
+                              "id": "4fea4b5c-b764-4f20-8129-433999c6d2ff",
+                              "createdAt": "2026-07-28T10:08:06.000Z",
+                              "updatedAt": "2026-07-28T10:08:06.000Z",
+                              "uid": "35240-4fea4b5c-b764-4f20-8129-433999c6d2ff"
+                            }
+                          ],
+                          "id": "8ade7285-7946-4aed-9a24-d7fcbd153239",
+                          "createdAt": "2026-07-28T10:08:06.000Z",
+                          "updatedAt": "2026-07-28T10:08:06.000Z",
+                          "uid": "35240-8ade7285-7946-4aed-9a24-d7fcbd153239"
+                        }
+                      ],
+                      "id": "0720bf35-a157-4962-9fd5-4322c1ecf9e3",
+                      "createdAt": "2026-07-28T10:08:06.000Z",
+                      "updatedAt": "2026-07-28T10:08:06.000Z",
+                      "uid": "35240-0720bf35-a157-4962-9fd5-4322c1ecf9e3"
+                    }
+                  ],
+                  "id": "7b5a20f7-3dbb-4941-975b-95cb4471c8bf",
+                  "createdAt": "2026-07-28T10:08:06.000Z",
+                  "updatedAt": "2026-07-28T10:08:06.000Z",
+                  "uid": "35240-7b5a20f7-3dbb-4941-975b-95cb4471c8bf"
+                }
+              ],
+              "id": "ec91b053-45c4-454f-8a67-8bf53224626b",
+              "createdAt": "2026-07-28T10:08:06.000Z",
+              "updatedAt": "2026-07-28T10:08:06.000Z",
+              "uid": "35240-ec91b053-45c4-454f-8a67-8bf53224626b"
+            }
+          ],
+          "id": "990b2dc8-6b8f-4857-9cb8-b84d1dfafc96",
+          "createdAt": "2026-07-28T10:08:06.000Z",
+          "updatedAt": "2026-07-28T10:08:06.000Z",
+          "uid": "35240-990b2dc8-6b8f-4857-9cb8-b84d1dfafc96"
+        }
+      ],
+      "id": "086e49ea-ff31-447e-b475-359fda940856",
+      "createdAt": "2026-07-28T10:08:06.000Z",
+      "updatedAt": "2026-07-28T10:08:06.000Z",
+      "uid": "35240-086e49ea-ff31-447e-b475-359fda940856"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

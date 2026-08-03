@@ -1,0 +1,866 @@
+{
+  "info": {
+    "_postman_id": "68cdfb15-1dc0-43f7-9de6-ec67b684cf47",
+    "name": "Clients AR Account reports Purchase journal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:08:43.000Z",
+    "updatedAt": "2026-07-28T10:08:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-68cdfb15-1dc0-43f7-9de6-ec67b684cf47"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "purchase-journal",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "accounting-purchases",
+                          "item": [
+                            {
+                              "name": "exported",
+                              "item": [
+                                {
+                                  "name": "mark-as-not-imported",
+                                  "item": [
+                                    {
+                                      "name": "Report errors on exported purchase journal entries",
+                                      "id": "2ea0a397-6fb6-408b-bc09-5986a6f32d35",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "bearer",
+                                          "bearer": [
+                                            {
+                                              "key": "token",
+                                              "value": "{{bearerToken}}",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/purchase-journal/v1/entities/:entityId/accounting-purchases/exported/mark-as-not-imported",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "purchase-journal",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "accounting-purchases",
+                                            "exported",
+                                            "mark-as-not-imported"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "0067f5d1-7a12-438f-9c1c-65a779777d88",
+                                              "key": "entityId",
+                                              "value": "<integer>",
+                                              "description": "(Required) Agicap entity Id"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Indicates Agicap that some exported purchase entries from Agicap were not correctly imported in the client accounting system.\nYou can report several errors per purchase journal entry. For each error, use the most precise error type whenever possible, and OTHER otherwise.\n\nTo identify the exported purchase journal entry, use the agicapUniqueId provided by Agicap during the retrieval of the purchase journal entries.\nThis means, you need to keep track of which entry in the client accounting system corresponds to the agicapUniqueId. The agicapUniqueId is unique and stable through time. It is returned in the reponse of the [Get accounting purchases](https://api.agicap.com/api-details/purchase-journal-v1#tag/Purchase-journal/operation/AccountingPurchasesPublicApi_GetAccountingTransactionLines).\nThe maximum number of exported purchase journal entries you can report is 1000 per request, if you need to report more, simply call this endpoint as many times as necessary.\n\nAuthorized values for `ErrorType` are:\n- `UNKNOWN_EXPENSE_ACCOUNT`: Use if the expense account doesn't exist or is not active in the accounting system\n- `UNKNOWN_VAT_ACCOUNT`: Use if the VAT account doesn't exist or is not active in the accounting system.\n- `UNKNOWN_THIRD_PARTY`: Use if the supplier account doesn't exist or is not active in the accounting system.\n- `UNKNOWN_ANALYTICAL_CODE`: Use if the analytical code doesn't exist or is not active in the accounting system\n- `UNKNOWN_CURRENCY`: Use if the currency doesn't exist or is not active in the accounting system.\n- `OTHER`: all other types of error\n\nif the error type does not match any of the previous values, `OTHER` will be used.\n\n`ErrorMessage` should provide more details about the error encountered during the import in the client accounting system. The message will be displayed in Agicap."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "88e2cbc9-b2f1-4702-971e-bfb13efca160",
+                                          "name": "OK",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/purchase-journal/v1/entities/:entityId/accounting-purchases/exported/mark-as-not-imported",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "purchase-journal",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "accounting-purchases",
+                                                "exported",
+                                                "mark-as-not-imported"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:44.000Z",
+                                          "updatedAt": "2026-07-28T10:08:44.000Z",
+                                          "uid": "35240-88e2cbc9-b2f1-4702-971e-bfb13efca160"
+                                        },
+                                        {
+                                          "id": "8a0612f0-a55a-482e-8137-ba83409700a0",
+                                          "name": "Unauthorized request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/purchase-journal/v1/entities/:entityId/accounting-purchases/exported/mark-as-not-imported",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "purchase-journal",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "accounting-purchases",
+                                                "exported",
+                                                "mark-as-not-imported"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:44.000Z",
+                                          "updatedAt": "2026-07-28T10:08:44.000Z",
+                                          "uid": "35240-8a0612f0-a55a-482e-8137-ba83409700a0"
+                                        },
+                                        {
+                                          "id": "a724f526-bfed-4c66-9bec-5050b7a71de9",
+                                          "name": "Forbidden request.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/purchase-journal/v1/entities/:entityId/accounting-purchases/exported/mark-as-not-imported",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "purchase-journal",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "accounting-purchases",
+                                                "exported",
+                                                "mark-as-not-imported"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:44.000Z",
+                                          "updatedAt": "2026-07-28T10:08:44.000Z",
+                                          "uid": "35240-a724f526-bfed-4c66-9bec-5050b7a71de9"
+                                        },
+                                        {
+                                          "id": "05a40eb0-2d3b-4593-84a4-c3d3dca08837",
+                                          "name": "Too many requests. Please try again later.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/purchase-journal/v1/entities/:entityId/accounting-purchases/exported/mark-as-not-imported",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "purchase-journal",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "accounting-purchases",
+                                                "exported",
+                                                "mark-as-not-imported"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T10:08:44.000Z",
+                                          "updatedAt": "2026-07-28T10:08:44.000Z",
+                                          "uid": "35240-05a40eb0-2d3b-4593-84a4-c3d3dca08837"
+                                        },
+                                        {
+                                          "id": "224156c2-2775-45bc-b62a-397000f06e10",
+                                          "name": "An internal server occurred.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/public/purchase-journal/v1/entities/:entityId/accounting-purchases/exported/mark-as-not-imported",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "public",
+                                                "purchase-journal",
+                                                "v1",
+                                                "entities",
+                                                ":entityId",
+                                                "accounting-purchases",
+                                                "exported",
+                                                "mark-as-not-imported"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "entityId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/problem+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T10:08:44.000Z",
+                                          "updatedAt": "2026-07-28T10:08:44.000Z",
+                                          "uid": "35240-224156c2-2775-45bc-b62a-397000f06e10"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T10:08:44.000Z",
+                                      "updatedAt": "2026-07-28T10:08:44.000Z",
+                                      "uid": "35240-2ea0a397-6fb6-408b-bc09-5986a6f32d35"
+                                    }
+                                  ],
+                                  "id": "d490a95f-4bc7-4b4b-a8ab-d4dd96318bf9",
+                                  "createdAt": "2026-07-28T10:08:44.000Z",
+                                  "updatedAt": "2026-07-28T10:08:44.000Z",
+                                  "uid": "35240-d490a95f-4bc7-4b4b-a8ab-d4dd96318bf9"
+                                }
+                              ],
+                              "id": "96588ab4-4ba4-42db-bb03-1edd39b5eef6",
+                              "createdAt": "2026-07-28T10:08:44.000Z",
+                              "updatedAt": "2026-07-28T10:08:44.000Z",
+                              "uid": "35240-96588ab4-4ba4-42db-bb03-1edd39b5eef6"
+                            },
+                            {
+                              "name": "Retrieve your purchase journal entries",
+                              "id": "020dba1b-1ec4-4166-95c1-49c4e32174dd",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/purchase-journal/v1/entities/:entityId/accounting-purchases?LastSynchronizationDate=<dateTime>&PageSize=<integer>&PageNumber=<integer>&Include=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "purchase-journal",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "accounting-purchases"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "LastSynchronizationDate",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "key": "PageSize",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "PageNumber",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Opt-in enrichment selector. Pass `invoiceInformation` to enrich entries of typology `OwedInvoice` with the `invoiceInformation` block (supplier, line items, linked purchase orders). `invoiceInformation` is the only supported value; any other value is ignored. Omit it to keep the lighter default payload.",
+                                      "key": "Include",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "1a482e5d-6602-459d-8852-4b1dec7d1f24",
+                                      "key": "entityId",
+                                      "value": "<integer>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "This endpoint retrieves purchase journal accounting entries from your Agicap account for a specific entity.\n\n\n### Query Parameters\n- **LastSynchronizationDate** (string, optional): The date of your last synchronization (need to be stored on your side). Only accounting entries exposed with the button \u201cexport to my accounting software\u201d after this date will be returned.\n- **PageSize** (int, optional): The number of entries returned per page. Default is 100. The maximum value is 100.\n- **PageNumber** (int, optional): The page number of the results to retrieve. Used for pagination when fetching purchase journal entries. If not specified, defaults to page 1.\n- **include** (string, optional): Opt-in enrichment selector. Pass `invoiceInformation` to enrich invoice entries with the `invoiceInformation` block. `invoiceInformation` is the only supported value; any other value is ignored. When omitted, the lighter default payload is returned and `invoiceInformation` is `null`.\n\n### Document typology\nEach entry carries a `typology` field that discriminates the source document. Possible values: `OwedInvoice`, `CreditNote`, `CardExpenseReceipt`, `CardRefundReceipt`, `ExpenseClaim`.\n\n### invoiceInformation enrichment (opt-in)\nWhen `?include=invoiceInformation` is passed, entries of typology `OwedInvoice` are enriched with an `invoiceInformation` object. It stays `null` for every other typology and whenever the parameter is omitted. The block contains:\n- **supplier**, **reference**, **currency**, original amounts (excl./incl. taxes), **costCenter**, **natures**.\n- **linkedPurchaseOrders[]**: the purchase orders linked to the invoice (empty when none), each with its own status, amounts, deliveries and the portion of the order amount linked to this invoice.\n- **lineItems[]**: invoice line items, filtered to those matching `accountingLines[].lineItemId`. Each may carry a **linkedPurchaseOrderLine** (the matched purchase-order line, `null` when no match).\n\nThe `status` (on the invoice and on each linked purchase order) and `deliveryStatus` (on each linked purchase order) fields are free-form strings passed through from invoices-management.\n\n#### Enrichment failure\nIf the enrichment cannot be resolved (the bulk invoice gateway or the purchase-order gateway fails), the endpoint returns `500` with error code `PublicApi_InvoiceEnrichmentFailed`. In that case the affected entries are **not** marked as exported and remain returned on a subsequent call, so a retry is safe."
+                              },
+                              "response": [
+                                {
+                                  "id": "97607570-636a-46bc-886d-dc994cddf5ad",
+                                  "name": "OK",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/purchase-journal/v1/entities/:entityId/accounting-purchases?LastSynchronizationDate=<dateTime>&PageSize=<integer>&PageNumber=<integer>&Include=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "purchase-journal",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "accounting-purchases"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "LastSynchronizationDate",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "key": "PageSize",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "PageNumber",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Opt-in enrichment selector. Pass `invoiceInformation` to enrich entries of typology `OwedInvoice` with the `invoiceInformation` block (supplier, line items, linked purchase orders). `invoiceInformation` is the only supported value; any other value is ignored. Omit it to keep the lighter default payload.",
+                                          "key": "Include",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"accountingLines\": [\n        {\n          \"accountingCurrency\": \"<string>\",\n          \"accountNumber\": \"<string>\",\n          \"accountType\": \"SupplierAccount\",\n          \"additionalAnalyticalCodes\": {\n            \"Excepteur2\": \"<string>\"\n          },\n          \"analyticalCodes\": {\n            \"animf\": \"<string>\"\n          },\n          \"conversionRate\": \"<double>\",\n          \"convertedCreditAmount\": \"<double>\",\n          \"convertedDebitAmount\": \"<double>\",\n          \"credit\": \"<double>\",\n          \"currency\": \"<string>\",\n          \"debit\": \"<double>\",\n          \"type\": \"<string>\",\n          \"lineItemId\": \"<uuid>\",\n          \"taxKey\": \"<string>\",\n          \"thirdPartyAccount\": \"<string>\",\n          \"vatAccountName\": \"<string>\"\n        },\n        {\n          \"accountingCurrency\": \"<string>\",\n          \"accountNumber\": \"<string>\",\n          \"accountType\": \"VatAccount\",\n          \"additionalAnalyticalCodes\": {\n            \"sunt10\": \"<string>\"\n          },\n          \"analyticalCodes\": {\n            \"fugiat4\": \"<string>\",\n            \"suntf\": \"<string>\"\n          },\n          \"conversionRate\": \"<double>\",\n          \"convertedCreditAmount\": \"<double>\",\n          \"convertedDebitAmount\": \"<double>\",\n          \"credit\": \"<double>\",\n          \"currency\": \"<string>\",\n          \"debit\": \"<double>\",\n          \"type\": \"<string>\",\n          \"lineItemId\": \"<uuid>\",\n          \"taxKey\": \"<string>\",\n          \"thirdPartyAccount\": \"<string>\",\n          \"vatAccountName\": \"<string>\"\n        }\n      ],\n      \"agicapUniqueId\": \"<uuid>\",\n      \"billingDate\": \"<dateTime>\",\n      \"invoiceOrReceiptNumber\": \"<string>\",\n      \"note\": \"<string>\",\n      \"orderNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"supplierOrMerchant\": \"<string>\",\n      \"title\": \"<string>\",\n      \"typology\": \"CardExpenseReceipt\",\n      \"uniqueId\": \"<string>\",\n      \"dueDate\": \"<date>\",\n      \"invoiceInformation\": {\n        \"lineItems\": [\n          {\n            \"lineItemId\": \"<uuid>\",\n            \"articleName\": \"<string>\",\n            \"articleReference\": \"<string>\",\n            \"linkedPurchaseOrderLine\": {\n              \"billedQuantity\": \"<double>\",\n              \"deliveredQuantity\": \"<double>\",\n              \"linkedDeliveryNotesLines\": [\n                {\n                  \"deliveryNoteLineItemErpExternalId\": \"<string>\",\n                  \"deliveryNoteNumber\": \"<string>\"\n                },\n                {\n                  \"deliveryNoteLineItemErpExternalId\": \"<string>\",\n                  \"deliveryNoteNumber\": \"<string>\"\n                }\n              ],\n              \"purchaseOrderId\": \"<uuid>\",\n              \"purchaseOrderLineItemId\": \"<uuid>\",\n              \"articleName\": \"<string>\",\n              \"articleReference\": \"<string>\",\n              \"orderedQuantity\": \"<double>\",\n              \"purchaseOrderErpExternalId\": \"<string>\",\n              \"purchaseOrderLineItemErpExternalId\": \"<string>\",\n              \"totalAmountExcludingTaxes\": \"<double>\",\n              \"unitAmountExcludingTaxes\": \"<double>\"\n            },\n            \"quantity\": \"<double>\",\n            \"totalAmountExcludingTaxes\": \"<double>\",\n            \"unitAmountExcludingTaxes\": \"<double>\"\n          },\n          {\n            \"lineItemId\": \"<uuid>\",\n            \"articleName\": \"<string>\",\n            \"articleReference\": \"<string>\",\n            \"linkedPurchaseOrderLine\": {\n              \"billedQuantity\": \"<double>\",\n              \"deliveredQuantity\": \"<double>\",\n              \"linkedDeliveryNotesLines\": [\n                {\n                  \"deliveryNoteLineItemErpExternalId\": \"<string>\",\n                  \"deliveryNoteNumber\": \"<string>\"\n                },\n                {\n                  \"deliveryNoteLineItemErpExternalId\": \"<string>\",\n                  \"deliveryNoteNumber\": \"<string>\"\n                }\n              ],\n              \"purchaseOrderId\": \"<uuid>\",\n              \"purchaseOrderLineItemId\": \"<uuid>\",\n              \"articleName\": \"<string>\",\n              \"articleReference\": \"<string>\",\n              \"orderedQuantity\": \"<double>\",\n              \"purchaseOrderErpExternalId\": \"<string>\",\n              \"purchaseOrderLineItemErpExternalId\": \"<string>\",\n              \"totalAmountExcludingTaxes\": \"<double>\",\n              \"unitAmountExcludingTaxes\": \"<double>\"\n            },\n            \"quantity\": \"<double>\",\n            \"totalAmountExcludingTaxes\": \"<double>\",\n            \"unitAmountExcludingTaxes\": \"<double>\"\n          }\n        ],\n        \"linkedPurchaseOrders\": [\n          {\n            \"associatedAmountExcludingTaxes\": \"<double>\",\n            \"deliveries\": [\n              {\n                \"date\": \"<date>\",\n                \"number\": \"<string>\"\n              },\n              {\n                \"date\": \"<date>\",\n                \"number\": \"<string>\"\n              }\n            ],\n            \"deliveryStatus\": \"<string>\",\n            \"purchaseOrderId\": \"<uuid>\",\n            \"status\": \"<string>\",\n            \"title\": \"<string>\",\n            \"amountExcludingTaxes\": \"<double>\",\n            \"amountIncludingTaxes\": \"<double>\",\n            \"currency\": \"<string>\",\n            \"deliveryDate\": \"<date>\",\n            \"expectedPaymentDate\": \"<date>\",\n            \"number\": \"<string>\",\n            \"purchaseOrderErpExternalId\": \"<string>\",\n            \"supplier\": {\n              \"name\": \"<string>\",\n              \"id\": \"<uuid>\"\n            }\n          },\n          {\n            \"associatedAmountExcludingTaxes\": \"<double>\",\n            \"deliveries\": [\n              {\n                \"date\": \"<date>\",\n                \"number\": \"<string>\"\n              },\n              {\n                \"date\": \"<date>\",\n                \"number\": \"<string>\"\n              }\n            ],\n            \"deliveryStatus\": \"<string>\",\n            \"purchaseOrderId\": \"<uuid>\",\n            \"status\": \"<string>\",\n            \"title\": \"<string>\",\n            \"amountExcludingTaxes\": \"<double>\",\n            \"amountIncludingTaxes\": \"<double>\",\n            \"currency\": \"<string>\",\n            \"deliveryDate\": \"<date>\",\n            \"expectedPaymentDate\": \"<date>\",\n            \"number\": \"<string>\",\n            \"purchaseOrderErpExternalId\": \"<string>\",\n            \"supplier\": {\n              \"name\": \"<string>\",\n              \"id\": \"<uuid>\"\n            }\n          }\n        ],\n        \"natures\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"status\": \"<string>\",\n        \"costCenter\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"originalAmountExcludingTaxes\": \"<double>\",\n        \"originalAmountIncludingTaxes\": \"<double>\",\n        \"reference\": \"<string>\",\n        \"supplier\": {\n          \"name\": \"<string>\",\n          \"id\": \"<uuid>\"\n        }\n      },\n      \"originalFileExtension\": \"<string>\",\n      \"originalFileUrl\": \"<string>\",\n      \"paymentMethod\": \"Check\",\n      \"performanceDate\": \"<dateTime>\",\n      \"prepaidExpenseEndDate\": \"<date>\",\n      \"prepaidExpenseStartDate\": \"<date>\",\n      \"supplierErpExternalId\": \"<string>\",\n      \"taxKey\": \"<string>\"\n    },\n    {\n      \"accountingLines\": [\n        {\n          \"accountingCurrency\": \"<string>\",\n          \"accountNumber\": \"<string>\",\n          \"accountType\": \"VatAccount\",\n          \"additionalAnalyticalCodes\": {\n            \"anim8\": \"<string>\"\n          },\n          \"analyticalCodes\": {\n            \"nisi781\": \"<string>\",\n            \"ea_fb\": \"<string>\"\n          },\n          \"conversionRate\": \"<double>\",\n          \"convertedCreditAmount\": \"<double>\",\n          \"convertedDebitAmount\": \"<double>\",\n          \"credit\": \"<double>\",\n          \"currency\": \"<string>\",\n          \"debit\": \"<double>\",\n          \"type\": \"<string>\",\n          \"lineItemId\": \"<uuid>\",\n          \"taxKey\": \"<string>\",\n          \"thirdPartyAccount\": \"<string>\",\n          \"vatAccountName\": \"<string>\"\n        },\n        {\n          \"accountingCurrency\": \"<string>\",\n          \"accountNumber\": \"<string>\",\n          \"accountType\": \"VatAccount\",\n          \"additionalAnalyticalCodes\": {\n            \"irure_43c\": \"<string>\",\n            \"officia94\": \"<string>\"\n          },\n          \"analyticalCodes\": {\n            \"anima89\": \"<string>\",\n            \"proident_fd\": \"<string>\"\n          },\n          \"conversionRate\": \"<double>\",\n          \"convertedCreditAmount\": \"<double>\",\n          \"convertedDebitAmount\": \"<double>\",\n          \"credit\": \"<double>\",\n          \"currency\": \"<string>\",\n          \"debit\": \"<double>\",\n          \"type\": \"<string>\",\n          \"lineItemId\": \"<uuid>\",\n          \"taxKey\": \"<string>\",\n          \"thirdPartyAccount\": \"<string>\",\n          \"vatAccountName\": \"<string>\"\n        }\n      ],\n      \"agicapUniqueId\": \"<uuid>\",\n      \"billingDate\": \"<dateTime>\",\n      \"invoiceOrReceiptNumber\": \"<string>\",\n      \"note\": \"<string>\",\n      \"orderNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"supplierOrMerchant\": \"<string>\",\n      \"title\": \"<string>\",\n      \"typology\": \"CardExpenseReceipt\",\n      \"uniqueId\": \"<string>\",\n      \"dueDate\": \"<date>\",\n      \"invoiceInformation\": {\n        \"lineItems\": [\n          {\n            \"lineItemId\": \"<uuid>\",\n            \"articleName\": \"<string>\",\n            \"articleReference\": \"<string>\",\n            \"linkedPurchaseOrderLine\": {\n              \"billedQuantity\": \"<double>\",\n              \"deliveredQuantity\": \"<double>\",\n              \"linkedDeliveryNotesLines\": [\n                {\n                  \"deliveryNoteLineItemErpExternalId\": \"<string>\",\n                  \"deliveryNoteNumber\": \"<string>\"\n                },\n                {\n                  \"deliveryNoteLineItemErpExternalId\": \"<string>\",\n                  \"deliveryNoteNumber\": \"<string>\"\n                }\n              ],\n              \"purchaseOrderId\": \"<uuid>\",\n              \"purchaseOrderLineItemId\": \"<uuid>\",\n              \"articleName\": \"<string>\",\n              \"articleReference\": \"<string>\",\n              \"orderedQuantity\": \"<double>\",\n              \"purchaseOrderErpExternalId\": \"<string>\",\n              \"purchaseOrderLineItemErpExternalId\": \"<string>\",\n              \"totalAmountExcludingTaxes\": \"<double>\",\n              \"unitAmountExcludingTaxes\": \"<double>\"\n            },\n            \"quantity\": \"<double>\",\n            \"totalAmountExcludingTaxes\": \"<double>\",\n            \"unitAmountExcludingTaxes\": \"<double>\"\n          },\n          {\n            \"lineItemId\": \"<uuid>\",\n            \"articleName\": \"<string>\",\n            \"articleReference\": \"<string>\",\n            \"linkedPurchaseOrderLine\": {\n              \"billedQuantity\": \"<double>\",\n              \"deliveredQuantity\": \"<double>\",\n              \"linkedDeliveryNotesLines\": [\n                {\n                  \"deliveryNoteLineItemErpExternalId\": \"<string>\",\n                  \"deliveryNoteNumber\": \"<string>\"\n                },\n                {\n                  \"deliveryNoteLineItemErpExternalId\": \"<string>\",\n                  \"deliveryNoteNumber\": \"<string>\"\n                }\n              ],\n              \"purchaseOrderId\": \"<uuid>\",\n              \"purchaseOrderLineItemId\": \"<uuid>\",\n              \"articleName\": \"<string>\",\n              \"articleReference\": \"<string>\",\n              \"orderedQuantity\": \"<double>\",\n              \"purchaseOrderErpExternalId\": \"<string>\",\n              \"purchaseOrderLineItemErpExternalId\": \"<string>\",\n              \"totalAmountExcludingTaxes\": \"<double>\",\n              \"unitAmountExcludingTaxes\": \"<double>\"\n            },\n            \"quantity\": \"<double>\",\n            \"totalAmountExcludingTaxes\": \"<double>\",\n            \"unitAmountExcludingTaxes\": \"<double>\"\n          }\n        ],\n        \"linkedPurchaseOrders\": [\n          {\n            \"associatedAmountExcludingTaxes\": \"<double>\",\n            \"deliveries\": [\n              {\n                \"date\": \"<date>\",\n                \"number\": \"<string>\"\n              },\n              {\n                \"date\": \"<date>\",\n                \"number\": \"<string>\"\n              }\n            ],\n            \"deliveryStatus\": \"<string>\",\n            \"purchaseOrderId\": \"<uuid>\",\n            \"status\": \"<string>\",\n            \"title\": \"<string>\",\n            \"amountExcludingTaxes\": \"<double>\",\n            \"amountIncludingTaxes\": \"<double>\",\n            \"currency\": \"<string>\",\n            \"deliveryDate\": \"<date>\",\n            \"expectedPaymentDate\": \"<date>\",\n            \"number\": \"<string>\",\n            \"purchaseOrderErpExternalId\": \"<string>\",\n            \"supplier\": {\n              \"name\": \"<string>\",\n              \"id\": \"<uuid>\"\n            }\n          },\n          {\n            \"associatedAmountExcludingTaxes\": \"<double>\",\n            \"deliveries\": [\n              {\n                \"date\": \"<date>\",\n                \"number\": \"<string>\"\n              },\n              {\n                \"date\": \"<date>\",\n                \"number\": \"<string>\"\n              }\n            ],\n            \"deliveryStatus\": \"<string>\",\n            \"purchaseOrderId\": \"<uuid>\",\n            \"status\": \"<string>\",\n            \"title\": \"<string>\",\n            \"amountExcludingTaxes\": \"<double>\",\n            \"amountIncludingTaxes\": \"<double>\",\n            \"currency\": \"<string>\",\n            \"deliveryDate\": \"<date>\",\n            \"expectedPaymentDate\": \"<date>\",\n            \"number\": \"<string>\",\n            \"purchaseOrderErpExternalId\": \"<string>\",\n            \"supplier\": {\n              \"name\": \"<string>\",\n              \"id\": \"<uuid>\"\n            }\n          }\n        ],\n        \"natures\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"status\": \"<string>\",\n        \"costCenter\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"originalAmountExcludingTaxes\": \"<double>\",\n        \"originalAmountIncludingTaxes\": \"<double>\",\n        \"reference\": \"<string>\",\n        \"supplier\": {\n          \"name\": \"<string>\",\n          \"id\": \"<uuid>\"\n        }\n      },\n      \"originalFileExtension\": \"<string>\",\n      \"originalFileUrl\": \"<string>\",\n      \"paymentMethod\": \"RIBA\",\n      \"performanceDate\": \"<dateTime>\",\n      \"prepaidExpenseEndDate\": \"<date>\",\n      \"prepaidExpenseStartDate\": \"<date>\",\n      \"supplierErpExternalId\": \"<string>\",\n      \"taxKey\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"currentPageItemsCount\": \"<integer>\",\n    \"currentPageNumber\": \"<integer>\",\n    \"pagesCount\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItemsCount\": \"<integer>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T10:08:44.000Z",
+                                  "updatedAt": "2026-07-28T10:08:44.000Z",
+                                  "uid": "35240-97607570-636a-46bc-886d-dc994cddf5ad"
+                                },
+                                {
+                                  "id": "23ce771e-3692-4a45-a799-3dd6dba54df8",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/purchase-journal/v1/entities/:entityId/accounting-purchases?LastSynchronizationDate=<dateTime>&PageSize=<integer>&PageNumber=<integer>&Include=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "purchase-journal",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "accounting-purchases"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "LastSynchronizationDate",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "key": "PageSize",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "PageNumber",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Opt-in enrichment selector. Pass `invoiceInformation` to enrich entries of typology `OwedInvoice` with the `invoiceInformation` block (supplier, line items, linked purchase orders). `invoiceInformation` is the only supported value; any other value is ignored. Omit it to keep the lighter default payload.",
+                                          "key": "Include",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:44.000Z",
+                                  "updatedAt": "2026-07-28T10:08:44.000Z",
+                                  "uid": "35240-23ce771e-3692-4a45-a799-3dd6dba54df8"
+                                },
+                                {
+                                  "id": "ffd9cad6-b617-41da-84d7-1ec92a78f875",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/purchase-journal/v1/entities/:entityId/accounting-purchases?LastSynchronizationDate=<dateTime>&PageSize=<integer>&PageNumber=<integer>&Include=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "purchase-journal",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "accounting-purchases"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "LastSynchronizationDate",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "key": "PageSize",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "PageNumber",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Opt-in enrichment selector. Pass `invoiceInformation` to enrich entries of typology `OwedInvoice` with the `invoiceInformation` block (supplier, line items, linked purchase orders). `invoiceInformation` is the only supported value; any other value is ignored. Omit it to keep the lighter default payload.",
+                                          "key": "Include",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:44.000Z",
+                                  "updatedAt": "2026-07-28T10:08:44.000Z",
+                                  "uid": "35240-ffd9cad6-b617-41da-84d7-1ec92a78f875"
+                                },
+                                {
+                                  "id": "bff2f460-9b01-47e7-90ff-a806810cd13a",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/purchase-journal/v1/entities/:entityId/accounting-purchases?LastSynchronizationDate=<dateTime>&PageSize=<integer>&PageNumber=<integer>&Include=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "purchase-journal",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "accounting-purchases"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "LastSynchronizationDate",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "key": "PageSize",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "PageNumber",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Opt-in enrichment selector. Pass `invoiceInformation` to enrich entries of typology `OwedInvoice` with the `invoiceInformation` block (supplier, line items, linked purchase orders). `invoiceInformation` is the only supported value; any other value is ignored. Omit it to keep the lighter default payload.",
+                                          "key": "Include",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:44.000Z",
+                                  "updatedAt": "2026-07-28T10:08:44.000Z",
+                                  "uid": "35240-bff2f460-9b01-47e7-90ff-a806810cd13a"
+                                },
+                                {
+                                  "id": "58026198-8807-4685-bdda-f75c5314736e",
+                                  "name": "An internal server occurred.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/purchase-journal/v1/entities/:entityId/accounting-purchases?LastSynchronizationDate=<dateTime>&PageSize=<integer>&PageNumber=<integer>&Include=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "purchase-journal",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "accounting-purchases"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "LastSynchronizationDate",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "key": "PageSize",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "PageNumber",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Opt-in enrichment selector. Pass `invoiceInformation` to enrich entries of typology `OwedInvoice` with the `invoiceInformation` block (supplier, line items, linked purchase orders). `invoiceInformation` is the only supported value; any other value is ignored. Omit it to keep the lighter default payload.",
+                                          "key": "Include",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T10:08:44.000Z",
+                                  "updatedAt": "2026-07-28T10:08:44.000Z",
+                                  "uid": "35240-58026198-8807-4685-bdda-f75c5314736e"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:08:44.000Z",
+                              "updatedAt": "2026-07-28T10:08:44.000Z",
+                              "uid": "35240-020dba1b-1ec4-4166-95c1-49c4e32174dd"
+                            }
+                          ],
+                          "id": "760f5faf-5ee9-4b2a-92a2-1ffc404b9668",
+                          "createdAt": "2026-07-28T10:08:44.000Z",
+                          "updatedAt": "2026-07-28T10:08:44.000Z",
+                          "uid": "35240-760f5faf-5ee9-4b2a-92a2-1ffc404b9668"
+                        }
+                      ],
+                      "id": "6a1af92b-d481-4f11-a0fe-c222a8994a97",
+                      "createdAt": "2026-07-28T10:08:44.000Z",
+                      "updatedAt": "2026-07-28T10:08:44.000Z",
+                      "uid": "35240-6a1af92b-d481-4f11-a0fe-c222a8994a97"
+                    }
+                  ],
+                  "id": "574ac262-b20e-4081-baff-a76f8f946de1",
+                  "createdAt": "2026-07-28T10:08:44.000Z",
+                  "updatedAt": "2026-07-28T10:08:44.000Z",
+                  "uid": "35240-574ac262-b20e-4081-baff-a76f8f946de1"
+                }
+              ],
+              "id": "7e495c45-5178-4545-a28c-4740fd71e6a9",
+              "createdAt": "2026-07-28T10:08:44.000Z",
+              "updatedAt": "2026-07-28T10:08:44.000Z",
+              "uid": "35240-7e495c45-5178-4545-a28c-4740fd71e6a9"
+            }
+          ],
+          "id": "c5604ce4-ad4f-4747-acf2-fedd0c5e6ef4",
+          "createdAt": "2026-07-28T10:08:44.000Z",
+          "updatedAt": "2026-07-28T10:08:44.000Z",
+          "uid": "35240-c5604ce4-ad4f-4747-acf2-fedd0c5e6ef4"
+        }
+      ],
+      "id": "e38baf84-ecaf-42b6-bcdf-28d9e49db54c",
+      "createdAt": "2026-07-28T10:08:44.000Z",
+      "updatedAt": "2026-07-28T10:08:44.000Z",
+      "uid": "35240-e38baf84-ecaf-42b6-bcdf-28d9e49db54c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}

@@ -1,0 +1,1424 @@
+{
+  "info": {
+    "_postman_id": "503904f8-36c7-4c41-846c-58a33b696ce2",
+    "name": "Clients AR Account reports Suppliers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:08:57.000Z",
+    "updatedAt": "2026-07-28T10:08:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-503904f8-36c7-4c41-846c-58a33b696ce2"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "suppliers",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "entities",
+                  "item": [
+                    {
+                      "name": "{entityId}",
+                      "item": [
+                        {
+                          "name": "sync",
+                          "item": [
+                            {
+                              "name": "{syncId}",
+                              "item": [
+                                {
+                                  "name": "Get the synchronization errors of a batch",
+                                  "id": "d5b7a696-44c8-4037-ae72-164f6fe4eff9",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId/sync/:syncId?after=<string>&size=50",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "suppliers",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "sync",
+                                        ":syncId"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Opaque cursor returned as cursor.after by the previous page. Omit to fetch the first page.",
+                                          "key": "after",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Page size (1 to 200, default 50).",
+                                          "key": "size",
+                                          "value": "50"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "d22feba4-97bf-4092-9016-dc07a30bd741",
+                                          "key": "entityId",
+                                          "value": "<integer>",
+                                          "description": "(Required) Agicap entity identifier."
+                                        },
+                                        {
+                                          "id": "e7665175-26eb-485e-929b-ac24bc2d1066",
+                                          "key": "syncId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) Synchronization identifier returned by the synchronize endpoint."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Returns the row-by-row errors of a previous synchronization, paginated.\nThe syncId is the one returned by the synchronize endpoint."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "bbdf3138-c673-4e47-9b2c-b8b86d57a681",
+                                      "name": "Your request has been successfully processed.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId/sync/:syncId?after=<string>&size=50",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "suppliers",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "sync",
+                                            ":syncId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Opaque cursor returned as cursor.after by the previous page. Omit to fetch the first page.",
+                                              "key": "after",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Page size (1 to 200, default 50).",
+                                              "key": "size",
+                                              "value": "50"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "syncId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"cursor\": {\n    \"after\": \"<string>\",\n    \"isLastPage\": \"<boolean>\",\n    \"size\": \"<integer>\"\n  },\n  \"items\": [\n    {\n      \"erpId\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"rowNumber\": \"<integer>\"\n    },\n    {\n      \"erpId\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"rowNumber\": \"<integer>\"\n    }\n  ],\n  \"status\": \"<string>\",\n  \"syncId\": \"<uuid>\",\n  \"totalCount\": \"<integer>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:58.000Z",
+                                      "updatedAt": "2026-07-28T10:08:58.000Z",
+                                      "uid": "35240-bbdf3138-c673-4e47-9b2c-b8b86d57a681"
+                                    },
+                                    {
+                                      "id": "7264d86e-65cf-43d2-b884-000a811acd5c",
+                                      "name": "Your request is invalid.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId/sync/:syncId?after=<string>&size=50",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "suppliers",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "sync",
+                                            ":syncId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Opaque cursor returned as cursor.after by the previous page. Omit to fetch the first page.",
+                                              "key": "after",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Page size (1 to 200, default 50).",
+                                              "key": "size",
+                                              "value": "50"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "syncId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:58.000Z",
+                                      "updatedAt": "2026-07-28T10:08:58.000Z",
+                                      "uid": "35240-7264d86e-65cf-43d2-b884-000a811acd5c"
+                                    },
+                                    {
+                                      "id": "b1a2a130-0810-47cf-ad8d-2b6036ba02a7",
+                                      "name": "Unauthorized request.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId/sync/:syncId?after=<string>&size=50",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "suppliers",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "sync",
+                                            ":syncId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Opaque cursor returned as cursor.after by the previous page. Omit to fetch the first page.",
+                                              "key": "after",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Page size (1 to 200, default 50).",
+                                              "key": "size",
+                                              "value": "50"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "syncId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:58.000Z",
+                                      "updatedAt": "2026-07-28T10:08:58.000Z",
+                                      "uid": "35240-b1a2a130-0810-47cf-ad8d-2b6036ba02a7"
+                                    },
+                                    {
+                                      "id": "e7f94afe-31f9-429d-90a5-ab0ae1daaaf7",
+                                      "name": "Forbidden request.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId/sync/:syncId?after=<string>&size=50",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "suppliers",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "sync",
+                                            ":syncId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Opaque cursor returned as cursor.after by the previous page. Omit to fetch the first page.",
+                                              "key": "after",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Page size (1 to 200, default 50).",
+                                              "key": "size",
+                                              "value": "50"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "syncId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:58.000Z",
+                                      "updatedAt": "2026-07-28T10:08:58.000Z",
+                                      "uid": "35240-e7f94afe-31f9-429d-90a5-ab0ae1daaaf7"
+                                    },
+                                    {
+                                      "id": "55cee023-6d16-4d9a-8a4e-85dbd8c54780",
+                                      "name": "Too many requests. Please try again later.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId/sync/:syncId?after=<string>&size=50",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "suppliers",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "sync",
+                                            ":syncId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Opaque cursor returned as cursor.after by the previous page. Omit to fetch the first page.",
+                                              "key": "after",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Page size (1 to 200, default 50).",
+                                              "key": "size",
+                                              "value": "50"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "syncId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T10:08:58.000Z",
+                                      "updatedAt": "2026-07-28T10:08:58.000Z",
+                                      "uid": "35240-55cee023-6d16-4d9a-8a4e-85dbd8c54780"
+                                    },
+                                    {
+                                      "id": "756eff3e-bc0f-473d-9b05-8d0667195257",
+                                      "name": "An internal server occurred.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/problem+json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId/sync/:syncId?after=<string>&size=50",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "public",
+                                            "suppliers",
+                                            "v1",
+                                            "entities",
+                                            ":entityId",
+                                            "sync",
+                                            ":syncId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Opaque cursor returned as cursor.after by the previous page. Omit to fetch the first page.",
+                                              "key": "after",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Page size (1 to 200, default 50).",
+                                              "key": "size",
+                                              "value": "50"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "entityId"
+                                            },
+                                            {
+                                              "key": "syncId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/problem+json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T10:08:58.000Z",
+                                      "updatedAt": "2026-07-28T10:08:58.000Z",
+                                      "uid": "35240-756eff3e-bc0f-473d-9b05-8d0667195257"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T10:08:58.000Z",
+                                  "updatedAt": "2026-07-28T10:08:58.000Z",
+                                  "uid": "35240-d5b7a696-44c8-4037-ae72-164f6fe4eff9"
+                                }
+                              ],
+                              "id": "57edf09e-b3d7-4c10-a7c4-c6d28b6cb345",
+                              "createdAt": "2026-07-28T10:08:58.000Z",
+                              "updatedAt": "2026-07-28T10:08:58.000Z",
+                              "uid": "35240-57edf09e-b3d7-4c10-a7c4-c6d28b6cb345"
+                            },
+                            {
+                              "name": "Synchronize a batch of suppliers",
+                              "id": "e4de495e-8ad5-476d-90ad-2f0ab58b3d74",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"suppliers\": [\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"erpId\": \"<string>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"vatCode\": \"<string>\"\n    },\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"erpId\": \"<string>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"vatCode\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId/sync",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "suppliers",
+                                    "v1",
+                                    "entities",
+                                    ":entityId",
+                                    "sync"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "9d3341ef-a266-4e4c-bf2b-b5b3324c8c94",
+                                      "key": "entityId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Agicap entity identifier."
+                                    }
+                                  ]
+                                },
+                                "description": "Pushes up to 1000 suppliers (create / update / delete) for an entity in a single call.\nProcessing is synchronous and returns a syncId usable to fetch the row-by-row errors.\nIf the same erpId appears more than once in a batch, all of its occurrences are rejected and reported as row errors."
+                              },
+                              "response": [
+                                {
+                                  "id": "5889d79d-6e68-4c2e-8a9b-f94434d20479",
+                                  "name": "Your request has been successfully processed.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"suppliers\": [\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"erpId\": \"<string>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"vatCode\": \"<string>\"\n    },\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"erpId\": \"<string>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"vatCode\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId/sync",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "suppliers",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "sync"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"syncId\": \"<uuid>\"\n}",
+                                  "createdAt": "2026-07-28T10:08:58.000Z",
+                                  "updatedAt": "2026-07-28T10:08:58.000Z",
+                                  "uid": "35240-5889d79d-6e68-4c2e-8a9b-f94434d20479"
+                                },
+                                {
+                                  "id": "de7a79e8-47e5-4069-a56b-f9f4a5f75ec9",
+                                  "name": "Your request is invalid.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"suppliers\": [\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"erpId\": \"<string>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"vatCode\": \"<string>\"\n    },\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"erpId\": \"<string>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"vatCode\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId/sync",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "suppliers",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "sync"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T10:08:58.000Z",
+                                  "updatedAt": "2026-07-28T10:08:58.000Z",
+                                  "uid": "35240-de7a79e8-47e5-4069-a56b-f9f4a5f75ec9"
+                                },
+                                {
+                                  "id": "6eed465c-2d2e-402f-887d-5fbce159e9f7",
+                                  "name": "Unauthorized request.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"suppliers\": [\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"erpId\": \"<string>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"vatCode\": \"<string>\"\n    },\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"erpId\": \"<string>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"vatCode\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId/sync",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "suppliers",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "sync"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:58.000Z",
+                                  "updatedAt": "2026-07-28T10:08:58.000Z",
+                                  "uid": "35240-6eed465c-2d2e-402f-887d-5fbce159e9f7"
+                                },
+                                {
+                                  "id": "a96cefb3-e6ba-4075-9d2e-e446ecffb6fe",
+                                  "name": "Forbidden request.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"suppliers\": [\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"erpId\": \"<string>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"vatCode\": \"<string>\"\n    },\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"erpId\": \"<string>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"vatCode\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId/sync",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "suppliers",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "sync"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:58.000Z",
+                                  "updatedAt": "2026-07-28T10:08:58.000Z",
+                                  "uid": "35240-a96cefb3-e6ba-4075-9d2e-e446ecffb6fe"
+                                },
+                                {
+                                  "id": "52479994-1804-482a-8f97-f3099ac09e7b",
+                                  "name": "Too many requests. Please try again later.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"suppliers\": [\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"erpId\": \"<string>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"vatCode\": \"<string>\"\n    },\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"erpId\": \"<string>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"vatCode\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId/sync",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "suppliers",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "sync"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T10:08:58.000Z",
+                                  "updatedAt": "2026-07-28T10:08:58.000Z",
+                                  "uid": "35240-52479994-1804-482a-8f97-f3099ac09e7b"
+                                },
+                                {
+                                  "id": "e909441a-adf5-4f92-acb7-90914c0b2efe",
+                                  "name": "An internal server occurred.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"suppliers\": [\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"erpId\": \"<string>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"vatCode\": \"<string>\"\n    },\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"erpId\": \"<string>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"vatCode\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId/sync",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "public",
+                                        "suppliers",
+                                        "v1",
+                                        "entities",
+                                        ":entityId",
+                                        "sync"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T10:08:58.000Z",
+                                  "updatedAt": "2026-07-28T10:08:58.000Z",
+                                  "uid": "35240-e909441a-adf5-4f92-acb7-90914c0b2efe"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:08:58.000Z",
+                              "updatedAt": "2026-07-28T10:08:58.000Z",
+                              "uid": "35240-e4de495e-8ad5-476d-90ad-2f0ab58b3d74"
+                            }
+                          ],
+                          "id": "46f1fe1a-0309-4a86-85a7-0a7879ee6ee1",
+                          "createdAt": "2026-07-28T10:08:58.000Z",
+                          "updatedAt": "2026-07-28T10:08:58.000Z",
+                          "uid": "35240-46f1fe1a-0309-4a86-85a7-0a7879ee6ee1"
+                        },
+                        {
+                          "name": "List the suppliers of an entity",
+                          "id": "a1f8adcf-dfc8-4a9f-87c8-98d6768ff325",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId?erpId=<string>&cursor=<string>&limit=1000",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "public",
+                                "suppliers",
+                                "v1",
+                                "entities",
+                                ":entityId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional filter on a single ERP identifier.",
+                                  "key": "erpId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Opaque cursor returned as nextCursor by the previous page.",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Maximum number of suppliers per page (1 to 1000, default 1000).",
+                                  "key": "limit",
+                                  "value": "1000"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "142f2dc3-6296-49c0-81ec-9fea99c3c32a",
+                                  "key": "entityId",
+                                  "value": "<integer>",
+                                  "description": "(Required) Agicap entity identifier."
+                                }
+                              ]
+                            },
+                            "description": "Returns the suppliers of an entity using cursor-based pagination, so ERP Connectivity can\ndiff its catalog against Agicap. Pass the nextCursor of a previous page to fetch the next one.\nUse the optional erpId filter to look up a single supplier."
+                          },
+                          "response": [
+                            {
+                              "id": "aab4a265-55a2-4f2b-9c2d-ed2dd919104f",
+                              "name": "Your request has been successfully processed.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId?erpId=<string>&cursor=<string>&limit=1000",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "suppliers",
+                                    "v1",
+                                    "entities",
+                                    ":entityId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Optional filter on a single ERP identifier.",
+                                      "key": "erpId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Opaque cursor returned as nextCursor by the previous page.",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Maximum number of suppliers per page (1 to 1000, default 1000).",
+                                      "key": "limit",
+                                      "value": "1000"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "entityId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"erpId\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"vatCode\": \"<string>\"\n    },\n    {\n      \"contacts\": [\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"role\": \"<string>\"\n        }\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"erpId\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"language\": \"<string>\",\n      \"legalAddress\": {\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"number\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"state\": \"<string>\",\n        \"streetName\": \"<string>\"\n      },\n      \"legalCompanyId\": \"<string>\",\n      \"legalName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"primaryContact\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"role\": \"<string>\"\n      },\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thirdPartyCode\": \"<string>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"vatCode\": \"<string>\"\n    }\n  ],\n  \"nextCursor\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:08:58.000Z",
+                              "updatedAt": "2026-07-28T10:08:58.000Z",
+                              "uid": "35240-aab4a265-55a2-4f2b-9c2d-ed2dd919104f"
+                            },
+                            {
+                              "id": "62e42b53-d1eb-47b2-b96d-f8d57cd65a0d",
+                              "name": "Your request is invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId?erpId=<string>&cursor=<string>&limit=1000",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "suppliers",
+                                    "v1",
+                                    "entities",
+                                    ":entityId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Optional filter on a single ERP identifier.",
+                                      "key": "erpId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Opaque cursor returned as nextCursor by the previous page.",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Maximum number of suppliers per page (1 to 1000, default 1000).",
+                                      "key": "limit",
+                                      "value": "1000"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "entityId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:08:58.000Z",
+                              "updatedAt": "2026-07-28T10:08:58.000Z",
+                              "uid": "35240-62e42b53-d1eb-47b2-b96d-f8d57cd65a0d"
+                            },
+                            {
+                              "id": "518089f0-b328-4b78-87bc-d8ade41e5390",
+                              "name": "Unauthorized request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId?erpId=<string>&cursor=<string>&limit=1000",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "suppliers",
+                                    "v1",
+                                    "entities",
+                                    ":entityId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Optional filter on a single ERP identifier.",
+                                      "key": "erpId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Opaque cursor returned as nextCursor by the previous page.",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Maximum number of suppliers per page (1 to 1000, default 1000).",
+                                      "key": "limit",
+                                      "value": "1000"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "entityId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:08:58.000Z",
+                              "updatedAt": "2026-07-28T10:08:58.000Z",
+                              "uid": "35240-518089f0-b328-4b78-87bc-d8ade41e5390"
+                            },
+                            {
+                              "id": "1b40e254-bdf4-4849-bda3-ecf81c3ad873",
+                              "name": "Forbidden request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId?erpId=<string>&cursor=<string>&limit=1000",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "suppliers",
+                                    "v1",
+                                    "entities",
+                                    ":entityId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Optional filter on a single ERP identifier.",
+                                      "key": "erpId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Opaque cursor returned as nextCursor by the previous page.",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Maximum number of suppliers per page (1 to 1000, default 1000).",
+                                      "key": "limit",
+                                      "value": "1000"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "entityId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:08:58.000Z",
+                              "updatedAt": "2026-07-28T10:08:58.000Z",
+                              "uid": "35240-1b40e254-bdf4-4849-bda3-ecf81c3ad873"
+                            },
+                            {
+                              "id": "dca6957f-0c7c-44da-ad8c-f361ccd63ca3",
+                              "name": "Too many requests. Please try again later.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId?erpId=<string>&cursor=<string>&limit=1000",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "suppliers",
+                                    "v1",
+                                    "entities",
+                                    ":entityId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Optional filter on a single ERP identifier.",
+                                      "key": "erpId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Opaque cursor returned as nextCursor by the previous page.",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Maximum number of suppliers per page (1 to 1000, default 1000).",
+                                      "key": "limit",
+                                      "value": "1000"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "entityId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T10:08:58.000Z",
+                              "updatedAt": "2026-07-28T10:08:58.000Z",
+                              "uid": "35240-dca6957f-0c7c-44da-ad8c-f361ccd63ca3"
+                            },
+                            {
+                              "id": "259e898b-292e-4ce6-a4e7-c1353924b343",
+                              "name": "An internal server occurred.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/public/suppliers/v1/entities/:entityId?erpId=<string>&cursor=<string>&limit=1000",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "public",
+                                    "suppliers",
+                                    "v1",
+                                    "entities",
+                                    ":entityId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Optional filter on a single ERP identifier.",
+                                      "key": "erpId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Opaque cursor returned as nextCursor by the previous page.",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Maximum number of suppliers per page (1 to 1000, default 1000).",
+                                      "key": "limit",
+                                      "value": "1000"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "entityId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:08:58.000Z",
+                              "updatedAt": "2026-07-28T10:08:58.000Z",
+                              "uid": "35240-259e898b-292e-4ce6-a4e7-c1353924b343"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T10:08:58.000Z",
+                          "updatedAt": "2026-07-28T10:08:58.000Z",
+                          "uid": "35240-a1f8adcf-dfc8-4a9f-87c8-98d6768ff325"
+                        }
+                      ],
+                      "id": "8d21182d-ba02-4f38-a03a-c61774035b1c",
+                      "createdAt": "2026-07-28T10:08:58.000Z",
+                      "updatedAt": "2026-07-28T10:08:58.000Z",
+                      "uid": "35240-8d21182d-ba02-4f38-a03a-c61774035b1c"
+                    }
+                  ],
+                  "id": "4634db9e-3cbb-4dba-b562-a38d61159f85",
+                  "createdAt": "2026-07-28T10:08:58.000Z",
+                  "updatedAt": "2026-07-28T10:08:58.000Z",
+                  "uid": "35240-4634db9e-3cbb-4dba-b562-a38d61159f85"
+                }
+              ],
+              "id": "e2e67855-2d33-4bb1-a254-9cedd1df42ad",
+              "createdAt": "2026-07-28T10:08:58.000Z",
+              "updatedAt": "2026-07-28T10:08:58.000Z",
+              "uid": "35240-e2e67855-2d33-4bb1-a254-9cedd1df42ad"
+            }
+          ],
+          "id": "5e859093-cce3-4520-9ca3-a65453987793",
+          "createdAt": "2026-07-28T10:08:58.000Z",
+          "updatedAt": "2026-07-28T10:08:58.000Z",
+          "uid": "35240-5e859093-cce3-4520-9ca3-a65453987793"
+        }
+      ],
+      "id": "ba87739a-8711-44ea-b2ed-1d16bd5a36ff",
+      "createdAt": "2026-07-28T10:08:58.000Z",
+      "updatedAt": "2026-07-28T10:08:58.000Z",
+      "uid": "35240-ba87739a-8711-44ea-b2ed-1d16bd5a36ff"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.agicap.com"
+    }
+  ]
+}
