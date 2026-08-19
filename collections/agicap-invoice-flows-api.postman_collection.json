@@ -1,0 +1,2343 @@
+{
+  "item": [
+    {
+      "id": "cbcb518d-e571-4365-955a-848cfdc106a0",
+      "name": "Invoice Flows",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b275abed-865f-4954-8c8c-d64e5abe0253",
+          "name": "Create a flow",
+          "request": {
+            "name": "Create a flow",
+            "description": {
+              "content": "A flow is a single-invoice file, with:\n- an XML/PDF file with the data of the invoice\nThe flow is created with a FlowInfo object, allowing to qualify the flow.\nA flow can be:\n- an invoice (CII, UBL, Factur-X, JsonInvoice...)\n- a lifecycle (CDAR)\n- or an e-reporting file",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "einvoicing",
+                "v1",
+                "flows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "entityId",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "flowSyntax",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "flowProfile",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "processingRule",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sha256",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "trackingId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Request-Id",
+                "value": "<uuid>",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                "key": "X-FlowMode",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "62994437-b3cf-43e8-bdc1-202955381c62",
+              "name": "OK - Response message once the flow has been uploaded. ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entityId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "flowSyntax",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "flowProfile",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "processingRule",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sha256",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "trackingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                    "key": "X-FlowMode",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"flowId\": \"string\",\n  \"flowSyntax\": \"<string>\",\n  \"name\": \"string\",\n  \"sha256\": \"695892ee68e698f9d69125e949217ea4a1e1ba63dbc83f1f295e80e7c9b61522\",\n  \"flowProfile\": \"<string>\",\n  \"trackingId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aee506ab-7e9d-4fd0-80de-68a9311d797b",
+              "name": "Error 400 : Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entityId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "flowSyntax",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "flowProfile",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "processingRule",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sha256",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "trackingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                    "key": "X-FlowMode",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b221d5ca-d128-47d6-bf72-4233d364e2c7",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entityId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "flowSyntax",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "flowProfile",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "processingRule",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sha256",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "trackingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                    "key": "X-FlowMode",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d4d0d14-0d54-4eb6-8ed9-a873db93a7ca",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entityId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "flowSyntax",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "flowProfile",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "processingRule",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sha256",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "trackingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                    "key": "X-FlowMode",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "be0675c2-3010-43e9-b424-44e578230604",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entityId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "flowSyntax",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "flowProfile",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "processingRule",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sha256",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "trackingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                    "key": "X-FlowMode",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e7abde9b-40e0-429a-b048-5c54c2134a87",
+              "name": "Error 500 : Server Internal Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entityId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "flowSyntax",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "flowProfile",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "processingRule",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sha256",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "trackingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                    "key": "X-FlowMode",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 4237,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41c0839d-92ab-43b9-bdd6-f500ca5765c7",
+              "name": "Error 503 : Unavailable Resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entityId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "flowSyntax",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "flowProfile",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "processingRule",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sha256",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "trackingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Allowed values: Production, Sandbox. Defaults to Production when not specified.",
+                    "key": "X-FlowMode",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff4768c4-4552-4f4d-b5e0-f8970d7d6ff8",
+          "name": "Validate a JSON invoice.",
+          "request": {
+            "name": "Validate a JSON invoice.",
+            "description": {
+              "content": "This allows to validate the JSON invoice before uploading it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "einvoicing",
+                "v1",
+                "flows",
+                "json",
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountingCost\": \"<string>\",\n  \"additionalDocumentReference\": {\n    \"internalCustomerNumber\": \"<string>\"\n  },\n  \"allowances\": [\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ],\n  \"attachments\": [\n    {\n      \"content\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"externalLocation\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"supportingDocumentDescription\": \"<string>\"\n    },\n    {\n      \"content\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"externalLocation\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"supportingDocumentDescription\": \"<string>\"\n    }\n  ],\n  \"businessProcessType\": \"<string>\",\n  \"buyer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"buyerAgent\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"buyerReference\": \"<string>\",\n  \"charges\": [\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ],\n  \"contractReference\": \"<string>\",\n  \"currencyCode\": \"<string>\",\n  \"delivery\": {\n    \"actualDeliveryDate\": \"<string>\",\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"despatchDocumentReference\": \"<string>\",\n  \"dueDate\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceType\": \"<string>\",\n  \"invoicee\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"invoicer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"invoicingPeriod\": {\n    \"endDate\": \"<string>\",\n    \"startDate\": \"<string>\"\n  },\n  \"issueDate\": \"<string>\",\n  \"lines\": [\n    {\n      \"accountingCost\": \"<string>\",\n      \"allowances\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"charges\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"invoicedQuantity\": \"<double>\",\n      \"item\": {\n        \"attributes\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"basePriceQuantity\": \"<double>\",\n        \"basePriceQuantityUnit\": \"<string>\",\n        \"buyersItemIdentification\": \"<string>\",\n        \"commodityClassificationCode\": \"<string>\",\n        \"description\": \"<string>\",\n        \"grossPrice\": \"<double>\",\n        \"name\": \"<string>\",\n        \"netAmount\": \"<double>\",\n        \"originCountryCode\": \"<string>\",\n        \"priceDiscount\": \"<double>\",\n        \"sellersItemIdentification\": \"<string>\",\n        \"standardItemIdentification\": \"<string>\",\n        \"taxCategoryCode\": \"<string>\",\n        \"taxRate\": \"<double>\"\n      },\n      \"lineId\": \"<string>\",\n      \"lineNetAmount\": \"<double>\",\n      \"linePeriod\": {\n        \"endDate\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      \"note\": \"<string>\",\n      \"objectReference\": \"<string>\",\n      \"purchaseOrderLineReference\": \"<string>\",\n      \"purchaseOrderReference\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\"\n    },\n    {\n      \"accountingCost\": \"<string>\",\n      \"allowances\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"charges\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"invoicedQuantity\": \"<double>\",\n      \"item\": {\n        \"attributes\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"basePriceQuantity\": \"<double>\",\n        \"basePriceQuantityUnit\": \"<string>\",\n        \"buyersItemIdentification\": \"<string>\",\n        \"commodityClassificationCode\": \"<string>\",\n        \"description\": \"<string>\",\n        \"grossPrice\": \"<double>\",\n        \"name\": \"<string>\",\n        \"netAmount\": \"<double>\",\n        \"originCountryCode\": \"<string>\",\n        \"priceDiscount\": \"<double>\",\n        \"sellersItemIdentification\": \"<string>\",\n        \"standardItemIdentification\": \"<string>\",\n        \"taxCategoryCode\": \"<string>\",\n        \"taxRate\": \"<double>\"\n      },\n      \"lineId\": \"<string>\",\n      \"lineNetAmount\": \"<double>\",\n      \"linePeriod\": {\n        \"endDate\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      \"note\": \"<string>\",\n      \"objectReference\": \"<string>\",\n      \"purchaseOrderLineReference\": \"<string>\",\n      \"purchaseOrderReference\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\"\n    }\n  ],\n  \"note\": [\n    {\n      \"noteCode\": \"<string>\",\n      \"noteValue\": \"<string>\"\n    },\n    {\n      \"noteCode\": \"<string>\",\n      \"noteValue\": \"<string>\"\n    }\n  ],\n  \"originatorDocumentReference\": \"<string>\",\n  \"payee\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"payer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"paymentMeans\": {\n    \"card\": {\n      \"accountIdentifier\": \"<string>\",\n      \"accountName\": \"<string>\",\n      \"networkId\": \"<string>\"\n    },\n    \"directDebit\": {\n      \"creditorIdentifier\": \"<string>\",\n      \"debitedAccountIdentifier\": \"<string>\",\n      \"mandateReference\": \"<string>\"\n    },\n    \"meansDescription\": \"<string>\",\n    \"meansValue\": \"<string>\",\n    \"paymentId\": \"<string>\",\n    \"transferAccount\": {\n      \"accountId\": \"<string>\",\n      \"bankId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"paymentTerms\": \"<string>\",\n  \"precedingInvoices\": [\n    {\n      \"invoiceNumber\": \"<string>\",\n      \"issueDate\": \"<string>\"\n    },\n    {\n      \"invoiceNumber\": \"<string>\",\n      \"issueDate\": \"<string>\"\n    }\n  ],\n  \"projectReference\": \"<string>\",\n  \"purchaseOrderReference\": \"<string>\",\n  \"receiptDocumentReference\": \"<string>\",\n  \"salesOrderReference\": \"<string>\",\n  \"seller\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"companyLegalForm\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"sellerAgent\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"sellerTaxRepresentative\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"countrySubdivision\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"specificationIdentifier\": \"<string>\",\n  \"taxBreakdowns\": [\n    {\n      \"exemptionReason\": \"<string>\",\n      \"exemptionReasonCode\": \"<string>\",\n      \"taxAmount\": \"<double>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxRate\": \"<double>\",\n      \"taxableAmount\": \"<double>\"\n    },\n    {\n      \"exemptionReason\": \"<string>\",\n      \"exemptionReasonCode\": \"<string>\",\n      \"taxAmount\": \"<double>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxRate\": \"<double>\",\n      \"taxableAmount\": \"<double>\"\n    }\n  ],\n  \"taxCurrencyCode\": \"<string>\",\n  \"taxPointDate\": \"<string>\",\n  \"taxPointDateValue\": \"<string>\",\n  \"totals\": {\n    \"allowances\": \"<double>\",\n    \"charges\": \"<double>\",\n    \"dueAmount\": \"<double>\",\n    \"lineNetAmounts\": \"<double>\",\n    \"paidAmount\": \"<double>\",\n    \"roundingAmount\": \"<double>\",\n    \"taxAmount\": \"<double>\",\n    \"taxAmountInAccountingCurrency\": \"<double>\",\n    \"taxExclusiveAmount\": \"<double>\",\n    \"taxInclusiveAmount\": \"<double>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8a7389ac-9c90-4170-bbf8-053336eafaab",
+              "name": "OK - Response message once the flow has been validated. ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    "json",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountingCost\": \"<string>\",\n  \"additionalDocumentReference\": {\n    \"internalCustomerNumber\": \"<string>\"\n  },\n  \"allowances\": [\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ],\n  \"attachments\": [\n    {\n      \"content\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"externalLocation\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"supportingDocumentDescription\": \"<string>\"\n    },\n    {\n      \"content\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"externalLocation\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"supportingDocumentDescription\": \"<string>\"\n    }\n  ],\n  \"businessProcessType\": \"<string>\",\n  \"buyer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"buyerAgent\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"buyerReference\": \"<string>\",\n  \"charges\": [\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ],\n  \"contractReference\": \"<string>\",\n  \"currencyCode\": \"<string>\",\n  \"delivery\": {\n    \"actualDeliveryDate\": \"<string>\",\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"despatchDocumentReference\": \"<string>\",\n  \"dueDate\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceType\": \"<string>\",\n  \"invoicee\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"invoicer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"invoicingPeriod\": {\n    \"endDate\": \"<string>\",\n    \"startDate\": \"<string>\"\n  },\n  \"issueDate\": \"<string>\",\n  \"lines\": [\n    {\n      \"accountingCost\": \"<string>\",\n      \"allowances\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"charges\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"invoicedQuantity\": \"<double>\",\n      \"item\": {\n        \"attributes\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"basePriceQuantity\": \"<double>\",\n        \"basePriceQuantityUnit\": \"<string>\",\n        \"buyersItemIdentification\": \"<string>\",\n        \"commodityClassificationCode\": \"<string>\",\n        \"description\": \"<string>\",\n        \"grossPrice\": \"<double>\",\n        \"name\": \"<string>\",\n        \"netAmount\": \"<double>\",\n        \"originCountryCode\": \"<string>\",\n        \"priceDiscount\": \"<double>\",\n        \"sellersItemIdentification\": \"<string>\",\n        \"standardItemIdentification\": \"<string>\",\n        \"taxCategoryCode\": \"<string>\",\n        \"taxRate\": \"<double>\"\n      },\n      \"lineId\": \"<string>\",\n      \"lineNetAmount\": \"<double>\",\n      \"linePeriod\": {\n        \"endDate\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      \"note\": \"<string>\",\n      \"objectReference\": \"<string>\",\n      \"purchaseOrderLineReference\": \"<string>\",\n      \"purchaseOrderReference\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\"\n    },\n    {\n      \"accountingCost\": \"<string>\",\n      \"allowances\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"charges\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"invoicedQuantity\": \"<double>\",\n      \"item\": {\n        \"attributes\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"basePriceQuantity\": \"<double>\",\n        \"basePriceQuantityUnit\": \"<string>\",\n        \"buyersItemIdentification\": \"<string>\",\n        \"commodityClassificationCode\": \"<string>\",\n        \"description\": \"<string>\",\n        \"grossPrice\": \"<double>\",\n        \"name\": \"<string>\",\n        \"netAmount\": \"<double>\",\n        \"originCountryCode\": \"<string>\",\n        \"priceDiscount\": \"<double>\",\n        \"sellersItemIdentification\": \"<string>\",\n        \"standardItemIdentification\": \"<string>\",\n        \"taxCategoryCode\": \"<string>\",\n        \"taxRate\": \"<double>\"\n      },\n      \"lineId\": \"<string>\",\n      \"lineNetAmount\": \"<double>\",\n      \"linePeriod\": {\n        \"endDate\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      \"note\": \"<string>\",\n      \"objectReference\": \"<string>\",\n      \"purchaseOrderLineReference\": \"<string>\",\n      \"purchaseOrderReference\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\"\n    }\n  ],\n  \"note\": [\n    {\n      \"noteCode\": \"<string>\",\n      \"noteValue\": \"<string>\"\n    },\n    {\n      \"noteCode\": \"<string>\",\n      \"noteValue\": \"<string>\"\n    }\n  ],\n  \"originatorDocumentReference\": \"<string>\",\n  \"payee\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"payer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"paymentMeans\": {\n    \"card\": {\n      \"accountIdentifier\": \"<string>\",\n      \"accountName\": \"<string>\",\n      \"networkId\": \"<string>\"\n    },\n    \"directDebit\": {\n      \"creditorIdentifier\": \"<string>\",\n      \"debitedAccountIdentifier\": \"<string>\",\n      \"mandateReference\": \"<string>\"\n    },\n    \"meansDescription\": \"<string>\",\n    \"meansValue\": \"<string>\",\n    \"paymentId\": \"<string>\",\n    \"transferAccount\": {\n      \"accountId\": \"<string>\",\n      \"bankId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"paymentTerms\": \"<string>\",\n  \"precedingInvoices\": [\n    {\n      \"invoiceNumber\": \"<string>\",\n      \"issueDate\": \"<string>\"\n    },\n    {\n      \"invoiceNumber\": \"<string>\",\n      \"issueDate\": \"<string>\"\n    }\n  ],\n  \"projectReference\": \"<string>\",\n  \"purchaseOrderReference\": \"<string>\",\n  \"receiptDocumentReference\": \"<string>\",\n  \"salesOrderReference\": \"<string>\",\n  \"seller\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"companyLegalForm\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"sellerAgent\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"sellerTaxRepresentative\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"countrySubdivision\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"specificationIdentifier\": \"<string>\",\n  \"taxBreakdowns\": [\n    {\n      \"exemptionReason\": \"<string>\",\n      \"exemptionReasonCode\": \"<string>\",\n      \"taxAmount\": \"<double>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxRate\": \"<double>\",\n      \"taxableAmount\": \"<double>\"\n    },\n    {\n      \"exemptionReason\": \"<string>\",\n      \"exemptionReasonCode\": \"<string>\",\n      \"taxAmount\": \"<double>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxRate\": \"<double>\",\n      \"taxableAmount\": \"<double>\"\n    }\n  ],\n  \"taxCurrencyCode\": \"<string>\",\n  \"taxPointDate\": \"<string>\",\n  \"taxPointDateValue\": \"<string>\",\n  \"totals\": {\n    \"allowances\": \"<double>\",\n    \"charges\": \"<double>\",\n    \"dueAmount\": \"<double>\",\n    \"lineNetAmounts\": \"<double>\",\n    \"paidAmount\": \"<double>\",\n    \"roundingAmount\": \"<double>\",\n    \"taxAmount\": \"<double>\",\n    \"taxAmountInAccountingCurrency\": \"<double>\",\n    \"taxExclusiveAmount\": \"<double>\",\n    \"taxInclusiveAmount\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"Pending\",\n  \"details\": [\n    {\n      \"level\": \"Error\",\n      \"reasonCode\": \"string\",\n      \"reasonMessage\": \"string\",\n      \"businessTermCode\": \"string\",\n      \"businessTermLabelFr\": \"string\",\n      \"fixHintFr\": \"string\",\n      \"item\": \"string\",\n      \"reasonMessageFr\": \"string\",\n      \"ruleCode\": \"string\",\n      \"sourcePath\": \"string\"\n    },\n    {\n      \"level\": \"Warning\",\n      \"reasonCode\": \"string\",\n      \"reasonMessage\": \"string\",\n      \"businessTermCode\": \"string\",\n      \"businessTermLabelFr\": \"string\",\n      \"fixHintFr\": \"string\",\n      \"item\": \"string\",\n      \"reasonMessageFr\": \"string\",\n      \"ruleCode\": \"string\",\n      \"sourcePath\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d63389d-5394-4264-8aa5-ac9f43193417",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    "json",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountingCost\": \"<string>\",\n  \"additionalDocumentReference\": {\n    \"internalCustomerNumber\": \"<string>\"\n  },\n  \"allowances\": [\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ],\n  \"attachments\": [\n    {\n      \"content\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"externalLocation\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"supportingDocumentDescription\": \"<string>\"\n    },\n    {\n      \"content\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"externalLocation\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"supportingDocumentDescription\": \"<string>\"\n    }\n  ],\n  \"businessProcessType\": \"<string>\",\n  \"buyer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"buyerAgent\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"buyerReference\": \"<string>\",\n  \"charges\": [\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ],\n  \"contractReference\": \"<string>\",\n  \"currencyCode\": \"<string>\",\n  \"delivery\": {\n    \"actualDeliveryDate\": \"<string>\",\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"despatchDocumentReference\": \"<string>\",\n  \"dueDate\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceType\": \"<string>\",\n  \"invoicee\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"invoicer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"invoicingPeriod\": {\n    \"endDate\": \"<string>\",\n    \"startDate\": \"<string>\"\n  },\n  \"issueDate\": \"<string>\",\n  \"lines\": [\n    {\n      \"accountingCost\": \"<string>\",\n      \"allowances\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"charges\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"invoicedQuantity\": \"<double>\",\n      \"item\": {\n        \"attributes\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"basePriceQuantity\": \"<double>\",\n        \"basePriceQuantityUnit\": \"<string>\",\n        \"buyersItemIdentification\": \"<string>\",\n        \"commodityClassificationCode\": \"<string>\",\n        \"description\": \"<string>\",\n        \"grossPrice\": \"<double>\",\n        \"name\": \"<string>\",\n        \"netAmount\": \"<double>\",\n        \"originCountryCode\": \"<string>\",\n        \"priceDiscount\": \"<double>\",\n        \"sellersItemIdentification\": \"<string>\",\n        \"standardItemIdentification\": \"<string>\",\n        \"taxCategoryCode\": \"<string>\",\n        \"taxRate\": \"<double>\"\n      },\n      \"lineId\": \"<string>\",\n      \"lineNetAmount\": \"<double>\",\n      \"linePeriod\": {\n        \"endDate\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      \"note\": \"<string>\",\n      \"objectReference\": \"<string>\",\n      \"purchaseOrderLineReference\": \"<string>\",\n      \"purchaseOrderReference\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\"\n    },\n    {\n      \"accountingCost\": \"<string>\",\n      \"allowances\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"charges\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"invoicedQuantity\": \"<double>\",\n      \"item\": {\n        \"attributes\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"basePriceQuantity\": \"<double>\",\n        \"basePriceQuantityUnit\": \"<string>\",\n        \"buyersItemIdentification\": \"<string>\",\n        \"commodityClassificationCode\": \"<string>\",\n        \"description\": \"<string>\",\n        \"grossPrice\": \"<double>\",\n        \"name\": \"<string>\",\n        \"netAmount\": \"<double>\",\n        \"originCountryCode\": \"<string>\",\n        \"priceDiscount\": \"<double>\",\n        \"sellersItemIdentification\": \"<string>\",\n        \"standardItemIdentification\": \"<string>\",\n        \"taxCategoryCode\": \"<string>\",\n        \"taxRate\": \"<double>\"\n      },\n      \"lineId\": \"<string>\",\n      \"lineNetAmount\": \"<double>\",\n      \"linePeriod\": {\n        \"endDate\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      \"note\": \"<string>\",\n      \"objectReference\": \"<string>\",\n      \"purchaseOrderLineReference\": \"<string>\",\n      \"purchaseOrderReference\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\"\n    }\n  ],\n  \"note\": [\n    {\n      \"noteCode\": \"<string>\",\n      \"noteValue\": \"<string>\"\n    },\n    {\n      \"noteCode\": \"<string>\",\n      \"noteValue\": \"<string>\"\n    }\n  ],\n  \"originatorDocumentReference\": \"<string>\",\n  \"payee\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"payer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"paymentMeans\": {\n    \"card\": {\n      \"accountIdentifier\": \"<string>\",\n      \"accountName\": \"<string>\",\n      \"networkId\": \"<string>\"\n    },\n    \"directDebit\": {\n      \"creditorIdentifier\": \"<string>\",\n      \"debitedAccountIdentifier\": \"<string>\",\n      \"mandateReference\": \"<string>\"\n    },\n    \"meansDescription\": \"<string>\",\n    \"meansValue\": \"<string>\",\n    \"paymentId\": \"<string>\",\n    \"transferAccount\": {\n      \"accountId\": \"<string>\",\n      \"bankId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"paymentTerms\": \"<string>\",\n  \"precedingInvoices\": [\n    {\n      \"invoiceNumber\": \"<string>\",\n      \"issueDate\": \"<string>\"\n    },\n    {\n      \"invoiceNumber\": \"<string>\",\n      \"issueDate\": \"<string>\"\n    }\n  ],\n  \"projectReference\": \"<string>\",\n  \"purchaseOrderReference\": \"<string>\",\n  \"receiptDocumentReference\": \"<string>\",\n  \"salesOrderReference\": \"<string>\",\n  \"seller\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"companyLegalForm\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"sellerAgent\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"sellerTaxRepresentative\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"countrySubdivision\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"specificationIdentifier\": \"<string>\",\n  \"taxBreakdowns\": [\n    {\n      \"exemptionReason\": \"<string>\",\n      \"exemptionReasonCode\": \"<string>\",\n      \"taxAmount\": \"<double>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxRate\": \"<double>\",\n      \"taxableAmount\": \"<double>\"\n    },\n    {\n      \"exemptionReason\": \"<string>\",\n      \"exemptionReasonCode\": \"<string>\",\n      \"taxAmount\": \"<double>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxRate\": \"<double>\",\n      \"taxableAmount\": \"<double>\"\n    }\n  ],\n  \"taxCurrencyCode\": \"<string>\",\n  \"taxPointDate\": \"<string>\",\n  \"taxPointDateValue\": \"<string>\",\n  \"totals\": {\n    \"allowances\": \"<double>\",\n    \"charges\": \"<double>\",\n    \"dueAmount\": \"<double>\",\n    \"lineNetAmounts\": \"<double>\",\n    \"paidAmount\": \"<double>\",\n    \"roundingAmount\": \"<double>\",\n    \"taxAmount\": \"<double>\",\n    \"taxAmountInAccountingCurrency\": \"<double>\",\n    \"taxExclusiveAmount\": \"<double>\",\n    \"taxInclusiveAmount\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "843c83e7-1fed-4509-8faa-0d43769ea36d",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    "json",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountingCost\": \"<string>\",\n  \"additionalDocumentReference\": {\n    \"internalCustomerNumber\": \"<string>\"\n  },\n  \"allowances\": [\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ],\n  \"attachments\": [\n    {\n      \"content\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"externalLocation\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"supportingDocumentDescription\": \"<string>\"\n    },\n    {\n      \"content\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"externalLocation\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"supportingDocumentDescription\": \"<string>\"\n    }\n  ],\n  \"businessProcessType\": \"<string>\",\n  \"buyer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"buyerAgent\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"buyerReference\": \"<string>\",\n  \"charges\": [\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ],\n  \"contractReference\": \"<string>\",\n  \"currencyCode\": \"<string>\",\n  \"delivery\": {\n    \"actualDeliveryDate\": \"<string>\",\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"despatchDocumentReference\": \"<string>\",\n  \"dueDate\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceType\": \"<string>\",\n  \"invoicee\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"invoicer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"invoicingPeriod\": {\n    \"endDate\": \"<string>\",\n    \"startDate\": \"<string>\"\n  },\n  \"issueDate\": \"<string>\",\n  \"lines\": [\n    {\n      \"accountingCost\": \"<string>\",\n      \"allowances\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"charges\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"invoicedQuantity\": \"<double>\",\n      \"item\": {\n        \"attributes\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"basePriceQuantity\": \"<double>\",\n        \"basePriceQuantityUnit\": \"<string>\",\n        \"buyersItemIdentification\": \"<string>\",\n        \"commodityClassificationCode\": \"<string>\",\n        \"description\": \"<string>\",\n        \"grossPrice\": \"<double>\",\n        \"name\": \"<string>\",\n        \"netAmount\": \"<double>\",\n        \"originCountryCode\": \"<string>\",\n        \"priceDiscount\": \"<double>\",\n        \"sellersItemIdentification\": \"<string>\",\n        \"standardItemIdentification\": \"<string>\",\n        \"taxCategoryCode\": \"<string>\",\n        \"taxRate\": \"<double>\"\n      },\n      \"lineId\": \"<string>\",\n      \"lineNetAmount\": \"<double>\",\n      \"linePeriod\": {\n        \"endDate\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      \"note\": \"<string>\",\n      \"objectReference\": \"<string>\",\n      \"purchaseOrderLineReference\": \"<string>\",\n      \"purchaseOrderReference\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\"\n    },\n    {\n      \"accountingCost\": \"<string>\",\n      \"allowances\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"charges\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"invoicedQuantity\": \"<double>\",\n      \"item\": {\n        \"attributes\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"basePriceQuantity\": \"<double>\",\n        \"basePriceQuantityUnit\": \"<string>\",\n        \"buyersItemIdentification\": \"<string>\",\n        \"commodityClassificationCode\": \"<string>\",\n        \"description\": \"<string>\",\n        \"grossPrice\": \"<double>\",\n        \"name\": \"<string>\",\n        \"netAmount\": \"<double>\",\n        \"originCountryCode\": \"<string>\",\n        \"priceDiscount\": \"<double>\",\n        \"sellersItemIdentification\": \"<string>\",\n        \"standardItemIdentification\": \"<string>\",\n        \"taxCategoryCode\": \"<string>\",\n        \"taxRate\": \"<double>\"\n      },\n      \"lineId\": \"<string>\",\n      \"lineNetAmount\": \"<double>\",\n      \"linePeriod\": {\n        \"endDate\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      \"note\": \"<string>\",\n      \"objectReference\": \"<string>\",\n      \"purchaseOrderLineReference\": \"<string>\",\n      \"purchaseOrderReference\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\"\n    }\n  ],\n  \"note\": [\n    {\n      \"noteCode\": \"<string>\",\n      \"noteValue\": \"<string>\"\n    },\n    {\n      \"noteCode\": \"<string>\",\n      \"noteValue\": \"<string>\"\n    }\n  ],\n  \"originatorDocumentReference\": \"<string>\",\n  \"payee\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"payer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"paymentMeans\": {\n    \"card\": {\n      \"accountIdentifier\": \"<string>\",\n      \"accountName\": \"<string>\",\n      \"networkId\": \"<string>\"\n    },\n    \"directDebit\": {\n      \"creditorIdentifier\": \"<string>\",\n      \"debitedAccountIdentifier\": \"<string>\",\n      \"mandateReference\": \"<string>\"\n    },\n    \"meansDescription\": \"<string>\",\n    \"meansValue\": \"<string>\",\n    \"paymentId\": \"<string>\",\n    \"transferAccount\": {\n      \"accountId\": \"<string>\",\n      \"bankId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"paymentTerms\": \"<string>\",\n  \"precedingInvoices\": [\n    {\n      \"invoiceNumber\": \"<string>\",\n      \"issueDate\": \"<string>\"\n    },\n    {\n      \"invoiceNumber\": \"<string>\",\n      \"issueDate\": \"<string>\"\n    }\n  ],\n  \"projectReference\": \"<string>\",\n  \"purchaseOrderReference\": \"<string>\",\n  \"receiptDocumentReference\": \"<string>\",\n  \"salesOrderReference\": \"<string>\",\n  \"seller\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"companyLegalForm\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"sellerAgent\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"sellerTaxRepresentative\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"countrySubdivision\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"specificationIdentifier\": \"<string>\",\n  \"taxBreakdowns\": [\n    {\n      \"exemptionReason\": \"<string>\",\n      \"exemptionReasonCode\": \"<string>\",\n      \"taxAmount\": \"<double>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxRate\": \"<double>\",\n      \"taxableAmount\": \"<double>\"\n    },\n    {\n      \"exemptionReason\": \"<string>\",\n      \"exemptionReasonCode\": \"<string>\",\n      \"taxAmount\": \"<double>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxRate\": \"<double>\",\n      \"taxableAmount\": \"<double>\"\n    }\n  ],\n  \"taxCurrencyCode\": \"<string>\",\n  \"taxPointDate\": \"<string>\",\n  \"taxPointDateValue\": \"<string>\",\n  \"totals\": {\n    \"allowances\": \"<double>\",\n    \"charges\": \"<double>\",\n    \"dueAmount\": \"<double>\",\n    \"lineNetAmounts\": \"<double>\",\n    \"paidAmount\": \"<double>\",\n    \"roundingAmount\": \"<double>\",\n    \"taxAmount\": \"<double>\",\n    \"taxAmountInAccountingCurrency\": \"<double>\",\n    \"taxExclusiveAmount\": \"<double>\",\n    \"taxInclusiveAmount\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "41837b5e-a8ad-4d00-8e9b-4be77221bc18",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    "json",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountingCost\": \"<string>\",\n  \"additionalDocumentReference\": {\n    \"internalCustomerNumber\": \"<string>\"\n  },\n  \"allowances\": [\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ],\n  \"attachments\": [\n    {\n      \"content\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"externalLocation\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"supportingDocumentDescription\": \"<string>\"\n    },\n    {\n      \"content\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"externalLocation\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"supportingDocumentDescription\": \"<string>\"\n    }\n  ],\n  \"businessProcessType\": \"<string>\",\n  \"buyer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"buyerAgent\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"buyerReference\": \"<string>\",\n  \"charges\": [\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ],\n  \"contractReference\": \"<string>\",\n  \"currencyCode\": \"<string>\",\n  \"delivery\": {\n    \"actualDeliveryDate\": \"<string>\",\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"despatchDocumentReference\": \"<string>\",\n  \"dueDate\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceType\": \"<string>\",\n  \"invoicee\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"invoicer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"invoicingPeriod\": {\n    \"endDate\": \"<string>\",\n    \"startDate\": \"<string>\"\n  },\n  \"issueDate\": \"<string>\",\n  \"lines\": [\n    {\n      \"accountingCost\": \"<string>\",\n      \"allowances\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"charges\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"invoicedQuantity\": \"<double>\",\n      \"item\": {\n        \"attributes\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"basePriceQuantity\": \"<double>\",\n        \"basePriceQuantityUnit\": \"<string>\",\n        \"buyersItemIdentification\": \"<string>\",\n        \"commodityClassificationCode\": \"<string>\",\n        \"description\": \"<string>\",\n        \"grossPrice\": \"<double>\",\n        \"name\": \"<string>\",\n        \"netAmount\": \"<double>\",\n        \"originCountryCode\": \"<string>\",\n        \"priceDiscount\": \"<double>\",\n        \"sellersItemIdentification\": \"<string>\",\n        \"standardItemIdentification\": \"<string>\",\n        \"taxCategoryCode\": \"<string>\",\n        \"taxRate\": \"<double>\"\n      },\n      \"lineId\": \"<string>\",\n      \"lineNetAmount\": \"<double>\",\n      \"linePeriod\": {\n        \"endDate\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      \"note\": \"<string>\",\n      \"objectReference\": \"<string>\",\n      \"purchaseOrderLineReference\": \"<string>\",\n      \"purchaseOrderReference\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\"\n    },\n    {\n      \"accountingCost\": \"<string>\",\n      \"allowances\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"charges\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"invoicedQuantity\": \"<double>\",\n      \"item\": {\n        \"attributes\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"basePriceQuantity\": \"<double>\",\n        \"basePriceQuantityUnit\": \"<string>\",\n        \"buyersItemIdentification\": \"<string>\",\n        \"commodityClassificationCode\": \"<string>\",\n        \"description\": \"<string>\",\n        \"grossPrice\": \"<double>\",\n        \"name\": \"<string>\",\n        \"netAmount\": \"<double>\",\n        \"originCountryCode\": \"<string>\",\n        \"priceDiscount\": \"<double>\",\n        \"sellersItemIdentification\": \"<string>\",\n        \"standardItemIdentification\": \"<string>\",\n        \"taxCategoryCode\": \"<string>\",\n        \"taxRate\": \"<double>\"\n      },\n      \"lineId\": \"<string>\",\n      \"lineNetAmount\": \"<double>\",\n      \"linePeriod\": {\n        \"endDate\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      \"note\": \"<string>\",\n      \"objectReference\": \"<string>\",\n      \"purchaseOrderLineReference\": \"<string>\",\n      \"purchaseOrderReference\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\"\n    }\n  ],\n  \"note\": [\n    {\n      \"noteCode\": \"<string>\",\n      \"noteValue\": \"<string>\"\n    },\n    {\n      \"noteCode\": \"<string>\",\n      \"noteValue\": \"<string>\"\n    }\n  ],\n  \"originatorDocumentReference\": \"<string>\",\n  \"payee\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"payer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"paymentMeans\": {\n    \"card\": {\n      \"accountIdentifier\": \"<string>\",\n      \"accountName\": \"<string>\",\n      \"networkId\": \"<string>\"\n    },\n    \"directDebit\": {\n      \"creditorIdentifier\": \"<string>\",\n      \"debitedAccountIdentifier\": \"<string>\",\n      \"mandateReference\": \"<string>\"\n    },\n    \"meansDescription\": \"<string>\",\n    \"meansValue\": \"<string>\",\n    \"paymentId\": \"<string>\",\n    \"transferAccount\": {\n      \"accountId\": \"<string>\",\n      \"bankId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"paymentTerms\": \"<string>\",\n  \"precedingInvoices\": [\n    {\n      \"invoiceNumber\": \"<string>\",\n      \"issueDate\": \"<string>\"\n    },\n    {\n      \"invoiceNumber\": \"<string>\",\n      \"issueDate\": \"<string>\"\n    }\n  ],\n  \"projectReference\": \"<string>\",\n  \"purchaseOrderReference\": \"<string>\",\n  \"receiptDocumentReference\": \"<string>\",\n  \"salesOrderReference\": \"<string>\",\n  \"seller\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"companyLegalForm\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"sellerAgent\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"sellerTaxRepresentative\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"countrySubdivision\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"specificationIdentifier\": \"<string>\",\n  \"taxBreakdowns\": [\n    {\n      \"exemptionReason\": \"<string>\",\n      \"exemptionReasonCode\": \"<string>\",\n      \"taxAmount\": \"<double>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxRate\": \"<double>\",\n      \"taxableAmount\": \"<double>\"\n    },\n    {\n      \"exemptionReason\": \"<string>\",\n      \"exemptionReasonCode\": \"<string>\",\n      \"taxAmount\": \"<double>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxRate\": \"<double>\",\n      \"taxableAmount\": \"<double>\"\n    }\n  ],\n  \"taxCurrencyCode\": \"<string>\",\n  \"taxPointDate\": \"<string>\",\n  \"taxPointDateValue\": \"<string>\",\n  \"totals\": {\n    \"allowances\": \"<double>\",\n    \"charges\": \"<double>\",\n    \"dueAmount\": \"<double>\",\n    \"lineNetAmounts\": \"<double>\",\n    \"paidAmount\": \"<double>\",\n    \"roundingAmount\": \"<double>\",\n    \"taxAmount\": \"<double>\",\n    \"taxAmountInAccountingCurrency\": \"<double>\",\n    \"taxExclusiveAmount\": \"<double>\",\n    \"taxInclusiveAmount\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7eb772a3-0a61-4478-9ece-97acd1c8f469",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    "json",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountingCost\": \"<string>\",\n  \"additionalDocumentReference\": {\n    \"internalCustomerNumber\": \"<string>\"\n  },\n  \"allowances\": [\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ],\n  \"attachments\": [\n    {\n      \"content\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"externalLocation\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"supportingDocumentDescription\": \"<string>\"\n    },\n    {\n      \"content\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"externalLocation\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"supportingDocumentDescription\": \"<string>\"\n    }\n  ],\n  \"businessProcessType\": \"<string>\",\n  \"buyer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"buyerAgent\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"buyerReference\": \"<string>\",\n  \"charges\": [\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    },\n    {\n      \"baseAmount\": \"<double>\",\n      \"multiplierFactor\": \"<double>\",\n      \"reason\": \"<string>\",\n      \"reasonCode\": \"<string>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxExclusiveAmount\": \"<double>\",\n      \"taxRate\": \"<double>\"\n    }\n  ],\n  \"contractReference\": \"<string>\",\n  \"currencyCode\": \"<string>\",\n  \"delivery\": {\n    \"actualDeliveryDate\": \"<string>\",\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"despatchDocumentReference\": \"<string>\",\n  \"dueDate\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceType\": \"<string>\",\n  \"invoicee\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"invoicer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"invoicingPeriod\": {\n    \"endDate\": \"<string>\",\n    \"startDate\": \"<string>\"\n  },\n  \"issueDate\": \"<string>\",\n  \"lines\": [\n    {\n      \"accountingCost\": \"<string>\",\n      \"allowances\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"charges\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"invoicedQuantity\": \"<double>\",\n      \"item\": {\n        \"attributes\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"basePriceQuantity\": \"<double>\",\n        \"basePriceQuantityUnit\": \"<string>\",\n        \"buyersItemIdentification\": \"<string>\",\n        \"commodityClassificationCode\": \"<string>\",\n        \"description\": \"<string>\",\n        \"grossPrice\": \"<double>\",\n        \"name\": \"<string>\",\n        \"netAmount\": \"<double>\",\n        \"originCountryCode\": \"<string>\",\n        \"priceDiscount\": \"<double>\",\n        \"sellersItemIdentification\": \"<string>\",\n        \"standardItemIdentification\": \"<string>\",\n        \"taxCategoryCode\": \"<string>\",\n        \"taxRate\": \"<double>\"\n      },\n      \"lineId\": \"<string>\",\n      \"lineNetAmount\": \"<double>\",\n      \"linePeriod\": {\n        \"endDate\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      \"note\": \"<string>\",\n      \"objectReference\": \"<string>\",\n      \"purchaseOrderLineReference\": \"<string>\",\n      \"purchaseOrderReference\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\"\n    },\n    {\n      \"accountingCost\": \"<string>\",\n      \"allowances\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"charges\": [\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        },\n        {\n          \"baseAmount\": \"<double>\",\n          \"multiplierFactor\": \"<double>\",\n          \"reason\": \"<string>\",\n          \"reasonCode\": \"<string>\",\n          \"taxExclusiveAmount\": \"<double>\"\n        }\n      ],\n      \"invoicedQuantity\": \"<double>\",\n      \"item\": {\n        \"attributes\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"basePriceQuantity\": \"<double>\",\n        \"basePriceQuantityUnit\": \"<string>\",\n        \"buyersItemIdentification\": \"<string>\",\n        \"commodityClassificationCode\": \"<string>\",\n        \"description\": \"<string>\",\n        \"grossPrice\": \"<double>\",\n        \"name\": \"<string>\",\n        \"netAmount\": \"<double>\",\n        \"originCountryCode\": \"<string>\",\n        \"priceDiscount\": \"<double>\",\n        \"sellersItemIdentification\": \"<string>\",\n        \"standardItemIdentification\": \"<string>\",\n        \"taxCategoryCode\": \"<string>\",\n        \"taxRate\": \"<double>\"\n      },\n      \"lineId\": \"<string>\",\n      \"lineNetAmount\": \"<double>\",\n      \"linePeriod\": {\n        \"endDate\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      \"note\": \"<string>\",\n      \"objectReference\": \"<string>\",\n      \"purchaseOrderLineReference\": \"<string>\",\n      \"purchaseOrderReference\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\"\n    }\n  ],\n  \"note\": [\n    {\n      \"noteCode\": \"<string>\",\n      \"noteValue\": \"<string>\"\n    },\n    {\n      \"noteCode\": \"<string>\",\n      \"noteValue\": \"<string>\"\n    }\n  ],\n  \"originatorDocumentReference\": \"<string>\",\n  \"payee\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"payer\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"paymentMeans\": {\n    \"card\": {\n      \"accountIdentifier\": \"<string>\",\n      \"accountName\": \"<string>\",\n      \"networkId\": \"<string>\"\n    },\n    \"directDebit\": {\n      \"creditorIdentifier\": \"<string>\",\n      \"debitedAccountIdentifier\": \"<string>\",\n      \"mandateReference\": \"<string>\"\n    },\n    \"meansDescription\": \"<string>\",\n    \"meansValue\": \"<string>\",\n    \"paymentId\": \"<string>\",\n    \"transferAccount\": {\n      \"accountId\": \"<string>\",\n      \"bankId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"paymentTerms\": \"<string>\",\n  \"precedingInvoices\": [\n    {\n      \"invoiceNumber\": \"<string>\",\n      \"issueDate\": \"<string>\"\n    },\n    {\n      \"invoiceNumber\": \"<string>\",\n      \"issueDate\": \"<string>\"\n    }\n  ],\n  \"projectReference\": \"<string>\",\n  \"purchaseOrderReference\": \"<string>\",\n  \"receiptDocumentReference\": \"<string>\",\n  \"salesOrderReference\": \"<string>\",\n  \"seller\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"companyLegalForm\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"sellerAgent\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"businessName\": \"<string>\",\n    \"contact\": {\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"telephone\": \"<string>\"\n    },\n    \"electronicAddress\": \"<string>\",\n    \"identifier\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"legalRegistrationId\": \"<string>\",\n    \"registrationName\": \"<string>\",\n    \"roleCode\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"sellerTaxRepresentative\": {\n    \"address\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"countrySubdivision\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"vatId\": \"<string>\"\n  },\n  \"specificationIdentifier\": \"<string>\",\n  \"taxBreakdowns\": [\n    {\n      \"exemptionReason\": \"<string>\",\n      \"exemptionReasonCode\": \"<string>\",\n      \"taxAmount\": \"<double>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxRate\": \"<double>\",\n      \"taxableAmount\": \"<double>\"\n    },\n    {\n      \"exemptionReason\": \"<string>\",\n      \"exemptionReasonCode\": \"<string>\",\n      \"taxAmount\": \"<double>\",\n      \"taxCategoryCode\": \"<string>\",\n      \"taxRate\": \"<double>\",\n      \"taxableAmount\": \"<double>\"\n    }\n  ],\n  \"taxCurrencyCode\": \"<string>\",\n  \"taxPointDate\": \"<string>\",\n  \"taxPointDateValue\": \"<string>\",\n  \"totals\": {\n    \"allowances\": \"<double>\",\n    \"charges\": \"<double>\",\n    \"dueAmount\": \"<double>\",\n    \"lineNetAmounts\": \"<double>\",\n    \"paidAmount\": \"<double>\",\n    \"roundingAmount\": \"<double>\",\n    \"taxAmount\": \"<double>\",\n    \"taxAmountInAccountingCurrency\": \"<double>\",\n    \"taxExclusiveAmount\": \"<double>\",\n    \"taxInclusiveAmount\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 4237,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63487917-b7f5-4d77-ab96-bfb3ac25b35f",
+          "name": "Select flows upon criteria",
+          "request": {
+            "name": "Select flows upon criteria",
+            "description": {
+              "content": "Retrieves a set of flows matching the provided search criteria:   \n- When setting flowId, do not specify other criteria   \n- Need at least one criterion to be specified   \n- Assuming a logical AND when combining criteria   \n- Assuming a logical OR for criteria allowing a list of values\n\nPagination works with pages:   \n- In the request, provide the page to be returned   \n- In the response, the total count of items",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "einvoicing",
+                "v1",
+                "flows",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Request-Id",
+                "value": "<uuid>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"where\": {\n    \"ackStatus\": \"<string>\",\n    \"electronicAddress\": \"<string>\",\n    \"flowDirection\": \"<string>\",\n    \"flowId\": \"<string>\",\n    \"flowMode\": \"<string>\",\n    \"flowType\": \"<string>\",\n    \"trackingId\": \"<string>\",\n    \"updatedAfter\": \"<dateTime>\",\n    \"updatedBefore\": \"<dateTime>\"\n  },\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ec3d8d4c-985f-490a-9f96-7bba194780a3",
+              "name": "OK - Response message when returning the results of a search request.   - Holds all the results if code is 200   - Holds partial content if code is 206 ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 25,\n  \"offset\": 0,\n  \"where\": {\n    \"ackStatus\": \"Ok\",\n    \"electronicAddress\": \"0225:123456789\",\n    \"flowDirection\": \"Out\",\n    \"flowId\": \"019f7277-202e-78a9-aacc-2b9b519c0458\",\n    \"flowMode\": \"Production\",\n    \"flowType\": \"CustomerInvoice\",\n    \"trackingId\": \"019f7277-202e-79d2-81e4-0880c309eec3\",\n    \"updatedAfter\": \"2026-07-17T23:43:57.4867414Z\",\n    \"updatedBefore\": \"2026-07-17T23:43:57.4867419Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"filter\": {\n    \"ackStatus\": \"<string>\",\n    \"electronicAddress\": \"<string>\",\n    \"flowDirection\": \"<string>\",\n    \"flowId\": \"<string>\",\n    \"flowMode\": \"<string>\",\n    \"flowType\": \"<string>\",\n    \"trackingId\": \"<string>\",\n    \"updatedAfter\": \"<dateTime>\",\n    \"updatedBefore\": \"<dateTime>\"\n  },\n  \"limit\": 2527,\n  \"offset\": 2598,\n  \"results\": [\n    {\n      \"acknowledgement\": {\n        \"status\": \"<string>\",\n        \"details\": [\n          {\n            \"level\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reasonCode\": \"string\",\n            \"reasonMessage\": \"string\",\n            \"businessTermCode\": \"string\",\n            \"businessTermLabelFr\": \"string\",\n            \"fixHintFr\": \"string\",\n            \"item\": \"string\",\n            \"reasonMessageFr\": \"string\",\n            \"ruleCode\": \"string\",\n            \"sourcePath\": \"string\"\n          },\n          {\n            \"level\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reasonCode\": \"string\",\n            \"reasonMessage\": \"str\",\n            \"businessTermCode\": \"string\",\n            \"businessTermLabelFr\": \"string\",\n            \"fixHintFr\": \"string\",\n            \"item\": \"string\",\n            \"reasonMessageFr\": \"string\",\n            \"ruleCode\": \"string\",\n            \"sourcePath\": \"string\"\n          }\n        ]\n      },\n      \"flowId\": \"string\",\n      \"attachmentNumber\": 32,\n      \"flowDirection\": \"<string>\",\n      \"flowProfile\": \"<string>\",\n      \"flowSyntax\": \"<string>\",\n      \"flowType\": \"<string>\",\n      \"submittedAt\": \"1979-07-21T23:27:44.144Z\",\n      \"trackingId\": \"string\",\n      \"updatedAt\": \"2009-04-13T14:19:55.491Z\"\n    },\n    {\n      \"acknowledgement\": {\n        \"status\": \"<string>\",\n        \"details\": [\n          {\n            \"level\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reasonCode\": \"string\",\n            \"reasonMessage\": \"string\",\n            \"businessTermCode\": \"string\",\n            \"businessTermLabelFr\": \"string\",\n            \"fixHintFr\": \"string\",\n            \"item\": \"string\",\n            \"reasonMessageFr\": \"string\",\n            \"ruleCode\": \"string\",\n            \"sourcePath\": \"string\"\n          },\n          {\n            \"level\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reasonCode\": \"string\",\n            \"reasonMessage\": \"string\",\n            \"businessTermCode\": \"string\",\n            \"businessTermLabelFr\": \"string\",\n            \"fixHintFr\": \"string\",\n            \"item\": \"string\",\n            \"reasonMessageFr\": \"string\",\n            \"ruleCode\": \"string\",\n            \"sourcePath\": \"string\"\n          }\n        ]\n      },\n      \"flowId\": \"string\",\n      \"attachmentNumber\": 2781,\n      \"flowDirection\": \"<string>\",\n      \"flowProfile\": \"<string>\",\n      \"flowSyntax\": \"<string>\",\n      \"flowType\": \"<string>\",\n      \"submittedAt\": \"2001-01-16T08:18:42.256Z\",\n      \"trackingId\": \"string\",\n      \"updatedAt\": \"1952-10-18T21:29:10.078Z\"\n    }\n  ],\n  \"total\": 4607\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b749130-1b5c-4061-9a32-d490001702f3",
+              "name": "OK - Response message when returning the results of a search request.   - Holds all the results if code is 200   - Holds partial content if code is 206 ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 25,\n  \"offset\": 0,\n  \"where\": {\n    \"ackStatus\": \"Ok\",\n    \"electronicAddress\": \"0225:123456789\",\n    \"flowDirection\": \"Out\",\n    \"flowId\": \"019f7277-202e-78a9-aacc-2b9b519c0458\",\n    \"flowMode\": \"Production\",\n    \"flowType\": \"CustomerInvoice\",\n    \"trackingId\": \"019f7277-202e-79d2-81e4-0880c309eec3\",\n    \"updatedAfter\": \"2026-07-17T23:43:57.4867414Z\",\n    \"updatedBefore\": \"2026-07-17T23:43:57.4867419Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Partial Content",
+              "code": 206,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"filter\": {\n    \"ackStatus\": \"<string>\",\n    \"electronicAddress\": \"<string>\",\n    \"flowDirection\": \"<string>\",\n    \"flowId\": \"<string>\",\n    \"flowMode\": \"<string>\",\n    \"flowType\": \"<string>\",\n    \"trackingId\": \"<string>\",\n    \"updatedAfter\": \"<dateTime>\",\n    \"updatedBefore\": \"<dateTime>\"\n  },\n  \"limit\": 6451,\n  \"offset\": 9695,\n  \"results\": [\n    {\n      \"acknowledgement\": {\n        \"status\": \"<string>\",\n        \"details\": [\n          {\n            \"level\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reasonCode\": \"string\",\n            \"reasonMessage\": \"string\",\n            \"businessTermCode\": \"string\",\n            \"businessTermLabelFr\": \"string\",\n            \"fixHintFr\": \"string\",\n            \"item\": \"string\",\n            \"reasonMessageFr\": \"string\",\n            \"ruleCode\": \"string\",\n            \"sourcePath\": \"string\"\n          },\n          {\n            \"level\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reasonCode\": \"string\",\n            \"reasonMessage\": \"string\",\n            \"businessTermCode\": \"string\",\n            \"businessTermLabelFr\": \"string\",\n            \"fixHintFr\": \"string\",\n            \"item\": \"string\",\n            \"reasonMessageFr\": \"string\",\n            \"ruleCode\": \"string\",\n            \"sourcePath\": \"string\"\n          }\n        ]\n      },\n      \"flowId\": \"string\",\n      \"attachmentNumber\": 7370,\n      \"flowDirection\": \"<string>\",\n      \"flowProfile\": \"<string>\",\n      \"flowSyntax\": \"<string>\",\n      \"flowType\": \"<string>\",\n      \"submittedAt\": \"1959-12-15T09:48:33.109Z\",\n      \"trackingId\": \"string\",\n      \"updatedAt\": \"1972-04-13T23:41:40.716Z\"\n    },\n    {\n      \"acknowledgement\": {\n        \"status\": \"<string>\",\n        \"details\": [\n          {\n            \"level\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reasonCode\": \"string\",\n            \"reasonMessage\": \"string\",\n            \"businessTermCode\": \"string\",\n            \"businessTermLabelFr\": \"string\",\n            \"fixHintFr\": \"string\",\n            \"item\": \"string\",\n            \"reasonMessageFr\": \"string\",\n            \"ruleCode\": \"string\",\n            \"sourcePath\": \"string\"\n          },\n          {\n            \"level\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reasonCode\": \"string\",\n            \"reasonMessage\": \"strin\",\n            \"businessTermCode\": \"string\",\n            \"businessTermLabelFr\": \"string\",\n            \"fixHintFr\": \"string\",\n            \"item\": \"string\",\n            \"reasonMessageFr\": \"string\",\n            \"ruleCode\": \"string\",\n            \"sourcePath\": \"string\"\n          }\n        ]\n      },\n      \"flowId\": \"string\",\n      \"attachmentNumber\": 1922,\n      \"flowDirection\": \"<string>\",\n      \"flowProfile\": \"<string>\",\n      \"flowSyntax\": \"<string>\",\n      \"flowType\": \"<string>\",\n      \"submittedAt\": \"2018-10-11T13:40:57.173Z\",\n      \"trackingId\": \"string\",\n      \"updatedAt\": \"1991-06-18T19:55:07.800Z\"\n    }\n  ],\n  \"total\": 1219\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "777e08e7-b755-4362-b4a0-86a29814b4c5",
+              "name": "Error 400 : Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 25,\n  \"offset\": 0,\n  \"where\": {\n    \"ackStatus\": \"Ok\",\n    \"electronicAddress\": \"0225:123456789\",\n    \"flowDirection\": \"Out\",\n    \"flowId\": \"019f7277-202e-78a9-aacc-2b9b519c0458\",\n    \"flowMode\": \"Production\",\n    \"flowType\": \"CustomerInvoice\",\n    \"trackingId\": \"019f7277-202e-79d2-81e4-0880c309eec3\",\n    \"updatedAfter\": \"2026-07-17T23:43:57.4867414Z\",\n    \"updatedBefore\": \"2026-07-17T23:43:57.4867419Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3571647-c321-43cb-9811-4e4246620585",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 25,\n  \"offset\": 0,\n  \"where\": {\n    \"ackStatus\": \"Ok\",\n    \"electronicAddress\": \"0225:123456789\",\n    \"flowDirection\": \"Out\",\n    \"flowId\": \"019f7277-202e-78a9-aacc-2b9b519c0458\",\n    \"flowMode\": \"Production\",\n    \"flowType\": \"CustomerInvoice\",\n    \"trackingId\": \"019f7277-202e-79d2-81e4-0880c309eec3\",\n    \"updatedAfter\": \"2026-07-17T23:43:57.4867414Z\",\n    \"updatedBefore\": \"2026-07-17T23:43:57.4867419Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "544876f8-69e7-452b-83b6-72433bf4a5bd",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 25,\n  \"offset\": 0,\n  \"where\": {\n    \"ackStatus\": \"Ok\",\n    \"electronicAddress\": \"0225:123456789\",\n    \"flowDirection\": \"Out\",\n    \"flowId\": \"019f7277-202e-78a9-aacc-2b9b519c0458\",\n    \"flowMode\": \"Production\",\n    \"flowType\": \"CustomerInvoice\",\n    \"trackingId\": \"019f7277-202e-79d2-81e4-0880c309eec3\",\n    \"updatedAfter\": \"2026-07-17T23:43:57.4867414Z\",\n    \"updatedBefore\": \"2026-07-17T23:43:57.4867419Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "afe02228-fd64-4aef-b555-cafec5d944bb",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 25,\n  \"offset\": 0,\n  \"where\": {\n    \"ackStatus\": \"Ok\",\n    \"electronicAddress\": \"0225:123456789\",\n    \"flowDirection\": \"Out\",\n    \"flowId\": \"019f7277-202e-78a9-aacc-2b9b519c0458\",\n    \"flowMode\": \"Production\",\n    \"flowType\": \"CustomerInvoice\",\n    \"trackingId\": \"019f7277-202e-79d2-81e4-0880c309eec3\",\n    \"updatedAfter\": \"2026-07-17T23:43:57.4867414Z\",\n    \"updatedBefore\": \"2026-07-17T23:43:57.4867419Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b1e7ce4e-855b-49d3-92d3-7118734fbcf4",
+              "name": "Error 500 : Server Internal Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 25,\n  \"offset\": 0,\n  \"where\": {\n    \"ackStatus\": \"Ok\",\n    \"electronicAddress\": \"0225:123456789\",\n    \"flowDirection\": \"Out\",\n    \"flowId\": \"019f7277-202e-78a9-aacc-2b9b519c0458\",\n    \"flowMode\": \"Production\",\n    \"flowType\": \"CustomerInvoice\",\n    \"trackingId\": \"019f7277-202e-79d2-81e4-0880c309eec3\",\n    \"updatedAfter\": \"2026-07-17T23:43:57.4867414Z\",\n    \"updatedBefore\": \"2026-07-17T23:43:57.4867419Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 4237,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6dc0026b-75bc-435b-96d8-532d34a591bc",
+              "name": "Error 503 : Unavailable Resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request-Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"limit\": 25,\n  \"offset\": 0,\n  \"where\": {\n    \"ackStatus\": \"Ok\",\n    \"electronicAddress\": \"0225:123456789\",\n    \"flowDirection\": \"Out\",\n    \"flowId\": \"019f7277-202e-78a9-aacc-2b9b519c0458\",\n    \"flowMode\": \"Production\",\n    \"flowType\": \"CustomerInvoice\",\n    \"trackingId\": \"019f7277-202e-79d2-81e4-0880c309eec3\",\n    \"updatedAfter\": \"2026-07-17T23:43:57.4867414Z\",\n    \"updatedBefore\": \"2026-07-17T23:43:57.4867419Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0fdac85a-fa3e-42ca-93ca-4a957250cb86",
+          "name": "Download a flow",
+          "request": {
+            "name": "Download a flow",
+            "description": {
+              "content": "Download a file related to a given flow:\n- an invoice\n- a life cycle\n- an e-reporting",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "einvoicing",
+                "v1",
+                "flows",
+                ":flowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "docType",
+                  "value": "<string>",
+                  "description": "This parameter allows to provide the type of file to be uploaded, can be either one:\n- Original: the document that has been initially sent/provided by the emitter\n- Converted: the document that has been optionally converted by the system\n- ReadableView: the document that has been optionally generated as the readable file\n- Attachment: one of the attached documents, provide the optional index if needed"
+                },
+                {
+                  "disabled": false,
+                  "key": "docIndex",
+                  "value": "<integer>",
+                  "description": "If docType is an Attachment and in case there are several attached documents, it says which one to address"
+                },
+                {
+                  "disabled": false,
+                  "key": "docFormat",
+                  "value": "<string>",
+                  "description": "If docType is Converted, it says in which format to convert. By default, it is Json"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "flowId",
+                  "description": "(Required) Flow identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "74647729-8ab7-4604-b713-4b08e75d8775",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "docIndex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "docFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "flowId",
+                      "description": "(Required) Flow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5016222d-6c0e-4d4a-a0a0-a2bdb6faabee",
+              "name": "Error 400 : Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "docIndex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "docFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "flowId",
+                      "description": "(Required) Flow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e609fe6-e5a1-4855-bf69-c273422f7cac",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "docIndex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "docFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "flowId",
+                      "description": "(Required) Flow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0156f473-7978-477e-bc2b-e1cdf018a313",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "docIndex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "docFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "flowId",
+                      "description": "(Required) Flow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ef166cd7-95dd-48da-82a7-cf74654cc513",
+              "name": "Error 404 : Resource Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "docIndex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "docFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "flowId",
+                      "description": "(Required) Flow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56a65c39-d05b-4690-a343-b0d662171fd2",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "docIndex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "docFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "flowId",
+                      "description": "(Required) Flow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "774d5a01-c545-4ee0-b18f-9d54d2fc6f05",
+              "name": "Error 500 : Server Internal Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "docIndex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "docFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "flowId",
+                      "description": "(Required) Flow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 4237,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2e78fef-adcc-4ac0-b7eb-4476bfc038fc",
+              "name": "Error 503 : Unavailable Resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "einvoicing",
+                    "v1",
+                    "flows",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "docType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "docIndex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "docFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "flowId",
+                      "description": "(Required) Flow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.agicap.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a3996c5b-2da9-4651-8ab9-7e4b324ba295",
+    "name": "Clients AR Account reports Invoice Flows API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

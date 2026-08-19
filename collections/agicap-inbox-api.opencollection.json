@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports Inbox API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inbox",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List inbox documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/invoices-management/v1/entities/:entityId/inbox/documents",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "The entity identifier."
+              },
+              {
+                "name": "lastSynchronizationDate",
+                "value": "",
+                "type": "query",
+                "description": "Only documents collected on or after this ISO-8601 datetime are returned. Omit to return the whole current inbox."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of documents per page, between 1 and 100. Defaults to 100."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The zero-based page index. Defaults to 0."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Use this endpoint to list the invoices and credit notes currently in the entity's inbox (documents awaiting OCR verification), each with a temporary download link to its attached file.\nAny document that has an attached file is returned, whatever its type (PDF or image); a document with no attached file is excluded. Provide a last-synchronization date to pull only the documents collected since then."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

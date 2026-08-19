@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports Import and delete API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Import and delete",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete the accounting accounts identified by their number.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/delete",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "54",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You can only delete 1000 accounting accounts per call, if you want to delete more, you need to call this endpoint multiple times."
+        },
+        {
+          "info": {
+            "name": "Import accounting accounts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/chart-of-accounts/v1/entities/:entityId/accounting-accounts/import/:importId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "54",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              },
+              {
+                "name": "importId",
+                "value": "6dae0de9-48b7-4c3c-95b0-a9e00627b041",
+                "type": "path",
+                "description": "Unique ID of the import, provided by the caller. In case of network issue, use the same\nunique ID to retry."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new accounting accounts asynchronously.\n\nAccounting accounts can only be of the following types : Bank, Client, Supplier, Expense, Product, Vat and Other.\n\nAccounting accounts with types not in the list above won't be created.\n<p>\n    Vat Rate is only relevant for Vat accounting accounts, and Vat Rate must be between 0 and 1 (example : 0.15 for 15%).\n    Tax Key is only relevant for Vat accounting accounts, and Tax Key must be under 300 characters.\n    If the Vat Rate is not provided, the"
+        },
+        {
+          "info": {
+            "name": "Delete the third parties identified by their code.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/chart-of-accounts/v1/entities/:entityId/third-parties/delete",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "54",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You can only delete 1000 third parties per call, if you want to delete more, you need to call this endpoint multiple times."
+        },
+        {
+          "info": {
+            "name": "Import Third Parties.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/chart-of-accounts/v1/entities/:entityId/third-parties/import/:importId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "54",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              },
+              {
+                "name": "importId",
+                "value": "6dae0de9-48b7-4c3c-95b0-a9e00627b041",
+                "type": "path",
+                "description": "Unique ID of the import, provided by the caller. In case of network issue, use the same\nunique ID to retry."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new third parties asynchronously.\n\nThird Parties can only be created for accounting account types : Client, Supplier, Expense, Product, Vat and Other.\n\nThird Parties import size is limited to 5000 per batch.\n\nIf you import a third party on an accounting account typed as “Bank” in Agicap, it won’t be created.\n\nThe accounting account must exist for third parties to be created, unknown accounting accounts won't be created.\n\nThird party code is unique for an accounting account, if ever you re"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

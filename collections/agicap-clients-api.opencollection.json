@@ -1,0 +1,165 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AR Account reports Clients API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/ar-clients/v1/entities/:entityId/clients",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "clientExternalIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter clients by external identifiers. Supports multiple values."
+              },
+              {
+                "name": "clientIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter clients by their Agicap identifier (UUID). Supports multiple values."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter clients whose name contains this value (case-insensitive)."
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "query",
+                "description": "Filter clients whose business reference contains this value (case-insensitive)."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort clients by. Defaults to a stable identifier order when omitted."
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction. Defaults to ascending."
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination token for retrieving the next page"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a paginated list of clients for the given entity."
+        },
+        {
+          "info": {
+            "name": "Create clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/ar-clients/v1/entities/:entityId/clients",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create clients in bulk. Clients with an already existing externalId are ignored. Maximum 1000 items per request."
+        },
+        {
+          "info": {
+            "name": "Update clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.agicap.com/public/ar-clients/v1/entities/:entityId/clients",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update clients in bulk by Agicap ID or externalId (Agicap ID takes priority). Non-existing clients are ignored. Maximum 1000 items per request."
+        },
+        {
+          "info": {
+            "name": "Delete clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.agicap.com/public/ar-clients/v1/entities/:entityId/clients",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete clients in bulk by externalId. A client with linked invoices or credit notes cannot be deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

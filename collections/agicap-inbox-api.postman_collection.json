@@ -1,0 +1,516 @@
+{
+  "item": [
+    {
+      "id": "1c25e629-294c-4a33-8a1b-17498fbf3e66",
+      "name": "Inbox",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a59ef28e-27a4-4b08-8f71-22c9f186dc1e",
+          "name": "List inbox documents",
+          "request": {
+            "name": "List inbox documents",
+            "description": {
+              "content": "Use this endpoint to list the invoices and credit notes currently in the entity's inbox (documents awaiting OCR verification), each with a temporary download link to its attached file.\nAny document that has an attached file is returned, whatever its type (PDF or image); a document with no attached file is excluded. Provide a last-synchronization date to pull only the documents collected since then.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "invoices-management",
+                "v1",
+                "entities",
+                ":entityId",
+                "inbox",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lastSynchronizationDate",
+                  "value": "<dateTime>",
+                  "description": "Only documents collected on or after this ISO-8601 datetime are returned. Omit to return the whole current inbox."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "100",
+                  "description": "The maximum number of documents per page, between 1 and 100. Defaults to 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "0",
+                  "description": "The zero-based page index. Defaults to 0."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "entityId",
+                  "description": "(Required) The entity identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bbdc7b13-3d55-49d8-bb38-60e169166a02",
+              "name": "Your request has been successfully processed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "inbox",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lastSynchronizationDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"documents\": [\n    {\n      \"agicapDocumentId\": \"f778c779-4e75-4b5a-ab62-d14c76a965e7\",\n      \"type\": \"PurchaseOrder\",\n      \"url\": \"string\",\n      \"extension\": \"Unknown\"\n    },\n    {\n      \"agicapDocumentId\": \"fcfd8f1c-c320-d056-4890-4c3e50308dd3\",\n      \"type\": \"Delivery\",\n      \"url\": \"string\",\n      \"extension\": \"Jpg\"\n    }\n  ],\n  \"pagination\": {\n    \"currentPageItemsCount\": 3394,\n    \"currentPageNumber\": 3318,\n    \"pagesCount\": 3751,\n    \"pageSize\": 8226,\n    \"totalItemsCount\": 866\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bba1f865-7656-4bfc-b9ed-238aaddc7476",
+              "name": "Your request is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "inbox",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lastSynchronizationDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"Write_Invoice_Uncompleted\",\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 8094,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0e69a28-12cf-4a8c-8c0d-42b16c966a4d",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "inbox",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lastSynchronizationDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d75b7487-9683-4342-991f-3df6461c8e20",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "inbox",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lastSynchronizationDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c417a105-f01a-4e97-a938-768a5b28081f",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "inbox",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lastSynchronizationDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56e77bbd-2ab7-4d1b-b32f-2a8444cd3324",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "inbox",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lastSynchronizationDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"Write_Invoice_Uncompleted\",\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 8094,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.agicap.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "be425e77-be4d-4c85-be3f-58841273e10c",
+    "name": "Clients AR Account reports Inbox API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

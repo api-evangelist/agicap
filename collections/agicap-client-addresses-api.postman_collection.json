@@ -1,0 +1,1327 @@
+{
+  "item": [
+    {
+      "id": "0905c0d8-9462-4bd8-8940-a5a9523eade7",
+      "name": "Client addresses",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9fd42602-33d3-44c9-9ecc-6e38b0a5b5bf",
+          "name": "Delete client addresses",
+          "request": {
+            "name": "Delete client addresses",
+            "description": {
+              "content": "Delete client addresses in bulk by clientExternalId. Maximum 1000 items per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "ar-clients",
+                "v1",
+                "entities",
+                ":entityId",
+                "client-addresses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<int>",
+                  "key": "entityId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientExternalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e246448a-755c-4fb6-a95c-963c6f3c9bb4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientExternalIds\": [\n    \"client_1\",\n    \"client_2\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deleted\": [\n    {\n      \"clientExternalId\": \"client_1\"\n    },\n    {\n      \"clientExternalId\": \"client_1\"\n    }\n  ],\n  \"notDeleted\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"reason\": \"CLIENT_NOT_FOUND\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"reason\": \"ADDRESS_NOT_FOUND\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4770bfd-f16b-4120-b4d7-f3f25dbfa9d0",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientExternalIds\": [\n    \"client_1\",\n    \"client_2\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d85c75a7-ba85-43d6-8d21-9ef50067b925",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientExternalIds\": [\n    \"client_1\",\n    \"client_2\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7fdb93f7-f4d8-482c-947b-17e99f668456",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientExternalIds\": [\n    \"client_1\",\n    \"client_2\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4ed372e-ba2d-4651-ad5d-ec0e26c8a95f",
+          "name": "List client addresses",
+          "request": {
+            "name": "List client addresses",
+            "description": {
+              "content": "Retrieve a paginated list of client addresses for the given entity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "ar-clients",
+                "v1",
+                "entities",
+                ":entityId",
+                "client-addresses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientExternalIds",
+                  "value": "<string>",
+                  "description": "Filter client addresses by client external identifiers. Supports multiple values."
+                },
+                {
+                  "disabled": false,
+                  "key": "clientExternalIds",
+                  "value": "<string>",
+                  "description": "Filter client addresses by client external identifiers. Supports multiple values."
+                },
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<base64url>",
+                  "description": "Opaque pagination token for retrieving the next page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<int>",
+                  "key": "entityId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "44bb5bef-7472-42f5-877d-17f7c20d869d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-001"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-002"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<base64url>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"clientId\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n      \"clientExternalId\": \"client_1\",\n      \"address\": {\n        \"name\": \"Main Office\",\n        \"line1\": \"5 Rodeo Street\",\n        \"line2\": \"4th floor\",\n        \"postalCode\": \"75100\",\n        \"city\": \"Paris\",\n        \"country\": \"CHN\"\n      }\n    },\n    {\n      \"clientId\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n      \"clientExternalId\": \"client_1\",\n      \"address\": {\n        \"name\": \"Main Office\",\n        \"line1\": \"5 Rodeo Street\",\n        \"line2\": \"4th floor\",\n        \"postalCode\": \"75100\",\n        \"city\": \"Paris\",\n        \"country\": \"NLD\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"before\": \"string\",\n    \"after\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "139d047f-c969-4327-b73e-a181b7b02841",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-001"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-002"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<base64url>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f83477de-4625-4c31-9b56-3e70bab3c1bd",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-001"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-002"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<base64url>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3ff1f4f2-c223-48f5-802f-6a5ae0ea1df9",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-001"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-002"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<base64url>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d85982f-35d2-4cf8-b4fd-2c0a5ee79aa9",
+          "name": "Create client addresses",
+          "request": {
+            "name": "Create client addresses",
+            "description": {
+              "content": "Create client addresses in bulk by clientExternalId. Maximum 1000 items per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "ar-clients",
+                "v1",
+                "entities",
+                ":entityId",
+                "client-addresses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<int>",
+                  "key": "entityId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"line2\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"line2\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3000ff28-ce7d-4c8f-aac6-18c250128512",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created\": [\n    {\n      \"clientExternalId\": \"client_1\"\n    },\n    {\n      \"clientExternalId\": \"client_1\"\n    }\n  ],\n  \"notCreated\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"reason\": \"CLIENT_ADDRESS_ALREADY_EXISTS\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"reason\": \"CLIENT_ADDRESS_ALREADY_EXISTS\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f29675d-f129-4cec-8d35-483fc4fb32bb",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "58de0b64-4e3c-4fc9-8abe-d7c6c9c4e092",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d0a7a1ab-a079-4728-ae68-947505f1e236",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ddb7881-673c-4342-a866-ecc7a1f76dbc",
+          "name": "Update client addresses",
+          "request": {
+            "name": "Update client addresses",
+            "description": {
+              "content": "Update client addresses in bulk by clientExternalId. Non-existing clients or clients without an address are ignored. Maximum 1000 items per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "ar-clients",
+                "v1",
+                "entities",
+                ":entityId",
+                "client-addresses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<int>",
+                  "key": "entityId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"line2\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"line2\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "28b0e6e0-12c5-43f4-b7ad-09f7fa643096",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"updated\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    }\n  ],\n  \"notUpdated\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"reason\": \"ADDRESS_NOT_FOUND\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"reason\": \"ADDRESS_NOT_FOUND\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b8e3d98-3a55-4927-bc99-1fe23350d386",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b1c8da83-b7c8-4ce7-a1c6-f08f293f8f6f",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1ef91c97-b9aa-41bc-90de-a8e5b22c06c0",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "client-addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientAddresses\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"name\": \"Main Office\",\n      \"line1\": \"5 Rodeo Street\",\n      \"postalCode\": \"75100\",\n      \"city\": \"Paris\",\n      \"country\": \"<string>\",\n      \"line2\": \"4th floor\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.agicap.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1fb5be1a-ee29-4b71-b7d3-12c33f1bd939",
+    "name": "Clients AR Account reports Client addresses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

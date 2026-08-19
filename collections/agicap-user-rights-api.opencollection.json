@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports User rights API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User rights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Assign users to clients by external id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/ar-clients/v1/entities/:entityId/user-rights",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Assign Agicap users to clients in bulk by user email and client external ID. Assignment will replace existing client assignations for the assigned users."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

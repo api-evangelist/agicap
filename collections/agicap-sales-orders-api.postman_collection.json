@@ -1,0 +1,2620 @@
+{
+  "item": [
+    {
+      "id": "8dd6ad51-fe64-4b9d-8bec-a84410f698a1",
+      "name": "Sales Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "22225fd1-8a05-4f89-95ef-61d2565fff5e",
+          "name": "Get sales orders",
+          "request": {
+            "name": "Get sales orders",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "business-documents",
+                "v1",
+                "entities",
+                ":entityid",
+                "connections",
+                ":connectionid",
+                "sales-orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pagesize",
+                  "value": "<integer>",
+                  "description": "Number of items per page (max 10 000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageindex",
+                  "value": "<integer>",
+                  "description": "Page index"
+                },
+                {
+                  "disabled": false,
+                  "key": "externalids",
+                  "value": "<string>,<string>",
+                  "description": "Unique identifier of the document in the data source"
+                },
+                {
+                  "disabled": false,
+                  "key": "updatedsince",
+                  "value": "<dateTime>",
+                  "description": "Will return only documents updated **after** this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>,<string>",
+                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityid",
+                  "description": "(Required) Agicap entity unique identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "connectionid",
+                  "description": "(Required) The connection unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0acd1cbc-621d-461e-a115-3073e2fb8ce8",
+              "name": "Sales orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"amounts\": {\n        \"remainingAmount\": 80,\n        \"taxesAmount\": 20,\n        \"totalAmount\": 200\n      },\n      \"counterParty\": {\n        \"id\": \"id\",\n        \"name\": \"counter party name\"\n      },\n      \"currency\": \"EUR\",\n      \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n      \"erpIdentificationFields\": {\n        \"erp field 1\": \"value 1\",\n        \"erp field 2\": \"value 2\"\n      },\n      \"externalId\": \"Some External Id\",\n      \"id\": \"d062b351-99ac-413a-9bf9-509498499a18\",\n      \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n      \"label\": \"sales order label\",\n      \"metadata\": {\n        \"additional field\": \"additional info\"\n      },\n      \"salesOrderNumber\": \"00341001\",\n      \"status\": \"accepted\"\n    }\n  ],\n  \"pagination\": {\n    \"pageIndex\": 1,\n    \"pageItemsCount\": 7,\n    \"pageSize\": 10,\n    \"totalItemsCount\": 7\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "841c6083-3007-42f2-b89e-c6b212e21376",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "563f5baa-262d-45e6-bdcb-603b9badff79",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "acc43e55-a322-4471-8cd1-1240a1f27637",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "22048807-08f6-494e-aab5-ae3da3257d5c",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 2194,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e51c4af-6b2f-471e-acef-d6cea865361d",
+          "name": "Create sales orders",
+          "request": {
+            "name": "Create sales orders",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "business-documents",
+                "v1",
+                "entities",
+                ":entityid",
+                "connections",
+                ":connectionid",
+                "sales-orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityid",
+                  "description": "(Required) Agicap entity unique identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "connectionid",
+                  "description": "(Required) The connection unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22e2120d-4c5a-455c-85e5-1ba22c748b9d",
+              "name": "Ids of the created documents, associated with the provided external identifiers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"externalId\": \"Some External Id\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"sales order label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"salesOrderNumber\": \"00341001\",\n    \"status\": \"accepted\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalId\": \"string\",\n    \"id\": \"f035eba5-5264-c907-c1b2-eff79790353c\"\n  },\n  {\n    \"externalId\": \"string\",\n    \"id\": \"ebd50f8d-347f-148e-3501-2f15e018a6da\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c8eb852-d1b9-4ccc-ba7e-acb2d9a5d4d5",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"externalId\": \"Some External Id\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"sales order label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"salesOrderNumber\": \"00341001\",\n    \"status\": \"accepted\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ff66cd02-7e0b-41c6-b865-40bc6eb74a4e",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"externalId\": \"Some External Id\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"sales order label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"salesOrderNumber\": \"00341001\",\n    \"status\": \"accepted\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e1f3c444-502c-426c-ba8b-c66708c280c8",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"externalId\": \"Some External Id\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"sales order label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"salesOrderNumber\": \"00341001\",\n    \"status\": \"accepted\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a568c422-fa45-4188-a15f-fef1cb1bd38a",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"externalId\": \"Some External Id\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"sales order label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"salesOrderNumber\": \"00341001\",\n    \"status\": \"accepted\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 2194,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c8dadb0-f27b-4853-8c5b-d5dc8c492285",
+          "name": "Update sales orders",
+          "request": {
+            "name": "Update sales orders",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "business-documents",
+                "v1",
+                "entities",
+                ":entityid",
+                "connections",
+                ":connectionid",
+                "sales-orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityid",
+                  "description": "(Required) Agicap entity unique identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "connectionid",
+                  "description": "(Required) The connection unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "765a67aa-094d-4c32-8dbf-f182f71ef400",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "64982a90-39db-47ad-8381-7033866c671f",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a82273e5-472e-4cf6-b0f6-6ed6ac3a5216",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ffcdea54-e378-4a59-bb05-8f554b69a6ef",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    },\n    \"salesOrderNumber\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 2194,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54ca849a-305a-4a43-aed6-79b5c73bce41",
+          "name": "Get sales orders",
+          "request": {
+            "name": "Get sales orders",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "business-documents",
+                "v2",
+                "entities",
+                ":entityid",
+                "connections",
+                ":connectionid",
+                "sales-orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pagesize",
+                  "value": "<integer>",
+                  "description": "Number of items per page (max 10 000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageindex",
+                  "value": "<integer>",
+                  "description": "Page index"
+                },
+                {
+                  "disabled": false,
+                  "key": "externalids",
+                  "value": "<string>,<string>",
+                  "description": "Unique identifier of the document in the data source"
+                },
+                {
+                  "disabled": false,
+                  "key": "updatedsince",
+                  "value": "<dateTime>",
+                  "description": "Will return only documents updated **after** this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>,<string>",
+                  "description": "Filter on status. Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityid",
+                  "description": "(Required) Agicap entity unique identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "connectionid",
+                  "description": "(Required) The connection unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "385ea002-7e1e-4a5f-a5c4-0c341035fb8d",
+              "name": "Sales orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"amounts\": {\n        \"remainingAmount\": 80,\n        \"taxesAmount\": 20,\n        \"totalAmount\": 200\n      },\n      \"counterParty\": {\n        \"id\": \"id\",\n        \"name\": \"counter party name\"\n      },\n      \"currency\": \"EUR\",\n      \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n      \"erpIdentificationFields\": {\n        \"erp field 1\": \"value 1\",\n        \"erp field 2\": \"value 2\"\n      },\n      \"externalId\": \"Some External Id\",\n      \"id\": \"d062b351-99ac-413a-9bf9-509498499a18\",\n      \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n      \"label\": \"sales order label\",\n      \"metadata\": {\n        \"additional field\": \"additional info\"\n      },\n      \"salesOrderNumber\": \"00341001\",\n      \"status\": \"accepted\"\n    }\n  ],\n  \"pagination\": {\n    \"pageIndex\": 1,\n    \"pageItemsCount\": 7,\n    \"pageSize\": 10,\n    \"totalItemsCount\": 7\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55d71286-0883-4a5a-a6d9-00cb6a970eab",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5eae49af-36c7-4ca5-8154-9c23346e2581",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "66e13590-cb40-47ed-b5ff-b1c1ef2187e8",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f6b52a85-c207-4f22-9000-fe7c83922bac",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 2194,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c6f67ad-a705-4a18-bdc3-d3cc801fe26a",
+          "name": "Create sales orders",
+          "request": {
+            "name": "Create sales orders",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "business-documents",
+                "v2",
+                "entities",
+                ":entityid",
+                "connections",
+                ":connectionid",
+                "sales-orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityid",
+                  "description": "(Required) Agicap entity unique identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "connectionid",
+                  "description": "(Required) The connection unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "62fbfc68-696b-430c-b0b3-0578a9d63ded",
+              "name": "Ids of the created documents, associated with the provided external identifiers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"externalId\": \"Some External Id\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"sales order label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"salesOrderNumber\": \"00341001\",\n    \"status\": \"accepted\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalId\": \"string\",\n    \"id\": \"f035eba5-5264-c907-c1b2-eff79790353c\"\n  },\n  {\n    \"externalId\": \"string\",\n    \"id\": \"ebd50f8d-347f-148e-3501-2f15e018a6da\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fecc651f-3c31-4313-a543-14bc0eec3fa2",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"externalId\": \"Some External Id\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"sales order label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"salesOrderNumber\": \"00341001\",\n    \"status\": \"accepted\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8236ccf7-9909-424c-a77e-a8f7f96144f3",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"externalId\": \"Some External Id\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"sales order label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"salesOrderNumber\": \"00341001\",\n    \"status\": \"accepted\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56938326-5078-45c3-b0df-f6ba86ba31d5",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"externalId\": \"Some External Id\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"sales order label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"salesOrderNumber\": \"00341001\",\n    \"status\": \"accepted\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f24f008e-ec54-4f90-9a93-ac144173656e",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"externalId\": \"Some External Id\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"sales order label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"salesOrderNumber\": \"00341001\",\n    \"status\": \"accepted\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 2194,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86620f61-fda0-4376-a38c-26de8d09c3fc",
+          "name": "Update sales orders",
+          "request": {
+            "name": "Update sales orders",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "business-documents",
+                "v2",
+                "entities",
+                ":entityid",
+                "connections",
+                ":connectionid",
+                "sales-orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityid",
+                  "description": "(Required) Agicap entity unique identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "connectionid",
+                  "description": "(Required) The connection unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  },\n  {\n    \"amounts\": {\n      \"remainingAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"issueDate\": \"<dateTime>\",\n    \"salesOrderNumber\": \"<string>\",\n    \"status\": \"<string>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aaa55eb7-5993-4022-b2cd-441a8285cb9a",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"externalId\": \"Some External Id\",\n    \"id\": \"d062b351-99ac-413a-9bf9-509498499a18\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"sales order label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"salesOrderNumber\": \"00341001\",\n    \"status\": \"accepted\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4b7d9218-6960-4d47-b952-188487e9fb90",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"externalId\": \"Some External Id\",\n    \"id\": \"d062b351-99ac-413a-9bf9-509498499a18\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"sales order label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"salesOrderNumber\": \"00341001\",\n    \"status\": \"accepted\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b99ca95c-4ee0-4976-8db9-572657e2cac5",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"externalId\": \"Some External Id\",\n    \"id\": \"d062b351-99ac-413a-9bf9-509498499a18\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"sales order label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"salesOrderNumber\": \"00341001\",\n    \"status\": \"accepted\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2a50f7f6-4221-4f8b-bf54-6cc5d177298e",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "sales-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"remainingAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"externalId\": \"Some External Id\",\n    \"id\": \"d062b351-99ac-413a-9bf9-509498499a18\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"sales order label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"salesOrderNumber\": \"00341001\",\n    \"status\": \"accepted\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 2194,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.agicap.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bd6756de-6be1-40cf-aaaf-26290db6c691",
+    "name": "Clients AR Account reports Sales Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

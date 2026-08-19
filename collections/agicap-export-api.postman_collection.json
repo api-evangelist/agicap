@@ -1,0 +1,2127 @@
+{
+  "item": [
+    {
+      "id": "b0a31ef7-4783-4ce9-b847-ff93b82174c6",
+      "name": "Export",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ad45f096-0cc2-4648-915f-6eddb15ba7c2",
+          "name": "Indicates Agicap that some exported bank journal entries from Agicap were successfully imported in the client accounting system.",
+          "request": {
+            "name": "Indicates Agicap that some exported bank journal entries from Agicap were successfully imported in the client accounting system.",
+            "description": {
+              "content": "Indicates Agicap that some exported bank journal entries from Agicap were successfully imported in the client accounting system.\n\n\nTo identify the exported bank journal entry, use the agicapUniqueId provided by Agicap during the export (see the POST Export operation response)\n\n\nEntries with pending corrections will have their corrections cancelled.\n\nUnknown agicapUniqueId values are silently ignored.\n\n\nThe maximum number of exported bank journal entries you can report is 1000 per request, if you need to report more,\nsimply call this endpoint as many times as necessary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "treasury-bank-journal",
+                "v1",
+                "entities",
+                ":entityId",
+                "exported-bank-journal-entries",
+                "mark-as-imported"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "entityId",
+                  "description": "(Required) Agicap entity identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entriesImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f3ff0e98-8283-4b88-a1c8-c6ef06b62590",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exported-bank-journal-entries",
+                    "mark-as-imported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entriesImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7d7f324d-765a-4495-ab0e-c9b2630b4244",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exported-bank-journal-entries",
+                    "mark-as-imported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entriesImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fdbb0c19-3d37-448a-86cc-d083e533cfb6",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exported-bank-journal-entries",
+                    "mark-as-imported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entriesImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dea6e4fb-cccb-4826-a615-d881d65e1311",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exported-bank-journal-entries",
+                    "mark-as-imported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entriesImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "493d4df5-1a46-44de-b127-c4a2415b789a",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exported-bank-journal-entries",
+                    "mark-as-imported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entriesImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 9703,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3c0d24e-2102-4cad-9e0e-a5c534001451",
+          "name": "Indicates Agicap that some exported bank journal entries from Agicap were not correctly imported in the client accounting system.",
+          "request": {
+            "name": "Indicates Agicap that some exported bank journal entries from Agicap were not correctly imported in the client accounting system.",
+            "description": {
+              "content": "Indicates Agicap that some exported bank journal entries from Agicap were not correctly imported in the client accounting system.\n\n\nYou can report several errors per bank journal entry. For each error, use the most precise error type whenever possible, and OTHER otherwise.\n\n\nTo identify the exported bank journal entry, use the agicapUniqueId provided by Agicap during the export (see the POST Export operation response)\n\nThis means, you need to keep track of which entry in the client accounting system corresponds to the agicapUniqueId.\n\n\nThe maximum number of exported bank journal entries you can report is 1000 per request, if you need to report more,\nsimply call this endpoint as many times as necessary.\n\n\nIn the example of an export response below, the id to use is \"agicapUniqueId\": \"f7f7ed5c-943c-4385-aa8d-145fd76b2fa1\":\n<pre>\n    POST /public-api/treasury-bank-journal/v1/entities/{entityId}/exports/{exportId}\n    {\n      \"exportId\": \"7397d1b5-d76d-43d2-a153-2bcff5e57455\",\n      \"year\": 2024,\n      \"bankJournalExportIndexInYear\": 1,\n      \"entityName\": \"Contoso\",\n      \"entries\": [\n        {\n          \"indexInYear\": 57,\n          \"indexInExport\": 1,\n          \"agicapUniqueId\": \"f7f7ed5c-943c-4385-aa8d-145fd76b2fa1\",   -- this is the id to use !\n          \"name\": \"ACME Payment\",\n          ... other fields omitted for brevity.\n        }\n      ]\n    }\n</pre>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "treasury-bank-journal",
+                "v1",
+                "entities",
+                ":entityId",
+                "exported-bank-journal-entries",
+                "mark-as-not-imported"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "entityId",
+                  "description": "(Required) Agicap entity identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"<uuid>\",\n      \"errors\": [\n        {\n          \"errorType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"errorType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8ae6849d-1234-4a47-a944-c4cf756f17d9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exported-bank-journal-entries",
+                    "mark-as-not-imported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"f7f7ed5c-943c-4385-aa8d-145fd76b2fa1\",\n      \"errors\": [\n        {\n          \"errorMessage\": \"1234 is not a valid accounting account\",\n          \"errorType\": \"UNKNOWN_ACCOUNTING_ACCOUNT\"\n        },\n        {\n          \"errorMessage\": \"5678 is not a valid third party\",\n          \"errorType\": \"UNKNOWN_THIRD_PARTY\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"6dd1efd6-f286-4877-9012-2cf7c3bc6858\",\n      \"errors\": [\n        {\n          \"errorMessage\": \"No journal code set\",\n          \"errorType\": \"UNKNOWN_JOURNAL_CODE\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "50698bf7-b210-426b-a238-85f94b5b2117",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exported-bank-journal-entries",
+                    "mark-as-not-imported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"f7f7ed5c-943c-4385-aa8d-145fd76b2fa1\",\n      \"errors\": [\n        {\n          \"errorMessage\": \"1234 is not a valid accounting account\",\n          \"errorType\": \"UNKNOWN_ACCOUNTING_ACCOUNT\"\n        },\n        {\n          \"errorMessage\": \"5678 is not a valid third party\",\n          \"errorType\": \"UNKNOWN_THIRD_PARTY\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"6dd1efd6-f286-4877-9012-2cf7c3bc6858\",\n      \"errors\": [\n        {\n          \"errorMessage\": \"No journal code set\",\n          \"errorType\": \"UNKNOWN_JOURNAL_CODE\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ff163419-0b7e-4ea7-b369-a28fb4eda8e3",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exported-bank-journal-entries",
+                    "mark-as-not-imported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"f7f7ed5c-943c-4385-aa8d-145fd76b2fa1\",\n      \"errors\": [\n        {\n          \"errorMessage\": \"1234 is not a valid accounting account\",\n          \"errorType\": \"UNKNOWN_ACCOUNTING_ACCOUNT\"\n        },\n        {\n          \"errorMessage\": \"5678 is not a valid third party\",\n          \"errorType\": \"UNKNOWN_THIRD_PARTY\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"6dd1efd6-f286-4877-9012-2cf7c3bc6858\",\n      \"errors\": [\n        {\n          \"errorMessage\": \"No journal code set\",\n          \"errorType\": \"UNKNOWN_JOURNAL_CODE\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "60536839-1851-440f-a495-1a2fc57a019c",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exported-bank-journal-entries",
+                    "mark-as-not-imported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"f7f7ed5c-943c-4385-aa8d-145fd76b2fa1\",\n      \"errors\": [\n        {\n          \"errorMessage\": \"1234 is not a valid accounting account\",\n          \"errorType\": \"UNKNOWN_ACCOUNTING_ACCOUNT\"\n        },\n        {\n          \"errorMessage\": \"5678 is not a valid third party\",\n          \"errorType\": \"UNKNOWN_THIRD_PARTY\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"6dd1efd6-f286-4877-9012-2cf7c3bc6858\",\n      \"errors\": [\n        {\n          \"errorMessage\": \"No journal code set\",\n          \"errorType\": \"UNKNOWN_JOURNAL_CODE\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "880071b3-5d8c-4c67-b82e-3416950f96a6",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exported-bank-journal-entries",
+                    "mark-as-not-imported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entriesNotImported\": [\n    {\n      \"entryAgicapUniqueId\": \"f7f7ed5c-943c-4385-aa8d-145fd76b2fa1\",\n      \"errors\": [\n        {\n          \"errorMessage\": \"1234 is not a valid accounting account\",\n          \"errorType\": \"UNKNOWN_ACCOUNTING_ACCOUNT\"\n        },\n        {\n          \"errorMessage\": \"5678 is not a valid third party\",\n          \"errorType\": \"UNKNOWN_THIRD_PARTY\"\n        }\n      ]\n    },\n    {\n      \"entryAgicapUniqueId\": \"6dd1efd6-f286-4877-9012-2cf7c3bc6858\",\n      \"errors\": [\n        {\n          \"errorMessage\": \"No journal code set\",\n          \"errorType\": \"UNKNOWN_JOURNAL_CODE\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 9703,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d056053e-31e8-4d90-b0d2-b9a52f046c8f",
+          "name": "Returns a list of bank journal entries export summaries.",
+          "request": {
+            "name": "Returns a list of bank journal entries export summaries.",
+            "description": {
+              "content": "Returns a list of short summaries of bank journal entries previous exports, without their entries.\n\nYou can then use `exportId` of a summary to call the <strong>GET Export</strong> endpoint to retrieve the export content with its entries.\n\nThe query pagination is based on a mandatory timestamp cursor whose value is specified either with the `after` parameter or the\n`before` parameter (but not both).\n\nIt returns (at most) `size` bank journal exports whose export dates are either:\n\n\n- strictly after the given `after` parameter if specified, the results ordered chronologically (from oldest to newest)\n\n- strictly before the given `before` parameter if specified, the results in reverse chronological order (from newest to oldest)\n\n\nBoth `after` and `before` parameters are ISO8601 date-time format interpreted in UTC, examples:\n\n\n- `2024-11-01`\n- `2024-11-01T14:30:00`\n- `2024-11-01T14:30:00Z`\n- `2024-11-01T14:30:00.123Z`\n\nNote that the server can return less than the `size` items requested if it deems the value too big, in this case, query again by using the\nreturned cursor value as a new starting point.\n\nIn the response if the cursor `after` value is null, this means there is no value `after` that, same goes for the\n`before` value.\n\nExample:\n\n\n- Query 1: `/public-api/treasury-bank-journal/v1/entities/42/exports?size=10&after=2024-11-01`\n\n- Response: 10 bank journals returned chronologically, the last one at `2024-11-07T14:30:00Z` which is the value of the returned cursor `after`\nfield\n\n\nTo get the next bank journal exports, use the returned cursor `after` field value as the `after` parameter,\nremember that bank journals at this date are excluded so you won't get the last bank journal of the previous response again.\n\n\n- Query 2: `/public-api/treasury-bank-journal/v1/entities/42/exports?size=10&after=2024-11-07T14:30:00Z`\n\n- Response: 7 bank journal exports returned, since there are no more bank journal exports to get, the returned cursor `after` field is null\n\n\nThe `before` parameter works the same way, but instead of going in chronological order, it goes backward, the newest export is first and the oldest\nlast.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "treasury-bank-journal",
+                "v1",
+                "entities",
+                ":entityId",
+                "exports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "When specified, returns bank journals whose export date is before the given UTC date time"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "When specified, returns bank journals whose export date is after the given UTC date time"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "(Required) Number of bank journals to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "entityId",
+                  "description": "(Required) Agicap entity identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6b666666-7d91-4841-85d1-a8649e522d2e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "2024-11-01T11:27:00"
+                    },
+                    {
+                      "key": "after",
+                      "value": "2024-10-21T14:30:00"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cursor\": {\n    \"after\": \"2024-10-30T18:07:00.806Z\",\n    \"before\": null,\n    \"size\": 3\n  },\n  \"items\": [\n    {\n      \"exportDateUtc\": \"2024-10-28T14:30:00.123Z\",\n      \"exportId\": \"f8e601b1-1724-41cf-bd60-f720f91236c2\",\n      \"exportIndexInYear\": 1,\n      \"exportYear\": 2024,\n      \"indexInYearOfFirstEntryInBankJournal\": 1,\n      \"indexInYearOfLastEntryInBankJournal\": 20,\n      \"numberOfEntries\": 20\n    },\n    {\n      \"exportDateUtc\": \"2024-10-29T09:18:00.504Z\",\n      \"exportId\": \"0e9d04c2-c6dd-44ec-9789-eef8a04ec7a0\",\n      \"exportIndexInYear\": 2,\n      \"exportYear\": 2024,\n      \"indexInYearOfFirstEntryInBankJournal\": 21,\n      \"indexInYearOfLastEntryInBankJournal\": 30,\n      \"numberOfEntries\": 10\n    },\n    {\n      \"exportDateUtc\": \"2024-10-30T18:07:00.806Z\",\n      \"exportId\": \"0e9d04c2-c6dd-44ec-9789-eef8a04ec7a0\",\n      \"exportIndexInYear\": 3,\n      \"exportYear\": 2024,\n      \"indexInYearOfFirstEntryInBankJournal\": 31,\n      \"indexInYearOfLastEntryInBankJournal\": 50,\n      \"numberOfEntries\": 20\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e07b76f9-fc6d-4733-97ff-9be9cbb8a5c4",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "2024-11-01T11:27:00"
+                    },
+                    {
+                      "key": "after",
+                      "value": "2024-10-21T14:30:00"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "00994fe5-4b28-4ba7-9851-0baa7450ff79",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "2024-11-01T11:27:00"
+                    },
+                    {
+                      "key": "after",
+                      "value": "2024-10-21T14:30:00"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b7cb756-0782-4d51-aba1-f4951306105d",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "2024-11-01T11:27:00"
+                    },
+                    {
+                      "key": "after",
+                      "value": "2024-10-21T14:30:00"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3cc6c2e6-a09c-4fdd-9245-b155654da11c",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "2024-11-01T11:27:00"
+                    },
+                    {
+                      "key": "after",
+                      "value": "2024-10-21T14:30:00"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 9703,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb93bc75-50e1-4612-b451-e57be8c3ce91",
+          "name": "Get an existing bank journal entries export.",
+          "request": {
+            "name": "Get an existing bank journal entries export.",
+            "description": {
+              "content": "Retrieve an existing bank journal export by its identifier, with all its entries.\n\nThe bank journal export is returned as a JSON payload.\n\nIf the export is not found an error is returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "treasury-bank-journal",
+                "v1",
+                "entities",
+                ":entityId",
+                "exports",
+                ":exportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "entityId",
+                  "description": "(Required) Agicap entity identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "exportId",
+                  "description": "(Required) Unique ID of an existing bank journal export."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "27aff47f-909d-43a5-8eb4-db67bbcafbee",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "exportId",
+                      "description": "(Required) Unique ID of an existing bank journal export."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bankJournalExportIndexInYear\": 1,\n  \"entityName\": \"Contoso\",\n  \"entries\": [\n    {\n      \"accountingAccountExternalId\": null,\n      \"accountingAccountNumber\": \"201.01000\",\n      \"accountingCurrency\": \"USD\",\n      \"agicapUniqueId\": \"f7f7ed5c-943c-4385-aa8d-145fd76b2fa1\",\n      \"bankAccountName\": \"Cars bank account\",\n      \"causale\": \"RIBA\",\n      \"counterparts\": [\n        {\n          \"accountingAccountExternalId\": null,\n          \"accountingAccountNumber\": \"140.0000\",\n          \"accountingAccountType\": \"SUPPLIER\",\n          \"accountingCurrency\": null,\n          \"analyticalCodes\": {},\n          \"creditInAccountingCurrency\": null,\n          \"creditInOriginalCurrency\": null,\n          \"customFields\": null,\n          \"debitInAccountingCurrency\": null,\n          \"debitInOriginalCurrency\": 700000,\n          \"document\": {\n            \"documentIssueDate\": null,\n            \"documentReference\": \"INV-2025-0001\",\n            \"documentType\": \"SUPPLIER_INVOICE\",\n            \"externalEntityId\": null,\n            \"externalId\": \"29a7e40d-3e7a-44bc-b245-0b7da2eaf5bd\",\n            \"originalDueDate\": \"2025-12-21\",\n            \"uniqueId\": \"yv73xx45\"\n          },\n          \"exchangeRate\": null,\n          \"journalCode\": \"SG1\",\n          \"linkedExportedEntry\": null,\n          \"name\": \"ACME Invoice 1\",\n          \"originalCurrency\": \"EUR\",\n          \"taxKey\": null,\n          \"thirdPartyCode\": \"S23\",\n          \"thirdPartyExternalId\": null,\n          \"thirdPartyName\": \"Supplier 23\"\n        },\n        {\n          \"accountingAccountExternalId\": null,\n          \"accountingAccountNumber\": \"140.0000\",\n          \"accountingAccountType\": \"SUPPLIER\",\n          \"accountingCurrency\": \"USD\",\n          \"analyticalCodes\": {\n            \"Country\": \"FR\",\n            \"Project\": \"Marketing\"\n          },\n          \"creditInAccountingCurrency\": null,\n          \"creditInOriginalCurrency\": null,\n          \"customFields\": [\n            {\n              \"name\": \"ERP id\",\n              \"value\": \"123\"\n            },\n            {\n              \"name\": \"Company division\",\n              \"value\": \"Cars\"\n            }\n          ],\n          \"debitInAccountingCurrency\": 200000,\n          \"debitInOriginalCurrency\": 300000,\n          \"document\": {\n            \"documentIssueDate\": null,\n            \"documentReference\": \"INV-2025-0002\",\n            \"documentType\": \"SUPPLIER_INVOICE\",\n            \"externalEntityId\": null,\n            \"externalId\": \"37cfb760-8f09-4fc1-8269-18f92e6e90e4\",\n            \"originalDueDate\": \"2025-12-21\",\n            \"uniqueId\": \"2wrrwpou\"\n          },\n          \"exchangeRate\": null,\n          \"journalCode\": \"SG1\",\n          \"linkedExportedEntry\": null,\n          \"name\": \"ACME Invoice 2\",\n          \"originalCurrency\": \"EUR\",\n          \"taxKey\": null,\n          \"thirdPartyCode\": \"S23\",\n          \"thirdPartyExternalId\": null,\n          \"thirdPartyName\": \"Supplier 23\"\n        }\n      ],\n      \"creditInAccountingCurrency\": 900000,\n      \"creditInOriginalCurrency\": 1000000,\n      \"debitInAccountingCurrency\": null,\n      \"debitInOriginalCurrency\": null,\n      \"entryMemo\": null,\n      \"exchangeRate\": null,\n      \"exportEntryReference\": \"0o00001l\",\n      \"indexInExport\": 1,\n      \"indexInYear\": 57,\n      \"journalCode\": \"SG1\",\n      \"name\": \"ACME Payment\",\n      \"originalCurrency\": \"EUR\",\n      \"paymentDate\": \"2024-12-24\",\n      \"type\": \"BANK\"\n    }\n  ],\n  \"exportId\": \"7397d1b5-d76d-43d2-a153-2bcff5e57455\",\n  \"year\": 2024\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b3f28d7-20d9-4d29-89c9-ea46bf7334e6",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "exportId",
+                      "description": "(Required) Unique ID of an existing bank journal export."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "48878272-18d6-4c75-9977-d5345fc563eb",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "exportId",
+                      "description": "(Required) Unique ID of an existing bank journal export."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ed5ee39-19c5-47fe-b3d8-0389e675c0ec",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "exportId",
+                      "description": "(Required) Unique ID of an existing bank journal export."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 9703,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27052a44-fad6-4c9c-957c-04fc3944f7fb",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "exportId",
+                      "description": "(Required) Unique ID of an existing bank journal export."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "45c67724-c2d3-4103-a441-22e9dc15f8b6",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "exportId",
+                      "description": "(Required) Unique ID of an existing bank journal export."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 9703,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "720aa87e-b85b-4685-a47a-ce4ab45cb84f",
+          "name": "Export bank journal entries ready to be exported.",
+          "request": {
+            "name": "Export bank journal entries ready to be exported.",
+            "description": {
+              "content": "Export all the bank journal entries ready to be exported. You need to provide the export id as a Guid\n\nThe bank journal entries will become exported instead of ready to be exported and won't be exportable anymore, they can be retrieved later on with the same\n`exportId` with the <strong>GET Export</strong> endpoint.\n\nThe bank journal is returned as a JSON payload.\n\nThe maximum number of entries in a bank journal is limited (currently 5000), if you have more entries to export, simply export several journals with\ndifferent `exportId`.\n\nNote that the exported counterparts custom fields include the ERP identification fields from business document when imported in Agicap.<hr /><p><b>This section is only for ERPs requiring the count of bank journals and bank journal entries created during the year</b></p><b>If your ERP does not require these counts, you can simply specify an empty request body (\"\" or \"{}\").</b><p>\n    For the first export of the year via Agicap, if a user has already created bank journals <strong>outside Agicap</strong> and its ERP needs to know\n    these counts, you can specify where to start the counts of bank journal and bank journal entries in the current year, by specifying in the request\n    body a <i>currentExportCounts</i> object and set the appropriate values in <i>currentBankJournalsCountInYear</i> and\n    <i>currentBankJournalEntriesCountInYear</i> fields.\n</p><p><b>Warning:</b> This must be done only once, the request will fail if you try to set these counts multiple times.\n</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "treasury-bank-journal",
+                "v1",
+                "entities",
+                ":entityId",
+                "exports",
+                ":exportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "entityId",
+                  "description": "(Required) Agicap entity identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "exportId",
+                  "description": "(Required) Unique ID of the export, provided by the caller. In case of network problem, use the same\nunique ID to retry."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentExportCounts\": {\n    \"currentBankJournalEntriesCountInYear\": \"<integer>\",\n    \"currentBankJournalsCountInYear\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "497b7d06-92db-495a-9c6d-34c0b3ef859a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "exportId",
+                      "description": "(Required) Unique ID of the export, provided by the caller. In case of network problem, use the same\nunique ID to retry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currentExportCounts\": {\n    \"currentBankJournalEntriesCountInYear\": 100,\n    \"currentBankJournalsCountInYear\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bankJournalExportIndexInYear\": 1,\n  \"entityName\": \"Contoso\",\n  \"entries\": [\n    {\n      \"accountingAccountExternalId\": null,\n      \"accountingAccountNumber\": \"201.01000\",\n      \"accountingCurrency\": \"USD\",\n      \"agicapUniqueId\": \"f7f7ed5c-943c-4385-aa8d-145fd76b2fa1\",\n      \"bankAccountName\": \"Cars bank account\",\n      \"causale\": \"RIBA\",\n      \"counterparts\": [\n        {\n          \"accountingAccountExternalId\": null,\n          \"accountingAccountNumber\": \"140.0000\",\n          \"accountingAccountType\": \"SUPPLIER\",\n          \"accountingCurrency\": null,\n          \"analyticalCodes\": {},\n          \"creditInAccountingCurrency\": null,\n          \"creditInOriginalCurrency\": null,\n          \"customFields\": null,\n          \"debitInAccountingCurrency\": null,\n          \"debitInOriginalCurrency\": 700000,\n          \"document\": {\n            \"documentIssueDate\": \"2025-12-21T11:11:11+00:00\",\n            \"documentReference\": \"INV-2025-0001\",\n            \"documentType\": \"SUPPLIER_INVOICE\",\n            \"externalEntityId\": null,\n            \"externalId\": \"29a7e40d-3e7a-44bc-b245-0b7da2eaf5bd\",\n            \"originalDueDate\": \"2025-12-21\",\n            \"uniqueId\": \"yv73xx45\"\n          },\n          \"exchangeRate\": null,\n          \"journalCode\": \"SG1\",\n          \"linkedExportedEntry\": null,\n          \"name\": \"ACME Invoice 1\",\n          \"originalCurrency\": \"EUR\",\n          \"taxKey\": null,\n          \"thirdPartyCode\": \"S23\",\n          \"thirdPartyExternalId\": null,\n          \"thirdPartyName\": \"Supplier 23\"\n        },\n        {\n          \"accountingAccountExternalId\": null,\n          \"accountingAccountNumber\": \"140.0000\",\n          \"accountingAccountType\": \"SUPPLIER\",\n          \"accountingCurrency\": \"USD\",\n          \"analyticalCodes\": {\n            \"Country\": \"FR\",\n            \"Project\": \"Marketing\"\n          },\n          \"creditInAccountingCurrency\": null,\n          \"creditInOriginalCurrency\": null,\n          \"customFields\": [\n            {\n              \"name\": \"ERP id\",\n              \"value\": \"123\"\n            },\n            {\n              \"name\": \"Company division\",\n              \"value\": \"Cars\"\n            }\n          ],\n          \"debitInAccountingCurrency\": 200000,\n          \"debitInOriginalCurrency\": 300000,\n          \"document\": {\n            \"documentIssueDate\": null,\n            \"documentReference\": \"INV-2025-0002\",\n            \"documentType\": \"SUPPLIER_INVOICE\",\n            \"externalEntityId\": null,\n            \"externalId\": \"37cfb760-8f09-4fc1-8269-18f92e6e90e4\",\n            \"originalDueDate\": \"2025-12-21\",\n            \"uniqueId\": \"2wrrwpou\"\n          },\n          \"exchangeRate\": null,\n          \"journalCode\": \"SG1\",\n          \"linkedExportedEntry\": null,\n          \"name\": \"ACME Invoice 2\",\n          \"originalCurrency\": \"EUR\",\n          \"taxKey\": null,\n          \"thirdPartyCode\": \"S23\",\n          \"thirdPartyExternalId\": null,\n          \"thirdPartyName\": \"Supplier 23\"\n        }\n      ],\n      \"creditInAccountingCurrency\": 900000,\n      \"creditInOriginalCurrency\": 1000000,\n      \"debitInAccountingCurrency\": null,\n      \"debitInOriginalCurrency\": null,\n      \"entryMemo\": null,\n      \"exchangeRate\": null,\n      \"exportEntryReference\": \"0o00001l\",\n      \"indexInExport\": 1,\n      \"indexInYear\": 57,\n      \"journalCode\": \"SG1\",\n      \"name\": \"ACME Payment\",\n      \"originalCurrency\": \"EUR\",\n      \"paymentDate\": \"2024-12-24\",\n      \"type\": \"BANK\"\n    }\n  ],\n  \"exportId\": \"7397d1b5-d76d-43d2-a153-2bcff5e57455\",\n  \"year\": 2024\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "495bd9ff-e2a6-4a7f-9352-a6005be18055",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "exportId",
+                      "description": "(Required) Unique ID of the export, provided by the caller. In case of network problem, use the same\nunique ID to retry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currentExportCounts\": {\n    \"currentBankJournalEntriesCountInYear\": 100,\n    \"currentBankJournalsCountInYear\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7ade42c1-b1c3-4c61-9bb3-b1b5f4e926a9",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "exportId",
+                      "description": "(Required) Unique ID of the export, provided by the caller. In case of network problem, use the same\nunique ID to retry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currentExportCounts\": {\n    \"currentBankJournalEntriesCountInYear\": 100,\n    \"currentBankJournalsCountInYear\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "61e6b263-f39a-4057-af05-1d4c9e45aef1",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "exportId",
+                      "description": "(Required) Unique ID of the export, provided by the caller. In case of network problem, use the same\nunique ID to retry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currentExportCounts\": {\n    \"currentBankJournalEntriesCountInYear\": 100,\n    \"currentBankJournalsCountInYear\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f01ea0f0-3d89-4266-b3c5-a84f752c32ac",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "exportId",
+                      "description": "(Required) Unique ID of the export, provided by the caller. In case of network problem, use the same\nunique ID to retry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currentExportCounts\": {\n    \"currentBankJournalEntriesCountInYear\": 100,\n    \"currentBankJournalsCountInYear\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "be90b817-4edc-4b79-aed4-1268da733f00",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "treasury-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) Agicap entity identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "exportId",
+                      "description": "(Required) Unique ID of the export, provided by the caller. In case of network problem, use the same\nunique ID to retry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currentExportCounts\": {\n    \"currentBankJournalEntriesCountInYear\": 100,\n    \"currentBankJournalsCountInYear\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 9703,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.agicap.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "226af356-7e98-4b4f-9d04-3d5e9cf69918",
+    "name": "Clients AR Account reports Export API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

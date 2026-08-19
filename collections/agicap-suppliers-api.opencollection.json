@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports Suppliers API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Suppliers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the suppliers of an entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/suppliers/v1/entities/:entityId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "123456",
+                "type": "path",
+                "description": "Agicap entity identifier."
+              },
+              {
+                "name": "erpId",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter on a single ERP identifier."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Opaque cursor returned as nextCursor by the previous page."
+              },
+              {
+                "name": "limit",
+                "value": "1000",
+                "type": "query",
+                "description": "Maximum number of suppliers per page (1 to 1000, default 1000)."
+              }
+            ]
+          },
+          "docs": "Returns the suppliers of an entity using cursor-based pagination, so ERP Connectivity can\ndiff its catalog against Agicap. Pass the nextCursor of a previous page to fetch the next one.\nUse the optional erpId filter to look up a single supplier."
+        },
+        {
+          "info": {
+            "name": "Synchronize a batch of suppliers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/suppliers/v1/entities/:entityId/sync",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "123456",
+                "type": "path",
+                "description": "Agicap entity identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Pushes up to 1000 suppliers (create / update / delete) for an entity in a single call.\nProcessing is synchronous and returns a syncId usable to fetch the row-by-row errors.\nIf the same erpId appears more than once in a batch, all of its occurrences are rejected and reported as row errors."
+        },
+        {
+          "info": {
+            "name": "Get the synchronization errors of a batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/suppliers/v1/entities/:entityId/sync/:syncId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "123456",
+                "type": "path",
+                "description": "Agicap entity identifier."
+              },
+              {
+                "name": "syncId",
+                "value": "1660e6c3-54fd-402f-be8e-7748efd94791",
+                "type": "path",
+                "description": "Synchronization identifier returned by the synchronize endpoint."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque cursor returned as cursor.after by the previous page. Omit to fetch the first page."
+              },
+              {
+                "name": "size",
+                "value": "50",
+                "type": "query",
+                "description": "Page size (1 to 200, default 50)."
+              }
+            ]
+          },
+          "docs": "Returns the row-by-row errors of a previous synchronization, paginated.\nThe syncId is the one returned by the synchronize endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

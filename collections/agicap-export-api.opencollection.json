@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports Export API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Indicates Agicap that some exported bank journal entries from Agicap were successfully imported in the client accounting system.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/treasury-bank-journal/v1/entities/:entityId/exported-bank-journal-entries/mark-as-imported",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "456897",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Indicates Agicap that some exported bank journal entries from Agicap were successfully imported in the client accounting system.\n\n\nTo identify the exported bank journal entry, use the agicapUniqueId provided by Agicap during the export (see the POST Export operation response)\n\n\nEntries with pending corrections will have their corrections cancelled.\n\nUnknown agicapUniqueId values are silently ignored.\n\n\nThe maximum number of exported bank journal entries you can report is 1000 per request, if you"
+        },
+        {
+          "info": {
+            "name": "Indicates Agicap that some exported bank journal entries from Agicap were not correctly imported in the client accounting system.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/treasury-bank-journal/v1/entities/:entityId/exported-bank-journal-entries/mark-as-not-imported",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "456897",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Indicates Agicap that some exported bank journal entries from Agicap were not correctly imported in the client accounting system.\n\n\nYou can report several errors per bank journal entry. For each error, use the most precise error type whenever possible, and OTHER otherwise.\n\n\nTo identify the exported bank journal entry, use the agicapUniqueId provided by Agicap during the export (see the POST Export operation response)\n\nThis means, you need to keep track of which entry in the client accounting sy"
+        },
+        {
+          "info": {
+            "name": "Returns a list of bank journal entries export summaries.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/treasury-bank-journal/v1/entities/:entityId/exports",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "456897",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              },
+              {
+                "name": "before",
+                "value": "2024-11-01T11:27:00",
+                "type": "query",
+                "description": "When specified, returns bank journals whose export date is before the given UTC date time"
+              },
+              {
+                "name": "after",
+                "value": "2024-10-21T14:30:00",
+                "type": "query",
+                "description": "When specified, returns bank journals whose export date is after the given UTC date time"
+              },
+              {
+                "name": "size",
+                "value": "100",
+                "type": "query",
+                "description": "Number of bank journals to return"
+              }
+            ]
+          },
+          "docs": "Returns a list of short summaries of bank journal entries previous exports, without their entries.\n\nYou can then use `exportId` of a summary to call the <strong>GET Export</strong> endpoint to retrieve the export content with its entries.\n\nThe query pagination is based on a mandatory timestamp cursor whose value is specified either with the `after` parameter or the\n`before` parameter (but not both).\n\nIt returns (at most) `size` bank journal exports whose export dates are either:\n\n\n- strictly aft"
+        },
+        {
+          "info": {
+            "name": "Get an existing bank journal entries export.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "54",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              },
+              {
+                "name": "exportId",
+                "value": "31dee215-e458-4145-8fe8-c20a0ea06042",
+                "type": "path",
+                "description": "Unique ID of an existing bank journal export."
+              }
+            ]
+          },
+          "docs": "Retrieve an existing bank journal export by its identifier, with all its entries.\n\nThe bank journal export is returned as a JSON payload.\n\nIf the export is not found an error is returned."
+        },
+        {
+          "info": {
+            "name": "Export bank journal entries ready to be exported.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/treasury-bank-journal/v1/entities/:entityId/exports/:exportId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "54",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              },
+              {
+                "name": "exportId",
+                "value": "31dee215-e458-4145-8fe8-c20a0ea06042",
+                "type": "path",
+                "description": "Unique ID of the export, provided by the caller. In case of network problem, use the same\nunique ID to retry."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export all the bank journal entries ready to be exported. You need to provide the export id as a Guid\n\nThe bank journal entries will become exported instead of ready to be exported and won't be exportable anymore, they can be retrieved later on with the same\n`exportId` with the <strong>GET Export</strong> endpoint.\n\nThe bank journal is returned as a JSON payload.\n\nThe maximum number of entries in a bank journal is limited (currently 5000), if you have more entries to export, simply export severa"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

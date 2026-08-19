@@ -1,0 +1,437 @@
+{
+  "item": [
+    {
+      "id": "13fb6a29-4fe3-408b-9349-6daf55e64200",
+      "name": "Card expenses bank journal",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b369fe45-b140-4c5b-8e6e-9928709f2687",
+          "name": "Retrieve your card expense bank journal entries",
+          "request": {
+            "name": "Retrieve your card expense bank journal entries",
+            "description": {
+              "content": "# Getting Started:\n\n## Export your card expenses bank journal entries from Agicap to your accounting software\n\nWelcome to the card expenses bank journal entries API documentation. This guide is designed to help you seamlessly export bank journal entries to your accounting software from Agicap.\n\n## Introduction\n\nBefore starting, make sure with your Account Manager that the relevant option is activated in Agicap on your entity = Pre-Accounting with the export option “External accounting softwares”. After that, you need your accountant to prepare the journal entries and click on “export to my accounting software” for them to be available from the API database.\n\n## Set up a connexion to retrieve journal entries\n\n### Step 1: Generate Client Credentials\n\nTo get started, you’ll need to generate client credentials. These credentials will authenticate your API requests. For detailed instructions, please refer to our [Introduction Guide](https://api.agicap.com/guides/introduction).\n\n### Step 2: Retrieve Entity\n\nEach connection must be associated with an entity. You’ll need the `entity id` to create a connection.\n\n- If you already have the `entity id`, skip to Step 3.\n- To retrieve the `entity id`:\n    1. **List Organizations**: Use the following request ([Get Organizations](https://api.agicap.com/api-details/organizations-v1#tag/Entities/operation/Organizations_ListOrganizations))\n    2. **List Entities**: Use the following request ([Get Entities](https://api.agicap.com/api-details/organizations-v1#tag/Entities)) to find the entities associated with your organization\n    3. **Select the Entity Owner**: Choose the entity that will be the owner of the connection.\n\n### Step 3: Get bank journal entries\n\nWe recommend creating a separate connection for each entity to keep data sources distinct and maintain clarity within Agicap. To get bank journal entries, make the following API call: [Get accounting transactions](https://api.agicap.com/api-details/card-expenses-bank-journal-v1#tag/Card-expenses-bank-journal/operation/AccountingTransactionsPublicApi_GetAccountingTransactionLines).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "card-expenses-bank-journal",
+                "v1",
+                "entities",
+                ":entityId",
+                "accounting-transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "LastSynchronizationDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "entityId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "40ae5dca-0e9c-4854-9092-fa109519249a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "card-expenses-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "accounting-transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "LastSynchronizationDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"credit\": {\n        \"accountNumber\": \"string\",\n        \"accountType\": \"BankLedger\",\n        \"amount\": 4229.1471349568565,\n        \"currency\": \"string\",\n        \"thirdPartyAccount\": \"string\"\n      },\n      \"debit\": {\n        \"accountNumber\": \"string\",\n        \"accountType\": \"BankLedger\",\n        \"amount\": 9286.409840557724,\n        \"currency\": \"string\",\n        \"thirdPartyAccount\": \"string\"\n      },\n      \"paymentDate\": \"1956-08-02T21:17:28.005Z\",\n      \"supplierOrMerchant\": \"string\",\n      \"title\": \"string\",\n      \"uniqueId\": \"string\"\n    },\n    {\n      \"credit\": {\n        \"accountNumber\": \"string\",\n        \"accountType\": \"SupplierAccount\",\n        \"amount\": 7953.3935004193145,\n        \"currency\": \"string\",\n        \"thirdPartyAccount\": \"string\"\n      },\n      \"debit\": {\n        \"accountNumber\": \"string\",\n        \"accountType\": \"BankLedger\",\n        \"amount\": 9439.623666620153,\n        \"currency\": \"string\",\n        \"thirdPartyAccount\": \"string\"\n      },\n      \"paymentDate\": \"1988-05-01T04:25:32.298Z\",\n      \"supplierOrMerchant\": \"string\",\n      \"title\": \"string\",\n      \"uniqueId\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"currentPageItemsCount\": 2554,\n    \"currentPageNumber\": 6885,\n    \"pagesCount\": 5443,\n    \"pageSize\": 5205,\n    \"totalItemsCount\": 5758\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ca2ca2c-fd03-497a-82e6-732ef67c87dd",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "card-expenses-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "accounting-transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "LastSynchronizationDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "523e0cc4-c44e-4059-adce-04b02d8cb76d",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "card-expenses-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "accounting-transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "LastSynchronizationDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f04581ca-d7db-469b-b93c-f9081aa01f63",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "card-expenses-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "accounting-transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "LastSynchronizationDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9fca6ddc-66f5-4718-a947-3194275a3b82",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "card-expenses-bank-journal",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "accounting-transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "LastSynchronizationDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 4613,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.agicap.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e4dc233c-34c6-45cc-95de-545f5a0e7cf1",
+    "name": "Clients AR Account reports Card expenses bank journal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

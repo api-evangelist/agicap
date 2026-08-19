@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports Route payment files API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Route payment files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Route payment file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/payments/v2/entities/:entityId/payments-files/import",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Route payment files into Agicap in any standard banking format. Once imported, the files are processed and sent to the bank without any modifications.<br/>Supported Formats: the API supports all standard banking formats in `.xml` and `.txt`\n\n**Required OAuth scopes:**\n\n- `agicap:public-api`\n- `public-api:import_payment_files`"
+        },
+        {
+          "info": {
+            "name": "Route payment files with signed beneficiaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/payments/v2/entities/:entityId/payments-files/secured-import",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "keepConfidentiality",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "remittanceFile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "signaturesJsonFile",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Do not use except if you received dedicated instruction from Agicap’s team. More documentation to come on this use case.\n\n**Required OAuth scopes:**\n\n- `agicap:public-api`\n- `public-api:import_payment_files_with_signed_beneficiaries`"
+        },
+        {
+          "info": {
+            "name": "Route payment file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/payments/v2/entities/:entityId/remittances/import",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Route payment files into Agicap in any standard banking format. Once imported, the files are processed and sent to the bank without any modifications.<br/>Supported Formats: the API supports all standard banking formats in `.xml` and `.txt`<br/><b>Deprecated:</b> Use public-api/payments/v2/entities/{entityId:int}/payments-files/import instead\n\n**Required OAuth scopes:**\n\n- `agicap:public-api`\n- `public-api:import_payment_files`"
+        },
+        {
+          "info": {
+            "name": "Route payment files with signed beneficiaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/payments/v2/entities/:entityId/remittances/secured-import",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "keepConfidentiality",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "remittanceFile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "signaturesJsonFile",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Do not use except if you received dedicated instruction from Agicap’s team. More documentation to come on this use case.<br/><b>Deprecated:</b> Use public-api/payments/v2/entities/{entityId:int}/payments-files/secured-import instead\n\n**Required OAuth scopes:**\n\n- `agicap:public-api`\n- `public-api:import_payment_files_with_signed_beneficiaries`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

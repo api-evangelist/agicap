@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports Purchase journal API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Purchase journal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve your purchase journal entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/purchase-journal/v1/entities/:entityId/accounting-purchases",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "LastSynchronizationDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Include",
+                "value": "",
+                "type": "query",
+                "description": "Opt-in enrichment selector. Pass `invoiceInformation` to enrich entries of typology `OwedInvoice` with the `invoiceInformation` block (supplier, line items, linked purchase orders). `invoiceInformation` is the only supported value; any other value is ignored. Omit it to keep the lighter default payload."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves purchase journal accounting entries from your Agicap account for a specific entity.\n\n\n### Query Parameters\n- **LastSynchronizationDate** (string, optional): The date of your last synchronization (need to be stored on your side). Only accounting entries exposed with the button “export to my accounting software” after this date will be returned.\n- **PageSize** (int, optional): The number of entries returned per page. Default is 100. The maximum value is 100.\n- **PageNumber*"
+        },
+        {
+          "info": {
+            "name": "Report errors on exported purchase journal entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/purchase-journal/v1/entities/:entityId/accounting-purchases/exported/mark-as-not-imported",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Agicap entity Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Indicates Agicap that some exported purchase entries from Agicap were not correctly imported in the client accounting system.\nYou can report several errors per purchase journal entry. For each error, use the most precise error type whenever possible, and OTHER otherwise.\n\nTo identify the exported purchase journal entry, use the agicapUniqueId provided by Agicap during the retrieval of the purchase journal entries.\nThis means, you need to keep track of which entry in the client accounting system "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

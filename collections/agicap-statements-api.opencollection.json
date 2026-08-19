@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports Statements API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Statements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List statements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/banking-documents/v1/entities/:entityId/connections/:connectionId/statements",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              },
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Bank file format"
+              },
+              {
+                "name": "createdSince",
+                "value": "",
+                "type": "query",
+                "description": "Will return only statements created **after** this date"
+              },
+              {
+                "name": "createdUntil",
+                "value": "",
+                "type": "query",
+                "description": "Will return only statements created **before** this date"
+              },
+              {
+                "name": "includeDuplicates",
+                "value": "",
+                "type": "query",
+                "description": "Include duplicate statements in response. If not specified, considered `false`"
+              },
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "query",
+                "description": "Will return only statements extracted from this file"
+              },
+              {
+                "name": "accountNumber",
+                "value": "",
+                "type": "query",
+                "description": "Will return only statements of this account number"
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List statements"
+        },
+        {
+          "info": {
+            "name": "Download a statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/banking-documents/v1/entities/:entityId/connections/:connectionId/statements/:statementId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              },
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier"
+              },
+              {
+                "name": "statementId",
+                "value": "",
+                "type": "path",
+                "description": "Statement identifier"
+              }
+            ]
+          },
+          "docs": "Download a statement"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

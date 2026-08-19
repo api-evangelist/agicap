@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports External contacts API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "External contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List external contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/ar-clients/v1/entities/:entityId/external-contacts",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "clientExternalIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts by client external identifiers. Supports multiple values."
+              },
+              {
+                "name": "clientIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts by their client Agicap identifier (UUID). Supports multiple values."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts whose email contains this value (case-insensitive)."
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination token for retrieving the next page"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a paginated list of external contacts for the given entity."
+        },
+        {
+          "info": {
+            "name": "Create external contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/ar-clients/v1/entities/:entityId/external-contacts",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create external contacts in bulk by clientExternalId. Maximum 1000 items per request."
+        },
+        {
+          "info": {
+            "name": "Update external contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.agicap.com/public/ar-clients/v1/entities/:entityId/external-contacts",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update external contacts in bulk by contactExternalId. Maximum 1000 items per request."
+        },
+        {
+          "info": {
+            "name": "Delete external contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.agicap.com/public/ar-clients/v1/entities/:entityId/external-contacts",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete external contacts in bulk. Each contact is identified by itsexternalId within the client scope (clientExternalId + externalId).Maximum 1000 contacts per request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

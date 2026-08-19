@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports Analytical Plan API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analytical Plan",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the analytical plan axes for an entity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "54",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ]
+          },
+          "docs": "Returns all analytical axes and their codes for the given entity."
+        },
+        {
+          "info": {
+            "name": "Bulk create analytical axes for an entity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-create",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "54",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create multiple analytical axes with their codes in a single call.\n\nEach axe is processed independently: if one fails, the others are still created.\n\nThe response contains a per-item report indicating success or failure for each axe."
+        },
+        {
+          "info": {
+            "name": "Bulk delete analytical axes for an entity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-delete",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "54",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete multiple analytical axes in a single call.\n\nEach axe is processed independently: if one fails, the others are still deleted.\n\nThe response contains a per-item report indicating success or failure for each axe."
+        },
+        {
+          "info": {
+            "name": "Bulk update analytical axes for an entity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.agicap.com/public/chart-of-accounts/v1/entities/:entityId/analytical-plan/axes/bulk-update",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "54",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update multiple analytical axes and their codes in a single call.\n\nEach axe is processed independently: if one fails, the others are still updated.\n\nThe response contains a per-item report indicating success or failure for each axe."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

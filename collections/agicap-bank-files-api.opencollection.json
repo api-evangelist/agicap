@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports Bank files API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bank files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List bank files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/banking-documents/v1/entities/:entityId/connections/:connectionId/files",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              },
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Bank file format"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Bank file type. Possible value are STATEMENT, ACCOUNT_REPORT, OTHER, UNKNOWN"
+              },
+              {
+                "name": "createdSince",
+                "value": "",
+                "type": "query",
+                "description": "Will return only bank files created **after** this date"
+              },
+              {
+                "name": "createdUntil",
+                "value": "",
+                "type": "query",
+                "description": "Will return only bank files created **before** this date"
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List bank files"
+        },
+        {
+          "info": {
+            "name": "Push a bank file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/banking-documents/v1/entities/:entityId/connections/:connectionId/files",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              },
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Push a bank file"
+        },
+        {
+          "info": {
+            "name": "Download a bank file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/banking-documents/v1/entities/:entityId/connections/:connectionId/files/:fileId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              },
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier"
+              },
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "File identifier"
+              }
+            ]
+          },
+          "docs": "Download a bank file"
+        },
+        {
+          "info": {
+            "name": "Delete a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.agicap.com/public/banking-documents/v1/entities/:entityId/connections/:connectionId/files/:fileId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              },
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier"
+              },
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "File identifier"
+              }
+            ]
+          },
+          "docs": "Delete a file"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

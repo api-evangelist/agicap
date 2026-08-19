@@ -1,0 +1,2626 @@
+{
+  "item": [
+    {
+      "id": "101b5fdf-ddd1-4ba1-aee7-df504c66a446",
+      "name": "Client Invoices",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b0dfa949-7a29-463c-9e8b-62d9383712ba",
+          "name": "Get client invoices",
+          "request": {
+            "name": "Get client invoices",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "business-documents",
+                "v1",
+                "entities",
+                ":entityid",
+                "connections",
+                ":connectionid",
+                "client-invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pagesize",
+                  "value": "<integer>",
+                  "description": "Number of items per page (max 10 000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageindex",
+                  "value": "<integer>",
+                  "description": "Page index"
+                },
+                {
+                  "disabled": false,
+                  "key": "externalids",
+                  "value": "<string>,<string>",
+                  "description": "Unique identifier of the document in the data source"
+                },
+                {
+                  "disabled": false,
+                  "key": "updatedsince",
+                  "value": "<dateTime>",
+                  "description": "Will return only documents updated **after** this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>,<string>",
+                  "description": "Filter on status. Possible values : draft, due, paid, cancelled, deleted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityid",
+                  "description": "(Required) Agicap entity unique identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "connectionid",
+                  "description": "(Required) The connection unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "594f3d6f-9911-40bd-89d2-dcaf1a31f612",
+              "name": "Client invoices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"accounting\": {\n        \"accountCode\": \"Account code\",\n        \"accountNumber\": \"Account number\",\n        \"amount\": 100,\n        \"currency\": \"EUR\"\n      },\n      \"amounts\": {\n        \"dueAmount\": 80,\n        \"taxesAmount\": 20,\n        \"totalAmount\": 200\n      },\n      \"counterParty\": {\n        \"id\": \"id\",\n        \"name\": \"counter party name\"\n      },\n      \"currency\": \"EUR\",\n      \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n      \"erpIdentificationFields\": {\n        \"erp field 1\": \"value 1\",\n        \"erp field 2\": \"value 2\"\n      },\n      \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n      \"externalId\": \"Some External Id\",\n      \"financingSolution\": null,\n      \"hasReadable\": false,\n      \"id\": \"d062b351-99ac-413a-9bf9-509498499a18\",\n      \"instalments\": [\n        {\n          \"accountingAmount\": {\n            \"amount\": 100,\n            \"currency\": \"EUR\"\n          },\n          \"amounts\": {\n            \"dueAmount\": 80,\n            \"taxesAmount\": 20,\n            \"totalAmount\": 200\n          },\n          \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n          \"erpIdentificationFields\": {\n            \"erp field 1\": \"value 1\",\n            \"erp field 2\": \"value 2\"\n          },\n          \"externalId\": \"Some External Id\",\n          \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n          \"label\": \"client invoice label\",\n          \"metadata\": {\n            \"additional field\": \"additional info\"\n          },\n          \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n          \"paymentMethod\": \"Credit Card\",\n          \"status\": \"due\"\n        }\n      ],\n      \"invoiceNumber\": \"00341001\",\n      \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n      \"label\": \"client invoice label\",\n      \"metadata\": {\n        \"additional field\": \"additional info\"\n      },\n      \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n      \"status\": \"due\"\n    }\n  ],\n  \"pagination\": {\n    \"pageIndex\": 1,\n    \"pageItemsCount\": 7,\n    \"pageSize\": 10,\n    \"totalItemsCount\": 7\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fcefc230-6d4b-4aaa-827a-d2c72078628a",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ae4274a-9d10-41d7-b491-86509fc9c00a",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "574c2201-bf06-4019-8331-f6a7d2fb66ef",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d634d9b-5f9b-40ce-aa33-1a07b27c42ce",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 6513,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86b846d2-98f1-43c2-b31e-470bb55c19d0",
+          "name": "Create client invoices",
+          "request": {
+            "name": "Create client invoices",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "business-documents",
+                "v1",
+                "entities",
+                ":entityid",
+                "connections",
+                ":connectionid",
+                "client-invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityid",
+                  "description": "(Required) Agicap entity unique identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "connectionid",
+                  "description": "(Required) The connection unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4e6c5ba0-83a8-4cae-bb1c-a740daafc497",
+              "name": "Ids of the created documents, associated with the provided external identifiers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accounting\": {\n      \"accountCode\": \"Account code\",\n      \"accountNumber\": \"Account number\",\n      \"amount\": 100,\n      \"currency\": \"EUR\"\n    },\n    \"amounts\": {\n      \"dueAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"externalId\": \"Some External Id\",\n    \"financingSolution\": null,\n    \"instalments\": [\n      {\n        \"accountingAmount\": {\n          \"amount\": 100,\n          \"currency\": \"EUR\"\n        },\n        \"amounts\": {\n          \"dueAmount\": 80,\n          \"taxesAmount\": 20,\n          \"totalAmount\": 200\n        },\n        \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n        \"erpIdentificationFields\": {\n          \"erp field 1\": \"value 1\",\n          \"erp field 2\": \"value 2\"\n        },\n        \"externalId\": \"Some External Id\",\n        \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n        \"label\": \"client invoice label\",\n        \"metadata\": {\n          \"additional field\": \"additional info\"\n        },\n        \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n        \"paymentMethod\": \"Credit Card\",\n        \"status\": \"due\"\n      }\n    ],\n    \"invoiceNumber\": \"00341001\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"client invoice label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"status\": \"due\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalId\": \"string\",\n    \"id\": \"4cfc9819-0dcf-25d9-00d9-9fb6f4830ca1\"\n  },\n  {\n    \"externalId\": \"string\",\n    \"id\": \"1cfd9fa6-ef6b-4b26-05ef-485f500527b6\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9024f2c8-336e-49d9-87b9-3b3d298fa2fc",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accounting\": {\n      \"accountCode\": \"Account code\",\n      \"accountNumber\": \"Account number\",\n      \"amount\": 100,\n      \"currency\": \"EUR\"\n    },\n    \"amounts\": {\n      \"dueAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"externalId\": \"Some External Id\",\n    \"financingSolution\": null,\n    \"instalments\": [\n      {\n        \"accountingAmount\": {\n          \"amount\": 100,\n          \"currency\": \"EUR\"\n        },\n        \"amounts\": {\n          \"dueAmount\": 80,\n          \"taxesAmount\": 20,\n          \"totalAmount\": 200\n        },\n        \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n        \"erpIdentificationFields\": {\n          \"erp field 1\": \"value 1\",\n          \"erp field 2\": \"value 2\"\n        },\n        \"externalId\": \"Some External Id\",\n        \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n        \"label\": \"client invoice label\",\n        \"metadata\": {\n          \"additional field\": \"additional info\"\n        },\n        \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n        \"paymentMethod\": \"Credit Card\",\n        \"status\": \"due\"\n      }\n    ],\n    \"invoiceNumber\": \"00341001\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"client invoice label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"status\": \"due\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0e4d235e-fa4f-457d-ab75-ec1da1fdee9e",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accounting\": {\n      \"accountCode\": \"Account code\",\n      \"accountNumber\": \"Account number\",\n      \"amount\": 100,\n      \"currency\": \"EUR\"\n    },\n    \"amounts\": {\n      \"dueAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"externalId\": \"Some External Id\",\n    \"financingSolution\": null,\n    \"instalments\": [\n      {\n        \"accountingAmount\": {\n          \"amount\": 100,\n          \"currency\": \"EUR\"\n        },\n        \"amounts\": {\n          \"dueAmount\": 80,\n          \"taxesAmount\": 20,\n          \"totalAmount\": 200\n        },\n        \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n        \"erpIdentificationFields\": {\n          \"erp field 1\": \"value 1\",\n          \"erp field 2\": \"value 2\"\n        },\n        \"externalId\": \"Some External Id\",\n        \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n        \"label\": \"client invoice label\",\n        \"metadata\": {\n          \"additional field\": \"additional info\"\n        },\n        \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n        \"paymentMethod\": \"Credit Card\",\n        \"status\": \"due\"\n      }\n    ],\n    \"invoiceNumber\": \"00341001\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"client invoice label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"status\": \"due\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f2257937-56f7-41a2-850d-0103edda1501",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accounting\": {\n      \"accountCode\": \"Account code\",\n      \"accountNumber\": \"Account number\",\n      \"amount\": 100,\n      \"currency\": \"EUR\"\n    },\n    \"amounts\": {\n      \"dueAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"externalId\": \"Some External Id\",\n    \"financingSolution\": null,\n    \"instalments\": [\n      {\n        \"accountingAmount\": {\n          \"amount\": 100,\n          \"currency\": \"EUR\"\n        },\n        \"amounts\": {\n          \"dueAmount\": 80,\n          \"taxesAmount\": 20,\n          \"totalAmount\": 200\n        },\n        \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n        \"erpIdentificationFields\": {\n          \"erp field 1\": \"value 1\",\n          \"erp field 2\": \"value 2\"\n        },\n        \"externalId\": \"Some External Id\",\n        \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n        \"label\": \"client invoice label\",\n        \"metadata\": {\n          \"additional field\": \"additional info\"\n        },\n        \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n        \"paymentMethod\": \"Credit Card\",\n        \"status\": \"due\"\n      }\n    ],\n    \"invoiceNumber\": \"00341001\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"client invoice label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"status\": \"due\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5b65411f-68c0-4a5e-862a-fc91948420cc",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accounting\": {\n      \"accountCode\": \"Account code\",\n      \"accountNumber\": \"Account number\",\n      \"amount\": 100,\n      \"currency\": \"EUR\"\n    },\n    \"amounts\": {\n      \"dueAmount\": 80,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 200\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"externalId\": \"Some External Id\",\n    \"financingSolution\": null,\n    \"instalments\": [\n      {\n        \"accountingAmount\": {\n          \"amount\": 100,\n          \"currency\": \"EUR\"\n        },\n        \"amounts\": {\n          \"dueAmount\": 80,\n          \"taxesAmount\": 20,\n          \"totalAmount\": 200\n        },\n        \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n        \"erpIdentificationFields\": {\n          \"erp field 1\": \"value 1\",\n          \"erp field 2\": \"value 2\"\n        },\n        \"externalId\": \"Some External Id\",\n        \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n        \"label\": \"client invoice label\",\n        \"metadata\": {\n          \"additional field\": \"additional info\"\n        },\n        \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n        \"paymentMethod\": \"Credit Card\",\n        \"status\": \"due\"\n      }\n    ],\n    \"invoiceNumber\": \"00341001\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"client invoice label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"status\": \"due\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 6513,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb6ce8f2-9230-4254-8645-9754663ca22c",
+          "name": "Update client invoices",
+          "request": {
+            "name": "Update client invoices",
+            "description": {
+              "content": "To mark an invoice as paid, update it with the following value : `\"status\": \"paid\"` and `\"dueAmount\": 0`<br><br>To delete an invoice, update it with the following value : `\"status\" = \"deleted\"`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "business-documents",
+                "v1",
+                "entities",
+                ":entityid",
+                "connections",
+                ":connectionid",
+                "client-invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityid",
+                  "description": "(Required) Agicap entity unique identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "connectionid",
+                  "description": "(Required) The connection unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ffc32075-15a2-44fb-8f84-1e9e854c2f38",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "641bebea-e908-40a9-ba7e-2d9ea69fe432",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "842b531c-67bf-4899-be11-8263af729c41",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a0d27436-1d0e-465b-bd93-f154a3f6f5c0",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v1",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  },\n  {\n    \"amounts\": {\n      \"totalAmount\": \"<double>\",\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\"\n    },\n    \"currency\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"dueDate\": \"<dateTime>\",\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"totalAmount\": \"<double>\",\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\"\n        },\n        \"issueDate\": \"<dateTime>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 6513,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a68f2531-214e-44b5-9f74-beb579870162",
+          "name": "Get client invoices",
+          "request": {
+            "name": "Get client invoices",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "business-documents",
+                "v2",
+                "entities",
+                ":entityid",
+                "connections",
+                ":connectionid",
+                "client-invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pagesize",
+                  "value": "<integer>",
+                  "description": "Number of items per page (max 10 000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageindex",
+                  "value": "<integer>",
+                  "description": "Page index"
+                },
+                {
+                  "disabled": false,
+                  "key": "externalids",
+                  "value": "<string>,<string>",
+                  "description": "Unique identifier of the document in the data source"
+                },
+                {
+                  "disabled": false,
+                  "key": "updatedsince",
+                  "value": "<dateTime>",
+                  "description": "Will return only documents updated **after** this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>,<string>",
+                  "description": "Filter on status. Possible values : draft, due, paid, cancelled, deleted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityid",
+                  "description": "(Required) Agicap entity unique identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "connectionid",
+                  "description": "(Required) The connection unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cb2c1f9b-356e-4c40-a083-712e876a9404",
+              "name": "Client invoices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"amounts\": {\n        \"totalAmount\": \"<double>\",\n        \"dueAmount\": \"<double>\",\n        \"taxesAmount\": \"<double>\"\n      },\n      \"currency\": \"string\",\n      \"externalId\": \"string\",\n      \"id\": \"451d7231-93d6-3290-8982-73493df8c922\",\n      \"status\": \"string\",\n      \"accounting\": {\n        \"accountCode\": \"<string>\",\n        \"accountNumber\": \"<string>\",\n        \"amount\": \"<double>\",\n        \"currency\": \"<string>\"\n      },\n      \"counterParty\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"dueDate\": \"1948-11-18T22:52:44.714Z\",\n      \"erpIdentificationFields\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"expectedPaymentDate\": \"1964-04-28T16:15:11.480Z\",\n      \"financingSolution\": \"string\",\n      \"hasReadable\": false,\n      \"instalments\": [\n        {\n          \"amounts\": {\n            \"dueAmount\": 921.5835992751131,\n            \"taxesAmount\": 4711.7997676232235,\n            \"totalAmount\": 9876.221543934496\n          },\n          \"externalId\": \"string\",\n          \"status\": \"string\",\n          \"accountingAmount\": {\n            \"amount\": \"<double>\",\n            \"currency\": \"<string>\"\n          },\n          \"dueDate\": \"1998-10-04T00:55:05.163Z\",\n          \"erpIdentificationFields\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"financingSolution\": \"string\",\n          \"label\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\"\n          },\n          \"paymentDate\": \"1963-02-06T12:47:03.135Z\",\n          \"paymentMethod\": \"string\"\n        },\n        {\n          \"amounts\": {\n            \"dueAmount\": 1712.9755494624467,\n            \"taxesAmount\": 1739.9005493214427,\n            \"totalAmount\": 1685.6297620758498\n          },\n          \"externalId\": \"string\",\n          \"status\": \"string\",\n          \"accountingAmount\": {\n            \"amount\": \"<double>\",\n            \"currency\": \"<string>\"\n          },\n          \"dueDate\": \"1953-01-02T11:56:24.540Z\",\n          \"erpIdentificationFields\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"financingSolution\": \"string\",\n          \"label\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"paymentDate\": \"2023-11-17T15:27:44.923Z\",\n          \"paymentMethod\": \"string\"\n        }\n      ],\n      \"invoiceNumber\": \"string\",\n      \"issueDate\": \"1969-01-30T21:43:49.085Z\",\n      \"label\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      },\n      \"paymentDate\": \"2010-09-28T10:57:46.879Z\"\n    },\n    {\n      \"amounts\": {\n        \"totalAmount\": \"<double>\",\n        \"dueAmount\": \"<double>\",\n        \"taxesAmount\": \"<double>\"\n      },\n      \"currency\": \"string\",\n      \"externalId\": \"string\",\n      \"id\": \"3190c89b-2cc1-4e86-5234-f82d4ea3cbbc\",\n      \"status\": \"string\",\n      \"accounting\": {\n        \"accountCode\": \"<string>\",\n        \"accountNumber\": \"<string>\",\n        \"amount\": \"<double>\",\n        \"currency\": \"<string>\"\n      },\n      \"counterParty\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"dueDate\": \"2009-04-16T02:13:41.998Z\",\n      \"erpIdentificationFields\": {\n        \"key_0\": \"string\"\n      },\n      \"expectedPaymentDate\": \"1949-10-08T11:22:30.120Z\",\n      \"financingSolution\": \"string\",\n      \"hasReadable\": false,\n      \"instalments\": [\n        {\n          \"amounts\": {\n            \"dueAmount\": 7859.457522538239,\n            \"taxesAmount\": 7134.087173610832,\n            \"totalAmount\": 882.5439012750613\n          },\n          \"externalId\": \"string\",\n          \"status\": \"string\",\n          \"accountingAmount\": {\n            \"amount\": \"<double>\",\n            \"currency\": \"<string>\"\n          },\n          \"dueDate\": \"1962-04-16T16:31:40.000Z\",\n          \"erpIdentificationFields\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"financingSolution\": \"string\",\n          \"label\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\"\n          },\n          \"paymentDate\": \"1967-12-26T04:57:35.398Z\",\n          \"paymentMethod\": \"string\"\n        },\n        {\n          \"amounts\": {\n            \"dueAmount\": 624.6779546432979,\n            \"taxesAmount\": 8582.395409477904,\n            \"totalAmount\": 9317.659952281498\n          },\n          \"externalId\": \"string\",\n          \"status\": \"string\",\n          \"accountingAmount\": {\n            \"amount\": \"<double>\",\n            \"currency\": \"<string>\"\n          },\n          \"dueDate\": \"1953-03-28T23:25:48.746Z\",\n          \"erpIdentificationFields\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"financingSolution\": \"string\",\n          \"label\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"paymentDate\": \"2012-08-10T19:07:59.724Z\",\n          \"paymentMethod\": \"string\"\n        }\n      ],\n      \"invoiceNumber\": \"string\",\n      \"issueDate\": \"2018-11-15T18:23:44.067Z\",\n      \"label\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      },\n      \"paymentDate\": \"1953-06-25T10:38:04.470Z\"\n    }\n  ],\n  \"pagination\": {\n    \"pageIndex\": 4086,\n    \"pageItemsCount\": 1410,\n    \"pageSize\": 4014,\n    \"totalItemsCount\": 5879\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bd49273-59f9-4e80-b612-e3410499fc66",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0a1dedb7-90d4-47f8-bd71-55c662e3c651",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d98bef2-3597-415f-9a31-fc5cb4ed7c51",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "33be5abe-1021-43cd-82eb-7c22783ec4e9",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageindex",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "externalids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "updatedsince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 6513,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24a39e1a-25f1-4889-8025-a8b3653589da",
+          "name": "Create client invoices",
+          "request": {
+            "name": "Create client invoices",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "business-documents",
+                "v2",
+                "entities",
+                ":entityid",
+                "connections",
+                ":connectionid",
+                "client-invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityid",
+                  "description": "(Required) Agicap entity unique identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "connectionid",
+                  "description": "(Required) The connection unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"amounts\": {\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\",\n          \"totalAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"financingSolution\": \"<string>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\",\n          \"totalAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\"\n        },\n        \"financingSolution\": \"<string>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  },\n  {\n    \"amounts\": {\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\",\n          \"totalAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"financingSolution\": \"<string>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\",\n          \"key_4\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\",\n          \"totalAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"financingSolution\": \"<string>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7f1b29db-168b-4314-abab-812f74599147",
+              "name": "Ids of the created documents, associated with the provided external identifiers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accounting\": {\n      \"accountCode\": \"Account code\",\n      \"accountNumber\": \"Account number\",\n      \"amount\": 100,\n      \"currency\": \"EUR\"\n    },\n    \"amounts\": {\n      \"dueAmount\": 100,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 120\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"externalId\": \"Some External Id\",\n    \"financingSolution\": null,\n    \"instalments\": [\n      {\n        \"accountingAmount\": {\n          \"amount\": 100,\n          \"currency\": \"EUR\"\n        },\n        \"amounts\": {\n          \"dueAmount\": 100,\n          \"taxesAmount\": 20,\n          \"totalAmount\": 120\n        },\n        \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n        \"erpIdentificationFields\": {\n          \"erp field 1\": \"value 1\",\n          \"erp field 2\": \"value 2\"\n        },\n        \"externalId\": \"Some External Id\",\n        \"financingSolution\": \"Factoring\",\n        \"label\": \"client invoice label\",\n        \"metadata\": {\n          \"additional field\": \"additional info\"\n        },\n        \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n        \"paymentMethod\": \"Credit Card\",\n        \"status\": \"due\"\n      }\n    ],\n    \"invoiceNumber\": \"00341001\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"client invoice label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"status\": \"due\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalId\": \"string\",\n    \"id\": \"4cfc9819-0dcf-25d9-00d9-9fb6f4830ca1\"\n  },\n  {\n    \"externalId\": \"string\",\n    \"id\": \"1cfd9fa6-ef6b-4b26-05ef-485f500527b6\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5aec90d-423b-4322-93b0-cb7e04cf3522",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accounting\": {\n      \"accountCode\": \"Account code\",\n      \"accountNumber\": \"Account number\",\n      \"amount\": 100,\n      \"currency\": \"EUR\"\n    },\n    \"amounts\": {\n      \"dueAmount\": 100,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 120\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"externalId\": \"Some External Id\",\n    \"financingSolution\": null,\n    \"instalments\": [\n      {\n        \"accountingAmount\": {\n          \"amount\": 100,\n          \"currency\": \"EUR\"\n        },\n        \"amounts\": {\n          \"dueAmount\": 100,\n          \"taxesAmount\": 20,\n          \"totalAmount\": 120\n        },\n        \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n        \"erpIdentificationFields\": {\n          \"erp field 1\": \"value 1\",\n          \"erp field 2\": \"value 2\"\n        },\n        \"externalId\": \"Some External Id\",\n        \"financingSolution\": \"Factoring\",\n        \"label\": \"client invoice label\",\n        \"metadata\": {\n          \"additional field\": \"additional info\"\n        },\n        \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n        \"paymentMethod\": \"Credit Card\",\n        \"status\": \"due\"\n      }\n    ],\n    \"invoiceNumber\": \"00341001\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"client invoice label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"status\": \"due\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e6be8b2b-3e73-41d1-ab57-143c1daac8f3",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accounting\": {\n      \"accountCode\": \"Account code\",\n      \"accountNumber\": \"Account number\",\n      \"amount\": 100,\n      \"currency\": \"EUR\"\n    },\n    \"amounts\": {\n      \"dueAmount\": 100,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 120\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"externalId\": \"Some External Id\",\n    \"financingSolution\": null,\n    \"instalments\": [\n      {\n        \"accountingAmount\": {\n          \"amount\": 100,\n          \"currency\": \"EUR\"\n        },\n        \"amounts\": {\n          \"dueAmount\": 100,\n          \"taxesAmount\": 20,\n          \"totalAmount\": 120\n        },\n        \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n        \"erpIdentificationFields\": {\n          \"erp field 1\": \"value 1\",\n          \"erp field 2\": \"value 2\"\n        },\n        \"externalId\": \"Some External Id\",\n        \"financingSolution\": \"Factoring\",\n        \"label\": \"client invoice label\",\n        \"metadata\": {\n          \"additional field\": \"additional info\"\n        },\n        \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n        \"paymentMethod\": \"Credit Card\",\n        \"status\": \"due\"\n      }\n    ],\n    \"invoiceNumber\": \"00341001\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"client invoice label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"status\": \"due\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "054286c3-2be4-4933-9b7a-f23f66325383",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accounting\": {\n      \"accountCode\": \"Account code\",\n      \"accountNumber\": \"Account number\",\n      \"amount\": 100,\n      \"currency\": \"EUR\"\n    },\n    \"amounts\": {\n      \"dueAmount\": 100,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 120\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"externalId\": \"Some External Id\",\n    \"financingSolution\": null,\n    \"instalments\": [\n      {\n        \"accountingAmount\": {\n          \"amount\": 100,\n          \"currency\": \"EUR\"\n        },\n        \"amounts\": {\n          \"dueAmount\": 100,\n          \"taxesAmount\": 20,\n          \"totalAmount\": 120\n        },\n        \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n        \"erpIdentificationFields\": {\n          \"erp field 1\": \"value 1\",\n          \"erp field 2\": \"value 2\"\n        },\n        \"externalId\": \"Some External Id\",\n        \"financingSolution\": \"Factoring\",\n        \"label\": \"client invoice label\",\n        \"metadata\": {\n          \"additional field\": \"additional info\"\n        },\n        \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n        \"paymentMethod\": \"Credit Card\",\n        \"status\": \"due\"\n      }\n    ],\n    \"invoiceNumber\": \"00341001\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"client invoice label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"status\": \"due\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "167798de-8263-4776-b197-e76348bcaaeb",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accounting\": {\n      \"accountCode\": \"Account code\",\n      \"accountNumber\": \"Account number\",\n      \"amount\": 100,\n      \"currency\": \"EUR\"\n    },\n    \"amounts\": {\n      \"dueAmount\": 100,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 120\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"externalId\": \"Some External Id\",\n    \"financingSolution\": null,\n    \"instalments\": [\n      {\n        \"accountingAmount\": {\n          \"amount\": 100,\n          \"currency\": \"EUR\"\n        },\n        \"amounts\": {\n          \"dueAmount\": 100,\n          \"taxesAmount\": 20,\n          \"totalAmount\": 120\n        },\n        \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n        \"erpIdentificationFields\": {\n          \"erp field 1\": \"value 1\",\n          \"erp field 2\": \"value 2\"\n        },\n        \"externalId\": \"Some External Id\",\n        \"financingSolution\": \"Factoring\",\n        \"label\": \"client invoice label\",\n        \"metadata\": {\n          \"additional field\": \"additional info\"\n        },\n        \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n        \"paymentMethod\": \"Credit Card\",\n        \"status\": \"due\"\n      }\n    ],\n    \"invoiceNumber\": \"00341001\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"client invoice label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"status\": \"due\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 6513,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19196ecc-2abf-49f7-b6e6-b3fd6f8250c5",
+          "name": "Update client invoices",
+          "request": {
+            "name": "Update client invoices",
+            "description": {
+              "content": "To mark an invoice as paid, update it with the following value : `\"status\": \"paid\"` and `\"dueAmount\": 0`<br><br>To delete an invoice, update it with the following value : `\"status\" = \"deleted\"`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "business-documents",
+                "v2",
+                "entities",
+                ":entityid",
+                "connections",
+                ":connectionid",
+                "client-invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityid",
+                  "description": "(Required) Agicap entity unique identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "connectionid",
+                  "description": "(Required) The connection unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"amounts\": {\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\",\n          \"totalAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\"\n        },\n        \"financingSolution\": \"<string>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\",\n          \"totalAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"financingSolution\": \"<string>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  },\n  {\n    \"amounts\": {\n      \"dueAmount\": \"<double>\",\n      \"taxesAmount\": \"<double>\",\n      \"totalAmount\": \"<double>\"\n    },\n    \"counterParty\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"currency\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"invoiceNumber\": \"<string>\",\n    \"issueDate\": \"<dateTime>\",\n    \"status\": \"<string>\",\n    \"accounting\": {\n      \"accountCode\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    \"erpIdentificationFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    },\n    \"expectedPaymentDate\": \"<dateTime>\",\n    \"financingSolution\": \"<string>\",\n    \"instalments\": [\n      {\n        \"amounts\": {\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\",\n          \"totalAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"financingSolution\": \"<string>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      },\n      {\n        \"amounts\": {\n          \"dueAmount\": \"<double>\",\n          \"taxesAmount\": \"<double>\",\n          \"totalAmount\": \"<double>\"\n        },\n        \"externalId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"accountingAmount\": {\n          \"amount\": \"<double>\",\n          \"currency\": \"<string>\"\n        },\n        \"dueDate\": \"<dateTime>\",\n        \"erpIdentificationFields\": {\n          \"key_0\": \"<string>\"\n        },\n        \"financingSolution\": \"<string>\",\n        \"label\": \"<string>\",\n        \"metadata\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"paymentDate\": \"<dateTime>\",\n        \"paymentMethod\": \"<string>\"\n      }\n    ],\n    \"label\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"paymentDate\": \"<dateTime>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "215ea01c-d5fc-4faa-9a52-82355b91bc61",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accounting\": {\n      \"accountCode\": \"Account code\",\n      \"accountNumber\": \"Account number\",\n      \"amount\": 100,\n      \"currency\": \"EUR\"\n    },\n    \"amounts\": {\n      \"dueAmount\": 100,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 120\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"externalId\": \"Some External Id\",\n    \"financingSolution\": null,\n    \"id\": \"d062b351-99ac-413a-9bf9-509498499a18\",\n    \"instalments\": [\n      {\n        \"accountingAmount\": {\n          \"amount\": 100,\n          \"currency\": \"EUR\"\n        },\n        \"amounts\": {\n          \"dueAmount\": 100,\n          \"taxesAmount\": 20,\n          \"totalAmount\": 120\n        },\n        \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n        \"erpIdentificationFields\": {\n          \"erp field 1\": \"value 1\",\n          \"erp field 2\": \"value 2\"\n        },\n        \"externalId\": \"Some External Id\",\n        \"financingSolution\": \"Factoring\",\n        \"label\": \"client invoice label\",\n        \"metadata\": {\n          \"additional field\": \"additional info\"\n        },\n        \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n        \"paymentMethod\": \"Credit Card\",\n        \"status\": \"due\"\n      }\n    ],\n    \"invoiceNumber\": \"00341001\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"client invoice label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"status\": \"due\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "73759156-b045-4336-a7b0-09c13209eca9",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accounting\": {\n      \"accountCode\": \"Account code\",\n      \"accountNumber\": \"Account number\",\n      \"amount\": 100,\n      \"currency\": \"EUR\"\n    },\n    \"amounts\": {\n      \"dueAmount\": 100,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 120\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"externalId\": \"Some External Id\",\n    \"financingSolution\": null,\n    \"id\": \"d062b351-99ac-413a-9bf9-509498499a18\",\n    \"instalments\": [\n      {\n        \"accountingAmount\": {\n          \"amount\": 100,\n          \"currency\": \"EUR\"\n        },\n        \"amounts\": {\n          \"dueAmount\": 100,\n          \"taxesAmount\": 20,\n          \"totalAmount\": 120\n        },\n        \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n        \"erpIdentificationFields\": {\n          \"erp field 1\": \"value 1\",\n          \"erp field 2\": \"value 2\"\n        },\n        \"externalId\": \"Some External Id\",\n        \"financingSolution\": \"Factoring\",\n        \"label\": \"client invoice label\",\n        \"metadata\": {\n          \"additional field\": \"additional info\"\n        },\n        \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n        \"paymentMethod\": \"Credit Card\",\n        \"status\": \"due\"\n      }\n    ],\n    \"invoiceNumber\": \"00341001\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"client invoice label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"status\": \"due\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d04ec52-3e62-4239-bef3-e38c8c746ca4",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accounting\": {\n      \"accountCode\": \"Account code\",\n      \"accountNumber\": \"Account number\",\n      \"amount\": 100,\n      \"currency\": \"EUR\"\n    },\n    \"amounts\": {\n      \"dueAmount\": 100,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 120\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"externalId\": \"Some External Id\",\n    \"financingSolution\": null,\n    \"id\": \"d062b351-99ac-413a-9bf9-509498499a18\",\n    \"instalments\": [\n      {\n        \"accountingAmount\": {\n          \"amount\": 100,\n          \"currency\": \"EUR\"\n        },\n        \"amounts\": {\n          \"dueAmount\": 100,\n          \"taxesAmount\": 20,\n          \"totalAmount\": 120\n        },\n        \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n        \"erpIdentificationFields\": {\n          \"erp field 1\": \"value 1\",\n          \"erp field 2\": \"value 2\"\n        },\n        \"externalId\": \"Some External Id\",\n        \"financingSolution\": \"Factoring\",\n        \"label\": \"client invoice label\",\n        \"metadata\": {\n          \"additional field\": \"additional info\"\n        },\n        \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n        \"paymentMethod\": \"Credit Card\",\n        \"status\": \"due\"\n      }\n    ],\n    \"invoiceNumber\": \"00341001\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"client invoice label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"status\": \"due\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f481c000-1304-4248-b6f5-814d89ca80fa",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "business-documents",
+                    "v2",
+                    "entities",
+                    ":entityid",
+                    "connections",
+                    ":connectionid",
+                    "client-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityid",
+                      "description": "(Required) Agicap entity unique identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "connectionid",
+                      "description": "(Required) The connection unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accounting\": {\n      \"accountCode\": \"Account code\",\n      \"accountNumber\": \"Account number\",\n      \"amount\": 100,\n      \"currency\": \"EUR\"\n    },\n    \"amounts\": {\n      \"dueAmount\": 100,\n      \"taxesAmount\": 20,\n      \"totalAmount\": 120\n    },\n    \"counterParty\": {\n      \"id\": \"id\",\n      \"name\": \"counter party name\"\n    },\n    \"currency\": \"EUR\",\n    \"dueDate\": \"2025-03-07T14:30:10+00:00\",\n    \"erpIdentificationFields\": {\n      \"erp field 1\": \"value 1\",\n      \"erp field 2\": \"value 2\"\n    },\n    \"expectedPaymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"externalId\": \"Some External Id\",\n    \"financingSolution\": null,\n    \"id\": \"d062b351-99ac-413a-9bf9-509498499a18\",\n    \"instalments\": [\n      {\n        \"accountingAmount\": {\n          \"amount\": 100,\n          \"currency\": \"EUR\"\n        },\n        \"amounts\": {\n          \"dueAmount\": 100,\n          \"taxesAmount\": 20,\n          \"totalAmount\": 120\n        },\n        \"dueDate\": \"2024-12-07T14:30:10+00:00\",\n        \"erpIdentificationFields\": {\n          \"erp field 1\": \"value 1\",\n          \"erp field 2\": \"value 2\"\n        },\n        \"externalId\": \"Some External Id\",\n        \"financingSolution\": \"Factoring\",\n        \"label\": \"client invoice label\",\n        \"metadata\": {\n          \"additional field\": \"additional info\"\n        },\n        \"paymentDate\": \"2024-03-07T14:30:10+00:00\",\n        \"paymentMethod\": \"Credit Card\",\n        \"status\": \"due\"\n      }\n    ],\n    \"invoiceNumber\": \"00341001\",\n    \"issueDate\": \"2024-02-06T14:30:10+00:00\",\n    \"label\": \"client invoice label\",\n    \"metadata\": {\n      \"additional field\": \"additional info\"\n    },\n    \"paymentDate\": \"2025-03-07T14:30:10+00:00\",\n    \"status\": \"due\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 6513,\n  \"title\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.agicap.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7afd5978-c07a-4ca1-af0e-0ae92932b2a4",
+    "name": "Clients AR Account reports Client Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

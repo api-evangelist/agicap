@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports Invoice Flows API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invoice Flows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/einvoicing/v1/flows",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              },
+              {
+                "name": "X-FlowMode",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "flowInfo",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "A flow is a single-invoice file, with:\n- an XML/PDF file with the data of the invoice\nThe flow is created with a FlowInfo object, allowing to qualify the flow.\nA flow can be:\n- an invoice (CII, UBL, Factur-X, JsonInvoice...)\n- a lifecycle (CDAR)\n- or an e-reporting file"
+        },
+        {
+          "info": {
+            "name": "Validate a JSON invoice.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/einvoicing/v1/flows/json/validate",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This allows to validate the JSON invoice before uploading it."
+        },
+        {
+          "info": {
+            "name": "Select flows upon criteria",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/einvoicing/v1/flows/search",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves a set of flows matching the provided search criteria:   \n- When setting flowId, do not specify other criteria   \n- Need at least one criterion to be specified   \n- Assuming a logical AND when combining criteria   \n- Assuming a logical OR for criteria allowing a list of values\n\nPagination works with pages:   \n- In the request, provide the page to be returned   \n- In the response, the total count of items"
+        },
+        {
+          "info": {
+            "name": "Download a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/einvoicing/v1/flows/:flowId",
+            "params": [
+              {
+                "name": "flowId",
+                "value": "",
+                "type": "path",
+                "description": "Flow identifier"
+              },
+              {
+                "name": "docType",
+                "value": "",
+                "type": "query",
+                "description": "This parameter allows to provide the type of file to be uploaded, can be either one:\n- Original: the document that has been initially sent/provided by the emitter\n- Converted: the document that has been optionally converted by the system\n- ReadableView: the document that has been optionally generated as the readable file\n- Attachment: one of the attached documents, provide the optional index if needed"
+              },
+              {
+                "name": "docIndex",
+                "value": "",
+                "type": "query",
+                "description": "If docType is an Attachment and in case there are several attached documents, it says which one to address"
+              },
+              {
+                "name": "docFormat",
+                "value": "",
+                "type": "query",
+                "description": "If docType is Converted, it says in which format to convert. By default, it is Json"
+              }
+            ]
+          },
+          "docs": "Download a file related to a given flow:\n- an invoice\n- a life cycle\n- an e-reporting"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

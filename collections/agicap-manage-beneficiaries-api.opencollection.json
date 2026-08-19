@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports Manage beneficiaries API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manage beneficiaries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get beneficiaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/payments/v2/entities/:entityId/Beneficiaries",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "123456",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ]
+          },
+          "docs": "List all existing beneficiaries in the entity, and their detailed information."
+        },
+        {
+          "info": {
+            "name": "Create a beneficiary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/payments/v2/entities/:entityId/Beneficiaries",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "123456",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a beneficiary in a specific entity with its detailed information."
+        },
+        {
+          "info": {
+            "name": "Delete all beneficiaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.agicap.com/public/payments/v2/entities/:entityId/Beneficiaries",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "123456",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ]
+          },
+          "docs": "Delete all beneficiaries from the specific entity"
+        },
+        {
+          "info": {
+            "name": "Synchronize beneficiaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/payments/v2/entities/:entityId/Beneficiaries/sync",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "123456",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start an asynchronous bulk synchronization of beneficiaries from your ERP. Each item is upserted using its ERP identifier (`erpId`) as the key: an existing beneficiary is updated, otherwise a new one is created.\nThe synchronization is additive: beneficiaries absent from the payload are not deleted (use the delete endpoint to remove one).\nProcessing runs in the background; the returned sync identifier lets you poll the synchronization report."
+        },
+        {
+          "info": {
+            "name": "Get a beneficiary synchronization report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/payments/v2/entities/:entityId/Beneficiaries/sync/:syncId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "123456",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              },
+              {
+                "name": "syncId",
+                "value": "1660e6c3-54fd-402f-be8e-7748efd94791",
+                "type": "path",
+                "description": "Identifier of the synchronization. This ID is obtained using the synchronize beneficiaries endpoint"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and the per-item errors of a beneficiary synchronization, using the sync identifier returned by the synchronize beneficiaries endpoint."
+        },
+        {
+          "info": {
+            "name": "Edit a beneficiary",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.agicap.com/public/payments/v2/entities/:entityId/Beneficiaries/:beneficiaryId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "123456",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              },
+              {
+                "name": "beneficiaryId",
+                "value": "1660e6c3-54fd-402f-be8e-7748efd94791",
+                "type": "path",
+                "description": "Identifier of the beneficiary in Agicap. This ID is obtained using get beneficiaries endpoint"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit a beneficiary from a specific entity with its detailed information,  using its identifier (obtained via the get beneficiaries endpoint)"
+        },
+        {
+          "info": {
+            "name": "Delete a beneficiary",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.agicap.com/public/payments/v2/entities/:entityId/Beneficiaries/:beneficiaryId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "123456",
+                "type": "path",
+                "description": "Agicap entity identifier"
+              },
+              {
+                "name": "beneficiaryId",
+                "value": "1660e6c3-54fd-402f-be8e-7748efd94791",
+                "type": "path",
+                "description": "Identifier of the beneficiary in Agicap. This ID is obtained using get beneficiaries endpoint"
+              }
+            ]
+          },
+          "docs": "Delete a beneficiary from a specific entity, using its identifier (obtained via the get beneficiaries endpoint)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

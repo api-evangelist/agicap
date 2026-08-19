@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports Invoices API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invoices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/invoices-management/v1/entities/:entityId/invoices",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "The entity identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Use this endpoint to retrieve full invoice details for a given list of invoice IDs. It returns all header-level information — supplier, amounts, status, due date, payment method — along with line items and their references to linked purchase order lines.\nThis is the primary endpoint to call when creating supplier invoices in an ERP: the line-level link to purchase order lines allows the ERP to automatically match the invoice against the right order and close it upon import."
+        },
+        {
+          "info": {
+            "name": "Mark invoices as verified",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agicap.com/public/invoices-management/v1/entities/:entityId/invoices/mark-as-verified",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "The entity identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Marks the specified invoices as verified for the given entity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1377 @@
+{
+  "item": [
+    {
+      "id": "3f204319-a640-43e0-8550-f0af44309a6d",
+      "name": "External contacts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "716c5260-65da-4063-a33d-50ffbc44be20",
+          "name": "Delete external contacts",
+          "request": {
+            "name": "Delete external contacts",
+            "description": {
+              "content": "Delete external contacts in bulk. Each contact is identified by itsexternalId within the client scope (clientExternalId + externalId).Maximum 1000 contacts per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "ar-clients",
+                "v1",
+                "entities",
+                ":entityId",
+                "external-contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<int>",
+                  "key": "entityId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"externalId\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"externalId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ea3a584-fc69-4397-aa25-10bbc893e3ae",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deleted\": [\n    {\n      \"externalId\": \"contact_1\"\n    },\n    {\n      \"externalId\": \"contact_1\"\n    }\n  ],\n  \"notDeleted\": [\n    {\n      \"externalId\": \"contact_1\",\n      \"reason\": \"CONTACT_NOT_FOUND\"\n    },\n    {\n      \"externalId\": \"contact_1\",\n      \"reason\": \"CLIENT_NOT_FOUND\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fbe5ba8-bb49-49ff-8789-9703c54dd53a",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fde28ee1-b614-4d53-a9e1-fdbc402c10a3",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e0a67035-127c-4b1e-b778-6d700d0709cb",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32737f6c-adaf-4ba3-81db-3f5f4f010d0c",
+          "name": "List external contacts",
+          "request": {
+            "name": "List external contacts",
+            "description": {
+              "content": "Retrieve a paginated list of external contacts for the given entity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "ar-clients",
+                "v1",
+                "entities",
+                ":entityId",
+                "external-contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientExternalIds",
+                  "value": "<string>",
+                  "description": "Filter contacts by client external identifiers. Supports multiple values."
+                },
+                {
+                  "disabled": false,
+                  "key": "clientExternalIds",
+                  "value": "<string>",
+                  "description": "Filter contacts by client external identifiers. Supports multiple values."
+                },
+                {
+                  "disabled": false,
+                  "key": "clientIds",
+                  "value": "<string>",
+                  "description": "Filter contacts by their client Agicap identifier (UUID). Supports multiple values."
+                },
+                {
+                  "disabled": false,
+                  "key": "clientIds",
+                  "value": "<string>",
+                  "description": "Filter contacts by their client Agicap identifier (UUID). Supports multiple values."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "Filter contacts whose email contains this value (case-insensitive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<base64url>",
+                  "description": "Opaque pagination token for retrieving the next page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<int>",
+                  "key": "entityId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4a7004b4-b448-4946-a91a-4f619ef4a288",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-001"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-002"
+                    },
+                    {
+                      "key": "clientIds",
+                      "value": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+                    },
+                    {
+                      "key": "email",
+                      "value": "jane@acme.com"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<base64url>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n      \"externalId\": \"contact_1\",\n      \"name\": \"John\",\n      \"surname\": \"Doe\",\n      \"email\": \"john@example.com\",\n      \"phoneNumber\": \"+33612345678\",\n      \"notes\": \"Preferred contact for billing\",\n      \"clientExternalId\": \"ext-client-001\",\n      \"createdDate\": \"2024-01-15T09:30:00.000Z\",\n      \"isMainContact\": true\n    },\n    {\n      \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n      \"externalId\": \"contact_1\",\n      \"name\": \"John\",\n      \"surname\": \"Doe\",\n      \"email\": \"john@example.com\",\n      \"phoneNumber\": \"+33612345678\",\n      \"notes\": \"Preferred contact for billing\",\n      \"clientExternalId\": \"ext-client-001\",\n      \"createdDate\": \"2024-01-15T09:30:00.000Z\",\n      \"isMainContact\": true\n    }\n  ],\n  \"pagination\": {\n    \"before\": \"string\",\n    \"after\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b87ac8e-f6be-44fb-9a97-30c1bf118cae",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-001"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-002"
+                    },
+                    {
+                      "key": "clientIds",
+                      "value": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+                    },
+                    {
+                      "key": "email",
+                      "value": "jane@acme.com"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<base64url>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5e917e2a-6410-47af-932b-3bf3bf29286f",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-001"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-002"
+                    },
+                    {
+                      "key": "clientIds",
+                      "value": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+                    },
+                    {
+                      "key": "email",
+                      "value": "jane@acme.com"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<base64url>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a3ef936-5d39-4425-97e3-8786e3892746",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-001"
+                    },
+                    {
+                      "key": "clientExternalIds",
+                      "value": "ext-client-002"
+                    },
+                    {
+                      "key": "clientIds",
+                      "value": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+                    },
+                    {
+                      "key": "email",
+                      "value": "jane@acme.com"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<base64url>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5dc84d4d-e709-468a-8875-62c85b373754",
+          "name": "Create external contacts",
+          "request": {
+            "name": "Create external contacts",
+            "description": {
+              "content": "Create external contacts in bulk by clientExternalId. Maximum 1000 items per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "ar-clients",
+                "v1",
+                "entities",
+                ":entityId",
+                "external-contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<int>",
+                  "key": "entityId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"contactExternalId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"contactExternalId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"phone\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f0839a73-66d9-4927-adc9-4a467f0a0bdc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"contactExternalId\": \"contact_1\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"contactExternalId\": \"contact_1\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created\": [\n    {\n      \"externalId\": \"contact_1\"\n    },\n    {\n      \"externalId\": \"contact_1\"\n    }\n  ],\n  \"notCreated\": [\n    {\n      \"externalId\": \"contact_1\",\n      \"reason\": \"EXTERNAL_ID_ALREADY_EXISTS\"\n    },\n    {\n      \"externalId\": \"contact_1\",\n      \"reason\": \"CLIENT_NOT_FOUND\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4df24c0c-bbaa-4704-a7a8-cd90d0640a77",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"contactExternalId\": \"contact_1\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"contactExternalId\": \"contact_1\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cc2f606d-859e-4b51-8d3e-049b1e2704f5",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"contactExternalId\": \"contact_1\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"contactExternalId\": \"contact_1\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b811ccdd-b094-4bfa-8002-a3fcd6aac05f",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"contactExternalId\": \"contact_1\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"contactExternalId\": \"contact_1\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cbc70b3-4d97-4efc-9e8a-dbcb3a4b4ab5",
+          "name": "Update external contacts",
+          "request": {
+            "name": "Update external contacts",
+            "description": {
+              "content": "Update external contacts in bulk by contactExternalId. Maximum 1000 items per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "ar-clients",
+                "v1",
+                "entities",
+                ":entityId",
+                "external-contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<int>",
+                  "key": "entityId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"contactId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"clientExternalId\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"contactId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"phone\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3a74a26e-8da1-4c29-9c8b-fdede0db936b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\",\n      \"contactId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\",\n      \"contactId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"updated\": [\n    {\n      \"externalId\": \"contact_1\"\n    },\n    {\n      \"externalId\": \"contact_1\"\n    }\n  ],\n  \"notUpdated\": [\n    {\n      \"externalId\": \"contact_1\",\n      \"reason\": \"CLIENT_NOT_FOUND\"\n    },\n    {\n      \"externalId\": \"contact_1\",\n      \"reason\": \"EXTERNAL_CONTACT_NOT_FOUND\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64f63f24-323f-45f0-9335-5ad6a66c97a0",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\",\n      \"contactId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\",\n      \"contactId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d2cd75a3-e989-4e02-b3ed-3b9a6eb96498",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\",\n      \"contactId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\",\n      \"contactId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a6da451-ff28-460f-9460-b277984d93e0",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "ar-clients",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "external-contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contacts\": [\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\",\n      \"contactId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    },\n    {\n      \"clientExternalId\": \"client_1\",\n      \"externalId\": \"contact_1\",\n      \"contactId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"email\": \"john.doe@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"notes\": \"Main contact for invoices\",\n      \"phone\": \"+33612345678\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.agicap.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "99e61d67-1a09-416d-a8fa-e697a1696d34",
+    "name": "Clients AR Account reports External contacts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

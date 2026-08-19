@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clients AR Account reports Financings API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Financings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List financings where entity is borrower",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/intragroup-financing/v1/borrowers/:entityId/financings",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset value. Minimum 0. Default 0."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit value. Minimum 1. Maximum 100. Default 50."
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query",
+                "description": "Date format is YYYY-MM-DD"
+              },
+              {
+                "name": "untilDate",
+                "value": "",
+                "type": "query",
+                "description": "Date format is YYYY-MM-DD"
+              }
+            ]
+          },
+          "docs": "Financings between the entity and all other lenders. Will not return financings where entity is lender."
+        },
+        {
+          "info": {
+            "name": "List financings where entity is lender",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agicap.com/public/intragroup-financing/v1/lenders/:entityId/financings",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset value. Minimum 0. Default 0."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit value. Minimum 1. Maximum 100. Default 50."
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query",
+                "description": "Date format is YYYY-MM-DD"
+              },
+              {
+                "name": "untilDate",
+                "value": "",
+                "type": "query",
+                "description": "Date format is YYYY-MM-DD"
+              }
+            ]
+          },
+          "docs": "Financings from the entity to all other borrowers. Will not return financings where entity is borrower."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

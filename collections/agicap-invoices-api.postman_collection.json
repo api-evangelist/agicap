@@ -1,0 +1,921 @@
+{
+  "item": [
+    {
+      "id": "682927dc-e6a1-4c8d-bd86-576bb93ffe24",
+      "name": "Invoices",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "49685898-62ee-4c33-b539-61010b85e1f7",
+          "name": "List invoices",
+          "request": {
+            "name": "List invoices",
+            "description": {
+              "content": "Use this endpoint to retrieve full invoice details for a given list of invoice IDs. It returns all header-level information — supplier, amounts, status, due date, payment method — along with line items and their references to linked purchase order lines.\nThis is the primary endpoint to call when creating supplier invoices in an ERP: the line-level link to purchase order lines allows the ERP to automatically match the invoice against the right order and close it upon import.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "invoices-management",
+                "v1",
+                "entities",
+                ":entityId",
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "entityId",
+                  "description": "(Required) The entity identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b5579742-f3bf-48f2-ba73-a81fb3e221dd",
+              "name": "Your request has been successfully processed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoices\": [\n    {\n      \"invoiceId\": \"ba529d59-ba17-23fc-01e9-fb313fb7797d\",\n      \"lineItems\": [\n        {\n          \"lineItemId\": \"8882b4aa-b6a7-51f4-8704-6a99f03edba4\",\n          \"articleName\": \"string\",\n          \"articleReference\": \"string\",\n          \"purchaseOrderId\": \"45532c92-fe1b-0c80-a6e0-1a228c19adaf\",\n          \"purchaseOrderLineItemId\": \"1efd57af-c168-3ad0-a9a7-bd4e86df15f0\",\n          \"quantity\": 6586.21378819046,\n          \"totalAmountExcludingTaxes\": 7821.766824436144,\n          \"unitAmountExcludingTaxes\": 255.77221414237906\n        },\n        {\n          \"lineItemId\": \"7b1b95a2-cddc-585e-b8a7-c0f1ce6bf73d\",\n          \"articleName\": \"string\",\n          \"articleReference\": \"string\",\n          \"purchaseOrderId\": \"c510ac4c-5d41-0127-efc2-b5d6b153fdb5\",\n          \"purchaseOrderLineItemId\": \"a35157af-0a4e-de67-1f8f-e668e3309d10\",\n          \"quantity\": 686.1490858675545,\n          \"totalAmountExcludingTaxes\": 8613.370321135972,\n          \"unitAmountExcludingTaxes\": 8674.332403861807\n        }\n      ],\n      \"linkedPurchaseOrders\": [\n        {\n          \"associatedAmountExcludingTaxes\": 7785.925484490324,\n          \"purchaseOrderId\": \"fddb3926-91cd-f536-e23c-2d5a6eea4602\",\n          \"number\": \"string\"\n        },\n        {\n          \"associatedAmountExcludingTaxes\": 5734.048839878271,\n          \"purchaseOrderId\": \"a967d07c-d4e8-44e1-04fd-3b563839701d\",\n          \"number\": \"string\"\n        }\n      ],\n      \"natures\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"NotVerified\",\n      \"title\": \"string\",\n      \"billingDate\": \"1958-08-05\",\n      \"costCenter\": \"string\",\n      \"currency\": \"string\",\n      \"dueDate\": \"2020-02-14\",\n      \"number\": \"string\",\n      \"originalAmountExcludingTaxes\": 5692.969196080777,\n      \"originalAmountIncludingTaxes\": 2665.6465531922345,\n      \"paymentMethod\": \"string\",\n      \"reference\": \"string\",\n      \"supplier\": \"string\"\n    },\n    {\n      \"invoiceId\": \"e78c2c65-2d62-d338-726d-fb64a560d44c\",\n      \"lineItems\": [\n        {\n          \"lineItemId\": \"cf8f34b5-7475-e0ba-d548-282e264b66a5\",\n          \"articleName\": \"string\",\n          \"articleReference\": \"string\",\n          \"purchaseOrderId\": \"44602553-f0de-8116-2701-b3ec011f414f\",\n          \"purchaseOrderLineItemId\": \"249d0500-eecb-e30c-971e-e0237b791612\",\n          \"quantity\": 2743.993708520933,\n          \"totalAmountExcludingTaxes\": 117.93311455922218,\n          \"unitAmountExcludingTaxes\": 4550.1611662136165\n        },\n        {\n          \"lineItemId\": \"5b8494e8-0379-e66d-4fd6-9bea12b0888c\",\n          \"articleName\": \"string\",\n          \"articleReference\": \"string\",\n          \"purchaseOrderId\": \"cdaf1fc6-c9af-41b1-8182-6af130806253\",\n          \"purchaseOrderLineItemId\": \"cda3e7c7-af98-ba59-9194-3f3af3b6b5a8\",\n          \"quantity\": 745.8730100175969,\n          \"totalAmountExcludingTaxes\": 7971.744169738751,\n          \"unitAmountExcludingTaxes\": 7868.148222781808\n        }\n      ],\n      \"linkedPurchaseOrders\": [\n        {\n          \"associatedAmountExcludingTaxes\": 3525.2061352584574,\n          \"purchaseOrderId\": \"58384a57-52b1-524b-08b0-dacb0f107d3b\",\n          \"number\": \"string\"\n        },\n        {\n          \"associatedAmountExcludingTaxes\": 4575.731276798115,\n          \"purchaseOrderId\": \"036cfd7c-6148-812e-35b9-041878993c7b\",\n          \"number\": \"string\"\n        }\n      ],\n      \"natures\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"Verified\",\n      \"title\": \"string\",\n      \"billingDate\": \"2023-03-14\",\n      \"costCenter\": \"string\",\n      \"currency\": \"string\",\n      \"dueDate\": \"1975-06-22\",\n      \"number\": \"string\",\n      \"originalAmountExcludingTaxes\": 8240.032711857166,\n      \"originalAmountIncludingTaxes\": 3758.6553968821736,\n      \"paymentMethod\": \"string\",\n      \"reference\": \"string\",\n      \"supplier\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33b21074-b332-43cc-ad52-4bb58e6fe5bd",
+              "name": "Your request is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"Write_Supplier_NotFound\",\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 9477,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b98ddc73-7fa0-4a5f-9db2-1560312c3449",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "936b7368-ccd0-4901-b3eb-c0273e02d90b",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c663179d-bebe-402c-acc4-7d485280ce44",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "54da912c-2374-4a53-9096-79f01a5b0aa2",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"Write_Supplier_NotFound\",\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 9477,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6131c2f4-6960-42e7-8184-9a88ec2bac90",
+          "name": "Mark invoices as verified",
+          "request": {
+            "name": "Mark invoices as verified",
+            "description": {
+              "content": "Marks the specified invoices as verified for the given entity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "invoices-management",
+                "v1",
+                "entities",
+                ":entityId",
+                "invoices",
+                "mark-as-verified"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "entityId",
+                  "description": "(Required) The entity identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "41e997da-578b-45e5-80f2-33f08ba3ecec",
+              "name": "Your request has been successfully processed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "invoices",
+                    "mark-as-verified"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"invoiceId\": \"554b9387-3f0a-91c1-91da-3b5aa30635dd\",\n      \"success\": false,\n      \"error\": {\n        \"exception\": \"string\",\n        \"message\": \"string\"\n      }\n    },\n    {\n      \"invoiceId\": \"452ac41a-409a-79c4-cf87-6e3ababd551c\",\n      \"success\": true,\n      \"error\": {\n        \"exception\": \"string\",\n        \"message\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84e79ef0-d762-4741-a799-7c333a513f44",
+              "name": "Your request is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "invoices",
+                    "mark-as-verified"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"Write_Supplier_NotFound\",\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 9477,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32ad2876-b539-4ffc-8cba-cb7841f31985",
+              "name": "Unauthorized request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "invoices",
+                    "mark-as-verified"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "11462f54-8d78-4642-8550-f8fb37b7a150",
+              "name": "Forbidden request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "invoices",
+                    "mark-as-verified"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e36e442d-4a01-4c5d-9b5a-f7b617e9d113",
+              "name": "Too many requests. Please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "invoices",
+                    "mark-as-verified"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8a57b337-2a65-4fa8-b41e-6fe58511d4ac",
+              "name": "An internal server occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "invoices-management",
+                    "v1",
+                    "entities",
+                    ":entityId",
+                    "invoices",
+                    "mark-as-verified"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) The entity identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"Write_Supplier_NotFound\",\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"status\": 9477,\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.agicap.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6db3761e-8af8-496b-8245-d14bcc335cd8",
+    "name": "Clients AR Account reports Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
