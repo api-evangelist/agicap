@@ -3,7 +3,7 @@ provider: Agicap
 generated_by: planning/capability-mapping/scripts/classify_capabilities.py
 model: claude-opus-5
 frame:
-- Software & Technology
+- Banking & Capital Markets
 min_confidence: 0.7
 capability_model:
   source: https://github.com/vincentmakes/turbo-ea-capabilities
@@ -11,81 +11,67 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 15
+edge_count: 10
 edges:
 - tag: Client Invoices
   spec_file: agicap-client-invoices-api-openapi.yml
   capability_id: BC-200.30
   capability_id_l1: BC-200
   capability_name: Accounts Receivable Management
-  confidence: 0.9
-  evidence: ClientInvoice_CreateClientInvoices  Create client invoices; schemas AmountsWithDueAmountDto,
-    ClientInvoiceInstalmentDto, CounterPartyDto
-  reason: Creation and maintenance of customer invoices with due amounts and instalments is squarely customer
-    invoicing / receivables.
+  confidence: 0.88
+  evidence: '"Get client invoices", "Create client invoices"; schemas ClientInvoiceDto, AmountsWithDueAmountDto,
+    ClientInvoiceInstalmentDto'
+  reason: Customer invoice records with due amounts and instalments — squarely customer invoicing / receivables
+    management.
 - tag: Supplier Invoices
   spec_file: agicap-supplier-invoices-api-openapi.yml
   capability_id: BC-200.20
   capability_id_l1: BC-200
   capability_name: Accounts Payable Management
-  confidence: 0.9
-  evidence: SupplierInvoice_CreateSupplierInvoices  Create supplier invoices; schemas SupplierInvoiceDto,
-    SupplierInvoiceInstalmentDto, AmountsWithDueAmountDto
-  reason: Managing supplier invoices with due amounts and instalments is squarely invoice processing /
-    vendor accounting — Accounts Payable Management. Vendor description confirms 'manage accounts payable
-    and receivable'.
+  confidence: 0.88
+  evidence: SupplierInvoice_GetSupplierInvoices — Get supplier invoices; schemas SupplierInvoiceInstalmentDto,
+    AmountsWithDueAmountDto
+  reason: CRUD over supplier invoices with due amounts and instalments is invoice processing/vendor accounting
+    = Accounts Payable Management.
 - tag: Client Credit Notes
   spec_file: agicap-client-credit-notes-api-openapi.yml
   capability_id: BC-200.30
   capability_id_l1: BC-200
   capability_name: Accounts Receivable Management
   confidence: 0.85
-  evidence: ClientCreditNote_CreateClientCreditNotes  Create client credit notes; schemas ClientCreditNoteDto,
-    AmountsWithRemainingAmountDto, CounterPartyDto, AccountingDto
-  reason: CRUD over customer-facing credit notes with remaining amounts and accounting data is receivables
-    document management — Accounts Receivable Management.
+  evidence: '"Create client credit notes", "Update client credit notes"; schemas ClientCreditNoteDto,
+    AmountsWithRemainingAmountDto'
+  reason: Customer-side credit notes are receivables documents adjusting customer invoices — accounts
+    receivable management.
 - tag: Supplier Credit Notes
   spec_file: agicap-supplier-credit-notes-api-openapi.yml
   capability_id: BC-200.20
   capability_id_l1: BC-200
   capability_name: Accounts Payable Management
-  confidence: 0.85
-  evidence: POST /public/business-documents/v1/.../supplier-credit-notes  SupplierCreditNote_CreateSupplierCreditNotes;
-    schemas SupplierCreditNoteDto, AccountingDto
-  reason: CRUD over supplier credit notes with accounting and remaining-amount data is vendor-side accounting,
-    i.e. accounts payable management within the cash-flow platform.
-- tag: Import and delete
-  spec_file: agicap-import-and-delete-api-openapi.yml
-  capability_id: BC-200.10
-  capability_id_l1: BC-200
-  capability_name: General Ledger Management
   confidence: 0.8
-  evidence: POST /public/chart-of-accounts/v1/entities/{entityId}/accounting-accounts/import/{importId}  ChartOfAccountsPublicApi_ImportAccountingAccounts  Import
-    accounting accounts.
-  reason: Import and deletion of accounting accounts and third parties maintains the chart of accounts,
-    which is explicitly general ledger management. Operations are unambiguous even though the tag name
-    is generic.
+  evidence: SupplierCreditNote_CreateSupplierCreditNotes — Create supplier credit notes
+  reason: Supplier credit notes are vendor accounting documents managed alongside supplier invoices, i.e.
+    accounts payable processing.
+- tag: Route payment files
+  spec_file: agicap-route-payment-files-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.75
+  evidence: POST /public/payments/v2/entities/{entityId}/payments-files/secured-import — Route payment
+    files with signed beneficiaries
+  reason: Importing and routing payment files/remittances for execution is payment instruction capture,
+    validation and authorisation; some ambiguity vs payment processing/routing.
 - tag: Purchase Orders
   spec_file: agicap-purchase-orders-api-openapi.yml
   capability_id: BC-500.30
   capability_id_l1: BC-500
   capability_name: Purchase Order Management
-  confidence: 0.75
-  evidence: PurchaseOrder_CreatePurchaseOrders  Create purchase orders; PurchaseOrderSupplier/PurchaseOrderLineItemResponse;
-    PurchaseOrderStatusForExport
-  reason: Create, update and list purchase orders with line items, delivery and linked invoices — purchase
-    order management, even though the platform's purpose is cash forecasting.
-- tag: Financial investments
-  spec_file: agicap-financial-investments-api-openapi.yml
-  capability_id: BC-210
-  capability_id_l1: BC-210
-  capability_name: Treasury Management
   confidence: 0.72
-  evidence: GET /public/financial-investments/v1/entities/{entityId}/investments  List financial investments
-    by entity; schemas InterestsResponse, AccruedResponse
-  reason: Listing corporate financial investments with accrued interest is treasury activity (placement
-    of surplus cash). Evidence does not clearly single out cash vs liquidity vs funding sub-capability,
-    so only the L1 is asserted.
+  evidence: POST .../purchase-orders "Create purchase orders"; schemas PurchaseOrderLineItemDto, PurchaseOrderSupplierDto?
+    ("PurchaseOrderDeliveryResponse")
+  reason: Operations create, update and list purchase orders with line items and deliveries, i.e. purchase
+    order lifecycle management, even though the vendor consumes them for cash forecasting.
 - tag: Analytical Plan
   spec_file: agicap-analytical-plan-api-openapi.yml
   capability_id: BC-200.10
@@ -93,84 +79,39 @@ edges:
   capability_name: General Ledger Management
   confidence: 0.7
   evidence: GET /public/chart-of-accounts/v1/entities/{entityId}/analytical-plan/axes "Get the analytical
-    plan axes for an entity."
-  reason: Maintains analytical (cost-dimension) axes within the chart of accounts — accounting structure
-    maintenance. General Ledger (chart of accounts) is the best fit, though cost accounting is an alternative
-    reading.
+    plan axes for an entity."; AnalyticalCodePublicApiDto
+  reason: Manages analytical accounting axes/codes under a chart-of-accounts service — accounting structure
+    maintenance, closest to General Ledger Management (chart of accounts). Some chance it belongs to cost-accounting
+    allocations instead.
 - tag: Card expenses bank journal
   spec_file: agicap-card-expenses-bank-journal-api-openapi.yml
   capability_id: BC-200.10
   capability_id_l1: BC-200
   capability_name: General Ledger Management
   confidence: 0.7
-  evidence: GET .../card-expenses-bank-journal/v1/entities/{entityId}/accounting-transactions — "Retrieve
-    your card expense bank journal entries"; schemas AccountingTransactionCredit, AccountingTransactionDebit,
-    AccountingTransactionAccountType
-  reason: The operation returns journal entry lines with debit/credit and account type — accounting journal/ledger
-    content rather than payment execution, so General Ledger Management is the closest fit. Some chance
-    it belongs under expense/cost accounting, hence moderate confidence.
+  evidence: '"Retrieve your card expense bank journal entries"; schemas AccountingTransactionLine, AccountingTransactionCredit,
+    AccountingTransactionDebit'
+  reason: Produces debit/credit journal lines for posting card expenses into the ledger — journal/GL feed
+    rather than card issuing or processing.
 - tag: Export
   spec_file: agicap-export-api-openapi.yml
   capability_id: BC-200.10
   capability_id_l1: BC-200
   capability_name: General Ledger Management
   confidence: 0.7
-  evidence: POST .../exported-bank-journal-entries/mark-as-imported  Indicates Agicap that some exported
-    bank journal entries from Agicap were successfully imported in the client accounting system.
-  reason: Operations produce and reconcile bank journal entries destined for the client's accounting system,
-    with AccountingAccountTypeDto schemas — i.e. feeding journals into the general ledger. Some ambiguity
-    because it is an integration/export surface rather than ledger posting itself.
-- tag: Invested cash
-  spec_file: agicap-invested-cash-api-openapi.yml
-  capability_id: BC-210.10
+  evidence: POST /public/treasury-bank-journal/v1/entities/{entityId}/exports/{exportId}  Export  Export
+    bank journal entries ready to be exported
+  reason: Produces and tracks bank journal entries exported into the client's accounting system (schemas
+    ExportedBankJournalEntryDto, AccountingAccountTypeDto, MarkAsImported). This is ledger journal posting/integration,
+    i.e. General Ledger Management.
+- tag: Financial investments
+  spec_file: agicap-financial-investments-api-openapi.yml
+  capability_id: BC-210
   capability_id_l1: BC-210
-  capability_name: Cash Management
+  capability_name: Treasury Management
   confidence: 0.7
-  evidence: GET /public/financial-investments/v1/entities/{entityId}/invested-cash  Get invested cash
-    ... InvestedCashByCurrencyResponse
-  reason: Reports invested cash positions by currency for an entity — treasury cash positioning/management
-    within a cash-flow and liquidity platform. Sub-capability choice between Cash Management and Liquidity
-    Management is somewhat ambiguous, hence moderate confidence.
-- tag: Invoices
-  spec_file: agicap-invoices-api-openapi.yml
-  capability_id: BC-200.20
-  capability_id_l1: BC-200
-  capability_name: Accounts Payable Management
-  confidence: 0.7
-  evidence: List invoices ... Mark invoices as verified; InvoiceLinkedPurchaseOrderResponse, InvoiceSupplier-style
-    purchase linkage
-  reason: Invoice listing and verification tied to purchase orders, i.e. supplier invoice processing/approval
-    — accounts payable invoice management. Some ambiguity as the tag is generic 'Invoices'.
-- tag: Purchase journal
-  spec_file: agicap-purchase-journal-api-openapi.yml
-  capability_id: BC-200.10
-  capability_id_l1: BC-200
-  capability_name: General Ledger Management
-  confidence: 0.7
-  evidence: GetAccountingTransactionLines  Retrieve your purchase journal entries; PurchaseJournalAccountingLinePresentation,
-    AccountingLineAccountType
-  reason: Retrieval and error reporting on accounting purchase journal entries/lines — accounting journal
-    data (purchase ledger). Split between General Ledger and Accounts Payable readings, hence moderate
-    confidence.
-- tag: Statements
-  spec_file: agicap-statements-api-openapi.yml
-  capability_id: BC-210.10
-  capability_id_l1: BC-210
-  capability_name: Cash Management
-  confidence: 0.7
-  evidence: GET /public/banking-documents/v1/entities/{entityId}/connections/{connectionId}/statements  Statements_ListStatements  List
-    statements; Statements_DownloadStatement
-  reason: Retrieval of bank account statements via banking connections, which in a cash-flow platform
-    serves cash positioning/bank data consolidation. Treasury cash management is the closest fit; bank
-    relationship management is an alternative reading, hence moderate confidence.
-- tag: User rights
-  spec_file: agicap-user-rights-api-openapi.yml
-  capability_id: BC-620.20
-  capability_id_l1: BC-620
-  capability_name: Identity & Access Management
-  confidence: 0.7
-  evidence: POST /public/ar-clients/v1/entities/{entityId}/user-rights  Assign users to clients by external
-    id; schemas ClientUserRightAssignment, AssignUsersToClientsByExternalIdRequest
-  reason: Assigns users access rights over AR client portfolios — access/permission administration, i.e.
-    Identity & Access Management. It is authorization plumbing rather than a domain business function,
-    but the IAM capability captures it.
+  evidence: GET /public/financial-investments/v1/entities/{entityId}/investments  FinancialInvestmentsPublicApi_GetInvestments  List
+    financial investments by entity
+  reason: Exposes a corporate entity's financial investment holdings with accrued interest (AccruedResponse,
+    InterestsResponse) — corporate treasury investment of surplus funds. L1 Treasury Management is supported;
+    no L2 names investment holdings specifically, so L2 left null.
