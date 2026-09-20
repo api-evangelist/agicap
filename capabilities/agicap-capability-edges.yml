@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 10
+edge_count: 16
 edges:
 - tag: Client Invoices
   spec_file: agicap-client-invoices-api-openapi.yml
@@ -43,6 +43,18 @@ edges:
     AmountsWithRemainingAmountDto'
   reason: Customer-side credit notes are receivables documents adjusting customer invoices — accounts
     receivable management.
+- tag: Import and delete
+  spec_file: agicap-import-and-delete-api-openapi.yml
+  capability_id: BC-200.10
+  capability_id_l1: BC-200
+  capability_name: General Ledger Management
+  confidence: 0.8
+  evidence: POST /public/chart-of-accounts/v1/entities/{entityId}/accounting-accounts/import/{importId}  ChartOfAccountsPublicApi_ImportAccountingAccounts  Import
+    accounting accounts.
+  reason: Import and deletion of accounting accounts and third parties maintains the chart of accounts,
+    which is explicitly general ledger management. Operations are unambiguous even though the tag name
+    is generic.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Supplier Credit Notes
   spec_file: agicap-supplier-credit-notes-api-openapi.yml
   capability_id: BC-200.20
@@ -115,3 +127,62 @@ edges:
   reason: Exposes a corporate entity's financial investment holdings with accrued interest (AccruedResponse,
     InterestsResponse) — corporate treasury investment of surplus funds. L1 Treasury Management is supported;
     no L2 names investment holdings specifically, so L2 left null.
+- tag: Invested cash
+  spec_file: agicap-invested-cash-api-openapi.yml
+  capability_id: BC-210.10
+  capability_id_l1: BC-210
+  capability_name: Cash Management
+  confidence: 0.7
+  evidence: GET /public/financial-investments/v1/entities/{entityId}/invested-cash  Get invested cash
+    ... InvestedCashByCurrencyResponse
+  reason: Reports invested cash positions by currency for an entity — treasury cash positioning/management
+    within a cash-flow and liquidity platform. Sub-capability choice between Cash Management and Liquidity
+    Management is somewhat ambiguous, hence moderate confidence.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: Invoices
+  spec_file: agicap-invoices-api-openapi.yml
+  capability_id: BC-200.20
+  capability_id_l1: BC-200
+  capability_name: Accounts Payable Management
+  confidence: 0.7
+  evidence: List invoices ... Mark invoices as verified; InvoiceLinkedPurchaseOrderResponse, InvoiceSupplier-style
+    purchase linkage
+  reason: Invoice listing and verification tied to purchase orders, i.e. supplier invoice processing/approval
+    — accounts payable invoice management. Some ambiguity as the tag is generic 'Invoices'.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: Purchase journal
+  spec_file: agicap-purchase-journal-api-openapi.yml
+  capability_id: BC-200.10
+  capability_id_l1: BC-200
+  capability_name: General Ledger Management
+  confidence: 0.7
+  evidence: GetAccountingTransactionLines  Retrieve your purchase journal entries; PurchaseJournalAccountingLinePresentation,
+    AccountingLineAccountType
+  reason: Retrieval and error reporting on accounting purchase journal entries/lines — accounting journal
+    data (purchase ledger). Split between General Ledger and Accounts Payable readings, hence moderate
+    confidence.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: Statements
+  spec_file: agicap-statements-api-openapi.yml
+  capability_id: BC-210.10
+  capability_id_l1: BC-210
+  capability_name: Cash Management
+  confidence: 0.7
+  evidence: GET /public/banking-documents/v1/entities/{entityId}/connections/{connectionId}/statements  Statements_ListStatements  List
+    statements; Statements_DownloadStatement
+  reason: Retrieval of bank account statements via banking connections, which in a cash-flow platform
+    serves cash positioning/bank data consolidation. Treasury cash management is the closest fit; bank
+    relationship management is an alternative reading, hence moderate confidence.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: User rights
+  spec_file: agicap-user-rights-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /public/ar-clients/v1/entities/{entityId}/user-rights  Assign users to clients by external
+    id; schemas ClientUserRightAssignment, AssignUsersToClientsByExternalIdRequest
+  reason: Assigns users access rights over AR client portfolios — access/permission administration, i.e.
+    Identity & Access Management. It is authorization plumbing rather than a domain business function,
+    but the IAM capability captures it.
+  recovered_from: sweep-20260829T005356Z-edges.json
