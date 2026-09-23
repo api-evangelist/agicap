@@ -1,7 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports Import and delete API
+  description: This API allows you to import chart of account data for an entity
+  title: Chart of accounts Import and delete API
   version: v1
 servers:
 - url: https://api.agicap.com
@@ -71,12 +72,45 @@ paths:
       - bearer_client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Delete the accounting accounts identified by their number.
+      summary: Delete the accounting accounts identified by their number
       tags:
       - Import and delete
   /public/chart-of-accounts/v1/entities/{entityId}/accounting-accounts/import/{importId}:
     post:
-      description: "Create new accounting accounts asynchronously.\n\nAccounting accounts can only be of the following types : Bank, Client, Supplier, Expense, Product, Vat and Other.\n\nAccounting accounts with types not in the list above won't be created.\n<p>\n    Vat Rate is only relevant for Vat accounting accounts, and Vat Rate must be between 0 and 1 (example : 0.15 for 15%).\n    Tax Key is only relevant for Vat accounting accounts, and Tax Key must be under 300 characters.\n    If the Vat Rate is not provided, the existing rate is kept (if any), the behavior is the same for the Tax Key.\n</p>\nAccounting accounts import size is limited to 5000 per batch.\n\nAccounting account number is unique for an entity, if ever you re-import accounting account info that already exists in our system, we won't create a\nduplicate.\n\nThe response HttpStatus code will be different when calling multiple times with the same `importId`:\n\n- For the first call with an `importId`, a 202 (Accepted) response will be returned notifying that the import requested was taken into account.\n\n- A 200 (Ok) response will be returned for subsequent calls with the same `importId`.\n\nFor both status codes, the response body will contain import details, see the ImportResponse description for more information."
+      description: 'Create new accounting accounts asynchronously.
+
+
+        Accounting accounts can only be of the following types : Bank, Client, Supplier, Expense, Product, Vat and Other.
+
+
+        Accounting accounts with types not in the list above won''t be created.
+
+
+        Vat Rate is only relevant for Vat accounting accounts, and Vat Rate must be between 0 and 1 (example : 0.15 for 15%).
+
+        Tax Key is only relevant for Vat accounting accounts, and Tax Key must be under 300 characters.
+
+        If the Vat Rate is not provided, the existing rate is kept (if any), the behavior is the same for the Tax Key.
+
+
+        Accounting accounts import size is limited to 5000 per batch.
+
+
+        Accounting account number is unique for an entity, if ever you re-import accounting account info that already exists in our system, we won''t create a
+
+        duplicate.
+
+
+        The response HttpStatus code will be different when calling multiple times with the same `importId`:
+
+
+        - For the first call with an `importId`, a 202 (Accepted) response will be returned notifying that the import requested was taken into account.
+
+
+        - A 200 (Ok) response will be returned for subsequent calls with the same `importId`.
+
+
+        For both status codes, the response body will contain import details, see the ImportResponse description for more information.'
       operationId: ChartOfAccountsPublicApi_ImportAccountingAccounts
       parameters:
       - description: Agicap entity identifier
@@ -330,7 +364,7 @@ paths:
       - bearer_client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Import accounting accounts.
+      summary: Import accounting accounts
       tags:
       - Import and delete
   /public/chart-of-accounts/v1/entities/{entityId}/third-parties/delete:
@@ -395,7 +429,7 @@ paths:
       - bearer_client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Delete the third parties identified by their code.
+      summary: Delete the third parties identified by their code
       tags:
       - Import and delete
   /public/chart-of-accounts/v1/entities/{entityId}/third-parties/import/{importId}:
@@ -593,50 +627,11 @@ paths:
       - bearer_client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Import Third Parties.
+      summary: Import Third Parties
       tags:
       - Import and delete
 components:
   schemas:
-    ImportResponse:
-      additionalProperties: false
-      description: Response of a third parties import with detailed information.
-      properties:
-        failureReason:
-          description: The failure description when the import failed (import status = Failed).
-          nullable: true
-          type: string
-        importDate:
-          description: The date at which the import was requested
-          type: string
-        importId:
-          description: The identifier of the import, provided by the caller.
-          format: uuid
-          type: string
-        importStatus:
-          description: 'The status of the import which can be any for the following values: Started, Done or Failed'
-          type: string
-        importSummary:
-          allOf:
-          - $ref: '#/components/schemas/ImportSummaryDto'
-          description: The summary of what was imported when the import is finished (import status = Done).
-          nullable: true
-      required:
-      - importDate
-      - importId
-      - importStatus
-      type: object
-    ImportAccountingAccountsRequestDto:
-      additionalProperties: false
-      description: Import accounting accounts request.
-      properties:
-        accountingAccounts:
-          items:
-            $ref: '#/components/schemas/AccountingAccountDto'
-          type: array
-      required:
-      - accountingAccounts
-      type: object
     DeleteAccountingAccountsRequestPublicApiDto:
       additionalProperties: false
       properties:
@@ -646,26 +641,6 @@ components:
           type: array
       required:
       - accountingAccountNumbers
-      type: object
-    ProblemDetails:
-      additionalProperties: false
-      properties:
-        detail:
-          nullable: true
-          type: string
-        instance:
-          nullable: true
-          type: string
-        status:
-          format: int32
-          nullable: true
-          type: integer
-        title:
-          nullable: true
-          type: string
-        type:
-          nullable: true
-          type: string
       type: object
     DeleteThirdPartiesRequestPublicApiDto:
       additionalProperties: false
@@ -677,27 +652,16 @@ components:
       required:
       - thirdPartyCodes
       type: object
-    ThirdPartyDto:
+    ImportThirdPartiesRequest:
       additionalProperties: false
-      description: A third party information.
+      description: Import third parties request.
       properties:
-        accountingAccountNumber:
-          description: The accounting account number, should already exist.
-          type: string
-        externalId:
-          description: An optional ERP-specific external identifier for the third party (max 300 characters).
-          nullable: true
-          type: string
-        thirdPartyCode:
-          description: The code of the third party, should be unique in an accounting account.
-          type: string
-        thirdPartyName:
-          description: The name of the third party.
-          type: string
+        thirdParties:
+          items:
+            $ref: '#/components/schemas/ThirdPartyDto'
+          type: array
       required:
-      - accountingAccountNumber
-      - thirdPartyCode
-      - thirdPartyName
+      - thirdParties
       type: object
     AccountingAccountDto:
       additionalProperties: false
@@ -711,35 +675,39 @@ components:
           type: string
         accountingAccountType:
           description: 'The accounting account type which can be of the following values: Bank, Client, Supplier, Expense, Product, Vat and Other.'
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         externalId:
           description: An optional ERP-specific external identifier for the accounting account (max 300 characters).
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         taxKey:
           description: The accounting account Tax Key (only for Vat Account Type).
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         vatRate:
           description: The accounting account Vat Rate (only for Vat Account Type).
           format: double
-          nullable: true
-          type: number
+          type:
+          - number
+          - 'null'
       required:
       - accountingAccountName
       - accountingAccountNumber
       type: object
-    ImportThirdPartiesRequest:
+    ImportAccountingAccountsRequestDto:
       additionalProperties: false
-      description: Import third parties request.
+      description: Import accounting accounts request.
       properties:
-        thirdParties:
+        accountingAccounts:
           items:
-            $ref: '#/components/schemas/ThirdPartyDto'
+            $ref: '#/components/schemas/AccountingAccountDto'
           type: array
       required:
-      - thirdParties
+      - accountingAccounts
       type: object
     ImportSummaryDto:
       additionalProperties: false
@@ -757,12 +725,92 @@ components:
       - importedCount
       - notImportedCount
       type: object
+    ImportResponse:
+      additionalProperties: false
+      description: Response of a third parties import with detailed information.
+      properties:
+        failureReason:
+          description: The failure description when the import failed (import status = Failed).
+          type:
+          - string
+          - 'null'
+        importDate:
+          description: The date at which the import was requested
+          type: string
+        importId:
+          description: The identifier of the import, provided by the caller.
+          format: uuid
+          type: string
+        importStatus:
+          description: 'The status of the import which can be any for the following values: Started, Done or Failed'
+          type: string
+        importSummary:
+          allOf:
+          - $ref: '#/components/schemas/ImportSummaryDto'
+          description: The summary of what was imported when the import is finished (import status = Done).
+      required:
+      - importDate
+      - importId
+      - importStatus
+      type: object
+    ThirdPartyDto:
+      additionalProperties: false
+      description: A third party information.
+      properties:
+        accountingAccountNumber:
+          description: The accounting account number, should already exist.
+          type: string
+        externalId:
+          description: An optional ERP-specific external identifier for the third party (max 300 characters).
+          type:
+          - string
+          - 'null'
+        thirdPartyCode:
+          description: The code of the third party, should be unique in an accounting account.
+          type: string
+        thirdPartyName:
+          description: The name of the third party.
+          type: string
+      required:
+      - accountingAccountNumber
+      - thirdPartyCode
+      - thirdPartyName
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    bearer_client_credentials:
+      description: 'Client credentials: bearer'
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: ''
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2

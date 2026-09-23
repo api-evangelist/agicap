@@ -1,8 +1,12 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports Delivery Notes API
-  version: v1
+  description: '# Introduction
+
+
+    To understand the general concepts of Agicap''s Public API (authentication, guidelines, ...) please refer to the guidelines.'
+  title: Business Documents Delivery Notes API
+  version: v2
 servers:
 - url: https://api.agicap.com
 - url: https://api.agicap.internal
@@ -79,23 +83,28 @@ paths:
                 properties:
                   detail:
                     description: Details of the error
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   instance:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   status:
                     description: Code status
-                    nullable: true
-                    type: integer
+                    type:
+                    - integer
+                    - 'null'
                   title:
                     description: Name of the error
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   type:
                     description: Type of error
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                 type: object
           description: An internal server occurred.
       security:
@@ -164,23 +173,28 @@ paths:
                 properties:
                   detail:
                     description: Details of the error
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   instance:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   status:
                     description: Code status
-                    nullable: true
-                    type: integer
+                    type:
+                    - integer
+                    - 'null'
                   title:
                     description: Name of the error
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   type:
                     description: Type of error
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                 type: object
           description: An internal server occurred.
       security:
@@ -241,23 +255,28 @@ paths:
                 properties:
                   detail:
                     description: Details of the error
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   instance:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   status:
                     description: Code status
-                    nullable: true
-                    type: integer
+                    type:
+                    - integer
+                    - 'null'
                   title:
                     description: Name of the error
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   type:
                     description: Type of error
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                 type: object
           description: An internal server occurred.
       security:
@@ -271,6 +290,80 @@ paths:
       - Delivery Notes
 components:
   schemas:
+    CreateDeliveryNoteDto:
+      additionalProperties: false
+      properties:
+        deliveryDate:
+          description: Delivery date in ISO 8601 format
+          format: date-time
+          type: string
+        deliveryNoteNumber:
+          description: Delivery note number in the source data
+          minLength: 1
+          type: string
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        lineItems:
+          description: Line items of the delivery note.
+          items:
+            $ref: '#/components/schemas/DeliveryNoteLineItemDto'
+          type:
+          - array
+          - 'null'
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          type:
+          - object
+          - 'null'
+      required:
+      - deliveryDate
+      - deliveryNoteNumber
+      - externalId
+      type: object
+    UpdateDeliveryNoteDto:
+      additionalProperties: false
+      properties:
+        deliveryDate:
+          description: Delivery date in ISO 8601 format
+          format: date-time
+          type: string
+        deliveryNoteNumber:
+          description: Delivery note number in the source data
+          minLength: 1
+          type: string
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        id:
+          description: Unique identifier generated by Agicap
+          format: uuid
+          type: string
+        lineItems:
+          description: Line items of the delivery note.
+          items:
+            $ref: '#/components/schemas/DeliveryNoteLineItemDto'
+          type:
+          - array
+          - 'null'
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          type:
+          - object
+          - 'null'
+      required:
+      - deliveryDate
+      - deliveryNoteNumber
+      - externalId
+      - id
+      title: UpdateDeliveryNote
+      type: object
     PaginationMetadataDto:
       additionalProperties: false
       properties:
@@ -303,30 +396,6 @@ components:
           $ref: '#/components/schemas/PaginationMetadataDto'
       title: Page
       type: object
-    DeliveryNoteLineItemDto:
-      additionalProperties: false
-      properties:
-        deliveredQuantity:
-          description: Delivered quantity. Must be strictly positive (> 0).
-          format: double
-          type: number
-        externalId:
-          description: Unique identifier of the line item in the source data
-          minLength: 1
-          type: string
-        purchaseOrderExternalId:
-          description: External identifier of the related purchase order. Must be provided together with purchaseOrderLineItemExternalId, or both must be null.
-          nullable: true
-          type: string
-        purchaseOrderLineItemExternalId:
-          description: External identifier of the related purchase order line item. Must be provided together with purchaseOrderExternalId, or both must be null.
-          nullable: true
-          type: string
-      required:
-      - deliveredQuantity
-      - externalId
-      title: DeliveryNoteLineItem
-      type: object
     DeliveryNoteDto:
       additionalProperties: false
       properties:
@@ -355,8 +424,9 @@ components:
           additionalProperties:
             type: string
           description: Additional metadata as a JSON Object
-          nullable: true
-          type: object
+          type:
+          - object
+          - 'null'
       required:
       - deliveryDate
       - deliveryNoteNumber
@@ -364,43 +434,31 @@ components:
       - id
       title: DeliveryNote
       type: object
-    UpdateDeliveryNoteDto:
+    DeliveryNoteLineItemDto:
       additionalProperties: false
       properties:
-        deliveryDate:
-          description: Delivery date in ISO 8601 format
-          format: date-time
-          type: string
-        deliveryNoteNumber:
-          description: Delivery note number in the source data
-          minLength: 1
-          type: string
+        deliveredQuantity:
+          description: Delivered quantity. Must be strictly positive (> 0).
+          format: double
+          type: number
         externalId:
-          description: Unique identifier of the document in the source data
+          description: Unique identifier of the line item in the source data
           minLength: 1
           type: string
-        id:
-          description: Unique identifier generated by Agicap
-          format: uuid
-          type: string
-        lineItems:
-          description: Line items of the delivery note.
-          items:
-            $ref: '#/components/schemas/DeliveryNoteLineItemDto'
-          nullable: true
-          type: array
-        metadata:
-          additionalProperties:
-            type: string
-          description: Additional metadata as a JSON Object
-          nullable: true
-          type: object
+        purchaseOrderExternalId:
+          description: External identifier of the related purchase order. Must be provided together with purchaseOrderLineItemExternalId, or both must be null.
+          type:
+          - string
+          - 'null'
+        purchaseOrderLineItemExternalId:
+          description: External identifier of the related purchase order line item. Must be provided together with purchaseOrderExternalId, or both must be null.
+          type:
+          - string
+          - 'null'
       required:
-      - deliveryDate
-      - deliveryNoteNumber
+      - deliveredQuantity
       - externalId
-      - id
-      title: UpdateDeliveryNote
+      title: DeliveryNoteLineItem
       type: object
     CreatedDocumentDto:
       additionalProperties: false
@@ -412,44 +470,16 @@ components:
           type: string
       title: CreatedDocument
       type: object
-    CreateDeliveryNoteDto:
-      additionalProperties: false
-      properties:
-        deliveryDate:
-          description: Delivery date in ISO 8601 format
-          format: date-time
-          type: string
-        deliveryNoteNumber:
-          description: Delivery note number in the source data
-          minLength: 1
-          type: string
-        externalId:
-          description: Unique identifier of the document in the source data
-          minLength: 1
-          type: string
-        lineItems:
-          description: Line items of the delivery note.
-          items:
-            $ref: '#/components/schemas/DeliveryNoteLineItemDto'
-          nullable: true
-          type: array
-        metadata:
-          additionalProperties:
-            type: string
-          description: Additional metadata as a JSON Object
-          nullable: true
-          type: object
-      required:
-      - deliveryDate
-      - deliveryNoteNumber
-      - externalId
-      type: object
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    bearer_client_credentials:
+      description: 'Client credentials: bearer'
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: ''
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2

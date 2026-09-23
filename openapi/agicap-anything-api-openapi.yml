@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports Anything API
+  title: Tests Anything API
   version: v1
 servers:
 - url: https://api.agicap.com
@@ -24,9 +24,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns anything passed in request data.
+      summary: Returns anything passed in request data
       tags:
       - Anything
+      operationId: deletePublicHttpbinV1Anything
+      x-operation-id-source: derived
     get:
       responses:
         '200':
@@ -41,9 +43,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns anything passed in request data.
+      summary: Returns anything passed in request data
       tags:
       - Anything
+      operationId: getPublicHttpbinV1Anything
+      x-operation-id-source: derived
     patch:
       responses:
         '200':
@@ -58,9 +62,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns anything passed in request data.
+      summary: Returns anything passed in request data
       tags:
       - Anything
+      operationId: patchPublicHttpbinV1Anything
+      x-operation-id-source: derived
     post:
       responses:
         '200':
@@ -75,9 +81,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns anything passed in request data.
+      summary: Returns anything passed in request data
       tags:
       - Anything
+      operationId: postPublicHttpbinV1Anything
+      x-operation-id-source: derived
     put:
       responses:
         '200':
@@ -92,9 +100,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns anything passed in request data.
+      summary: Returns anything passed in request data
       tags:
       - Anything
+      operationId: putPublicHttpbinV1Anything
+      x-operation-id-source: derived
   /public/httpbin/v1/anything/{anything}:
     delete:
       responses:
@@ -110,9 +120,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns anything passed in request data.
+      summary: Returns anything passed in request data
       tags:
       - Anything
+      operationId: deletePublicHttpbinV1AnythingByAnything
+      x-operation-id-source: derived
     get:
       responses:
         '200':
@@ -127,9 +139,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns anything passed in request data.
+      summary: Returns anything passed in request data
       tags:
       - Anything
+      operationId: getPublicHttpbinV1AnythingByAnything
+      x-operation-id-source: derived
     patch:
       responses:
         '200':
@@ -144,9 +158,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns anything passed in request data.
+      summary: Returns anything passed in request data
       tags:
       - Anything
+      operationId: patchPublicHttpbinV1AnythingByAnything
+      x-operation-id-source: derived
     post:
       responses:
         '200':
@@ -161,9 +177,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns anything passed in request data.
+      summary: Returns anything passed in request data
       tags:
       - Anything
+      operationId: postPublicHttpbinV1AnythingByAnything
+      x-operation-id-source: derived
     put:
       responses:
         '200':
@@ -178,16 +196,22 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns anything passed in request data.
+      summary: Returns anything passed in request data
       tags:
       - Anything
+      operationId: putPublicHttpbinV1AnythingByAnything
+      x-operation-id-source: derived
 components:
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    client_credentials:
+      description: Client Credentials
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: ''
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2

@@ -1,11 +1,20 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports Manage beneficiaries API
-  version: v1
+  description: '# Introduction
+
+
+    Welcome to the Agicap Payment API documentation.'
+  title: Payments Manage beneficiaries API
+  version: v2
 servers:
 - url: https://api.agicap.com
 - url: https://api.agicap.internal
+security:
+- ApiKey: []
+  Bearer: []
+- ApiKey: []
+  Bearer: []
 tags:
 - name: Manage beneficiaries
 paths:
@@ -304,7 +313,7 @@ paths:
       tags:
       - Manage beneficiaries
     put:
-      description: Edit a beneficiary from a specific entity with its detailed information,  using its identifier (obtained via the get beneficiaries endpoint)
+      description: Edit a beneficiary from a specific entity with its detailed information, using its identifier (obtained via the get beneficiaries endpoint)
       operationId: 3_Beneficiaries_edit
       parameters:
       - description: Agicap entity identifier
@@ -368,63 +377,74 @@ paths:
       - Manage beneficiaries
 components:
   schemas:
-    PaymentsPreparation.Web.Models.Presentations.Beneficiary.PostalAddressPresentation:
+    PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BeneficiarySyncPostalAddressDto:
       additionalProperties: false
+      description: Postal address of a synchronized beneficiary.
       properties:
         city:
-          type: string
-        country:
-          type: string
-        number:
-          nullable: true
-          type: string
-        state:
-          nullable: true
-          type: string
-        streetName:
-          type: string
-        zipCode:
-          nullable: true
-          type: string
-      required:
-      - city
-      - country
-      - streetName
-      type: object
-    PaymentsPreparation.Web.Models.Dtos.Beneficiaries.PostalAddressDto:
-      additionalProperties: false
-      description: Information about the postal address of the beneficiary
-      properties:
-        city:
-          description: Name of the city - required if any field of the address is filled
+          description: Name of the city.
           example: Paris
-          type: string
+          type:
+          - string
+          - 'null'
         country:
-          description: Country in which the beneficiary is located - 2 characters ISO 3166 code - required if any field of the address is filled
-          example: France
+          description: Country in which the beneficiary is located. Use ISO 3166 2-letters code.
+          example: FR
           type: string
         number:
-          description: Number of the building
+          description: Number of the building.
           example: '42'
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         state:
-          description: State in which the beneficiary is located if needed
-          nullable: true
-          type: string
+          description: State in which the beneficiary is located, if needed.
+          type:
+          - string
+          - 'null'
         streetName:
-          description: Name of the street - required if any field of the address is filled
+          description: Name of the street.
           example: Av. des Champs-Élysées
-          type: string
+          type:
+          - string
+          - 'null'
         zipCode:
-          description: ZIP code of the beneficiary location if needed
+          description: ZIP code of the beneficiary location.
           example: '75008'
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       required:
-      - city
       - country
-      - streetName
+      type: object
+    PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiaryPresentation:
+      additionalProperties: false
+      properties:
+        bankAccount:
+          allOf:
+          - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.BankAccountPresentation'
+        companyLegalIdentifier:
+          type:
+          - string
+          - 'null'
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        postalAddress:
+          allOf:
+          - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.PostalAddressPresentation'
+        uncertaintyStatus:
+          allOf:
+          - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.UncertaintyStatusPresentation'
+        validationStatus:
+          allOf:
+          - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.ValidationStatusPresentation'
+      required:
+      - bankAccount
+      - id
+      - name
       type: object
     PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncErrorCodePresentation:
       description: 'Reason an item failed during a beneficiary synchronization. Each value is contractual: renaming one is a breaking change.'
@@ -443,36 +463,63 @@ components:
       - NameAndAccountNumberAlreadyUsed
       - SupplierNotFound
       type: string
-    PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiaryPresentation:
+    PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncErrorPresentation:
       additionalProperties: false
+      description: A single item that failed during a beneficiary synchronization.
+      properties:
+        errorCode:
+          allOf:
+          - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncErrorCodePresentation'
+          description: Machine-readable error code identifying the reason the item failed.
+          example: InvalidIban
+        errorMessage:
+          description: Human-readable description of the error, when available.
+          type:
+          - string
+          - 'null'
+        rawData:
+          description: Raw JSON of the submitted item, echoed back to help you locate it.
+          type: string
+        rowIndex:
+          description: Zero-based index of the failing item in the submitted payload.
+          example: 0
+          format: int32
+          type: integer
+      required:
+      - errorCode
+      - rawData
+      - rowIndex
+      type: object
+    PaymentsPreparation.Web.Models.Dtos.Beneficiaries.EditBeneficiaryDto:
+      additionalProperties: false
+      description: Beneficiary's information to edit
       properties:
         bankAccount:
           allOf:
-          - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.BankAccountPresentation'
-        companyLegalIdentifier:
-          nullable: true
-          type: string
-        id:
-          format: uuid
-          type: string
+          - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BankAccountDto'
+          description: Information about the bank account of the beneficiary
         name:
+          description: Name of the beneficiary
+          example: John Doe
           type: string
         postalAddress:
           allOf:
-          - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.PostalAddressPresentation'
-          nullable: true
-        uncertaintyStatus:
-          allOf:
-          - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.UncertaintyStatusPresentation'
-          nullable: true
-        validationStatus:
-          allOf:
-          - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.ValidationStatusPresentation'
-          nullable: true
+          - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.PostalAddressDto'
+          description: Information about the postal address of the beneficiary
       required:
-      - bankAccount
-      - id
       - name
+      type: object
+    PaymentsPreparation.Web.Models.Dtos.Beneficiaries.StartBeneficiarySyncDto:
+      additionalProperties: false
+      description: Payload of a beneficiary synchronization request.
+      properties:
+        items:
+          description: Beneficiaries to synchronize. Up to 15 000 items can be sent in a single request.
+          items:
+            $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BeneficiarySyncItemDto'
+          type: array
+      required:
+      - items
       type: object
     PaymentsPreparation.Web.Models.Dtos.Beneficiaries.AddBeneficiaryDto:
       additionalProperties: false
@@ -482,7 +529,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BankAccountDto'
           description: Information about the bank account of the beneficiary
-          nullable: true
         name:
           description: Name of the beneficiary
           type: string
@@ -490,15 +536,60 @@ components:
           allOf:
           - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.PostalAddressDto'
           description: Information about the postal address of the beneficiary
-          nullable: true
       required:
       - name
       type: object
-    PaymentsPreparation.Web.Models.Presentations.Beneficiary.ValidationStatusPresentation:
-      enum:
-      - Validated
-      - PendingValidation
-      type: string
+    PaymentsPreparation.Web.Models.Presentations.Beneficiary.PostalAddressPresentation:
+      additionalProperties: false
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        number:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        streetName:
+          type: string
+        zipCode:
+          type:
+          - string
+          - 'null'
+      required:
+      - city
+      - country
+      - streetName
+      type: object
+    Microsoft.AspNetCore.Mvc.ProblemDetails:
+      additionalProperties: {}
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
     PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncReportPresentation:
       additionalProperties: false
       description: Status and per-item errors of a beneficiary synchronization.
@@ -517,8 +608,9 @@ components:
           description: Date and time the synchronization finished (ISO 8601, UTC). Null while the synchronization is still running.
           example: '2026-06-09T14:31:12+00:00'
           format: date-time
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         status:
           allOf:
           - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncStatusPresentation'
@@ -535,12 +627,16 @@ components:
       - status
       - syncId
       type: object
-    PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncStatusPresentation:
-      description: Status of a beneficiary synchronization.
+    PaymentsPreparation.Web.Models.Presentations.Beneficiary.ValidationStatusPresentation:
       enum:
-      - Running
-      - Completed
-      - CompletedWithErrors
+      - Validated
+      - PendingValidation
+      type: string
+    PaymentsPreparation.Web.Models.Presentations.Beneficiary.UncertaintyStatusPresentation:
+      enum:
+      - Uncertain
+      - NotUncertain
+      - Irrelevant
       type: string
     PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BeneficiarySyncItemDto:
       additionalProperties: false
@@ -549,40 +645,47 @@ components:
         accountNumber:
           description: Bank account number (IBAN/BBAN/Other).
           example: FR1317515900006392295694K68
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         bankCountry:
           description: Country of the bank where the account is located. Use ISO 3166 2-letters code.
           example: FR
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         bankIdentifier:
           description: Bank identifier code (BIC) of the bank where the account is located. Recommended for most payments.
           example: SOGEFRPP
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         bankName:
           description: Name of the bank the account is located. Use if required by your bank.
           example: Société Générale
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         companyLegalId:
           description: Legal registration identifier of the beneficiary company (e.g. SIRET, company number).
           example: '552100554'
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         erpId:
           description: 'Identifier of the beneficiary in your ERP. Used as the upsert key: an existing beneficiary with the same identifier is updated, otherwise a new one is created.'
           example: BEN-10042
           type: string
         intermediaryBankIdentifier:
           description: Bank identifier code (BIC) of the intermediary bank processing the payments. Use if required by your supplier/bank.
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         localClearingCode:
           description: Local identifier of the bank. Usually useful when the account number is not an IBAN.
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         name:
           description: Name of the beneficiary.
           example: ACME Corporation
@@ -591,152 +694,89 @@ components:
           allOf:
           - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BeneficiarySyncPostalAddressDto'
           description: Postal address of the beneficiary.
-          nullable: true
         supplierErpIds:
           description: ERP identifiers of the suppliers to associate with this beneficiary.
           items:
             type: string
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
       required:
       - erpId
       - name
+      type: object
+    PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncStatusPresentation:
+      description: Status of a beneficiary synchronization.
+      enum:
+      - Running
+      - Completed
+      - CompletedWithErrors
+      type: string
+    PaymentsPreparation.Web.Models.Dtos.Beneficiaries.PostalAddressDto:
+      additionalProperties: false
+      description: Information about the postal address of the beneficiary
+      properties:
+        city:
+          description: Name of the city - required if any field of the address is filled
+          example: Paris
+          type: string
+        country:
+          description: Country in which the beneficiary is located - 2 characters ISO 3166 code - required if any field of the address is filled
+          example: France
+          type: string
+        number:
+          description: Number of the building
+          example: '42'
+          type:
+          - string
+          - 'null'
+        state:
+          description: State in which the beneficiary is located if needed
+          type:
+          - string
+          - 'null'
+        streetName:
+          description: Name of the street - required if any field of the address is filled
+          example: Av. des Champs-Élysées
+          type: string
+        zipCode:
+          description: ZIP code of the beneficiary location if needed
+          example: '75008'
+          type:
+          - string
+          - 'null'
+      required:
+      - city
+      - country
+      - streetName
       type: object
     PaymentsPreparation.Web.Models.Presentations.Beneficiary.BankAccountPresentation:
       additionalProperties: false
       properties:
         bankName:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         bic:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         country:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         identifier:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         intermediaryBankBic:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         localClearingCode:
-          nullable: true
-          type: string
-      type: object
-    Microsoft.AspNetCore.Mvc.ProblemDetails:
-      additionalProperties: {}
-      properties:
-        detail:
-          nullable: true
-          type: string
-        instance:
-          nullable: true
-          type: string
-        status:
-          format: int32
-          nullable: true
-          type: integer
-        title:
-          nullable: true
-          type: string
-        type:
-          nullable: true
-          type: string
-      type: object
-    PaymentsPreparation.Web.Models.Dtos.Beneficiaries.StartBeneficiarySyncDto:
-      additionalProperties: false
-      description: Payload of a beneficiary synchronization request.
-      properties:
-        items:
-          description: Beneficiaries to synchronize. Up to 15 000 items can be sent in a single request.
-          items:
-            $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BeneficiarySyncItemDto'
-          type: array
-      required:
-      - items
-      type: object
-    PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BeneficiarySyncPostalAddressDto:
-      additionalProperties: false
-      description: Postal address of a synchronized beneficiary.
-      properties:
-        city:
-          description: Name of the city.
-          example: Paris
-          nullable: true
-          type: string
-        country:
-          description: Country in which the beneficiary is located. Use ISO 3166 2-letters code.
-          example: FR
-          type: string
-        number:
-          description: Number of the building.
-          example: '42'
-          nullable: true
-          type: string
-        state:
-          description: State in which the beneficiary is located, if needed.
-          nullable: true
-          type: string
-        streetName:
-          description: Name of the street.
-          example: Av. des Champs-Élysées
-          nullable: true
-          type: string
-        zipCode:
-          description: ZIP code of the beneficiary location.
-          example: '75008'
-          nullable: true
-          type: string
-      required:
-      - country
-      type: object
-    PaymentsPreparation.Web.Models.Dtos.Beneficiaries.EditBeneficiaryDto:
-      additionalProperties: false
-      description: Beneficiary's information to edit
-      properties:
-        bankAccount:
-          allOf:
-          - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BankAccountDto'
-          description: Information about the bank account of the beneficiary
-          nullable: true
-        name:
-          description: Name of the beneficiary
-          example: John Doe
-          type: string
-        postalAddress:
-          allOf:
-          - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Dtos.Beneficiaries.PostalAddressDto'
-          description: Information about the postal address of the beneficiary
-          nullable: true
-      required:
-      - name
-      type: object
-    PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncErrorPresentation:
-      additionalProperties: false
-      description: A single item that failed during a beneficiary synchronization.
-      properties:
-        errorCode:
-          allOf:
-          - $ref: '#/components/schemas/PaymentsPreparation.Web.Models.Presentations.Beneficiary.BeneficiarySyncErrorCodePresentation'
-          description: Machine-readable error code identifying the reason the item failed.
-          example: InvalidIban
-        errorMessage:
-          description: Human-readable description of the error, when available.
-          nullable: true
-          type: string
-        rawData:
-          description: Raw JSON of the submitted item, echoed back to help you locate it.
-          type: string
-        rowIndex:
-          description: Zero-based index of the failing item in the submitted payload.
-          example: 0
-          format: int32
-          type: integer
-      required:
-      - errorCode
-      - rawData
-      - rowIndex
+          type:
+          - string
+          - 'null'
       type: object
     PaymentsPreparation.Web.Models.Dtos.Beneficiaries.BankAccountDto:
       additionalProperties: false
@@ -745,44 +785,57 @@ components:
         bankName:
           description: Name of the bank the account is located. Use if required by your bank.
           example: Société Général compte courant
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         bic:
           description: Bank identifier code of the bank where the account is located. Recommended for most payments.
           example: SOGEFRPP
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         country:
           description: Country of the bank where the account is located. Use ISO 3166 2-letters code.
           example: FR
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         identifier:
           description: Bank account number (IBAN/BBAN/Other).
           example: FR1317515900006392295694K68
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         intermediaryBankBic:
           description: Bank identifier code of the intermediary bank processing the payments. Use if required by your supplier/bank.
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         localClearingCode:
           description: Local identifier of the bank. Usually usefull when the account number is not an IBAN.
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       type: object
-    PaymentsPreparation.Web.Models.Presentations.Beneficiary.UncertaintyStatusPresentation:
-      enum:
-      - Uncertain
-      - NotUncertain
-      - Irrelevant
-      type: string
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
+    ApiKey:
+      description: Used for internal API endpoints instead of bearer token
+      in: header
+      name: X-API-Key
+      type: apiKey
+    Bearer:
+      scheme: Bearer
       type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    bearer_client_credentials:
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: Access to the public API
+            public-api:import_payment_files: Import payment files
+            public-api:import_payment_files_with_signed_beneficiaries: Import payment files with signed beneficiaries
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2

@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports HTTP Methods API
+  title: Tests HTTP Methods API
   version: v1
 servers:
 - url: https://api.agicap.com
@@ -24,9 +24,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: The request's DELETE parameters.
+      summary: The request's DELETE parameters
       tags:
       - HTTP Methods
+      operationId: deletePublicHttpbinV1Delete
+      x-operation-id-source: derived
   /public/httpbin/v1/get:
     get:
       responses:
@@ -42,9 +44,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: The request's query parameters.
+      summary: The request's query parameters
       tags:
       - HTTP Methods
+      operationId: getPublicHttpbinV1Get
+      x-operation-id-source: derived
   /public/httpbin/v1/patch:
     patch:
       responses:
@@ -60,9 +64,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: The request's PATCH parameters.
+      summary: The request's PATCH parameters
       tags:
       - HTTP Methods
+      operationId: patchPublicHttpbinV1Patch
+      x-operation-id-source: derived
   /public/httpbin/v1/post:
     post:
       responses:
@@ -78,9 +84,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: The request's POST parameters.
+      summary: The request's POST parameters
       tags:
       - HTTP Methods
+      operationId: postPublicHttpbinV1Post
+      x-operation-id-source: derived
   /public/httpbin/v1/put:
     put:
       responses:
@@ -96,16 +104,22 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: The request's PUT parameters.
+      summary: The request's PUT parameters
       tags:
       - HTTP Methods
+      operationId: putPublicHttpbinV1Put
+      x-operation-id-source: derived
 components:
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    client_credentials:
+      description: Client Credentials
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: ''
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2

@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports Redirects API
+  title: Tests Redirects API
   version: v1
 servers:
 - url: https://api.agicap.com
@@ -30,9 +30,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Absolutely 302 Redirects n times.
+      summary: Absolutely 302 Redirects n times
       tags:
       - Redirects
+      operationId: getPublicHttpbinV1AbsoluteRedirectByN
+      x-operation-id-source: derived
   /public/httpbin/v1/redirect-to:
     delete:
       responses:
@@ -48,9 +50,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: 302/3XX Redirects to the given URL.
+      summary: 302/3XX Redirects to the given URL
       tags:
       - Redirects
+      operationId: deletePublicHttpbinV1RedirectTo
+      x-operation-id-source: derived
     get:
       parameters:
       - in: query
@@ -75,9 +79,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: 302/3XX Redirects to the given URL.
+      summary: 302/3XX Redirects to the given URL
       tags:
       - Redirects
+      operationId: getPublicHttpbinV1RedirectTo
+      x-operation-id-source: derived
     patch:
       responses:
         '302':
@@ -92,9 +98,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: 302/3XX Redirects to the given URL.
+      summary: 302/3XX Redirects to the given URL
       tags:
       - Redirects
+      operationId: patchPublicHttpbinV1RedirectTo
+      x-operation-id-source: derived
     post:
       requestBody:
         content:
@@ -123,9 +131,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: 302/3XX Redirects to the given URL.
+      summary: 302/3XX Redirects to the given URL
       tags:
       - Redirects
+      operationId: postPublicHttpbinV1RedirectTo
+      x-operation-id-source: derived
     put:
       requestBody:
         content:
@@ -154,9 +164,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: 302/3XX Redirects to the given URL.
+      summary: 302/3XX Redirects to the given URL
       tags:
       - Redirects
+      operationId: putPublicHttpbinV1RedirectTo
+      x-operation-id-source: derived
   /public/httpbin/v1/redirect/{n}:
     get:
       parameters:
@@ -178,9 +190,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: 302 Redirects n times.
+      summary: 302 Redirects n times
       tags:
       - Redirects
+      operationId: getPublicHttpbinV1RedirectByN
+      x-operation-id-source: derived
   /public/httpbin/v1/relative-redirect/{n}:
     get:
       parameters:
@@ -202,16 +216,22 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Relatively 302 Redirects n times.
+      summary: Relatively 302 Redirects n times
       tags:
       - Redirects
+      operationId: getPublicHttpbinV1RelativeRedirectByN
+      x-operation-id-source: derived
 components:
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    client_credentials:
+      description: Client Credentials
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: ''
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2

@@ -1,13 +1,13 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports External contacts API
+  title: Clients AR External contacts API
   version: v1
 servers:
 - url: https://api.agicap.com
 - url: https://api.agicap.internal
 tags:
-- name: External contacts
+- name: External Contacts
 paths:
   /public/ar-clients/v1/entities/{entityId}/external-contacts:
     delete:
@@ -43,8 +43,10 @@ paths:
       - bearer: []
       - bearerAuth: []
       tags:
-      - External contacts
+      - External Contacts
       x-codegen-request-body-name: body
+      summary: Delete external contacts
+      x-summary-source: derived
     get:
       description: Retrieve a paginated list of external contacts for the given entity.
       operationId: List external contacts
@@ -107,8 +109,10 @@ paths:
       - bearer: []
       - bearerAuth: []
       tags:
-      - External contacts
+      - External Contacts
       x-codegen-request-body-name: body
+      summary: List external contacts
+      x-summary-source: derived
     post:
       description: Create external contacts in bulk by clientExternalId. Maximum 1000 items per request.
       operationId: Create external contacts
@@ -142,8 +146,10 @@ paths:
       - bearer: []
       - bearerAuth: []
       tags:
-      - External contacts
+      - External Contacts
       x-codegen-request-body-name: body
+      summary: Create external contacts
+      x-summary-source: derived
     put:
       description: Update external contacts in bulk by contactExternalId. Maximum 1000 items per request.
       operationId: Update external contacts
@@ -177,102 +183,84 @@ paths:
       - bearer: []
       - bearerAuth: []
       tags:
-      - External contacts
+      - External Contacts
       x-codegen-request-body-name: body
+      summary: Update external contacts
+      x-summary-source: derived
 components:
   schemas:
-    DeletedExternalContact:
+    CreateExternalContactsResponse:
+      properties:
+        created:
+          description: Successfully created external contacts
+          items:
+            $ref: '#/components/schemas/CreatedExternalContact'
+          type: array
+        notCreated:
+          description: External contacts that failed to be created
+          items:
+            $ref: '#/components/schemas/NotCreatedExternalContact'
+          type: array
+      required:
+      - created
+      - notCreated
+      type: object
+    UpdateExternalContactsResponse:
+      properties:
+        notUpdated:
+          description: External contacts that failed to be updated
+          items:
+            $ref: '#/components/schemas/NotUpdatedExternalContact'
+          type: array
+        updated:
+          description: Successfully updated external contacts
+          items:
+            $ref: '#/components/schemas/UpdatedExternalContact'
+          type: array
+      required:
+      - updated
+      - notUpdated
+      type: object
+    AddExternalContactFailureEnum:
+      description: Reason why the external contact could not be created
+      enum:
+      - CLIENT_NOT_FOUND
+      - EXTERNAL_ID_ALREADY_EXISTS
+      type: string
+    CreatedExternalContact:
+      properties:
+        externalId:
+          description: External contact identifier from the ERP or external system
+          example: contact_1
+          type: string
+      required:
+      - externalId
+      type: object
+    GetExternalContactsResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ExternalContactItem'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      required:
+      - items
+      - pagination
+      type: object
+    NotDeletedExternalContact:
       properties:
         externalId:
           description: Identifier from the ERP or external system for this contact
           example: contact_1
           type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/ExternalContactDeletionFailureEnum'
+          description: Reason why the contact could not be deleted
       required:
       - externalId
-      type: object
-    ExternalContactDeletionFailureEnum:
-      description: Reason why the contact could not be deleted
-      enum:
-      - CLIENT_NOT_FOUND
-      - CONTACT_NOT_FOUND
-      type: string
-    ExternalContactToDelete:
-      properties:
-        clientExternalId:
-          description: Client external ID that owns the contact. Max 1000 characters. Value is trimmed.
-          example: client_1
-          maxLength: 1000
-          type: string
-        externalId:
-          description: External contact external ID to delete. Max 1000 characters. Value is trimmed.
-          example: contact_1
-          maxLength: 1000
-          type: string
-      required:
-      - clientExternalId
-      - externalId
-      type: object
-    ExternalContactItem:
-      properties:
-        clientExternalId:
-          description: External identifier of the client this contact belongs to.
-          example: ext-client-001
-          nullable: true
-          type: string
-        createdDate:
-          description: Date and time the external contact was created (ISO 8601).
-          example: '2024-01-15T09:30:00.000Z'
-          format: date-time
-          type: string
-        email:
-          description: Email address of the external contact.
-          example: john@example.com
-          nullable: true
-          type: string
-        externalId:
-          description: Identifier from the ERP or external system. Unique per client if not `null`.
-          example: contact_1
-          nullable: true
-          type: string
-        id:
-          description: Unique external contact identifier (UUID format)
-          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
-          type: string
-        isMainContact:
-          description: Whether this contact is the main (primary) contact of its client.
-          example: true
-          type: boolean
-        name:
-          description: Name of the external contact.
-          example: John
-          nullable: true
-          type: string
-        notes:
-          description: Notes about the external contact.
-          example: Preferred contact for billing
-          nullable: true
-          type: string
-        phoneNumber:
-          description: Phone number of the external contact.
-          example: '+33612345678'
-          nullable: true
-          type: string
-        surname:
-          description: Surname of the external contact.
-          example: Doe
-          nullable: true
-          type: string
-      required:
-      - id
-      - externalId
-      - name
-      - surname
-      - email
-      - phoneNumber
-      - notes
-      - clientExternalId
-      - createdDate
-      - isMainContact
+      - reason
       type: object
     ExternalContactToCreate:
       properties:
@@ -312,60 +300,6 @@ components:
       - clientExternalId
       - contactExternalId
       type: object
-    UpdateExternalContactsRequest:
-      properties:
-        contacts:
-          description: List of external contacts to update
-          items:
-            $ref: '#/components/schemas/UpdateExternalContact'
-          type: array
-      required:
-      - contacts
-      type: object
-    CreatedExternalContact:
-      properties:
-        externalId:
-          description: External contact identifier from the ERP or external system
-          example: contact_1
-          type: string
-      required:
-      - externalId
-      type: object
-    UpdateExternalContactFailureEnum:
-      description: Reason why the external contact could not be updated
-      enum:
-      - CLIENT_NOT_FOUND
-      - EXTERNAL_CONTACT_NOT_FOUND
-      - EXTERNAL_ID_CONFLICT
-      type: string
-    PaginationMetadataDto:
-      properties:
-        after:
-          nullable: true
-          type: string
-        before:
-          nullable: true
-          type: string
-      required:
-      - before
-      - after
-      type: object
-    CreateExternalContactsResponse:
-      properties:
-        created:
-          description: Successfully created external contacts
-          items:
-            $ref: '#/components/schemas/CreatedExternalContact'
-          type: array
-        notCreated:
-          description: External contacts that failed to be created
-          items:
-            $ref: '#/components/schemas/NotCreatedExternalContact'
-          type: array
-      required:
-      - created
-      - notCreated
-      type: object
     DeleteExternalContactsResponse:
       properties:
         deleted:
@@ -382,12 +316,6 @@ components:
       - deleted
       - notDeleted
       type: object
-    AddExternalContactFailureEnum:
-      description: Reason why the external contact could not be created
-      enum:
-      - CLIENT_NOT_FOUND
-      - EXTERNAL_ID_ALREADY_EXISTS
-      type: string
     CreateExternalContactsRequest:
       properties:
         contacts:
@@ -398,17 +326,54 @@ components:
       required:
       - contacts
       type: object
-    GetExternalContactsResponse:
+    NotUpdatedExternalContact:
       properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ExternalContactItem'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadataDto'
+        externalId:
+          description: External contact identifier from the ERP or external system
+          example: contact_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/UpdateExternalContactFailureEnum'
+          description: Reason why the external contact could not be updated
       required:
-      - items
-      - pagination
+      - externalId
+      - reason
+      type: object
+    PaginationMetadataDto:
+      properties:
+        after:
+          type:
+          - string
+          - 'null'
+        before:
+          type:
+          - string
+          - 'null'
+      required:
+      - before
+      - after
+      type: object
+    UpdateExternalContactFailureEnum:
+      description: Reason why the external contact could not be updated
+      enum:
+      - CLIENT_NOT_FOUND
+      - EXTERNAL_CONTACT_NOT_FOUND
+      - EXTERNAL_ID_CONFLICT
+      type: string
+    NotCreatedExternalContact:
+      properties:
+        externalId:
+          description: External contact identifier from the ERP or external system
+          example: contact_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/AddExternalContactFailureEnum'
+          description: Reason why the external contact could not be created
+      required:
+      - externalId
+      - reason
       type: object
     UpdateExternalContact:
       properties:
@@ -452,33 +417,30 @@ components:
       - clientExternalId
       - externalId
       type: object
-    NotCreatedExternalContact:
+    UpdatedExternalContact:
       properties:
         externalId:
           description: External contact identifier from the ERP or external system
           example: contact_1
           type: string
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/AddExternalContactFailureEnum'
-          description: Reason why the external contact could not be created
       required:
       - externalId
-      - reason
       type: object
-    NotUpdatedExternalContact:
+    ExternalContactToDelete:
       properties:
-        externalId:
-          description: External contact identifier from the ERP or external system
-          example: contact_1
+        clientExternalId:
+          description: Client external ID that owns the contact. Max 1000 characters. Value is trimmed.
+          example: client_1
+          maxLength: 1000
           type: string
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/UpdateExternalContactFailureEnum'
-          description: Reason why the external contact could not be updated
+        externalId:
+          description: External contact external ID to delete. Max 1000 characters. Value is trimmed.
+          example: contact_1
+          maxLength: 1000
+          type: string
       required:
+      - clientExternalId
       - externalId
-      - reason
       type: object
     DeleteExternalContactsRequest:
       properties:
@@ -490,44 +452,99 @@ components:
       required:
       - contacts
       type: object
-    NotDeletedExternalContact:
+    ExternalContactDeletionFailureEnum:
+      description: Reason why the contact could not be deleted
+      enum:
+      - CLIENT_NOT_FOUND
+      - CONTACT_NOT_FOUND
+      type: string
+    UpdateExternalContactsRequest:
+      properties:
+        contacts:
+          description: List of external contacts to update
+          items:
+            $ref: '#/components/schemas/UpdateExternalContact'
+          type: array
+      required:
+      - contacts
+      type: object
+    ExternalContactItem:
+      properties:
+        clientExternalId:
+          description: External identifier of the client this contact belongs to.
+          example: ext-client-001
+          type:
+          - string
+          - 'null'
+        createdDate:
+          description: Date and time the external contact was created (ISO 8601).
+          example: '2024-01-15T09:30:00.000Z'
+          format: date-time
+          type: string
+        email:
+          description: Email address of the external contact.
+          example: john@example.com
+          type:
+          - string
+          - 'null'
+        externalId:
+          description: Identifier from the ERP or external system. Unique per client if not `null`.
+          example: contact_1
+          type:
+          - string
+          - 'null'
+        id:
+          description: Unique external contact identifier (UUID format)
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          type: string
+        isMainContact:
+          description: Whether this contact is the main (primary) contact of its client.
+          example: true
+          type: boolean
+        name:
+          description: Name of the external contact.
+          example: John
+          type:
+          - string
+          - 'null'
+        notes:
+          description: Notes about the external contact.
+          example: Preferred contact for billing
+          type:
+          - string
+          - 'null'
+        phoneNumber:
+          description: Phone number of the external contact.
+          example: '+33612345678'
+          type:
+          - string
+          - 'null'
+        surname:
+          description: Surname of the external contact.
+          example: Doe
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - externalId
+      - name
+      - surname
+      - email
+      - phoneNumber
+      - notes
+      - clientExternalId
+      - createdDate
+      - isMainContact
+      type: object
+    DeletedExternalContact:
       properties:
         externalId:
           description: Identifier from the ERP or external system for this contact
           example: contact_1
           type: string
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/ExternalContactDeletionFailureEnum'
-          description: Reason why the contact could not be deleted
       required:
       - externalId
-      - reason
-      type: object
-    UpdatedExternalContact:
-      properties:
-        externalId:
-          description: External contact identifier from the ERP or external system
-          example: contact_1
-          type: string
-      required:
-      - externalId
-      type: object
-    UpdateExternalContactsResponse:
-      properties:
-        notUpdated:
-          description: External contacts that failed to be updated
-          items:
-            $ref: '#/components/schemas/NotUpdatedExternalContact'
-          type: array
-        updated:
-          description: Successfully updated external contacts
-          items:
-            $ref: '#/components/schemas/UpdatedExternalContact'
-          type: array
-      required:
-      - updated
-      - notUpdated
       type: object
   securitySchemes:
     bearer:

@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports Response inspection API
+  title: Tests Response inspection API
   version: v1
 servers:
 - url: https://api.agicap.com
@@ -33,9 +33,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns a 304 if an If-Modified-Since header or If-None-Match is present. Returns the same as a GET otherwise.
+      summary: Returns a 304 if an If-Modified-Since header or If-None-Match is present.
       tags:
       - Response inspection
+      operationId: getPublicHttpbinV1Cache
+      x-operation-id-source: derived
   /public/httpbin/v1/cache/{value}:
     get:
       parameters:
@@ -57,9 +59,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Sets a Cache-Control header for n seconds.
+      summary: Sets a Cache-Control header for n seconds
       tags:
       - Response inspection
+      operationId: getPublicHttpbinV1CacheByValue
+      x-operation-id-source: derived
   /public/httpbin/v1/etag/{etag}:
     get:
       parameters:
@@ -84,9 +88,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Assumes the resource has the given etag and responds to If-None-Match and If-Match headers appropriately.
+      summary: Assumes the resource has the given etag and responds to If-None-Match and…
       tags:
       - Response inspection
+      operationId: getPublicHttpbinV1EtagByEtag
+      x-operation-id-source: derived
   /public/httpbin/v1/response-headers:
     get:
       parameters:
@@ -107,9 +113,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns a set of response headers from the query string.
+      summary: Returns a set of response headers from the query string
       tags:
       - Response inspection
+      operationId: getPublicHttpbinV1ResponseHeaders
+      x-operation-id-source: derived
     post:
       parameters:
       - in: query
@@ -129,16 +137,22 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns a set of response headers from the query string.
+      summary: Returns a set of response headers from the query string
       tags:
       - Response inspection
+      operationId: postPublicHttpbinV1ResponseHeaders
+      x-operation-id-source: derived
 components:
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    client_credentials:
+      description: Client Credentials
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: ''
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2

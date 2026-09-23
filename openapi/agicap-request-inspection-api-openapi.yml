@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports Request inspection API
+  title: Tests Request inspection API
   version: v1
 servers:
 - url: https://api.agicap.com
@@ -24,9 +24,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Return the incoming request's HTTP headers.
+      summary: Return the incoming request's HTTP headers
       tags:
       - Request inspection
+      operationId: getPublicHttpbinV1Headers
+      x-operation-id-source: derived
   /public/httpbin/v1/ip:
     get:
       responses:
@@ -42,9 +44,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns the requester's IP Address.
+      summary: Returns the requester's IP Address
       tags:
       - Request inspection
+      operationId: getPublicHttpbinV1Ip
+      x-operation-id-source: derived
   /public/httpbin/v1/user-agent:
     get:
       responses:
@@ -60,16 +64,22 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Return the incoming requests's User-Agent header.
+      summary: Return the incoming requests's User-Agent header
       tags:
       - Request inspection
+      operationId: getPublicHttpbinV1UserAgent
+      x-operation-id-source: derived
 components:
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    client_credentials:
+      description: Client Credentials
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: ''
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2

@@ -1,8 +1,9 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  contact: {}
-  title: Clients AR Account reports Authentication API
+  title: Agicap Authentication API
   version: v1
+  contact: {}
+  description: 'Operations tagged Authentication across 2 of this provider''s published API definitions: agicap-auth-v1-openapi.json, agicap-httpbin-v1-openapi.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.agicap.com
 - url: https://api.agicap.internal
@@ -14,9 +15,7 @@ paths:
       description: 'This endpoint generates an access token that will be used with your Public Api call''s. The generated token will be placed in the `Authorization` header with value: `"Bearer YOUR_GENERATED_TOKEN"`
 
 
-        > The credentials used in the body must be generated from the Agicap application.
-
-        '
+        > The credentials used in the body must be generated from the Agicap application.'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -38,6 +37,11 @@ paths:
       summary: Generate an Access Token
       tags:
       - Authentication
+      operationId: postPublicAuthV1Token
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.agicap.com
+    - url: https://api.agicap.internal
   /public/httpbin/v1/basic-auth/{user}/{passwd}:
     get:
       parameters:
@@ -64,9 +68,14 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Prompts the user for authorization using HTTP Basic Auth.
+      summary: Prompts the user for authorization using HTTP Basic Auth
       tags:
       - Authentication
+      operationId: getPublicHttpbinV1BasicAuthByUserByPasswd
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.agicap.com
+    - url: https://api.agicap.internal
   /public/httpbin/v1/bearer:
     get:
       parameters:
@@ -86,9 +95,14 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Prompts the user for authorization using bearer authentication.
+      summary: Prompts the user for authorization using bearer authentication
       tags:
       - Authentication
+      operationId: getPublicHttpbinV1Bearer
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.agicap.com
+    - url: https://api.agicap.internal
   /public/httpbin/v1/digest-auth/{qop}/{user}/{passwd}:
     get:
       parameters:
@@ -121,9 +135,14 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Prompts the user for authorization using Digest Auth.
+      summary: Prompts the user for authorization using Digest Auth
       tags:
       - Authentication
+      operationId: getPublicHttpbinV1DigestAuthByQopByUserByPasswd
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.agicap.com
+    - url: https://api.agicap.internal
   /public/httpbin/v1/digest-auth/{qop}/{user}/{passwd}/{algorithm}:
     get:
       parameters:
@@ -163,14 +182,17 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Prompts the user for authorization using Digest Auth + Algorithm.
+      summary: Prompts the user for authorization using Digest Auth + Algorithm
       tags:
       - Authentication
+      operationId: getPublicHttpbinV1DigestAuthByQopByUserByPasswdByAlgorithm
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.agicap.com
+    - url: https://api.agicap.internal
   /public/httpbin/v1/digest-auth/{qop}/{user}/{passwd}/{algorithm}/{stale_after}:
     get:
-      description: 'allow settings the stale_after argument.
-
-        '
+      description: allow settings the stale_after argument.
       parameters:
       - description: auth or auth-int
         in: path
@@ -214,9 +236,14 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Prompts the user for authorization using Digest Auth + Algorithm.
+      summary: Prompts the user for authorization using Digest Auth + Algorithm
       tags:
       - Authentication
+      operationId: getPublicHttpbinV1DigestAuthByQopByUserByPasswdByAlgorithmByStaleAfter
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.agicap.com
+    - url: https://api.agicap.internal
   /public/httpbin/v1/hidden-basic-auth/{user}/{passwd}:
     get:
       parameters:
@@ -245,30 +272,20 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Prompts the user for authorization using HTTP Basic Auth.
+      summary: Prompts the user for authorization using HTTP Basic Auth
       tags:
       - Authentication
+      operationId: getPublicHttpbinV1HiddenBasicAuthByUserByPasswd
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.agicap.com
+    - url: https://api.agicap.internal
 components:
   schemas:
     BadRequestResponse:
       properties:
         error:
           description: The error message.
-          type: string
-      type: object
-    AccessTokenResponse:
-      properties:
-        access_token:
-          description: The access token issued by the authorization server.
-          type: string
-        expires_in:
-          description: The lifetime in seconds of the access token.
-          type: integer
-        scope:
-          description: The associated scopes for the access token.
-          type: string
-        token_type:
-          description: The type of the token issued.
           type: string
       type: object
     AccessTokenRequest:
@@ -295,12 +312,34 @@ components:
       - client_secret
       - scope
       type: object
+    AccessTokenResponse:
+      properties:
+        access_token:
+          description: The access token issued by the authorization server.
+          type: string
+        expires_in:
+          description: The lifetime in seconds of the access token.
+          type: integer
+        scope:
+          description: The associated scopes for the access token.
+          type: string
+        token_type:
+          description: The type of the token issued.
+          type: string
+      type: object
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    client_credentials:
+      description: Client Credentials
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: ''
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2
+x-refined-from:
+- agicap-auth-v1-openapi.json
+- agicap-httpbin-v1-openapi.json

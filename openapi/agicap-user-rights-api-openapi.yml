@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports User rights API
+  title: Clients AR User rights API
   version: v1
 servers:
 - url: https://api.agicap.com
@@ -45,8 +45,39 @@ paths:
       tags:
       - User rights
       x-codegen-request-body-name: body
+      summary: Assign users to clients by external id
+      x-summary-source: derived
 components:
   schemas:
+    FailedClientUserAssignment:
+      properties:
+        clientExternalId:
+          description: External identifier of the client.
+          example: client_1
+          type: string
+        failures:
+          description: Users that could not be assigned to this client.
+          items:
+            $ref: '#/components/schemas/AssignmentFailure'
+          type: array
+      required:
+      - clientExternalId
+      - failures
+      type: object
+    AssignmentFailure:
+      properties:
+        agicapUserEmail:
+          description: Email address of the Agicap user that could not be assigned.
+          example: unknown@example.com
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/AssignUsersToClientsByExternalIdFailureReasonEnum'
+          description: Reason why the user could not be assigned to the client.
+      required:
+      - agicapUserEmail
+      - reason
+      type: object
     ClientUserAssignment:
       properties:
         agicapUserEmails:
@@ -65,22 +96,6 @@ components:
       - clientExternalId
       - agicapUserEmails
       type: object
-    AssignUsersToClientsByExternalIdRequest:
-      properties:
-        assignments:
-          description: List of client-to-users assignments. Max 1000 items per request.
-          items:
-            $ref: '#/components/schemas/ClientUserRightAssignment'
-          type: array
-      required:
-      - assignments
-      type: object
-    AssignUsersToClientsByExternalIdFailureReasonEnum:
-      description: Reason why the user could not be assigned to the client.
-      enum:
-      - USER_NOT_FOUND
-      - CLIENT_NOT_FOUND
-      type: string
     AssignUsersToClientsByExternalIdResponse:
       properties:
         assigned:
@@ -115,35 +130,22 @@ components:
       - clientExternalId
       - agicapUserEmails
       type: object
-    FailedClientUserAssignment:
+    AssignUsersToClientsByExternalIdRequest:
       properties:
-        clientExternalId:
-          description: External identifier of the client.
-          example: client_1
-          type: string
-        failures:
-          description: Users that could not be assigned to this client.
+        assignments:
+          description: List of client-to-users assignments. Max 1000 items per request.
           items:
-            $ref: '#/components/schemas/AssignmentFailure'
+            $ref: '#/components/schemas/ClientUserRightAssignment'
           type: array
       required:
-      - clientExternalId
-      - failures
+      - assignments
       type: object
-    AssignmentFailure:
-      properties:
-        agicapUserEmail:
-          description: Email address of the Agicap user that could not be assigned.
-          example: unknown@example.com
-          type: string
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/AssignUsersToClientsByExternalIdFailureReasonEnum'
-          description: Reason why the user could not be assigned to the client.
-      required:
-      - agicapUserEmail
-      - reason
-      type: object
+    AssignUsersToClientsByExternalIdFailureReasonEnum:
+      description: Reason why the user could not be assigned to the client.
+      enum:
+      - USER_NOT_FOUND
+      - CLIENT_NOT_FOUND
+      type: string
   securitySchemes:
     bearer:
       bearerFormat: JWT

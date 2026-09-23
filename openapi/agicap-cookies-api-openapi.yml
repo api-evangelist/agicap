@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports Cookies API
+  title: Tests Cookies API
   version: v1
 servers:
 - url: https://api.agicap.com
@@ -24,9 +24,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns cookie data.
+      summary: Returns cookie data
       tags:
       - Cookies
+      operationId: getPublicHttpbinV1Cookies
+      x-operation-id-source: derived
   /public/httpbin/v1/cookies/delete:
     get:
       parameters:
@@ -47,9 +49,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Deletes cookie(s) as provided by the query string and redirects to cookie list.
+      summary: Deletes cookie(s) as provided by the query string and redirects to cookie list
       tags:
       - Cookies
+      operationId: getPublicHttpbinV1CookiesDelete
+      x-operation-id-source: derived
   /public/httpbin/v1/cookies/set:
     get:
       parameters:
@@ -70,9 +74,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Sets cookie(s) as provided by the query string and redirects to cookie list.
+      summary: Sets cookie(s) as provided by the query string and redirects to cookie list
       tags:
       - Cookies
+      operationId: getPublicHttpbinV1CookiesSet
+      x-operation-id-source: derived
   /public/httpbin/v1/cookies/set/{name}/{value}:
     get:
       parameters:
@@ -99,16 +105,22 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Sets a cookie and redirects to cookie list.
+      summary: Sets a cookie and redirects to cookie list
       tags:
       - Cookies
+      operationId: getPublicHttpbinV1CookiesSetByNameByValue
+      x-operation-id-source: derived
 components:
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    client_credentials:
+      description: Client Credentials
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: ''
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2

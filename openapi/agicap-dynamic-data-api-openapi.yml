@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports Dynamic data API
+  title: Tests Dynamic data API
   version: v1
 servers:
 - url: https://api.agicap.com
@@ -31,9 +31,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Decodes base64url-encoded string.
+      summary: Decodes base64url-encoded string
       tags:
       - Dynamic data
+      operationId: getPublicHttpbinV1Base64ByValue
+      x-operation-id-source: derived
   /public/httpbin/v1/bytes/{n}:
     get:
       parameters:
@@ -58,6 +60,8 @@ paths:
       summary: Returns n random bytes generated with given seed
       tags:
       - Dynamic data
+      operationId: getPublicHttpbinV1BytesByN
+      x-operation-id-source: derived
   /public/httpbin/v1/delay/{delay}:
     delete:
       parameters:
@@ -79,9 +83,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns a delayed response (max of 10 seconds).
+      summary: Returns a delayed response (max of 10 seconds)
       tags:
       - Dynamic data
+      operationId: deletePublicHttpbinV1DelayByDelay
+      x-operation-id-source: derived
     get:
       parameters:
       - in: path
@@ -102,9 +108,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns a delayed response (max of 10 seconds).
+      summary: Returns a delayed response (max of 10 seconds)
       tags:
       - Dynamic data
+      operationId: getPublicHttpbinV1DelayByDelay
+      x-operation-id-source: derived
     patch:
       parameters:
       - in: path
@@ -125,9 +133,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns a delayed response (max of 10 seconds).
+      summary: Returns a delayed response (max of 10 seconds)
       tags:
       - Dynamic data
+      operationId: patchPublicHttpbinV1DelayByDelay
+      x-operation-id-source: derived
     post:
       parameters:
       - in: path
@@ -148,9 +158,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns a delayed response (max of 10 seconds).
+      summary: Returns a delayed response (max of 10 seconds)
       tags:
       - Dynamic data
+      operationId: postPublicHttpbinV1DelayByDelay
+      x-operation-id-source: derived
     put:
       parameters:
       - in: path
@@ -171,9 +183,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns a delayed response (max of 10 seconds).
+      summary: Returns a delayed response (max of 10 seconds)
       tags:
       - Dynamic data
+      operationId: putPublicHttpbinV1DelayByDelay
+      x-operation-id-source: derived
   /public/httpbin/v1/drip:
     get:
       parameters:
@@ -214,9 +228,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Drips data over a duration after an optional initial delay.
+      summary: Drips data over a duration after an optional initial delay
       tags:
       - Dynamic data
+      operationId: getPublicHttpbinV1Drip
+      x-operation-id-source: derived
   /public/httpbin/v1/links/{n}/{offset}:
     get:
       parameters:
@@ -243,9 +259,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Generate a page containing n links to other pages which do the same.
+      summary: Generate a page containing n links to other pages which do the same
       tags:
       - Dynamic data
+      operationId: getPublicHttpbinV1LinksByNByOffset
+      x-operation-id-source: derived
   /public/httpbin/v1/range/{numbytes}:
     get:
       parameters:
@@ -267,9 +285,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Streams n random bytes generated with given seed, at given chunk size per packet.
+      summary: Streams n random bytes generated with given seed, at given chunk size per packet
       tags:
       - Dynamic data
+      operationId: getPublicHttpbinV1RangeByNumbytes
+      x-operation-id-source: derived
   /public/httpbin/v1/stream-bytes/{n}:
     get:
       parameters:
@@ -291,9 +311,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Streams n random bytes generated with given seed, at given chunk size per packet.
+      summary: Streams n random bytes generated with given seed, at given chunk size per packet
       tags:
       - Dynamic data
+      operationId: getPublicHttpbinV1StreamBytesByN
+      x-operation-id-source: derived
   /public/httpbin/v1/stream/{n}:
     get:
       parameters:
@@ -318,6 +340,8 @@ paths:
       summary: Stream n JSON responses
       tags:
       - Dynamic data
+      operationId: getPublicHttpbinV1StreamByN
+      x-operation-id-source: derived
   /public/httpbin/v1/uuid:
     get:
       responses:
@@ -333,16 +357,22 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Return a UUID4.
+      summary: Return a UUID4
       tags:
       - Dynamic data
+      operationId: getPublicHttpbinV1Uuid
+      x-operation-id-source: derived
 components:
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    client_credentials:
+      description: Client Credentials
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: ''
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2

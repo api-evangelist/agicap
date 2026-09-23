@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports Images API
+  title: Tests Images API
   version: v1
 servers:
 - url: https://api.agicap.com
@@ -24,9 +24,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns a simple image of the type suggest by the Accept header.
+      summary: Returns a simple image of the type suggest by the Accept header
       tags:
       - Images
+      operationId: getPublicHttpbinV1Image
+      x-operation-id-source: derived
   /public/httpbin/v1/image/jpeg:
     get:
       responses:
@@ -42,9 +44,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns a simple JPEG image.
+      summary: Returns a simple JPEG image
       tags:
       - Images
+      operationId: getPublicHttpbinV1ImageJpeg
+      x-operation-id-source: derived
   /public/httpbin/v1/image/png:
     get:
       responses:
@@ -60,9 +64,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns a simple PNG image.
+      summary: Returns a simple PNG image
       tags:
       - Images
+      operationId: getPublicHttpbinV1ImagePng
+      x-operation-id-source: derived
   /public/httpbin/v1/image/svg:
     get:
       responses:
@@ -78,9 +84,11 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns a simple SVG image.
+      summary: Returns a simple SVG image
       tags:
       - Images
+      operationId: getPublicHttpbinV1ImageSvg
+      x-operation-id-source: derived
   /public/httpbin/v1/image/webp:
     get:
       responses:
@@ -96,16 +104,22 @@ paths:
       - client_credentials:
         - agicap:public-api
       - bearerAuth: []
-      summary: Returns a simple WEBP image.
+      summary: Returns a simple WEBP image
       tags:
       - Images
+      operationId: getPublicHttpbinV1ImageWebp
+      x-operation-id-source: derived
 components:
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    client_credentials:
+      description: Client Credentials
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: ''
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2

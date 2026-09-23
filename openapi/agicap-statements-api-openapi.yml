@@ -1,7 +1,11 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports Statements API
+  description: '# Getting Started:
+
+
+    Welcome to the Banking Document API documentation.'
+  title: Banking Documents Statements API
   version: v1
 servers:
 - url: https://api.agicap.com
@@ -158,33 +162,14 @@ paths:
       - Statements
 components:
   schemas:
-    ProblemDetails:
-      additionalProperties: false
-      properties:
-        detail:
-          nullable: true
-          type: string
-        instance:
-          nullable: true
-          type: string
-        status:
-          format: int32
-          nullable: true
-          type: integer
-        title:
-          nullable: true
-          type: string
-        type:
-          nullable: true
-          type: string
-      type: object
     StatementSummary:
       additionalProperties: false
       properties:
         AccountNumber:
           description: Account number of the statement
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         ConnectionId:
           description: Connection identifier
           format: uuid
@@ -202,8 +187,9 @@ components:
           type: string
         Format:
           description: Bank file format
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         Id:
           description: Statement identifier
           format: uuid
@@ -212,6 +198,31 @@ components:
           description: '`False` by default. `True` if the bank statement has already been imported.'
           format: boolean
           type: boolean
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
       type: object
     Pagination:
       additionalProperties: false
@@ -238,17 +249,22 @@ components:
         Items:
           items:
             $ref: '#/components/schemas/StatementSummary'
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
         Pagination:
           $ref: '#/components/schemas/Pagination'
       type: object
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    bearer_client_credentials:
+      description: 'Client credentials: bearer'
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: ''
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2

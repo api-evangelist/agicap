@@ -1,17 +1,28 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports Route payment files API
-  version: v1
+  description: '# Introduction
+
+
+    Welcome to the Agicap Payment API documentation.'
+  title: Payments Route payment files API
+  version: v2
 servers:
 - url: https://api.agicap.com
 - url: https://api.agicap.internal
+security:
+- ApiKey: []
+  Bearer: []
+- ApiKey: []
+  Bearer: []
 tags:
 - name: Route payment files
 paths:
   /public/payments/v2/entities/{entityId}/payments-files/import:
     post:
-      description: 'Route payment files into Agicap in any standard banking format. Once imported, the files are processed and sent to the bank without any modifications.<br/>Supported Formats: the API supports all standard banking formats in `.xml` and `.txt`
+      description: 'Route payment files into Agicap in any standard banking format. Once imported, the files are processed and sent to the bank without any modifications.
+
+        Supported Formats: the API supports all standard banking formats in `.xml` and `.txt`
 
 
         **Required OAuth scopes:**
@@ -169,7 +180,11 @@ paths:
   /public/payments/v2/entities/{entityId}/remittances/import:
     post:
       deprecated: true
-      description: 'Route payment files into Agicap in any standard banking format. Once imported, the files are processed and sent to the bank without any modifications.<br/>Supported Formats: the API supports all standard banking formats in `.xml` and `.txt`<br/><b>Deprecated:</b> Use public-api/payments/v2/entities/{entityId:int}/payments-files/import instead
+      description: 'Route payment files into Agicap in any standard banking format. Once imported, the files are processed and sent to the bank without any modifications.
+
+        Supported Formats: the API supports all standard banking formats in `.xml` and `.txt`
+
+        Deprecated: Use public-api/payments/v2/entities/{entityId:int}/payments-files/import instead
 
 
         **Required OAuth scopes:**
@@ -242,7 +257,9 @@ paths:
   /public/payments/v2/entities/{entityId}/remittances/secured-import:
     post:
       deprecated: true
-      description: 'Do not use except if you received dedicated instruction from Agicap’s team. More documentation to come on this use case.<br/><b>Deprecated:</b> Use public-api/payments/v2/entities/{entityId:int}/payments-files/secured-import instead
+      description: 'Do not use except if you received dedicated instruction from Agicap’s team. More documentation to come on this use case.
+
+        Deprecated: Use public-api/payments/v2/entities/{entityId:int}/payments-files/secured-import instead
 
 
         **Required OAuth scopes:**
@@ -327,52 +344,6 @@ paths:
       - Route payment files
 components:
   schemas:
-    Microsoft.AspNetCore.Mvc.ProblemDetails:
-      additionalProperties: {}
-      properties:
-        detail:
-          nullable: true
-          type: string
-        instance:
-          nullable: true
-          type: string
-        status:
-          format: int32
-          nullable: true
-          type: integer
-        title:
-          nullable: true
-          type: string
-        type:
-          nullable: true
-          type: string
-      type: object
-    PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails:
-      additionalProperties: {}
-      properties:
-        additionalInformations:
-          items:
-            $ref: '#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.ThirdPartyPresentation'
-          type: array
-        detail:
-          nullable: true
-          type: string
-        instance:
-          nullable: true
-          type: string
-        status:
-          format: int32
-          nullable: true
-          type: integer
-        title:
-          nullable: true
-          type: string
-        type:
-          nullable: true
-          type: string
-      required:
-      - additionalInformations
-      type: object
     PaymentsFileGeneration.Web.Models.Presentations.ThirdPartyPresentation:
       additionalProperties: false
       properties:
@@ -384,12 +355,81 @@ components:
       - iban
       - name
       type: object
+    PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails:
+      additionalProperties: {}
+      properties:
+        additionalInformations:
+          items:
+            $ref: '#/components/schemas/PaymentsFileGeneration.Web.Models.Presentations.ThirdPartyPresentation'
+          type: array
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      required:
+      - additionalInformations
+      type: object
+    Microsoft.AspNetCore.Mvc.ProblemDetails:
+      additionalProperties: {}
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
+    ApiKey:
+      description: Used for internal API endpoints instead of bearer token
+      in: header
+      name: X-API-Key
+      type: apiKey
+    Bearer:
+      scheme: Bearer
       type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    bearer_client_credentials:
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: Access to the public API
+            public-api:import_payment_files: Import payment files
+            public-api:import_payment_files_with_signed_beneficiaries: Import payment files with signed beneficiaries
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2

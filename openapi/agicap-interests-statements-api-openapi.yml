@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact: {}
-  title: Clients AR Account reports Interests statements API
+  title: Intragroup financing Interests statements API
   version: v1
 servers:
 - url: https://api.agicap.com
@@ -83,6 +83,55 @@ paths:
       - Interests statements
 components:
   schemas:
+    HttpValidationProblemDetails:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - additionalProperties: {}
+        properties:
+          errors:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+        type: object
+    DailyPositionResourcePublic:
+      additionalProperties: false
+      properties:
+        accruedInterests:
+          format: double
+          type: number
+        balance:
+          format: double
+          type: number
+        date:
+          format: date
+          type: string
+        drawDown:
+          format: double
+          type:
+          - number
+          - 'null'
+        periodInterests:
+          format: double
+          type: number
+        repayment:
+          format: double
+          type:
+          - number
+          - 'null'
+        transactions:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/DrawDownResourcePublic'
+            - $ref: '#/components/schemas/RepaymentResourcePublic'
+            title: Transaction
+          type:
+          - array
+          - 'null'
+      title: DailyPosition
+      type: object
     Offset:
       additionalProperties: false
       properties:
@@ -99,91 +148,17 @@ components:
           format: int32
           type: integer
       type: object
-    DrawDownResourcePublic:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/TransactionResourcePublic'
-      - additionalProperties: false
-        properties:
-          amount:
-            format: double
-            type: number
-        type: object
-      title: DrawDown
-    ProblemDetails:
+    InterestsStatementResourcePublic:
       additionalProperties: false
       properties:
-        detail:
-          nullable: true
-          type: string
-        instance:
-          nullable: true
-          type: string
-        status:
-          format: int32
-          nullable: true
-          type: integer
-        title:
-          nullable: true
-          type: string
-        type:
-          nullable: true
-          type: string
-      type: object
-    TransactionResourcePublic:
-      additionalProperties: false
-      properties:
-        date:
-          format: date
-          type: string
-      title: Transaction
-      type: object
-    DailyPositionResourcePublic:
-      additionalProperties: false
-      properties:
-        accruedInterests:
-          format: double
-          type: number
-        balance:
-          format: double
-          type: number
-        date:
-          format: date
-          type: string
-        drawDown:
-          format: double
-          nullable: true
-          type: number
-        periodInterests:
-          format: double
-          type: number
-        repayment:
-          format: double
-          nullable: true
-          type: number
-        transactions:
+        items:
           items:
-            oneOf:
-            - $ref: '#/components/schemas/DrawDownResourcePublic'
-            - $ref: '#/components/schemas/RepaymentResourcePublic'
-            title: Transaction
-          nullable: true
+            $ref: '#/components/schemas/DailyPositionResourcePublic'
           type: array
-      title: DailyPosition
+        offset:
+          $ref: '#/components/schemas/Offset'
+      title: InterestsStatement
       type: object
-    HttpValidationProblemDetails:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/ProblemDetails'
-      - additionalProperties: {}
-        properties:
-          errors:
-            additionalProperties:
-              items:
-                type: string
-              type: array
-            type: object
-        type: object
     RepaymentResourcePublic:
       additionalProperties: false
       allOf:
@@ -201,23 +176,60 @@ components:
             type: number
         type: object
       title: Repayment
-    InterestsStatementResourcePublic:
+    TransactionResourcePublic:
       additionalProperties: false
       properties:
-        items:
-          items:
-            $ref: '#/components/schemas/DailyPositionResourcePublic'
-          type: array
-        offset:
-          $ref: '#/components/schemas/Offset'
-      title: InterestsStatement
+        date:
+          format: date
+          type: string
+      title: Transaction
+      type: object
+    DrawDownResourcePublic:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/TransactionResourcePublic'
+      - additionalProperties: false
+        properties:
+          amount:
+            format: double
+            type: number
+        type: object
+      title: DrawDown
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
       type: object
   securitySchemes:
-    bearer:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
     bearerAuth:
       bearerFormat: OPAQUE
       scheme: bearer
       type: http
+    bearer_client_credentials:
+      description: 'Client credentials: bearer'
+      flows:
+        clientCredentials:
+          scopes:
+            agicap:public-api: ''
+          tokenUrl: https://myaccount.agicap.com/connect/token
+      type: oauth2
