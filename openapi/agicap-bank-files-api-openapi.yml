@@ -266,37 +266,6 @@ paths:
       - Bank files
 components:
   schemas:
-    BankFileSummaryPagedResult:
-      additionalProperties: false
-      properties:
-        Items:
-          items:
-            $ref: '#/components/schemas/BankFileSummary'
-          type:
-          - array
-          - 'null'
-        Pagination:
-          $ref: '#/components/schemas/Pagination'
-      type: object
-    Pagination:
-      additionalProperties: false
-      properties:
-        CurrentPageItemsCount:
-          format: int32
-          type: integer
-        CurrentPageNumber:
-          format: int32
-          type: integer
-        PageSize:
-          format: int32
-          type: integer
-        PagesCount:
-          format: int32
-          type: integer
-        TotalItemsCount:
-          format: int32
-          type: integer
-      type: object
     ProblemDetails:
       additionalProperties: false
       properties:
@@ -346,6 +315,37 @@ components:
         Type:
           description: Bank file type. Possible value are STATEMENT, ACCOUNT_REPORT, OTHER, UNKNOWN
           type: string
+      type: object
+    Pagination:
+      additionalProperties: false
+      properties:
+        CurrentPageItemsCount:
+          format: int32
+          type: integer
+        CurrentPageNumber:
+          format: int32
+          type: integer
+        PageSize:
+          format: int32
+          type: integer
+        PagesCount:
+          format: int32
+          type: integer
+        TotalItemsCount:
+          format: int32
+          type: integer
+      type: object
+    BankFileSummaryPagedResult:
+      additionalProperties: false
+      properties:
+        Items:
+          items:
+            $ref: '#/components/schemas/BankFileSummary'
+          type:
+          - array
+          - 'null'
+        Pagination:
+          $ref: '#/components/schemas/Pagination'
       type: object
   securitySchemes:
     bearerAuth:

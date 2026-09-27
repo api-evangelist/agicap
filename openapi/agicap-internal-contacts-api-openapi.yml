@@ -12,7 +12,7 @@ paths:
   /public/ar-clients/v1/entities/{entityId}/internal-contacts:
     delete:
       description: Delete internal contacts in bulk. Each contact is identified by itsexternalId within the client scope (clientExternalId + externalId).Maximum 1000 contacts per request.
-      operationId: Delete internal contacts
+      operationId: DeleteInternalContacts
       parameters:
       - in: path
         name: entityId
@@ -47,9 +47,11 @@ paths:
       x-codegen-request-body-name: body
       summary: Delete internal contacts
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Delete internal contacts
     get:
       description: Retrieve a paginated list of internal contacts for the given entity.
-      operationId: List internal contacts
+      operationId: ListInternalContacts
       parameters:
       - in: query
         name: pageSize
@@ -113,9 +115,11 @@ paths:
       x-codegen-request-body-name: body
       summary: List internal contacts
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: List internal contacts
     post:
       description: Create internal contacts in bulk for a client identified by clientExternalId.Maximum 1000 contacts per request. Each email must be unique per client:duplicate emails will not be created and will appear in the notCreatedlist with reason EMAIL_ALREADY_EXISTS.
-      operationId: Create internal contacts
+      operationId: CreateInternalContacts
       parameters:
       - in: path
         name: entityId
@@ -150,9 +154,11 @@ paths:
       x-codegen-request-body-name: body
       summary: Create internal contacts
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Create internal contacts
     put:
       description: Update internal contacts in bulk. Each contact is identified by either itsAgicap internal id (priority) or its externalId within the client scope.Maximum 1000 contacts per request.
-      operationId: Update internal contacts
+      operationId: UpdateInternalContacts
       parameters:
       - in: path
         name: entityId
@@ -187,8 +193,35 @@ paths:
       x-codegen-request-body-name: body
       summary: Update internal contacts
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Update internal contacts
 components:
   schemas:
+    InternalContactToUpdate:
+      properties:
+        clientExternalId:
+          description: Client external ID that owns this contact. Max 1000 characters. Value is trimmed.
+          example: client_1
+          maxLength: 1000
+          type: string
+        email:
+          description: New email address for the contact. Must be a valid email address. Value is lowercased and trimmed.
+          example: john@example.com
+          type: string
+        externalId:
+          description: Contact external ID from ERP. Used to identify the contact if id is not provided. Max 1000 characters. Value is trimmed.
+          example: contact_1
+          maxLength: 1000
+          type: string
+        id:
+          description: Agicap internal contact identifier. Must be a valid UUID. Takes priority over externalId for identifying the contact.
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          type: string
+      required:
+      - externalId
+      - clientExternalId
+      - email
+      type: object
     DeleteInternalContactsResponse:
       properties:
         deleted:
@@ -217,6 +250,20 @@ components:
       - items
       - pagination
       type: object
+    DeletedInternalContact:
+      properties:
+        clientExternalId:
+          description: Client external ID that owns this contact
+          example: ext-client-001
+          type: string
+        externalId:
+          description: Identifier from the ERP or external system for this contact
+          example: contact_1
+          type: string
+      required:
+      - externalId
+      - clientExternalId
+      type: object
     NotUpdatedInternalContact:
       properties:
         clientExternalId:
@@ -236,20 +283,23 @@ components:
       - clientExternalId
       - reason
       type: object
-    NotCreatedInternalContact:
+    CreateInternalContactsRequest:
       properties:
-        externalId:
-          description: Identifier from the ERP or external system for this contact
-          example: contact_1
-          type: string
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/ContactCreationFailureEnum'
-          description: Reason why the contact could not be created
+        contacts:
+          description: List of contacts to create (max 1000 items)
+          items:
+            $ref: '#/components/schemas/ClientInternalContact'
+          type: array
       required:
-      - externalId
-      - reason
+      - contacts
       type: object
+    ContactCreationFailureEnum:
+      description: Reason why the contact could not be created
+      enum:
+      - CLIENT_NOT_FOUND
+      - EMAIL_ALREADY_EXISTS
+      - EXTERNAL_ID_ALREADY_EXISTS
+      type: string
     InternalContactToDelete:
       properties:
         clientExternalId:
@@ -266,6 +316,100 @@ components:
       - clientExternalId
       - externalId
       type: object
+    NotCreatedInternalContact:
+      properties:
+        externalId:
+          description: Identifier from the ERP or external system for this contact
+          example: contact_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/ContactCreationFailureEnum'
+          description: Reason why the contact could not be created
+      required:
+      - externalId
+      - reason
+      type: object
+    UpdateInternalContactsRequest:
+      properties:
+        contacts:
+          description: List of contacts to update (max 1000 items)
+          items:
+            $ref: '#/components/schemas/InternalContactToUpdate'
+          type: array
+      required:
+      - contacts
+      type: object
+    ContactDeletionFailureEnum:
+      description: Reason why the contact could not be deleted
+      enum:
+      - CLIENT_NOT_FOUND
+      - CONTACT_NOT_FOUND
+      type: string
+    DeleteInternalContactsRequest:
+      properties:
+        contacts:
+          description: List of contacts to delete (max 1000 items)
+          items:
+            $ref: '#/components/schemas/InternalContactToDelete'
+          type: array
+      required:
+      - contacts
+      type: object
+    CreateInternalContactsResponse:
+      properties:
+        created:
+          description: Successfully created contacts
+          items:
+            $ref: '#/components/schemas/CreatedInternalContact'
+          type: array
+        notCreated:
+          description: Contacts that failed to be created
+          items:
+            $ref: '#/components/schemas/NotCreatedInternalContact'
+          type: array
+      required:
+      - created
+      - notCreated
+      type: object
+    PaginationMetadataDto:
+      properties:
+        after:
+          type:
+          - string
+          - 'null'
+        before:
+          type:
+          - string
+          - 'null'
+      required:
+      - before
+      - after
+      type: object
+    UpdateInternalContactsResponse:
+      properties:
+        notUpdated:
+          description: Contacts that failed to be updated
+          items:
+            $ref: '#/components/schemas/NotUpdatedInternalContact'
+          type: array
+        updated:
+          description: Successfully updated contacts
+          items:
+            $ref: '#/components/schemas/UpdatedInternalContact'
+          type: array
+      required:
+      - updated
+      - notUpdated
+      type: object
+    ContactUpdateFailureEnum:
+      description: Reason why the contact could not be updated
+      enum:
+      - CLIENT_NOT_FOUND
+      - CONTACT_NOT_FOUND
+      - EMAIL_ALREADY_EXISTS
+      - EXTERNAL_ID_ALREADY_EXISTS
+      type: string
     ClientInternalContact:
       properties:
         clientExternalId:
@@ -287,15 +431,52 @@ components:
       - externalId
       - clientExternalId
       type: object
-    UpdateInternalContactsRequest:
+    CreatedInternalContact:
       properties:
-        contacts:
-          description: List of contacts to update (max 1000 items)
-          items:
-            $ref: '#/components/schemas/InternalContactToUpdate'
-          type: array
+        externalId:
+          description: Identifier from the ERP or external system for this contact
+          example: contact_1
+          type: string
+        id:
+          description: Internal identifier of the created contact
+          example: 550e8400-e29b-41d4-a716-446655440000
+          type: string
       required:
-      - contacts
+      - id
+      - externalId
+      type: object
+    UpdatedInternalContact:
+      properties:
+        clientExternalId:
+          description: Client external ID that owns this contact
+          example: ext-client-001
+          type: string
+        externalId:
+          description: External identifier of the updated contact
+          example: contact_1
+          type: string
+      required:
+      - externalId
+      - clientExternalId
+      type: object
+    NotDeletedInternalContact:
+      properties:
+        clientExternalId:
+          description: Client external ID that owns this contact
+          example: ext-client-001
+          type: string
+        externalId:
+          description: Identifier from the ERP or external system for this contact
+          example: contact_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/ContactDeletionFailureEnum'
+          description: Reason why the contact could not be deleted
+      required:
+      - externalId
+      - clientExternalId
+      - reason
       type: object
     InternalContactItem:
       properties:
@@ -330,179 +511,6 @@ components:
       - externalId
       - clientExternalId
       - createdDate
-      type: object
-    DeleteInternalContactsRequest:
-      properties:
-        contacts:
-          description: List of contacts to delete (max 1000 items)
-          items:
-            $ref: '#/components/schemas/InternalContactToDelete'
-          type: array
-      required:
-      - contacts
-      type: object
-    PaginationMetadataDto:
-      properties:
-        after:
-          type:
-          - string
-          - 'null'
-        before:
-          type:
-          - string
-          - 'null'
-      required:
-      - before
-      - after
-      type: object
-    CreateInternalContactsRequest:
-      properties:
-        contacts:
-          description: List of contacts to create (max 1000 items)
-          items:
-            $ref: '#/components/schemas/ClientInternalContact'
-          type: array
-      required:
-      - contacts
-      type: object
-    NotDeletedInternalContact:
-      properties:
-        clientExternalId:
-          description: Client external ID that owns this contact
-          example: ext-client-001
-          type: string
-        externalId:
-          description: Identifier from the ERP or external system for this contact
-          example: contact_1
-          type: string
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/ContactDeletionFailureEnum'
-          description: Reason why the contact could not be deleted
-      required:
-      - externalId
-      - clientExternalId
-      - reason
-      type: object
-    DeletedInternalContact:
-      properties:
-        clientExternalId:
-          description: Client external ID that owns this contact
-          example: ext-client-001
-          type: string
-        externalId:
-          description: Identifier from the ERP or external system for this contact
-          example: contact_1
-          type: string
-      required:
-      - externalId
-      - clientExternalId
-      type: object
-    CreateInternalContactsResponse:
-      properties:
-        created:
-          description: Successfully created contacts
-          items:
-            $ref: '#/components/schemas/CreatedInternalContact'
-          type: array
-        notCreated:
-          description: Contacts that failed to be created
-          items:
-            $ref: '#/components/schemas/NotCreatedInternalContact'
-          type: array
-      required:
-      - created
-      - notCreated
-      type: object
-    CreatedInternalContact:
-      properties:
-        externalId:
-          description: Identifier from the ERP or external system for this contact
-          example: contact_1
-          type: string
-        id:
-          description: Internal identifier of the created contact
-          example: 550e8400-e29b-41d4-a716-446655440000
-          type: string
-      required:
-      - id
-      - externalId
-      type: object
-    ContactUpdateFailureEnum:
-      description: Reason why the contact could not be updated
-      enum:
-      - CLIENT_NOT_FOUND
-      - CONTACT_NOT_FOUND
-      - EMAIL_ALREADY_EXISTS
-      - EXTERNAL_ID_ALREADY_EXISTS
-      type: string
-    UpdateInternalContactsResponse:
-      properties:
-        notUpdated:
-          description: Contacts that failed to be updated
-          items:
-            $ref: '#/components/schemas/NotUpdatedInternalContact'
-          type: array
-        updated:
-          description: Successfully updated contacts
-          items:
-            $ref: '#/components/schemas/UpdatedInternalContact'
-          type: array
-      required:
-      - updated
-      - notUpdated
-      type: object
-    ContactCreationFailureEnum:
-      description: Reason why the contact could not be created
-      enum:
-      - CLIENT_NOT_FOUND
-      - EMAIL_ALREADY_EXISTS
-      - EXTERNAL_ID_ALREADY_EXISTS
-      type: string
-    UpdatedInternalContact:
-      properties:
-        clientExternalId:
-          description: Client external ID that owns this contact
-          example: ext-client-001
-          type: string
-        externalId:
-          description: External identifier of the updated contact
-          example: contact_1
-          type: string
-      required:
-      - externalId
-      - clientExternalId
-      type: object
-    ContactDeletionFailureEnum:
-      description: Reason why the contact could not be deleted
-      enum:
-      - CLIENT_NOT_FOUND
-      - CONTACT_NOT_FOUND
-      type: string
-    InternalContactToUpdate:
-      properties:
-        clientExternalId:
-          description: Client external ID that owns this contact. Max 1000 characters. Value is trimmed.
-          example: client_1
-          maxLength: 1000
-          type: string
-        email:
-          description: New email address for the contact. Must be a valid email address. Value is lowercased and trimmed.
-          example: john@example.com
-          type: string
-        externalId:
-          description: Contact external ID from ERP. Used to identify the contact if id is not provided. Max 1000 characters. Value is trimmed.
-          example: contact_1
-          maxLength: 1000
-          type: string
-        id:
-          description: Agicap internal contact identifier. Must be a valid UUID. Takes priority over externalId for identifying the contact.
-          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
-          type: string
-      required:
-      - externalId
-      - clientExternalId
-      - email
       type: object
   securitySchemes:
     bearer:

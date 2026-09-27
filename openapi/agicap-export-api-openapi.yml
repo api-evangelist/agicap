@@ -1141,358 +1141,48 @@ paths:
       - Export
 components:
   schemas:
-    CustomFieldDto:
+    GetExportResponse:
       additionalProperties: false
-      description: A custom field
+      description: Get exported  bank journal response
       properties:
-        name:
-          description: The custom field name
-          type: string
-        value:
-          description: The custom field value
-          type: string
-      required:
-      - name
-      - value
-      type: object
-    CurrentExportCountsDto:
-      additionalProperties: false
-      description: 'Optional export parameters allowing to set where to start:
-
-        <ul><li>the count of already created bank journal in the current year </li><li>the count of already created bank journal entries in the current year</li></ul>
-
-        This is needed if there were bank journal already created outside Agicap systems, Agicap needs to know where to pick up the counts.'
-      properties:
-        currentBankJournalEntriesCountInYear:
-          description: The number of bank journal entries previously created (starts at 1)
+        bankJournalExportIndexInYear:
+          description: The index of the bank journal export in the current year
           format: int32
           type: integer
-        currentBankJournalsCountInYear:
-          description: The number of bank journal previously created (starts at 1)
-          format: int32
-          type: integer
-      required:
-      - currentBankJournalEntriesCountInYear
-      - currentBankJournalsCountInYear
-      type: object
-    ProblemDetails:
-      additionalProperties: false
-      properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-      type: object
-    CursorDto:
-      additionalProperties: false
-      description: 'The cursor current state as returned after a query.
-
-        Both <i>after</i> and <i>before</i> values are ISO 8601 date/time in UTC in this format: 2024-10-28T14:30:00.123Z.'
-      properties:
-        after:
-          description: The export date in UTC of the newest returned bank journal export (only if the request specified the <i>after</i> parameter
-          example: '2024-11-01T09:45:00.000Z'
-          type:
-          - string
-          - 'null'
-        before:
-          description: The export date in UTC of the oldest returned bank journal export (only if the request specified the <i>before</i> parameter
-          example: '2024-10-28T14:30:59.999Z'
-          type:
-          - string
-          - 'null'
-        size:
-          description: The number of exported bank journals returned (might be different from the requested size)
-          example: 100
-          format: int32
-          type: integer
-      required:
-      - size
-      type: object
-    ExportedCounterpartDto:
-      additionalProperties: false
-      description: A bank journal entry counterpart
-      properties:
-        accountingAccountExternalId:
-          description: An optional ERP-specific external identifier for the accounting account
-          type:
-          - string
-          - 'null'
-        accountingAccountNumber:
-          description: The accounting account number
+        entityName:
+          description: Name of the entity
           type: string
-        accountingAccountType:
-          allOf:
-          - $ref: '#/components/schemas/AccountingAccountTypeDto'
-          description: The accounting account type (OTHER, SUPPLIER, CLIENT, EXPENSE, PRODUCT, VAT, BANK)
-        accountingCurrency:
-          description: The accounting currency ISO code on three uppercase letters (ISO4217 standard)
-          type:
-          - string
-          - 'null'
-        analyticalCodes:
-          additionalProperties:
-            type: string
-          description: The list of analytical codes of the counterpart
-          type: object
-        creditInAccountingCurrency:
-          description: Credit value in accounting currency (rounded to four decimals)
-          format: double
-          type:
-          - number
-          - 'null'
-        creditInOriginalCurrency:
-          description: Credit value in original currency (rounded to four decimals)
-          format: double
-          type:
-          - number
-          - 'null'
-        customFields:
-          description: Additional fields coming from the reconciled expected used to initialize the counterpart, they include the ERP identification fields from business document when imported in Agicap
+        entries:
+          description: Array of all entries in the bank journal export
           items:
-            $ref: '#/components/schemas/CustomFieldDto'
-          type:
-          - array
-          - 'null'
-        debitInAccountingCurrency:
-          description: Debit value in accounting currency (rounded to four decimals)
-          format: double
-          type:
-          - number
-          - 'null'
-        debitInOriginalCurrency:
-          description: Debit value in original currency (rounded to four decimals)
-          format: double
-          type:
-          - number
-          - 'null'
-        document:
-          allOf:
-          - $ref: '#/components/schemas/DocumentDto'
-          description: Document related (invoice, credit note, purchase order, etc) information (reference, original due date, type)
-        exchangeRate:
-          description: The exchange rate applied between the original currency amount and the accounting currency amount (rounded to six decimals). Null when the rate is not applicable (e.g., synthetic exchange gain/loss counterpart, or when the original amount is zero).
-          format: double
-          type:
-          - number
-          - 'null'
-        journalCode:
-          description: The journal code
-          type:
-          - string
-          - 'null'
-        linkedExportedEntry:
-          allOf:
-          - $ref: '#/components/schemas/LinkedExportedEntryDto'
-          description: Reference to a previously exported journal entry linked to this counterpart (used for ERP reconciliation)
-        name:
-          description: The counterpart name (title)
-          type: string
-        originalCurrency:
-          description: The original currency ISO code on three uppercase letters (ISO4217 standard)
-          type: string
-        taxKey:
-          description: Tax Key (only relevant for Vat accounting account)
-          type:
-          - string
-          - 'null'
-        thirdPartyCode:
-          description: The third party code
-          type:
-          - string
-          - 'null'
-        thirdPartyExternalId:
-          description: An optional ERP-specific external identifier for the third party
-          type:
-          - string
-          - 'null'
-        thirdPartyName:
-          description: The third party name
-          type:
-          - string
-          - 'null'
-      required:
-      - accountingAccountNumber
-      - accountingAccountType
-      - analyticalCodes
-      - name
-      - originalCurrency
-      type: object
-    BankJournalExportSummaryDto:
-      additionalProperties: false
-      description: A bank journal export description.
-      properties:
-        exportDateUtc:
-          description: The export date-time in UTC format
-          example: '2024-10-28T14:30:59.999Z'
-          type: string
+            $ref: '#/components/schemas/ExportedBankJournalEntryDto'
+          type: array
         exportId:
-          description: Unique ID of the export.
-          example: 31dee215-e458-4145-8fe8-c20a0ea06042
+          description: The identifier of the export as specified in the request
           format: uuid
           type: string
-        exportIndexInYear:
-          description: The index of the bank journal export in the `ExportYear` (index starting at 1)
-          example: 12
-          format: int32
-          type: integer
-        exportYear:
-          description: The year the export was done
-          example: 2024
-          format: int32
-          type: integer
-        indexInYearOfFirstEntryInBankJournal:
-          description: 'The index in `ExportYear` of the first entry in the bank journal export (index
-
-            starting at 1)'
-          example: 105
-          format: int32
-          type: integer
-        indexInYearOfLastEntryInBankJournal:
-          description: 'The index in `ExportYear` of the last entry in the bank journal export (index
-
-            starting at 1)'
-          example: 120
-          format: int32
-          type: integer
-        numberOfEntries:
-          description: The number of entries in the bank journal export
-          example: 16
+        year:
+          description: Current year in UTC when the bank journal has been exported
           format: int32
           type: integer
       required:
-      - exportDateUtc
+      - bankJournalExportIndexInYear
+      - entityName
+      - entries
       - exportId
-      - exportIndexInYear
-      - exportYear
-      - indexInYearOfFirstEntryInBankJournal
-      - indexInYearOfLastEntryInBankJournal
-      - numberOfEntries
+      - year
       type: object
-    LinkedExportedEntryDto:
+    MarkAsImportedRequest:
       additionalProperties: false
-      description: Reference to a previously exported journal entry linked to this counterpart
+      description: Request to indicate Agicap that some exported bank journal entries from Agicap were successfully imported in the client accounting system.
       properties:
-        agicapUniqueId:
-          description: The unique identifier of the linked entry (same format as ExportedBankJournalEntryDto.AgicapUniqueId)
-          format: uuid
-          type: string
-        exportEntryReference:
-          description: The unique export reference of the linked entry (same format as ExportedBankJournalEntryDto.ExportEntryReference)
-          type: string
-      required:
-      - agicapUniqueId
-      - exportEntryReference
-      type: object
-    GetBankJournalExportsResponse:
-      additionalProperties: false
-      description: 'A list of bank journal exports summaries along with a timestamp cursor pagination.
-
-        '
-      properties:
-        cursor:
-          allOf:
-          - $ref: '#/components/schemas/CursorDto'
-          description: 'The cursor current state as returned after a query.
-
-            Both <i>after</i> and <i>before</i> values are ISO 8601 date/time in UTC in this format: 2024-10-28T14:30:00.123Z.'
-        items:
+        entriesImported:
+          description: The list of bank journal entries imported in the client accounting system (max 1000 entries)
           items:
-            $ref: '#/components/schemas/BankJournalExportSummaryDto'
+            $ref: '#/components/schemas/ImportedEntryDto'
           type: array
       required:
-      - cursor
-      - items
-      type: object
-    ErrorDto:
-      additionalProperties: false
-      description: Describes a single error when failing to import a bank journal entry in the client accounting system.
-      properties:
-        errorMessage:
-          description: Optional error message
-          type:
-          - string
-          - 'null'
-        errorType:
-          allOf:
-          - $ref: '#/components/schemas/ErrorTypeDto'
-          description: Mandatory error type
-      required:
-      - errorType
-      type: object
-    DocumentDto:
-      additionalProperties: false
-      description: Document related (invoice, credit note, purchase order, etc) information
-      properties:
-        documentIssueDate:
-          description: The document issue date
-          format: date-time
-          type:
-          - string
-          - 'null'
-        documentReference:
-          description: '>The document reference number (e.g., invoice number, purchase order number)'
-          type:
-          - string
-          - 'null'
-        documentType:
-          description: 'The document type (CLIENT_INVOICE, CLIENT_CREDIT_NOTE, SUPPLIER_INVOICE, SUPPLIER_CREDIT_NOTE, CLIENT_QUOTE, SALES_ORDER,
-
-            PURCHASE_ORDER, PROFORMA_INVOICE, OTHER)'
-          type: string
-        externalEntityId:
-          description: The external identifier of the owning entity in the source system
-          type:
-          - string
-          - 'null'
-        externalId:
-          description: The document identifier from the source system
-          type:
-          - string
-          - 'null'
-        originalDueDate:
-          description: The document due date
-          format: date
-          type: string
-        uniqueId:
-          description: A unique 8-character alphanumeric identifier for the document
-          type: string
-      required:
-      - documentType
-      - originalDueDate
-      - uniqueId
-      type: object
-    NotImportedEntryDto:
-      additionalProperties: false
-      description: Describes all the errors that occured when failing to import a bank journal entry in the client accounting system.
-      properties:
-        entryAgicapUniqueId:
-          format: uuid
-          type: string
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorDto'
-          type: array
-      required:
-      - entryAgicapUniqueId
-      - errors
+      - entriesImported
       type: object
     ExportedBankJournalEntryDto:
       additionalProperties: false
@@ -1604,37 +1294,6 @@ components:
       - paymentDate
       - type
       type: object
-    GetExportResponse:
-      additionalProperties: false
-      description: Get exported  bank journal response
-      properties:
-        bankJournalExportIndexInYear:
-          description: The index of the bank journal export in the current year
-          format: int32
-          type: integer
-        entityName:
-          description: Name of the entity
-          type: string
-        entries:
-          description: Array of all entries in the bank journal export
-          items:
-            $ref: '#/components/schemas/ExportedBankJournalEntryDto'
-          type: array
-        exportId:
-          description: The identifier of the export as specified in the request
-          format: uuid
-          type: string
-        year:
-          description: Current year in UTC when the bank journal has been exported
-          format: int32
-          type: integer
-      required:
-      - bankJournalExportIndexInYear
-      - entityName
-      - entries
-      - exportId
-      - year
-      type: object
     ImportedEntryDto:
       additionalProperties: false
       description: Identifies a bank journal entry that was successfully imported in the client accounting system.
@@ -1646,52 +1305,245 @@ components:
       required:
       - entryAgicapUniqueId
       type: object
-    MarkAsNotImportedRequest:
+    GetBankJournalExportsResponse:
       additionalProperties: false
-      description: Request to indicate Agicap that some exported bank journal entries from Agicap were not correctly imported in the client accounting system.
+      description: 'A list of bank journal exports summaries along with a timestamp cursor pagination.
+
+        '
       properties:
-        entriesNotImported:
-          description: The list of bank journal entries not imported in the client accounting system with their errors description (max 1000 entries)
-          items:
-            $ref: '#/components/schemas/NotImportedEntryDto'
-          type: array
-      required:
-      - entriesNotImported
-      type: object
-    AccountingAccountTypeDto:
-      enum:
-      - OTHER
-      - SUPPLIER
-      - CLIENT
-      - EXPENSE
-      - PRODUCT
-      - VAT
-      - BANK
-      type: string
-    MarkAsImportedRequest:
-      additionalProperties: false
-      description: Request to indicate Agicap that some exported bank journal entries from Agicap were successfully imported in the client accounting system.
-      properties:
-        entriesImported:
-          description: The list of bank journal entries imported in the client accounting system (max 1000 entries)
-          items:
-            $ref: '#/components/schemas/ImportedEntryDto'
-          type: array
-      required:
-      - entriesImported
-      type: object
-    ExportRequest:
-      additionalProperties: false
-      description: Export request
-      properties:
-        currentExportCounts:
+        cursor:
           allOf:
-          - $ref: '#/components/schemas/CurrentExportCountsDto'
-          description: 'Optional export parameters allowing to set where to start:
+          - $ref: '#/components/schemas/CursorDto'
+          description: 'The cursor current state as returned after a query.
 
-            <ul><li>the count of already created bank journal in the current year </li><li>the count of already created bank journal entries in the current year</li></ul>
+            Both <i>after</i> and <i>before</i> values are ISO 8601 date/time in UTC in this format: 2024-10-28T14:30:00.123Z.'
+        items:
+          items:
+            $ref: '#/components/schemas/BankJournalExportSummaryDto'
+          type: array
+      required:
+      - cursor
+      - items
+      type: object
+    NotImportedEntryDto:
+      additionalProperties: false
+      description: Describes all the errors that occured when failing to import a bank journal entry in the client accounting system.
+      properties:
+        entryAgicapUniqueId:
+          format: uuid
+          type: string
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorDto'
+          type: array
+      required:
+      - entryAgicapUniqueId
+      - errors
+      type: object
+    ExportedCounterpartDto:
+      additionalProperties: false
+      description: A bank journal entry counterpart
+      properties:
+        accountingAccountExternalId:
+          description: An optional ERP-specific external identifier for the accounting account
+          type:
+          - string
+          - 'null'
+        accountingAccountNumber:
+          description: The accounting account number
+          type: string
+        accountingAccountType:
+          allOf:
+          - $ref: '#/components/schemas/AccountingAccountTypeDto'
+          description: The accounting account type (OTHER, SUPPLIER, CLIENT, EXPENSE, PRODUCT, VAT, BANK)
+        accountingCurrency:
+          description: The accounting currency ISO code on three uppercase letters (ISO4217 standard)
+          type:
+          - string
+          - 'null'
+        analyticalCodes:
+          additionalProperties:
+            type: string
+          description: The list of analytical codes of the counterpart
+          type: object
+        creditInAccountingCurrency:
+          description: Credit value in accounting currency (rounded to four decimals)
+          format: double
+          type:
+          - number
+          - 'null'
+        creditInOriginalCurrency:
+          description: Credit value in original currency (rounded to four decimals)
+          format: double
+          type:
+          - number
+          - 'null'
+        customFields:
+          description: Additional fields coming from the reconciled expected used to initialize the counterpart, they include the ERP identification fields from business document when imported in Agicap
+          items:
+            $ref: '#/components/schemas/CustomFieldDto'
+          type:
+          - array
+          - 'null'
+        debitInAccountingCurrency:
+          description: Debit value in accounting currency (rounded to four decimals)
+          format: double
+          type:
+          - number
+          - 'null'
+        debitInOriginalCurrency:
+          description: Debit value in original currency (rounded to four decimals)
+          format: double
+          type:
+          - number
+          - 'null'
+        document:
+          allOf:
+          - $ref: '#/components/schemas/DocumentDto'
+          description: Document related (invoice, credit note, purchase order, etc) information (reference, original due date, type)
+        exchangeRate:
+          description: The exchange rate applied between the original currency amount and the accounting currency amount (rounded to six decimals). Null when the rate is not applicable (e.g., synthetic exchange gain/loss counterpart, or when the original amount is zero).
+          format: double
+          type:
+          - number
+          - 'null'
+        journalCode:
+          description: The journal code
+          type:
+          - string
+          - 'null'
+        linkedExportedEntry:
+          allOf:
+          - $ref: '#/components/schemas/LinkedExportedEntryDto'
+          description: Reference to a previously exported journal entry linked to this counterpart (used for ERP reconciliation)
+        name:
+          description: The counterpart name (title)
+          type: string
+        originalCurrency:
+          description: The original currency ISO code on three uppercase letters (ISO4217 standard)
+          type: string
+        taxKey:
+          description: Tax Key (only relevant for Vat accounting account)
+          type:
+          - string
+          - 'null'
+        thirdPartyCode:
+          description: The third party code
+          type:
+          - string
+          - 'null'
+        thirdPartyExternalId:
+          description: An optional ERP-specific external identifier for the third party
+          type:
+          - string
+          - 'null'
+        thirdPartyName:
+          description: The third party name
+          type:
+          - string
+          - 'null'
+      required:
+      - accountingAccountNumber
+      - accountingAccountType
+      - analyticalCodes
+      - name
+      - originalCurrency
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomFieldDto:
+      additionalProperties: false
+      description: A custom field
+      properties:
+        name:
+          description: The custom field name
+          type: string
+        value:
+          description: The custom field value
+          type: string
+      required:
+      - name
+      - value
+      type: object
+    DocumentDto:
+      additionalProperties: false
+      description: Document related (invoice, credit note, purchase order, etc) information
+      properties:
+        documentIssueDate:
+          description: The document issue date
+          format: date-time
+          type:
+          - string
+          - 'null'
+        documentReference:
+          description: '>The document reference number (e.g., invoice number, purchase order number)'
+          type:
+          - string
+          - 'null'
+        documentType:
+          description: 'The document type (CLIENT_INVOICE, CLIENT_CREDIT_NOTE, SUPPLIER_INVOICE, SUPPLIER_CREDIT_NOTE, CLIENT_QUOTE, SALES_ORDER,
 
-            This is needed if there were bank journal already created outside Agicap systems, Agicap needs to know where to pick up the counts.'
+            PURCHASE_ORDER, PROFORMA_INVOICE, OTHER)'
+          type: string
+        externalEntityId:
+          description: The external identifier of the owning entity in the source system
+          type:
+          - string
+          - 'null'
+        externalId:
+          description: The document identifier from the source system
+          type:
+          - string
+          - 'null'
+        originalDueDate:
+          description: The document due date
+          format: date
+          type: string
+        uniqueId:
+          description: A unique 8-character alphanumeric identifier for the document
+          type: string
+      required:
+      - documentType
+      - originalDueDate
+      - uniqueId
+      type: object
+    LinkedExportedEntryDto:
+      additionalProperties: false
+      description: Reference to a previously exported journal entry linked to this counterpart
+      properties:
+        agicapUniqueId:
+          description: The unique identifier of the linked entry (same format as ExportedBankJournalEntryDto.AgicapUniqueId)
+          format: uuid
+          type: string
+        exportEntryReference:
+          description: The unique export reference of the linked entry (same format as ExportedBankJournalEntryDto.ExportEntryReference)
+          type: string
+      required:
+      - agicapUniqueId
+      - exportEntryReference
       type: object
     ExportResponse:
       additionalProperties: false
@@ -1724,6 +1576,18 @@ components:
       - exportId
       - year
       type: object
+    MarkAsNotImportedRequest:
+      additionalProperties: false
+      description: Request to indicate Agicap that some exported bank journal entries from Agicap were not correctly imported in the client accounting system.
+      properties:
+        entriesNotImported:
+          description: The list of bank journal entries not imported in the client accounting system with their errors description (max 1000 entries)
+          items:
+            $ref: '#/components/schemas/NotImportedEntryDto'
+          type: array
+      required:
+      - entriesNotImported
+      type: object
     ErrorTypeDto:
       description: Describes the types of errors when failing to import a bank journal entry in the client accounting system.
       enum:
@@ -1733,6 +1597,142 @@ components:
       - UNKNOWN_ANALYTICAL_CODE
       - OTHER
       type: string
+    ExportRequest:
+      additionalProperties: false
+      description: Export request
+      properties:
+        currentExportCounts:
+          allOf:
+          - $ref: '#/components/schemas/CurrentExportCountsDto'
+          description: 'Optional export parameters allowing to set where to start:
+
+            <ul><li>the count of already created bank journal in the current year </li><li>the count of already created bank journal entries in the current year</li></ul>
+
+            This is needed if there were bank journal already created outside Agicap systems, Agicap needs to know where to pick up the counts.'
+      type: object
+    ErrorDto:
+      additionalProperties: false
+      description: Describes a single error when failing to import a bank journal entry in the client accounting system.
+      properties:
+        errorMessage:
+          description: Optional error message
+          type:
+          - string
+          - 'null'
+        errorType:
+          allOf:
+          - $ref: '#/components/schemas/ErrorTypeDto'
+          description: Mandatory error type
+      required:
+      - errorType
+      type: object
+    AccountingAccountTypeDto:
+      enum:
+      - OTHER
+      - SUPPLIER
+      - CLIENT
+      - EXPENSE
+      - PRODUCT
+      - VAT
+      - BANK
+      type: string
+    CurrentExportCountsDto:
+      additionalProperties: false
+      description: 'Optional export parameters allowing to set where to start:
+
+        <ul><li>the count of already created bank journal in the current year </li><li>the count of already created bank journal entries in the current year</li></ul>
+
+        This is needed if there were bank journal already created outside Agicap systems, Agicap needs to know where to pick up the counts.'
+      properties:
+        currentBankJournalEntriesCountInYear:
+          description: The number of bank journal entries previously created (starts at 1)
+          format: int32
+          type: integer
+        currentBankJournalsCountInYear:
+          description: The number of bank journal previously created (starts at 1)
+          format: int32
+          type: integer
+      required:
+      - currentBankJournalEntriesCountInYear
+      - currentBankJournalsCountInYear
+      type: object
+    BankJournalExportSummaryDto:
+      additionalProperties: false
+      description: A bank journal export description.
+      properties:
+        exportDateUtc:
+          description: The export date-time in UTC format
+          example: '2024-10-28T14:30:59.999Z'
+          type: string
+        exportId:
+          description: Unique ID of the export.
+          example: 31dee215-e458-4145-8fe8-c20a0ea06042
+          format: uuid
+          type: string
+        exportIndexInYear:
+          description: The index of the bank journal export in the `ExportYear` (index starting at 1)
+          example: 12
+          format: int32
+          type: integer
+        exportYear:
+          description: The year the export was done
+          example: 2024
+          format: int32
+          type: integer
+        indexInYearOfFirstEntryInBankJournal:
+          description: 'The index in `ExportYear` of the first entry in the bank journal export (index
+
+            starting at 1)'
+          example: 105
+          format: int32
+          type: integer
+        indexInYearOfLastEntryInBankJournal:
+          description: 'The index in `ExportYear` of the last entry in the bank journal export (index
+
+            starting at 1)'
+          example: 120
+          format: int32
+          type: integer
+        numberOfEntries:
+          description: The number of entries in the bank journal export
+          example: 16
+          format: int32
+          type: integer
+      required:
+      - exportDateUtc
+      - exportId
+      - exportIndexInYear
+      - exportYear
+      - indexInYearOfFirstEntryInBankJournal
+      - indexInYearOfLastEntryInBankJournal
+      - numberOfEntries
+      type: object
+    CursorDto:
+      additionalProperties: false
+      description: 'The cursor current state as returned after a query.
+
+        Both <i>after</i> and <i>before</i> values are ISO 8601 date/time in UTC in this format: 2024-10-28T14:30:00.123Z.'
+      properties:
+        after:
+          description: The export date in UTC of the newest returned bank journal export (only if the request specified the <i>after</i> parameter
+          example: '2024-11-01T09:45:00.000Z'
+          type:
+          - string
+          - 'null'
+        before:
+          description: The export date in UTC of the oldest returned bank journal export (only if the request specified the <i>before</i> parameter
+          example: '2024-10-28T14:30:59.999Z'
+          type:
+          - string
+          - 'null'
+        size:
+          description: The number of exported bank journals returned (might be different from the requested size)
+          example: 100
+          format: int32
+          type: integer
+      required:
+      - size
+      type: object
   securitySchemes:
     bearerAuth:
       bearerFormat: OPAQUE

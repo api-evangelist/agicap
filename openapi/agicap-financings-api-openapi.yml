@@ -143,6 +143,17 @@ paths:
       - Financings
 components:
   schemas:
+    FinancingListResourcePublic:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/FinancingListItemResourcePublic'
+          type: array
+        offset:
+          $ref: '#/components/schemas/Offset'
+      title: FinancingList
+      type: object
     HttpValidationProblemDetails:
       additionalProperties: false
       allOf:
@@ -156,41 +167,6 @@ components:
               type: array
             type: object
         type: object
-    Offset:
-      additionalProperties: false
-      properties:
-        current:
-          format: int32
-          type: integer
-        limit:
-          format: int32
-          type: integer
-        next:
-          format: int32
-          type: integer
-        previous:
-          format: int32
-          type: integer
-      type: object
-    AmountDto:
-      additionalProperties: false
-      properties:
-        currency:
-          type: string
-        value:
-          format: double
-          type: number
-      title: Amount
-      type: object
-    StakeholderDto:
-      additionalProperties: false
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-      title: Stakeholder
-      type: object
     FinancingListItemResourcePublic:
       additionalProperties: false
       properties:
@@ -211,17 +187,6 @@ components:
           format: date
           type: string
       title: FinancingListItem
-      type: object
-    FinancingListResourcePublic:
-      additionalProperties: false
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/FinancingListItemResourcePublic'
-          type: array
-        offset:
-          $ref: '#/components/schemas/Offset'
-      title: FinancingList
       type: object
     ProblemDetails:
       additionalProperties: false
@@ -247,6 +212,41 @@ components:
           type:
           - string
           - 'null'
+      type: object
+    StakeholderDto:
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+      title: Stakeholder
+      type: object
+    AmountDto:
+      additionalProperties: false
+      properties:
+        currency:
+          type: string
+        value:
+          format: double
+          type: number
+      title: Amount
+      type: object
+    Offset:
+      additionalProperties: false
+      properties:
+        current:
+          format: int32
+          type: integer
+        limit:
+          format: int32
+          type: integer
+        next:
+          format: int32
+          type: integer
+        previous:
+          format: int32
+          type: integer
       type: object
   securitySchemes:
     bearerAuth:

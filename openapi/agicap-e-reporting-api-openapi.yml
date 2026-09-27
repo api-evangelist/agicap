@@ -81,44 +81,6 @@ components:
       - taxRate
       title: Details of the B2C transaction
       type: object
-    ReportedInvoiceCategory:
-      additionalProperties: false
-      enum:
-      - SaleOfGoods
-      - ProvisionOfService
-      type: string
-    PublicApiAddB2CTransactionRequest:
-      additionalProperties: false
-      properties:
-        category:
-          $ref: '#/components/schemas/ReportedInvoiceCategory'
-        currencyCode:
-          $ref: '#/components/schemas/CurrencyCode'
-        entityId:
-          description: Identifier of the entity the transaction is reported for.
-          format: int32
-          type: integer
-        legalRegistrationId:
-          description: 9-digit French company identifier (SIREN) associated with the transaction.
-          minLength: 1
-          type: string
-        transactionDate:
-          description: 'Date of the B2C transaction (format: YYYY-MM-DD).'
-          format: date
-          type: string
-        transactionDetails:
-          description: Tax breakdown details for the transaction. At least one entry is required.
-          items:
-            $ref: '#/components/schemas/PublicApiB2CTransactionDetailRequest'
-          type: array
-      required:
-      - category
-      - currencyCode
-      - entityId
-      - legalRegistrationId
-      - transactionDate
-      - transactionDetails
-      type: object
     CurrencyCode:
       additionalProperties: false
       enum:
@@ -328,6 +290,44 @@ components:
           - string
           - 'null'
       type: object
+    PublicApiAddB2CTransactionRequest:
+      additionalProperties: false
+      properties:
+        category:
+          $ref: '#/components/schemas/ReportedInvoiceCategory'
+        currencyCode:
+          $ref: '#/components/schemas/CurrencyCode'
+        entityId:
+          description: Identifier of the entity the transaction is reported for.
+          format: int32
+          type: integer
+        legalRegistrationId:
+          description: 9-digit French company identifier (SIREN) associated with the transaction.
+          minLength: 1
+          type: string
+        transactionDate:
+          description: 'Date of the B2C transaction (format: YYYY-MM-DD).'
+          format: date
+          type: string
+        transactionDetails:
+          description: Tax breakdown details for the transaction. At least one entry is required.
+          items:
+            $ref: '#/components/schemas/PublicApiB2CTransactionDetailRequest'
+          type: array
+      required:
+      - category
+      - currencyCode
+      - entityId
+      - legalRegistrationId
+      - transactionDate
+      - transactionDetails
+      type: object
+    ReportedInvoiceCategory:
+      additionalProperties: false
+      enum:
+      - SaleOfGoods
+      - ProvisionOfService
+      type: string
   securitySchemes:
     bearerAuth:
       bearerFormat: OPAQUE

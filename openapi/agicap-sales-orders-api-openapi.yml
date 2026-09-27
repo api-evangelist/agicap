@@ -387,7 +387,7 @@ paths:
     - url: https://api.agicap.internal
   /public/business-documents/v2/entities/{entityid}/connections/{connectionid}/sales-orders:
     get:
-      operationId: SalesOrder_GetSalesOrders
+      operationId: getPublicBusinessDocumentsV2EntitiesByEntityidConnectionsByConnectionidSalesOrders
       parameters:
       - description: Agicap entity unique identifier
         in: path
@@ -525,6 +525,8 @@ paths:
       summary: Get sales orders
       tags:
       - Sales Orders
+      x-operation-id-source: normalized
+      x-operation-id-original: SalesOrder_GetSalesOrders
     post:
       operationId: SalesOrder_CreateSalesOrdersV2
       parameters:
@@ -825,6 +827,60 @@ paths:
     - url: https://api.agicap.internal
 components:
   schemas:
+    AmountsWithRemainingAmountDto:
+      additionalProperties: false
+      properties:
+        remainingAmount:
+          description: Remaining amount in the document currency.
+          format: double
+          type:
+          - number
+          - 'null'
+        taxesAmount:
+          description: Taxes amount in the document currency
+          format: double
+          type:
+          - number
+          - 'null'
+        totalAmount:
+          description: Total amount in the document currency.
+          format: double
+          type: number
+      required:
+      - totalAmount
+      title: AmountsWithRemainingAmount
+      type: object
+    CreatedDocumentDto:
+      additionalProperties: false
+      properties:
+        externalId:
+          type: string
+        id:
+          format: uuid
+          type: string
+      title: CreatedDocument
+      type: object
+    PaginationMetadataDto:
+      additionalProperties: false
+      properties:
+        pageIndex:
+          description: Current page index
+          format: int32
+          type: integer
+        pageItemsCount:
+          description: Number of items on the current page
+          format: int32
+          type: integer
+        pageSize:
+          description: Page size (items per page)
+          format: int32
+          type: integer
+        totalItemsCount:
+          description: Total number of items
+          format: int32
+          type: integer
+      title: PaginationMetadata
+      type: object
     CreateSalesOrderDto:
       additionalProperties: false
       properties:
@@ -951,6 +1007,17 @@ components:
       - status
       title: SalesOrder
       type: object
+    SalesOrderDtoPageDto:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SalesOrderDto'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      title: Page
+      type: object
     CounterPartyDto:
       additionalProperties: false
       properties:
@@ -965,71 +1032,6 @@ components:
           - string
           - 'null'
       title: CounterParty
-      type: object
-    PaginationMetadataDto:
-      additionalProperties: false
-      properties:
-        pageIndex:
-          description: Current page index
-          format: int32
-          type: integer
-        pageItemsCount:
-          description: Number of items on the current page
-          format: int32
-          type: integer
-        pageSize:
-          description: Page size (items per page)
-          format: int32
-          type: integer
-        totalItemsCount:
-          description: Total number of items
-          format: int32
-          type: integer
-      title: PaginationMetadata
-      type: object
-    SalesOrderDtoPageDto:
-      additionalProperties: false
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/SalesOrderDto'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadataDto'
-      title: Page
-      type: object
-    CreatedDocumentDto:
-      additionalProperties: false
-      properties:
-        externalId:
-          type: string
-        id:
-          format: uuid
-          type: string
-      title: CreatedDocument
-      type: object
-    AmountsWithRemainingAmountDto:
-      additionalProperties: false
-      properties:
-        remainingAmount:
-          description: Remaining amount in the document currency.
-          format: double
-          type:
-          - number
-          - 'null'
-        taxesAmount:
-          description: Taxes amount in the document currency
-          format: double
-          type:
-          - number
-          - 'null'
-        totalAmount:
-          description: Total amount in the document currency.
-          format: double
-          type: number
-      required:
-      - totalAmount
-      title: AmountsWithRemainingAmount
       type: object
     UpdateSalesOrderDto:
       additionalProperties: false
@@ -1112,27 +1114,6 @@ components:
       - id
       - name
       title: CounterParty
-      type: object
-    AmountsWithRemainingAmountDtoV2:
-      additionalProperties: false
-      properties:
-        remainingAmount:
-          description: Remaining amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-        taxesAmount:
-          description: Taxes amount in the document currency (amount must be positive)
-          format: double
-          type: number
-        totalAmount:
-          description: Total amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-      required:
-      - remainingAmount
-      - taxesAmount
-      - totalAmount
-      title: AmountsWithRemainingAmount
       type: object
     UpdateSalesOrderDtoV2:
       additionalProperties: false
@@ -1258,6 +1239,27 @@ components:
       - salesOrderNumber
       - status
       title: CreateSalesOrder
+      type: object
+    AmountsWithRemainingAmountDtoV2:
+      additionalProperties: false
+      properties:
+        remainingAmount:
+          description: Remaining amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+        taxesAmount:
+          description: Taxes amount in the document currency (amount must be positive)
+          format: double
+          type: number
+        totalAmount:
+          description: Total amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+      required:
+      - remainingAmount
+      - taxesAmount
+      - totalAmount
+      title: AmountsWithRemainingAmount
       type: object
   securitySchemes:
     bearerAuth:

@@ -12,7 +12,7 @@ paths:
   /public/ar-clients/v1/entities/{entityId}/clients:
     delete:
       description: Delete clients in bulk by externalId. A client with linked invoices or credit notes cannot be deleted.
-      operationId: Delete clients
+      operationId: DeleteClients
       parameters:
       - in: path
         name: entityId
@@ -47,9 +47,11 @@ paths:
       x-codegen-request-body-name: body
       summary: Delete clients
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Delete clients
     get:
       description: Retrieve a paginated list of clients for the given entity.
-      operationId: List clients
+      operationId: ListClients
       parameters:
       - in: query
         name: pageSize
@@ -133,9 +135,11 @@ paths:
       x-codegen-request-body-name: body
       summary: List clients
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: List clients
     post:
       description: Create clients in bulk. Clients with an already existing externalId are ignored. Maximum 1000 items per request.
-      operationId: Create clients
+      operationId: CreateClients
       parameters:
       - in: path
         name: entityId
@@ -170,9 +174,11 @@ paths:
       x-codegen-request-body-name: body
       summary: Create clients
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Create clients
     put:
       description: Update clients in bulk by Agicap ID or externalId (Agicap ID takes priority). Non-existing clients are ignored. Maximum 1000 items per request.
-      operationId: Update clients
+      operationId: UpdateClients
       parameters:
       - in: path
         name: entityId
@@ -207,132 +213,10 @@ paths:
       x-codegen-request-body-name: body
       summary: Update clients
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Update clients
 components:
   schemas:
-    DeleteClientsResponse:
-      properties:
-        deleted:
-          description: Successfully deleted clients
-          items:
-            $ref: '#/components/schemas/ClientSummaryDto'
-          type: array
-        notDeleted:
-          description: Clients that failed to be deleted
-          items:
-            $ref: '#/components/schemas/NotDeletedClient'
-          type: array
-      required:
-      - deleted
-      - notDeleted
-      type: object
-    CreateClientFailureEnum:
-      description: Reason why the client could not be created
-      enum:
-      - DUPLICATED_EXTERNAL_ID
-      - DUPLICATED_REFERENCE
-      type: string
-    GetClientsResponse:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/Client'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadataDto'
-      required:
-      - items
-      - pagination
-      type: object
-    CreateClientsRequest:
-      properties:
-        clients:
-          description: List of clients to create
-          items:
-            $ref: '#/components/schemas/ClientToCreate'
-          type: array
-      required:
-      - clients
-      type: object
-    GetClientsSortByEnum:
-      description: Field to sort clients by. Defaults to a stable identifier order when omitted.
-      enum:
-      - name
-      - reference
-      - outstandingAmount
-      - dueAmount
-      type: string
-    DeleteClientsRequest:
-      properties:
-        externalIds:
-          description: 'List of client external IDs to delete. Max 1000 items. Each ID: max 1000 characters, value is trimmed.'
-          example:
-          - client_1
-          - client_2
-          items:
-            type: string
-          type: array
-      required:
-      - externalIds
-      type: object
-    NotUpdatedClient:
-      properties:
-        externalId:
-          description: Identifier from the ERP or external system
-          example: client_1
-          type: string
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/NotUpdatedReasonEnum'
-          description: Reason why the client could not be updated
-      required:
-      - externalId
-      - reason
-      type: object
-    SortDirectionEnum:
-      description: Sort direction. Defaults to ascending.
-      enum:
-      - asc
-      - desc
-      type: string
-    ClientToCreate:
-      properties:
-        electronicInvoicingAddress:
-          description: Address used for electronic invoicing (Chorus Pro, Peppol, etc.). Max 256 characters. Cannot be empty when provided. Value is trimmed.
-          example: '83486222100034'
-          maxLength: 256
-          type: string
-        externalId:
-          description: Identifier from the ERP or external system. Max 1000 characters. Value is trimmed.
-          example: client_1
-          maxLength: 1000
-          type: string
-        legalId:
-          description: Legal identifier (SIREN, SIRET, VAT, etc.). Cannot be empty when provided. Value is trimmed.
-          example: FR12345678901
-          type: string
-        name:
-          description: Client name. Max 400 characters. Cannot be empty. Value is trimmed.
-          example: Acme Industries
-          maxLength: 400
-          type: string
-        reference:
-          description: Business reference for the client. Max 400 characters. Cannot be empty. Value is trimmed.
-          example: C-10023
-          maxLength: 400
-          type: string
-        tags:
-          description: 'Tags associated with the client. Each tag: min 1, max 30 characters. Value is trimmed.'
-          example:
-          - Key Account
-          items:
-            type: string
-          type: array
-      required:
-      - externalId
-      - name
-      - reference
-      - tags
-      type: object
     Client:
       properties:
         averagePaymentDelay:
@@ -421,47 +305,18 @@ components:
       - consolidatedDueAmount
       - consolidatedCurrency
       type: object
-    NotDeletedClient:
+    DeleteClientsRequest:
       properties:
-        externalId:
-          description: Identifier from the ERP or external system
-          example: client_1
-          type: string
-        reason:
-          description: Reason why the client could not be deleted
-          enum:
-          - CLIENT_HAS_DOCUMENTS
-          - CLIENT_NOT_FOUND
-          type: string
+        externalIds:
+          description: 'List of client external IDs to delete. Max 1000 items. Each ID: max 1000 characters, value is trimmed.'
+          example:
+          - client_1
+          - client_2
+          items:
+            type: string
+          type: array
       required:
-      - externalId
-      - reason
-      type: object
-    OutstandingAmountSummaryItem:
-      properties:
-        convertedCurrencyCode:
-          allOf:
-          - $ref: '#/components/schemas/Currency'
-          description: Main currency the amount was converted to. `null` when no conversion was applied.
-        convertedRoundedAmount:
-          description: Outstanding amount converted to the entity main currency, in currency units (not cents), rounded. `null` when the amount is already in the main currency or no exchange rate is available.
-          example: 1650
-          type:
-          - number
-          - 'null'
-        currencyCode:
-          allOf:
-          - $ref: '#/components/schemas/Currency'
-          description: Currency of the outstanding amount.
-        roundedAmount:
-          description: Outstanding amount in the original currency, expressed in currency units (not cents), rounded.
-          example: 1500
-          type: number
-      required:
-      - roundedAmount
-      - currencyCode
-      - convertedRoundedAmount
-      - convertedCurrencyCode
+      - externalIds
       type: object
     ClientSummaryDto:
       properties:
@@ -491,21 +346,29 @@ components:
       - id
       - externalId
       type: object
-    CreateClientsResponse:
+    CreateClientsRequest:
       properties:
-        created:
-          description: Successfully created clients
+        clients:
+          description: List of clients to create
           items:
-            $ref: '#/components/schemas/ClientSummaryDto'
-          type: array
-        notCreated:
-          description: Clients that failed to be created
-          items:
-            $ref: '#/components/schemas/NotCreatedClient'
+            $ref: '#/components/schemas/ClientToCreate'
           type: array
       required:
-      - created
-      - notCreated
+      - clients
+      type: object
+    NotUpdatedClient:
+      properties:
+        externalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/NotUpdatedReasonEnum'
+          description: Reason why the client could not be updated
+      required:
+      - externalId
+      - reason
       type: object
     Currency:
       description: Currency of the outstanding amount.
@@ -703,6 +566,101 @@ components:
       - XPD
       - XPT
       type: string
+    SortDirectionEnum:
+      description: Sort direction. Defaults to ascending.
+      enum:
+      - asc
+      - desc
+      type: string
+    CreateClientsResponse:
+      properties:
+        created:
+          description: Successfully created clients
+          items:
+            $ref: '#/components/schemas/ClientSummaryDto'
+          type: array
+        notCreated:
+          description: Clients that failed to be created
+          items:
+            $ref: '#/components/schemas/NotCreatedClient'
+          type: array
+      required:
+      - created
+      - notCreated
+      type: object
+    NotUpdatedReasonEnum:
+      description: Reason why the client could not be updated
+      enum:
+      - NOT_FOUND
+      - EXTERNAL_ID_CONFLICT
+      type: string
+    NotCreatedClient:
+      properties:
+        externalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/CreateClientFailureEnum'
+          description: Reason why the client could not be created
+      required:
+      - externalId
+      - reason
+      type: object
+    CreateClientFailureEnum:
+      description: Reason why the client could not be created
+      enum:
+      - DUPLICATED_EXTERNAL_ID
+      - DUPLICATED_REFERENCE
+      type: string
+    ClientToCreate:
+      properties:
+        electronicInvoicingAddress:
+          description: Address used for electronic invoicing (Chorus Pro, Peppol, etc.). Max 256 characters. Cannot be empty when provided. Value is trimmed.
+          example: '83486222100034'
+          maxLength: 256
+          type: string
+        externalId:
+          description: Identifier from the ERP or external system. Max 1000 characters. Value is trimmed.
+          example: client_1
+          maxLength: 1000
+          type: string
+        legalId:
+          description: Legal identifier (SIREN, SIRET, VAT, etc.). Cannot be empty when provided. Value is trimmed.
+          example: FR12345678901
+          type: string
+        name:
+          description: Client name. Max 400 characters. Cannot be empty. Value is trimmed.
+          example: Acme Industries
+          maxLength: 400
+          type: string
+        reference:
+          description: Business reference for the client. Max 400 characters. Cannot be empty. Value is trimmed.
+          example: C-10023
+          maxLength: 400
+          type: string
+        tags:
+          description: 'Tags associated with the client. Each tag: min 1, max 30 characters. Value is trimmed.'
+          example:
+          - Key Account
+          items:
+            type: string
+          type: array
+      required:
+      - externalId
+      - name
+      - reference
+      - tags
+      type: object
+    GetClientsSortByEnum:
+      description: Field to sort clients by. Defaults to a stable identifier order when omitted.
+      enum:
+      - name
+      - reference
+      - outstandingAmount
+      - dueAmount
+      type: string
     PaginationMetadataDto:
       properties:
         after:
@@ -733,6 +691,64 @@ components:
       - updated
       - notUpdated
       type: object
+    DeleteClientsResponse:
+      properties:
+        deleted:
+          description: Successfully deleted clients
+          items:
+            $ref: '#/components/schemas/ClientSummaryDto'
+          type: array
+        notDeleted:
+          description: Clients that failed to be deleted
+          items:
+            $ref: '#/components/schemas/NotDeletedClient'
+          type: array
+      required:
+      - deleted
+      - notDeleted
+      type: object
+    OutstandingAmountSummaryItem:
+      properties:
+        convertedCurrencyCode:
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+          description: Main currency the amount was converted to. `null` when no conversion was applied.
+        convertedRoundedAmount:
+          description: Outstanding amount converted to the entity main currency, in currency units (not cents), rounded. `null` when the amount is already in the main currency or no exchange rate is available.
+          example: 1650
+          type:
+          - number
+          - 'null'
+        currencyCode:
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+          description: Currency of the outstanding amount.
+        roundedAmount:
+          description: Outstanding amount in the original currency, expressed in currency units (not cents), rounded.
+          example: 1500
+          type: number
+      required:
+      - roundedAmount
+      - currencyCode
+      - convertedRoundedAmount
+      - convertedCurrencyCode
+      type: object
+    NotDeletedClient:
+      properties:
+        externalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+        reason:
+          description: Reason why the client could not be deleted
+          enum:
+          - CLIENT_HAS_DOCUMENTS
+          - CLIENT_NOT_FOUND
+          type: string
+      required:
+      - externalId
+      - reason
+      type: object
     DueAmountSummaryItem:
       properties:
         convertedCurrencyCode:
@@ -759,12 +775,16 @@ components:
       - convertedDueAmount
       - convertedCurrencyCode
       type: object
-    NotUpdatedReasonEnum:
-      description: Reason why the client could not be updated
-      enum:
-      - NOT_FOUND
-      - EXTERNAL_ID_CONFLICT
-      type: string
+    UpdateClientsRequest:
+      properties:
+        clients:
+          description: List of clients to update
+          items:
+            $ref: '#/components/schemas/ClientToUpdate'
+          type: array
+      required:
+      - clients
+      type: object
     ClientToUpdate:
       properties:
         electronicInvoicingAddress:
@@ -802,29 +822,17 @@ components:
       - name
       - tags
       type: object
-    UpdateClientsRequest:
+    GetClientsResponse:
       properties:
-        clients:
-          description: List of clients to update
+        items:
           items:
-            $ref: '#/components/schemas/ClientToUpdate'
+            $ref: '#/components/schemas/Client'
           type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
       required:
-      - clients
-      type: object
-    NotCreatedClient:
-      properties:
-        externalId:
-          description: Identifier from the ERP or external system
-          example: client_1
-          type: string
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/CreateClientFailureEnum'
-          description: Reason why the client could not be created
-      required:
-      - externalId
-      - reason
+      - items
+      - pagination
       type: object
   securitySchemes:
     bearer:

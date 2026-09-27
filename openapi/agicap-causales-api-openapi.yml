@@ -79,15 +79,16 @@ paths:
       - Causales
 components:
   schemas:
-    CausalesRequestDto:
+    CausaleRequestDto:
       additionalProperties: false
       properties:
-        causales:
-          items:
-            $ref: '#/components/schemas/CausaleRequestDto'
-          type: array
+        code:
+          type: string
+        description:
+          type: string
       required:
-      - causales
+      - code
+      - description
       type: object
     ProblemDetails:
       additionalProperties: false
@@ -114,16 +115,15 @@ components:
           - string
           - 'null'
       type: object
-    CausaleRequestDto:
+    CausalesRequestDto:
       additionalProperties: false
       properties:
-        code:
-          type: string
-        description:
-          type: string
+        causales:
+          items:
+            $ref: '#/components/schemas/CausaleRequestDto'
+          type: array
       required:
-      - code
-      - description
+      - causales
       type: object
   securitySchemes:
     bearerAuth:

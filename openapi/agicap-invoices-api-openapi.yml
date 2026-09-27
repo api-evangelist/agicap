@@ -133,18 +133,12 @@ paths:
       - Invoices
 components:
   schemas:
-    InvoicesManagement.Web.Controllers.PublicApi.Responses.MarkInvoicesAsVerifiedResponse:
+    InvoicesManagement.Read.Export.InvoiceStatusForExport:
       additionalProperties: false
-      description: Invoices verification report
-      properties:
-        results:
-          description: The result
-          items:
-            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.MarkInvoicesAsVerifiedResult'
-          type: array
-      required:
-      - results
-      type: object
+      enum:
+      - Verified
+      - NotVerified
+      type: string
     InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoiceResponse:
       additionalProperties: false
       description: Invoice details.
@@ -248,6 +242,43 @@ components:
       required:
       - invoiceIds
       type: object
+    Microsoft.AspNetCore.Mvc.ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          enum:
+          - Generic_InternalServerError
+          - InvoicesZipDownloadError
+          - Read_Generic_Error
+          - Write_File_InvalidData
+          - Write_File_InvalidFormat
+          - Write_Invoice_Duplicate
+          - Write_Invoice_EmptyFile
+          - Write_Invoice_NotSupportedFileType
+          - Write_Invoice_TooLargeFile
+          - Write_Invoice_Uncompleted
+          - Write_Supplier_NotFound
+          type: string
+      required:
+      - type
+      type: object
     InvoicesManagement.Web.Controllers.PublicApi.Responses.MarkInvoicesAsVerifiedResult:
       additionalProperties: false
       description: Invoice verification result
@@ -266,6 +297,39 @@ components:
       required:
       - invoiceId
       - success
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoiceLinkedPurchaseOrderResponse:
+      additionalProperties: false
+      description: Purchase order linked to an invoice.
+      properties:
+        associatedAmountExcludingTaxes:
+          description: The amount excluding taxes associated to this invoice.
+          format: double
+          type: number
+        number:
+          description: The purchase order number.
+          type:
+          - string
+          - 'null'
+        purchaseOrderId:
+          description: The purchase order identifier.
+          format: uuid
+          type: string
+      required:
+      - associatedAmountExcludingTaxes
+      - purchaseOrderId
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoicesResponse:
+      additionalProperties: false
+      description: Invoices response.
+      properties:
+        invoices:
+          description: The list of invoices.
+          items:
+            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoiceResponse'
+          type: array
+      required:
+      - invoices
       type: object
     InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoiceLineItemResponse:
       additionalProperties: false
@@ -318,6 +382,17 @@ components:
       required:
       - lineItemId
       type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Dto.MarkInvoicesAsVerifiedDto:
+      additionalProperties: false
+      properties:
+        invoiceIds:
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - invoiceIds
+      type: object
     InvoicesManagement.Web.Controllers.PublicApi.Responses.MarkInvoicesAsVerifiedError:
       additionalProperties: false
       description: Invoice verification error
@@ -332,92 +407,17 @@ components:
       - exception
       - message
       type: object
-    Microsoft.AspNetCore.Mvc.ProblemDetails:
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.MarkInvoicesAsVerifiedResponse:
       additionalProperties: false
+      description: Invoices verification report
       properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          enum:
-          - Generic_InternalServerError
-          - InvoicesZipDownloadError
-          - Read_Generic_Error
-          - Write_File_InvalidData
-          - Write_File_InvalidFormat
-          - Write_Invoice_Duplicate
-          - Write_Invoice_EmptyFile
-          - Write_Invoice_NotSupportedFileType
-          - Write_Invoice_TooLargeFile
-          - Write_Invoice_Uncompleted
-          - Write_Supplier_NotFound
-          type: string
-      required:
-      - type
-      type: object
-    InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoicesResponse:
-      additionalProperties: false
-      description: Invoices response.
-      properties:
-        invoices:
-          description: The list of invoices.
+        results:
+          description: The result
           items:
-            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoiceResponse'
+            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.MarkInvoicesAsVerifiedResult'
           type: array
       required:
-      - invoices
-      type: object
-    InvoicesManagement.Web.Controllers.PublicApi.Responses.InvoiceLinkedPurchaseOrderResponse:
-      additionalProperties: false
-      description: Purchase order linked to an invoice.
-      properties:
-        associatedAmountExcludingTaxes:
-          description: The amount excluding taxes associated to this invoice.
-          format: double
-          type: number
-        number:
-          description: The purchase order number.
-          type:
-          - string
-          - 'null'
-        purchaseOrderId:
-          description: The purchase order identifier.
-          format: uuid
-          type: string
-      required:
-      - associatedAmountExcludingTaxes
-      - purchaseOrderId
-      type: object
-    InvoicesManagement.Read.Export.InvoiceStatusForExport:
-      additionalProperties: false
-      enum:
-      - Verified
-      - NotVerified
-      type: string
-    InvoicesManagement.Web.Controllers.PublicApi.Dto.MarkInvoicesAsVerifiedDto:
-      additionalProperties: false
-      properties:
-        invoiceIds:
-          items:
-            format: uuid
-            type: string
-          type: array
-      required:
-      - invoiceIds
+      - results
       type: object
   securitySchemes:
     Bearer:

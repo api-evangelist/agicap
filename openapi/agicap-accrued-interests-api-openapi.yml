@@ -55,28 +55,6 @@ paths:
       - Accrued interests
 components:
   schemas:
-    AccruedInterestsByCurrencyResponse:
-      additionalProperties: false
-      properties:
-        items:
-          additionalProperties:
-            $ref: '#/components/schemas/AccruedInterestsResponse'
-          type: object
-      title: AccruedInterestsByCurrency
-      type: object
-    HttpValidationProblemDetails:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/ProblemDetails'
-      - additionalProperties: {}
-        properties:
-          errors:
-            additionalProperties:
-              items:
-                type: string
-              type: array
-            type: object
-        type: object
     AccruedInterestsResponse:
       additionalProperties: false
       properties:
@@ -119,6 +97,28 @@ components:
           - string
           - 'null'
       type: object
+    AccruedInterestsByCurrencyResponse:
+      additionalProperties: false
+      properties:
+        items:
+          additionalProperties:
+            $ref: '#/components/schemas/AccruedInterestsResponse'
+          type: object
+      title: AccruedInterestsByCurrency
+      type: object
+    HttpValidationProblemDetails:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - additionalProperties: {}
+        properties:
+          errors:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+        type: object
   securitySchemes:
     bearerAuth:
       bearerFormat: OPAQUE

@@ -413,7 +413,7 @@ paths:
     - url: https://api.agicap.internal
   /public/business-documents/v2/entities/{entityid}/connections:
     get:
-      operationId: Connection_GetConnections
+      operationId: getPublicBusinessDocumentsV2EntitiesByEntityidConnections
       parameters:
       - description: Agicap entity unique identifier
         in: path
@@ -483,8 +483,10 @@ paths:
       summary: Get connections
       tags:
       - Connections
+      x-operation-id-source: normalized
+      x-operation-id-original: Connection_GetConnections
     post:
-      operationId: Connection_CreateConnection
+      operationId: postPublicBusinessDocumentsV2EntitiesByEntityidConnections
       parameters:
       - description: Agicap entity unique identifier
         in: path
@@ -567,12 +569,14 @@ paths:
       summary: Create a connection
       tags:
       - Connections
+      x-operation-id-source: normalized
+      x-operation-id-original: Connection_CreateConnection
     servers:
     - url: https://api.agicap.com
     - url: https://api.agicap.internal
   /public/business-documents/v2/entities/{entityid}/connections/{connectionid}:
     get:
-      operationId: Connection_GetConnection
+      operationId: getPublicBusinessDocumentsV2EntitiesByEntityidConnectionsByConnectionid
       parameters:
       - description: Agicap entity unique identifier
         in: path
@@ -642,11 +646,57 @@ paths:
       summary: Get connection
       tags:
       - Connections
+      x-operation-id-source: normalized
+      x-operation-id-original: Connection_GetConnection
     servers:
     - url: https://api.agicap.com
     - url: https://api.agicap.internal
 components:
   schemas:
+    ConnectionToCreate:
+      additionalProperties: false
+      properties:
+        Name:
+          description: Connection name
+          type: string
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    ConnectionSummaryPagedResult:
+      additionalProperties: false
+      properties:
+        Items:
+          items:
+            $ref: '#/components/schemas/ConnectionSummary'
+          type:
+          - array
+          - 'null'
+        Pagination:
+          $ref: '#/components/schemas/Pagination'
+      type: object
     Pagination:
       additionalProperties: false
       properties:
@@ -679,50 +729,6 @@ components:
         Type:
           description: Type of the connection. Possible values are PUBLIC_API, SWIFT, EBICS, EDITRAN
           type: string
-      type: object
-    ConnectionSummaryPagedResult:
-      additionalProperties: false
-      properties:
-        Items:
-          items:
-            $ref: '#/components/schemas/ConnectionSummary'
-          type:
-          - array
-          - 'null'
-        Pagination:
-          $ref: '#/components/schemas/Pagination'
-      type: object
-    ConnectionToCreate:
-      additionalProperties: false
-      properties:
-        Name:
-          description: Connection name
-          type: string
-      type: object
-    ProblemDetails:
-      additionalProperties: false
-      properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
       type: object
     ConnectionDto:
       additionalProperties: false

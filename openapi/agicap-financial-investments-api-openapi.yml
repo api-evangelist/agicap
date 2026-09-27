@@ -142,23 +142,6 @@ components:
           $ref: '#/components/schemas/Offset'
       title: InvestmentsList
       type: object
-    AccruedResponse:
-      additionalProperties: false
-      properties:
-        lastMonth:
-          format: double
-          type: number
-        lastYear:
-          format: double
-          type: number
-        thisMonth:
-          format: double
-          type: number
-        thisYear:
-          format: double
-          type: number
-      title: Accrued
-      type: object
     HttpValidationProblemDetails:
       additionalProperties: false
       allOf:
@@ -172,6 +155,31 @@ components:
               type: array
             type: object
         type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
     InvestmentItemResponse:
       additionalProperties: false
       properties:
@@ -196,6 +204,49 @@ components:
         status:
           type: string
       title: InvestmentsListItem
+      type: object
+    AccruedResponse:
+      additionalProperties: false
+      properties:
+        lastMonth:
+          format: double
+          type: number
+        lastYear:
+          format: double
+          type: number
+        thisMonth:
+          format: double
+          type: number
+        thisYear:
+          format: double
+          type: number
+      title: Accrued
+      type: object
+    InterestsResponse:
+      additionalProperties: false
+      properties:
+        accrued:
+          $ref: '#/components/schemas/AccruedResponse'
+        due:
+          format: double
+          type: number
+      title: Interests
+      type: object
+    Offset:
+      additionalProperties: false
+      properties:
+        current:
+          format: int32
+          type: integer
+        limit:
+          format: int32
+          type: integer
+        next:
+          format: int32
+          type: integer
+        previous:
+          format: int32
+          type: integer
       type: object
     InvestmentDetailResponse:
       additionalProperties: false
@@ -226,57 +277,6 @@ components:
           format: date
           type: string
       title: InvestmentDetails
-      type: object
-    Offset:
-      additionalProperties: false
-      properties:
-        current:
-          format: int32
-          type: integer
-        limit:
-          format: int32
-          type: integer
-        next:
-          format: int32
-          type: integer
-        previous:
-          format: int32
-          type: integer
-      type: object
-    InterestsResponse:
-      additionalProperties: false
-      properties:
-        accrued:
-          $ref: '#/components/schemas/AccruedResponse'
-        due:
-          format: double
-          type: number
-      title: Interests
-      type: object
-    ProblemDetails:
-      additionalProperties: false
-      properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
       type: object
   securitySchemes:
     bearerAuth:

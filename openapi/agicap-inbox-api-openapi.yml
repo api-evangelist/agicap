@@ -105,6 +105,37 @@ components:
       - type
       - url
       type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentsPaginationResponse:
+      additionalProperties: false
+      description: Pagination details for a page of inbox documents.
+      properties:
+        currentPageItemsCount:
+          description: The number of documents returned on this page.
+          format: int32
+          type: integer
+        currentPageNumber:
+          description: The zero-based index of this page.
+          format: int32
+          type: integer
+        pageSize:
+          description: The maximum number of documents per page.
+          format: int32
+          type: integer
+        pagesCount:
+          description: The total number of pages.
+          format: int32
+          type: integer
+        totalItemsCount:
+          description: The total number of exportable documents in the inbox.
+          format: int32
+          type: integer
+      required:
+      - currentPageItemsCount
+      - currentPageNumber
+      - pagesCount
+      - pageSize
+      - totalItemsCount
+      type: object
     InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentsResponse:
       additionalProperties: false
       description: A page of inbox documents with temporary download links.
@@ -167,37 +198,6 @@ components:
           type: string
       required:
       - type
-      type: object
-    InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentsPaginationResponse:
-      additionalProperties: false
-      description: Pagination details for a page of inbox documents.
-      properties:
-        currentPageItemsCount:
-          description: The number of documents returned on this page.
-          format: int32
-          type: integer
-        currentPageNumber:
-          description: The zero-based index of this page.
-          format: int32
-          type: integer
-        pageSize:
-          description: The maximum number of documents per page.
-          format: int32
-          type: integer
-        pagesCount:
-          description: The total number of pages.
-          format: int32
-          type: integer
-        totalItemsCount:
-          description: The total number of exportable documents in the inbox.
-          format: int32
-          type: integer
-      required:
-      - currentPageItemsCount
-      - currentPageNumber
-      - pagesCount
-      - pageSize
-      - totalItemsCount
       type: object
     InvoicesManagement.Shared.App.PurchaseDocumentType:
       additionalProperties: false

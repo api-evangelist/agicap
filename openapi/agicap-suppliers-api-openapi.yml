@@ -212,122 +212,9 @@ paths:
       - Suppliers
 components:
   schemas:
-    CursorDto:
+    ContactResponse:
       additionalProperties: false
-      description: Opaque-token pagination cursor.
-      properties:
-        after:
-          description: Opaque token to pass as the `after` query parameter to fetch the next page.
-          type:
-          - string
-          - 'null'
-        isLastPage:
-          description: Whether the current page is the last one.
-          example: false
-          type: boolean
-        size:
-          description: Number of errors per page.
-          example: 50
-          format: int32
-          type: integer
-      type: object
-    SupplierResponse:
-      additionalProperties: false
-      description: A supplier as returned by the suppliers endpoints.
-      properties:
-        contacts:
-          description: Contacts of the supplier.
-          items:
-            $ref: '#/components/schemas/ContactResponse'
-          type:
-          - array
-          - 'null'
-        createdAt:
-          description: Date and time at which the supplier was first created in Agicap.
-          format: date-time
-          type:
-          - string
-          - 'null'
-        erpId:
-          description: Identifier of the supplier in the client's ERP.
-          type:
-          - string
-          - 'null'
-        id:
-          description: Stable Agicap identifier of the supplier.
-          example: 1660e6c3-54fd-402f-be8e-7748efd94791
-          format: uuid
-          type: string
-        language:
-          description: Preferred language of the supplier (ISO 639-1 code).
-          type:
-          - string
-          - 'null'
-        legalAddress:
-          $ref: '#/components/schemas/LegalAddressResponse'
-        legalCompanyId:
-          description: Legal company identifier of the supplier.
-          type:
-          - string
-          - 'null'
-        legalName:
-          description: Legal name of the supplier.
-          type:
-          - string
-          - 'null'
-        name:
-          description: Display name of the supplier.
-          type:
-          - string
-          - 'null'
-        primaryContact:
-          $ref: '#/components/schemas/ContactResponse'
-        status:
-          description: Lifecycle status of the supplier.
-          type:
-          - string
-          - 'null'
-        tags:
-          description: Free-form tags associated with the supplier.
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        thirdPartyCode:
-          description: Third-party accounting code of the supplier.
-          type:
-          - string
-          - 'null'
-        updatedAt:
-          description: Date and time at which the supplier was last updated in Agicap.
-          format: date-time
-          type:
-          - string
-          - 'null'
-        vatCode:
-          description: VAT code of the supplier.
-          type:
-          - string
-          - 'null'
-      type: object
-    SyncSuppliersRequest:
-      additionalProperties: false
-      description: Payload of a supplier synchronization batch.
-      properties:
-        suppliers:
-          description: Suppliers to create, update or delete in this batch (up to 1000 items).
-          items:
-            $ref: '#/components/schemas/SupplierSyncItem'
-          type:
-          - array
-          - 'null'
-      required:
-      - suppliers
-      type: object
-    ContactDto:
-      additionalProperties: false
-      description: A contact attached to a supplier.
+      description: A contact attached to a supplier, as returned by the suppliers endpoints.
       properties:
         email:
           description: Email address of the contact.
@@ -417,6 +304,55 @@ components:
       required:
       - country
       type: object
+    SyncSuppliersRequest:
+      additionalProperties: false
+      description: Payload of a supplier synchronization batch.
+      properties:
+        suppliers:
+          description: Suppliers to create, update or delete in this batch (up to 1000 items).
+          items:
+            $ref: '#/components/schemas/SupplierSyncItem'
+          type:
+          - array
+          - 'null'
+      required:
+      - suppliers
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    SyncSuppliersResponse:
+      additionalProperties: false
+      description: Result of a supplier synchronization batch.
+      properties:
+        syncId:
+          description: Identifier of the synchronization, used to fetch its row-by-row errors.
+          example: 1660e6c3-54fd-402f-be8e-7748efd94791
+          format: uuid
+          type: string
+      type: object
     SupplierSyncErrorItem:
       additionalProperties: false
       properties:
@@ -432,15 +368,24 @@ components:
           format: int32
           type: integer
       type: object
-    SyncSuppliersResponse:
+    CursorDto:
       additionalProperties: false
-      description: Result of a supplier synchronization batch.
+      description: Opaque-token pagination cursor.
       properties:
-        syncId:
-          description: Identifier of the synchronization, used to fetch its row-by-row errors.
-          example: 1660e6c3-54fd-402f-be8e-7748efd94791
-          format: uuid
-          type: string
+        after:
+          description: Opaque token to pass as the `after` query parameter to fetch the next page.
+          type:
+          - string
+          - 'null'
+        isLastPage:
+          description: Whether the current page is the last one.
+          example: false
+          type: boolean
+        size:
+          description: Number of errors per page.
+          example: 50
+          format: int32
+          type: integer
       type: object
     ListSuppliersResponse:
       additionalProperties: false
@@ -522,9 +467,9 @@ components:
           - string
           - 'null'
       type: object
-    ContactResponse:
+    ContactDto:
       additionalProperties: false
-      description: A contact attached to a supplier, as returned by the suppliers endpoints.
+      description: A contact attached to a supplier.
       properties:
         email:
           description: Email address of the contact.
@@ -543,6 +488,86 @@ components:
           - 'null'
         role:
           description: Role of the contact within the supplier organization.
+          type:
+          - string
+          - 'null'
+      type: object
+    SupplierResponse:
+      additionalProperties: false
+      description: A supplier as returned by the suppliers endpoints.
+      properties:
+        contacts:
+          description: Contacts of the supplier.
+          items:
+            $ref: '#/components/schemas/ContactResponse'
+          type:
+          - array
+          - 'null'
+        createdAt:
+          description: Date and time at which the supplier was first created in Agicap.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        erpId:
+          description: Identifier of the supplier in the client's ERP.
+          type:
+          - string
+          - 'null'
+        id:
+          description: Stable Agicap identifier of the supplier.
+          example: 1660e6c3-54fd-402f-be8e-7748efd94791
+          format: uuid
+          type: string
+        language:
+          description: Preferred language of the supplier (ISO 639-1 code).
+          type:
+          - string
+          - 'null'
+        legalAddress:
+          $ref: '#/components/schemas/LegalAddressResponse'
+        legalCompanyId:
+          description: Legal company identifier of the supplier.
+          type:
+          - string
+          - 'null'
+        legalName:
+          description: Legal name of the supplier.
+          type:
+          - string
+          - 'null'
+        name:
+          description: Display name of the supplier.
+          type:
+          - string
+          - 'null'
+        primaryContact:
+          $ref: '#/components/schemas/ContactResponse'
+        status:
+          description: Lifecycle status of the supplier.
+          type:
+          - string
+          - 'null'
+        tags:
+          description: Free-form tags associated with the supplier.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        thirdPartyCode:
+          description: Third-party accounting code of the supplier.
+          type:
+          - string
+          - 'null'
+        updatedAt:
+          description: Date and time at which the supplier was last updated in Agicap.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        vatCode:
+          description: VAT code of the supplier.
           type:
           - string
           - 'null'
@@ -583,31 +608,6 @@ components:
           - 'null'
       required:
       - country
-      type: object
-    ProblemDetails:
-      additionalProperties: false
-      properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
       type: object
   securitySchemes:
     bearerAuth:

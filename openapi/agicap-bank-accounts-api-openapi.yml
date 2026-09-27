@@ -80,56 +80,6 @@ paths:
       - Bank Accounts
 components:
   schemas:
-    AccountSummary:
-      additionalProperties: false
-      properties:
-        AccountNumber:
-          description: Account number
-          type: string
-        ConnectionId:
-          description: Connection identifier
-          format: uuid
-          type: string
-        CreatedAt:
-          description: Creation date of the bank account in Agicap
-          format: date-time
-          type: string
-        EntityId:
-          description: Agicap entity identifier
-          format: int32
-          type: integer
-      type: object
-    AccountSummaryPagedResult:
-      additionalProperties: false
-      properties:
-        Items:
-          items:
-            $ref: '#/components/schemas/AccountSummary'
-          type:
-          - array
-          - 'null'
-        Pagination:
-          $ref: '#/components/schemas/Pagination'
-      type: object
-    Pagination:
-      additionalProperties: false
-      properties:
-        CurrentPageItemsCount:
-          format: int32
-          type: integer
-        CurrentPageNumber:
-          format: int32
-          type: integer
-        PageSize:
-          format: int32
-          type: integer
-        PagesCount:
-          format: int32
-          type: integer
-        TotalItemsCount:
-          format: int32
-          type: integer
-      type: object
     ProblemDetails:
       additionalProperties: false
       properties:
@@ -154,6 +104,56 @@ components:
           type:
           - string
           - 'null'
+      type: object
+    AccountSummary:
+      additionalProperties: false
+      properties:
+        AccountNumber:
+          description: Account number
+          type: string
+        ConnectionId:
+          description: Connection identifier
+          format: uuid
+          type: string
+        CreatedAt:
+          description: Creation date of the bank account in Agicap
+          format: date-time
+          type: string
+        EntityId:
+          description: Agicap entity identifier
+          format: int32
+          type: integer
+      type: object
+    Pagination:
+      additionalProperties: false
+      properties:
+        CurrentPageItemsCount:
+          format: int32
+          type: integer
+        CurrentPageNumber:
+          format: int32
+          type: integer
+        PageSize:
+          format: int32
+          type: integer
+        PagesCount:
+          format: int32
+          type: integer
+        TotalItemsCount:
+          format: int32
+          type: integer
+      type: object
+    AccountSummaryPagedResult:
+      additionalProperties: false
+      properties:
+        Items:
+          items:
+            $ref: '#/components/schemas/AccountSummary'
+          type:
+          - array
+          - 'null'
+        Pagination:
+          $ref: '#/components/schemas/Pagination'
       type: object
   securitySchemes:
     bearerAuth:

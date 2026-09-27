@@ -420,7 +420,7 @@ paths:
     - url: https://api.agicap.internal
   /public/business-documents/v2/entities/{entityid}/connections/{connectionid}/client-credit-notes:
     get:
-      operationId: ClientCreditNote_GetClientCreditNotes
+      operationId: getPublicBusinessDocumentsV2EntitiesByEntityidConnectionsByConnectionidClientCreditNotes
       parameters:
       - description: Agicap entity unique identifier
         in: path
@@ -567,6 +567,8 @@ paths:
       summary: Get client credit notes
       tags:
       - Client Credit Notes
+      x-operation-id-source: normalized
+      x-operation-id-original: ClientCreditNote_GetClientCreditNotes
     post:
       operationId: ClientCreditNote_CreateClientCreditNotesV2
       parameters:
@@ -915,6 +917,60 @@ paths:
     - url: https://api.agicap.internal
 components:
   schemas:
+    AmountsWithRemainingAmountDto:
+      additionalProperties: false
+      properties:
+        remainingAmount:
+          description: Remaining amount in the document currency.
+          format: double
+          type:
+          - number
+          - 'null'
+        taxesAmount:
+          description: Taxes amount in the document currency
+          format: double
+          type:
+          - number
+          - 'null'
+        totalAmount:
+          description: Total amount in the document currency.
+          format: double
+          type: number
+      required:
+      - totalAmount
+      title: AmountsWithRemainingAmount
+      type: object
+    CreatedDocumentDto:
+      additionalProperties: false
+      properties:
+        externalId:
+          type: string
+        id:
+          format: uuid
+          type: string
+      title: CreatedDocument
+      type: object
+    PaginationMetadataDto:
+      additionalProperties: false
+      properties:
+        pageIndex:
+          description: Current page index
+          format: int32
+          type: integer
+        pageItemsCount:
+          description: Number of items on the current page
+          format: int32
+          type: integer
+        pageSize:
+          description: Page size (items per page)
+          format: int32
+          type: integer
+        totalItemsCount:
+          description: Total number of items
+          format: int32
+          type: integer
+      title: PaginationMetadata
+      type: object
     ClientCreditNoteDto:
       additionalProperties: false
       properties:
@@ -1008,26 +1064,111 @@ components:
           - 'null'
       title: CounterParty
       type: object
-    PaginationMetadataDto:
+    AccountingDto:
       additionalProperties: false
       properties:
-        pageIndex:
-          description: Current page index
-          format: int32
-          type: integer
-        pageItemsCount:
-          description: Number of items on the current page
-          format: int32
-          type: integer
-        pageSize:
-          description: Page size (items per page)
-          format: int32
-          type: integer
-        totalItemsCount:
-          description: Total number of items
-          format: int32
-          type: integer
-      title: PaginationMetadata
+        accountCode:
+          description: Represents the account Code of the Third Party Account the invoice is linked to.
+          type:
+          - string
+          - 'null'
+        accountNumber:
+          description: Represents the account number of the invoice. It is used to classify financial activities and balances within the General Ledger.
+          type:
+          - string
+          - 'null'
+        amount:
+          description: Represents the total amount of the invoice in the accounting currency.
+          format: double
+          type:
+          - number
+          - 'null'
+        currency:
+          description: Represents the currency used in the accounting process (which can be different from the invoice currency).
+          type:
+          - string
+          - 'null'
+      title: InvoiceAccounting
+      type: object
+    ClientCreditNoteDtoPageDto:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ClientCreditNoteDto'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      title: Page
+      type: object
+    CreateClientCreditNoteDto:
+      additionalProperties: false
+      properties:
+        accounting:
+          $ref: '#/components/schemas/AccountingDto'
+        amounts:
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDto'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDto'
+        creditNoteNumber:
+          description: Document number in the source data
+          type:
+          - string
+          - 'null'
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        label:
+          description: Label of the client credit note
+          type:
+          - string
+          - 'null'
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          type:
+          - object
+          - 'null'
+        referenceInvoiceIds:
+          description: Array of linked Agicap Invoices ids
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        status:
+          description: 'Possible values : draft, available, used, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - currency
+      - externalId
+      - status
       type: object
     UpdateClientCreditNoteDto:
       additionalProperties: false
@@ -1103,79 +1244,19 @@ components:
       - id
       - status
       type: object
-    AccountingDto:
-      additionalProperties: false
-      properties:
-        accountCode:
-          description: Represents the account Code of the Third Party Account the invoice is linked to.
-          type:
-          - string
-          - 'null'
-        accountNumber:
-          description: Represents the account number of the invoice. It is used to classify financial activities and balances within the General Ledger.
-          type:
-          - string
-          - 'null'
-        amount:
-          description: Represents the total amount of the invoice in the accounting currency.
-          format: double
-          type:
-          - number
-          - 'null'
-        currency:
-          description: Represents the currency used in the accounting process (which can be different from the invoice currency).
-          type:
-          - string
-          - 'null'
-      title: InvoiceAccounting
-      type: object
-    CreatedDocumentDto:
-      additionalProperties: false
-      properties:
-        externalId:
-          type: string
-        id:
-          format: uuid
-          type: string
-      title: CreatedDocument
-      type: object
-    AmountsWithRemainingAmountDto:
-      additionalProperties: false
-      properties:
-        remainingAmount:
-          description: Remaining amount in the document currency.
-          format: double
-          type:
-          - number
-          - 'null'
-        taxesAmount:
-          description: Taxes amount in the document currency
-          format: double
-          type:
-          - number
-          - 'null'
-        totalAmount:
-          description: Total amount in the document currency.
-          format: double
-          type: number
-      required:
-      - totalAmount
-      title: AmountsWithRemainingAmount
-      type: object
-    CreateClientCreditNoteDto:
+    UpdateClientCreditNoteDtoV2:
       additionalProperties: false
       properties:
         accounting:
           $ref: '#/components/schemas/AccountingDto'
         amounts:
-          $ref: '#/components/schemas/AmountsWithRemainingAmountDto'
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDtoV2'
         counterParty:
-          $ref: '#/components/schemas/CounterPartyDto'
+          $ref: '#/components/schemas/CounterPartyDtoV2'
         creditNoteNumber:
           description: Document number in the source data
-          type:
-          - string
-          - 'null'
+          minLength: 1
+          type: string
         currency:
           description: Currency code in ISO 4217 format
           minLength: 1
@@ -1196,12 +1277,14 @@ components:
           description: Unique identifier of the document in the source data
           minLength: 1
           type: string
+        id:
+          description: Unique identifier generated by Agicap
+          format: uuid
+          type: string
         issueDate:
           description: Issue date in ISO 8601 format
           format: date-time
-          type:
-          - string
-          - 'null'
+          type: string
         label:
           description: Label of the client credit note
           type:
@@ -1227,20 +1310,14 @@ components:
           type: string
       required:
       - amounts
+      - counterParty
+      - creditNoteNumber
       - currency
       - externalId
+      - id
+      - issueDate
       - status
-      type: object
-    ClientCreditNoteDtoPageDto:
-      additionalProperties: false
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ClientCreditNoteDto'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadataDto'
-      title: Page
+      title: UpdateClientCreditNote
       type: object
     CounterPartyDtoV2:
       additionalProperties: false
@@ -1348,81 +1425,6 @@ components:
       - taxesAmount
       - totalAmount
       title: AmountsWithRemainingAmount
-      type: object
-    UpdateClientCreditNoteDtoV2:
-      additionalProperties: false
-      properties:
-        accounting:
-          $ref: '#/components/schemas/AccountingDto'
-        amounts:
-          $ref: '#/components/schemas/AmountsWithRemainingAmountDtoV2'
-        counterParty:
-          $ref: '#/components/schemas/CounterPartyDtoV2'
-        creditNoteNumber:
-          description: Document number in the source data
-          minLength: 1
-          type: string
-        currency:
-          description: Currency code in ISO 4217 format
-          minLength: 1
-          type: string
-        dueDate:
-          description: Due date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        erpIdentificationFields:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-        externalId:
-          description: Unique identifier of the document in the source data
-          minLength: 1
-          type: string
-        id:
-          description: Unique identifier generated by Agicap
-          format: uuid
-          type: string
-        issueDate:
-          description: Issue date in ISO 8601 format
-          format: date-time
-          type: string
-        label:
-          description: Label of the client credit note
-          type:
-          - string
-          - 'null'
-        metadata:
-          additionalProperties:
-            type: string
-          description: Additional metadata as a JSON Object
-          type:
-          - object
-          - 'null'
-        referenceInvoiceIds:
-          description: Array of linked Agicap Invoices ids
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        status:
-          description: 'Possible values : draft, available, used, cancelled, deleted'
-          minLength: 1
-          type: string
-      required:
-      - amounts
-      - counterParty
-      - creditNoteNumber
-      - currency
-      - externalId
-      - id
-      - issueDate
-      - status
-      title: UpdateClientCreditNote
       type: object
   securitySchemes:
     bearerAuth:

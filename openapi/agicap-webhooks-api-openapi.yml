@@ -202,29 +202,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    WebhookResponse:
-      properties:
-        createdAt:
-          format: date-time
-          type: string
-        description:
-          type: string
-        eventTypes:
-          items:
-            type: string
-          type: array
-        id:
-          type: string
-        status:
-          enum:
-          - active
-          - disabled_by_organization
-          - disabled_manually
-          - disabled_for_errors
-          type: string
-        url:
-          type: string
-      type: object
     CreateWebhookRequest:
       properties:
         description:
@@ -248,6 +225,29 @@ components:
       required:
       - url
       - secret
+      type: object
+    WebhookResponse:
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        description:
+          type: string
+        eventTypes:
+          items:
+            type: string
+          type: array
+        id:
+          type: string
+        status:
+          enum:
+          - active
+          - disabled_by_organization
+          - disabled_manually
+          - disabled_for_errors
+          type: string
+        url:
+          type: string
       type: object
     SendExampleRequest:
       properties:

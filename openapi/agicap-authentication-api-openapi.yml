@@ -282,6 +282,21 @@ paths:
     - url: https://api.agicap.internal
 components:
   schemas:
+    AccessTokenResponse:
+      properties:
+        access_token:
+          description: The access token issued by the authorization server.
+          type: string
+        expires_in:
+          description: The lifetime in seconds of the access token.
+          type: integer
+        scope:
+          description: The associated scopes for the access token.
+          type: string
+        token_type:
+          description: The type of the token issued.
+          type: string
+      type: object
     BadRequestResponse:
       properties:
         error:
@@ -311,21 +326,6 @@ components:
       - client_id
       - client_secret
       - scope
-      type: object
-    AccessTokenResponse:
-      properties:
-        access_token:
-          description: The access token issued by the authorization server.
-          type: string
-        expires_in:
-          description: The lifetime in seconds of the access token.
-          type: integer
-        scope:
-          description: The associated scopes for the access token.
-          type: string
-        token_type:
-          description: The type of the token issued.
-          type: string
       type: object
   securitySchemes:
     bearerAuth:

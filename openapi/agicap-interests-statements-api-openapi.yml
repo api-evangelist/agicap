@@ -132,32 +132,13 @@ components:
           - 'null'
       title: DailyPosition
       type: object
-    Offset:
+    TransactionResourcePublic:
       additionalProperties: false
       properties:
-        current:
-          format: int32
-          type: integer
-        limit:
-          format: int32
-          type: integer
-        next:
-          format: int32
-          type: integer
-        previous:
-          format: int32
-          type: integer
-      type: object
-    InterestsStatementResourcePublic:
-      additionalProperties: false
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/DailyPositionResourcePublic'
-          type: array
-        offset:
-          $ref: '#/components/schemas/Offset'
-      title: InterestsStatement
+        date:
+          format: date
+          type: string
+      title: Transaction
       type: object
     RepaymentResourcePublic:
       additionalProperties: false
@@ -176,25 +157,6 @@ components:
             type: number
         type: object
       title: Repayment
-    TransactionResourcePublic:
-      additionalProperties: false
-      properties:
-        date:
-          format: date
-          type: string
-      title: Transaction
-      type: object
-    DrawDownResourcePublic:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/TransactionResourcePublic'
-      - additionalProperties: false
-        properties:
-          amount:
-            format: double
-            type: number
-        type: object
-      title: DrawDown
     ProblemDetails:
       additionalProperties: false
       properties:
@@ -219,6 +181,44 @@ components:
           type:
           - string
           - 'null'
+      type: object
+    DrawDownResourcePublic:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/TransactionResourcePublic'
+      - additionalProperties: false
+        properties:
+          amount:
+            format: double
+            type: number
+        type: object
+      title: DrawDown
+    InterestsStatementResourcePublic:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DailyPositionResourcePublic'
+          type: array
+        offset:
+          $ref: '#/components/schemas/Offset'
+      title: InterestsStatement
+      type: object
+    Offset:
+      additionalProperties: false
+      properties:
+        current:
+          format: int32
+          type: integer
+        limit:
+          format: int32
+          type: integer
+        next:
+          format: int32
+          type: integer
+        previous:
+          format: int32
+          type: integer
       type: object
   securitySchemes:
     bearerAuth:

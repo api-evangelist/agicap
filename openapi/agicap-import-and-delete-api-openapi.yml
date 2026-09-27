@@ -632,25 +632,41 @@ paths:
       - Import and delete
 components:
   schemas:
-    DeleteAccountingAccountsRequestPublicApiDto:
+    ProblemDetails:
       additionalProperties: false
       properties:
-        accountingAccountNumbers:
-          items:
-            type: string
-          type: array
-      required:
-      - accountingAccountNumbers
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
       type: object
-    DeleteThirdPartiesRequestPublicApiDto:
+    ImportAccountingAccountsRequestDto:
       additionalProperties: false
+      description: Import accounting accounts request.
       properties:
-        thirdPartyCodes:
+        accountingAccounts:
           items:
-            type: string
+            $ref: '#/components/schemas/AccountingAccountDto'
           type: array
       required:
-      - thirdPartyCodes
+      - accountingAccounts
       type: object
     ImportThirdPartiesRequest:
       additionalProperties: false
@@ -662,6 +678,34 @@ components:
           type: array
       required:
       - thirdParties
+      type: object
+    ImportResponse:
+      additionalProperties: false
+      description: Response of a third parties import with detailed information.
+      properties:
+        failureReason:
+          description: The failure description when the import failed (import status = Failed).
+          type:
+          - string
+          - 'null'
+        importDate:
+          description: The date at which the import was requested
+          type: string
+        importId:
+          description: The identifier of the import, provided by the caller.
+          format: uuid
+          type: string
+        importStatus:
+          description: 'The status of the import which can be any for the following values: Started, Done or Failed'
+          type: string
+        importSummary:
+          allOf:
+          - $ref: '#/components/schemas/ImportSummaryDto'
+          description: The summary of what was imported when the import is finished (import status = Done).
+      required:
+      - importDate
+      - importId
+      - importStatus
       type: object
     AccountingAccountDto:
       additionalProperties: false
@@ -698,17 +742,6 @@ components:
       - accountingAccountName
       - accountingAccountNumber
       type: object
-    ImportAccountingAccountsRequestDto:
-      additionalProperties: false
-      description: Import accounting accounts request.
-      properties:
-        accountingAccounts:
-          items:
-            $ref: '#/components/schemas/AccountingAccountDto'
-          type: array
-      required:
-      - accountingAccounts
-      type: object
     ImportSummaryDto:
       additionalProperties: false
       description: Summary of imported third parties when status is Done
@@ -724,34 +757,6 @@ components:
       required:
       - importedCount
       - notImportedCount
-      type: object
-    ImportResponse:
-      additionalProperties: false
-      description: Response of a third parties import with detailed information.
-      properties:
-        failureReason:
-          description: The failure description when the import failed (import status = Failed).
-          type:
-          - string
-          - 'null'
-        importDate:
-          description: The date at which the import was requested
-          type: string
-        importId:
-          description: The identifier of the import, provided by the caller.
-          format: uuid
-          type: string
-        importStatus:
-          description: 'The status of the import which can be any for the following values: Started, Done or Failed'
-          type: string
-        importSummary:
-          allOf:
-          - $ref: '#/components/schemas/ImportSummaryDto'
-          description: The summary of what was imported when the import is finished (import status = Done).
-      required:
-      - importDate
-      - importId
-      - importStatus
       type: object
     ThirdPartyDto:
       additionalProperties: false
@@ -776,30 +781,25 @@ components:
       - thirdPartyCode
       - thirdPartyName
       type: object
-    ProblemDetails:
+    DeleteThirdPartiesRequestPublicApiDto:
       additionalProperties: false
       properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
+        thirdPartyCodes:
+          items:
+            type: string
+          type: array
+      required:
+      - thirdPartyCodes
+      type: object
+    DeleteAccountingAccountsRequestPublicApiDto:
+      additionalProperties: false
+      properties:
+        accountingAccountNumbers:
+          items:
+            type: string
+          type: array
+      required:
+      - accountingAccountNumbers
       type: object
   securitySchemes:
     bearerAuth:

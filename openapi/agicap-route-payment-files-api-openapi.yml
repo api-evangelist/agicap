@@ -193,7 +193,7 @@ paths:
         - `agicap:public-api`
 
         - `public-api:import_payment_files`'
-      operationId: PaymentsFile_Import_Post
+      operationId: postPublicPaymentsV2EntitiesByEntityIdRemittancesImport
       parameters:
       - description: Agicap entity identifier
         in: path
@@ -254,6 +254,8 @@ paths:
       summary: Route payment file
       tags:
       - Route payment files
+      x-operation-id-source: normalized
+      x-operation-id-original: PaymentsFile_Import_Post
   /public/payments/v2/entities/{entityId}/remittances/secured-import:
     post:
       deprecated: true
@@ -268,7 +270,7 @@ paths:
         - `agicap:public-api`
 
         - `public-api:import_payment_files_with_signed_beneficiaries`'
-      operationId: PaymentsFile_SecuredImport_Post
+      operationId: postPublicPaymentsV2EntitiesByEntityIdRemittancesSecuredImport
       parameters:
       - description: Agicap entity identifier
         in: path
@@ -342,19 +344,10 @@ paths:
       summary: Route payment files with signed beneficiaries
       tags:
       - Route payment files
+      x-operation-id-source: normalized
+      x-operation-id-original: PaymentsFile_SecuredImport_Post
 components:
   schemas:
-    PaymentsFileGeneration.Web.Models.Presentations.ThirdPartyPresentation:
-      additionalProperties: false
-      properties:
-        iban:
-          type: string
-        name:
-          type: string
-      required:
-      - iban
-      - name
-      type: object
     PaymentsFileGeneration.Web.Models.Presentations.InvalidThirdPartyProblemDetails:
       additionalProperties: {}
       properties:
@@ -385,6 +378,17 @@ components:
           - 'null'
       required:
       - additionalInformations
+      type: object
+    PaymentsFileGeneration.Web.Models.Presentations.ThirdPartyPresentation:
+      additionalProperties: false
+      properties:
+        iban:
+          type: string
+        name:
+          type: string
+      required:
+      - iban
+      - name
       type: object
     Microsoft.AspNetCore.Mvc.ProblemDetails:
       additionalProperties: {}

@@ -1071,6 +1071,109 @@ paths:
     - url: https://api.agicap.internal
 components:
   schemas:
+    SupplierInvoiceInstalmentDto:
+      additionalProperties: false
+      properties:
+        accountingAmount:
+          $ref: '#/components/schemas/InstalmentAccountingAmountDto'
+        amounts:
+          $ref: '#/components/schemas/InstalmentAmountsDto'
+        dueDate:
+          description: Instalment due date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        externalId:
+          description: Unique identifier of the instalment in the source data
+          minLength: 1
+          type: string
+        issueDate:
+          description: Instalment issue date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        label:
+          description: Instalment label
+          type:
+          - string
+          - 'null'
+        metadata:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        paymentDate:
+          description: Payment date of the instalment
+          format: date-time
+          type:
+          - string
+          - 'null'
+        paymentMethod:
+          description: Payment method used for the instalment
+          type:
+          - string
+          - 'null'
+        status:
+          description: 'Possible values : draft, due, partiallyPaid, paid, cancelled, paymentInProgress'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - externalId
+      - status
+      title: SupplierInvoiceInstalment
+      type: object
+    CreatedDocumentDto:
+      additionalProperties: false
+      properties:
+        externalId:
+          type: string
+        id:
+          format: uuid
+          type: string
+      title: CreatedDocument
+      type: object
+    SupplierInvoiceDtoPageDto:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SupplierInvoiceDto'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      title: Page
+      type: object
+    PaginationMetadataDto:
+      additionalProperties: false
+      properties:
+        pageIndex:
+          description: Current page index
+          format: int32
+          type: integer
+        pageItemsCount:
+          description: Number of items on the current page
+          format: int32
+          type: integer
+        pageSize:
+          description: Page size (items per page)
+          format: int32
+          type: integer
+        totalItemsCount:
+          description: Total number of items
+          format: int32
+          type: integer
+      title: PaginationMetadata
+      type: object
     InstalmentAmountsDto:
       additionalProperties: false
       properties:
@@ -1094,42 +1197,6 @@ components:
       - totalAmount
       title: InstalmentAmounts
       type: object
-    CounterPartyDto:
-      additionalProperties: false
-      properties:
-        id:
-          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
-          type:
-          - string
-          - 'null'
-        name:
-          description: Name of the linked Counterpart (Supplier / Client)
-          type:
-          - string
-          - 'null'
-      title: CounterParty
-      type: object
-    PaginationMetadataDto:
-      additionalProperties: false
-      properties:
-        pageIndex:
-          description: Current page index
-          format: int32
-          type: integer
-        pageItemsCount:
-          description: Number of items on the current page
-          format: int32
-          type: integer
-        pageSize:
-          description: Page size (items per page)
-          format: int32
-          type: integer
-        totalItemsCount:
-          description: Total number of items
-          format: int32
-          type: integer
-      title: PaginationMetadata
-      type: object
     AmountsWithDueAmountDto:
       additionalProperties: false
       properties:
@@ -1152,6 +1219,123 @@ components:
       required:
       - totalAmount
       title: AmountsWithDueAmount
+      type: object
+    InstalmentAccountingAmountDto:
+      additionalProperties: false
+      properties:
+        amount:
+          description: Accounting amount in the accounting currency.
+          format: double
+          type:
+          - number
+          - 'null'
+        currency:
+          description: Accounting currency of the instalment
+          type:
+          - string
+          - 'null'
+      title: AccountingAmount
+      type: object
+    CounterPartyDto:
+      additionalProperties: false
+      properties:
+        id:
+          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the linked Counterpart (Supplier / Client)
+          type:
+          - string
+          - 'null'
+      title: CounterParty
+      type: object
+    UpdateSupplierInvoiceDto:
+      additionalProperties: false
+      properties:
+        accounting:
+          $ref: '#/components/schemas/AccountingDto'
+        amounts:
+          $ref: '#/components/schemas/AmountsWithDueAmountDto'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDto'
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        expectedPaymentDate:
+          description: Expected Payment date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        id:
+          description: Unique identifier generated by Agicap
+          format: uuid
+          type: string
+        instalments:
+          items:
+            $ref: '#/components/schemas/SupplierInvoiceInstalmentDto'
+          type:
+          - array
+          - 'null'
+        invoiceNumber:
+          description: Document number in the source data
+          type:
+          - string
+          - 'null'
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        label:
+          description: Label of the document
+          type:
+          - string
+          - 'null'
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          type:
+          - object
+          - 'null'
+        paymentDate:
+          description: Payment in full date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        status:
+          description: 'Possible values : draft, due, paid, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - currency
+      - externalId
+      - id
+      - status
+      title: UpdateSupplierInvoice
       type: object
     SupplierInvoiceDto:
       additionalProperties: false
@@ -1242,17 +1426,6 @@ components:
       - status
       title: SupplierInvoice
       type: object
-    SupplierInvoiceDtoPageDto:
-      additionalProperties: false
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/SupplierInvoiceDto'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadataDto'
-      title: Page
-      type: object
     AccountingDto:
       additionalProperties: false
       properties:
@@ -1278,102 +1451,6 @@ components:
           - string
           - 'null'
       title: InvoiceAccounting
-      type: object
-    CreatedDocumentDto:
-      additionalProperties: false
-      properties:
-        externalId:
-          type: string
-        id:
-          format: uuid
-          type: string
-      title: CreatedDocument
-      type: object
-    UpdateSupplierInvoiceDto:
-      additionalProperties: false
-      properties:
-        accounting:
-          $ref: '#/components/schemas/AccountingDto'
-        amounts:
-          $ref: '#/components/schemas/AmountsWithDueAmountDto'
-        counterParty:
-          $ref: '#/components/schemas/CounterPartyDto'
-        currency:
-          description: Currency code in ISO 4217 format
-          minLength: 1
-          type: string
-        dueDate:
-          description: Due date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        erpIdentificationFields:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-        expectedPaymentDate:
-          description: Expected Payment date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        externalId:
-          description: Unique identifier of the document in the source data
-          minLength: 1
-          type: string
-        id:
-          description: Unique identifier generated by Agicap
-          format: uuid
-          type: string
-        instalments:
-          items:
-            $ref: '#/components/schemas/SupplierInvoiceInstalmentDto'
-          type:
-          - array
-          - 'null'
-        invoiceNumber:
-          description: Document number in the source data
-          type:
-          - string
-          - 'null'
-        issueDate:
-          description: Issue date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        label:
-          description: Label of the document
-          type:
-          - string
-          - 'null'
-        metadata:
-          additionalProperties:
-            type: string
-          description: Additional metadata as a JSON Object
-          type:
-          - object
-          - 'null'
-        paymentDate:
-          description: Payment in full date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        status:
-          description: 'Possible values : draft, due, paid, cancelled, deleted'
-          minLength: 1
-          type: string
-      required:
-      - amounts
-      - currency
-      - externalId
-      - id
-      - status
-      title: UpdateSupplierInvoice
       type: object
     CreateSupplierInvoiceDto:
       additionalProperties: false
@@ -1456,99 +1533,6 @@ components:
       - status
       title: CreateSupplierInvoice
       type: object
-    SupplierInvoiceInstalmentDto:
-      additionalProperties: false
-      properties:
-        accountingAmount:
-          $ref: '#/components/schemas/InstalmentAccountingAmountDto'
-        amounts:
-          $ref: '#/components/schemas/InstalmentAmountsDto'
-        dueDate:
-          description: Instalment due date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        erpIdentificationFields:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-        externalId:
-          description: Unique identifier of the instalment in the source data
-          minLength: 1
-          type: string
-        issueDate:
-          description: Instalment issue date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        label:
-          description: Instalment label
-          type:
-          - string
-          - 'null'
-        metadata:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-        paymentDate:
-          description: Payment date of the instalment
-          format: date-time
-          type:
-          - string
-          - 'null'
-        paymentMethod:
-          description: Payment method used for the instalment
-          type:
-          - string
-          - 'null'
-        status:
-          description: 'Possible values : draft, due, partiallyPaid, paid, cancelled, paymentInProgress'
-          minLength: 1
-          type: string
-      required:
-      - amounts
-      - externalId
-      - status
-      title: SupplierInvoiceInstalment
-      type: object
-    InstalmentAccountingAmountDto:
-      additionalProperties: false
-      properties:
-        amount:
-          description: Accounting amount in the accounting currency.
-          format: double
-          type:
-          - number
-          - 'null'
-        currency:
-          description: Accounting currency of the instalment
-          type:
-          - string
-          - 'null'
-      title: AccountingAmount
-      type: object
-    CounterPartyDtoV2:
-      additionalProperties: false
-      properties:
-        id:
-          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
-          minLength: 1
-          type: string
-        name:
-          description: Name of the linked Counterpart (Supplier / Client)
-          minLength: 1
-          type: string
-      required:
-      - id
-      - name
-      title: CounterParty
-      type: object
     AccountingDtoV2:
       additionalProperties: false
       properties:
@@ -1574,27 +1558,6 @@ components:
           - string
           - 'null'
       title: InvoiceAccounting
-      type: object
-    AmountsWithDueAmountDtoV2:
-      additionalProperties: false
-      properties:
-        dueAmount:
-          description: Due amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-        taxesAmount:
-          description: Taxes amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-        totalAmount:
-          description: Total amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-      required:
-      - dueAmount
-      - taxesAmount
-      - totalAmount
-      title: AmountsWithDueAmount
       type: object
     SupplierInvoiceInstalmentDtoV2:
       additionalProperties: false
@@ -1650,6 +1613,54 @@ components:
       - externalId
       - status
       title: SupplierInvoiceInstalment
+      type: object
+    CounterPartyDtoV2:
+      additionalProperties: false
+      properties:
+        id:
+          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
+          minLength: 1
+          type: string
+        name:
+          description: Name of the linked Counterpart (Supplier / Client)
+          minLength: 1
+          type: string
+      required:
+      - id
+      - name
+      title: CounterParty
+      type: object
+    InstalmentAmountsDtoV2:
+      additionalProperties: false
+      properties:
+        dueAmount:
+          description: Instalment due amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+        taxesAmount:
+          description: Instalment taxes amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+        totalAmount:
+          description: Instalment total amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+      required:
+      - dueAmount
+      - taxesAmount
+      - totalAmount
+      title: InstalmentAmounts
+      type: object
+    SupplierInvoiceDtoV2PageDto:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SupplierInvoiceDtoV2'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      title: Page
       type: object
     CreateSupplierInvoiceDtoV2:
       additionalProperties: false
@@ -1731,122 +1742,26 @@ components:
       - status
       title: CreateSupplierInvoice
       type: object
-    SupplierInvoiceDtoV2PageDto:
-      additionalProperties: false
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/SupplierInvoiceDtoV2'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadataDto'
-      title: Page
-      type: object
-    UpdateSupplierInvoiceDtoV2:
-      additionalProperties: false
-      properties:
-        accounting:
-          $ref: '#/components/schemas/AccountingDtoV2'
-        amounts:
-          $ref: '#/components/schemas/AmountsWithDueAmountDtoV2'
-        counterParty:
-          $ref: '#/components/schemas/CounterPartyDtoV2'
-        currency:
-          description: Currency code in ISO 4217 format
-          minLength: 1
-          type: string
-        dueDate:
-          description: Due date in ISO 8601 format
-          format: date-time
-          type: string
-        erpIdentificationFields:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-        expectedPaymentDate:
-          description: Expected Payment date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        externalId:
-          description: Unique identifier of the document in the source data
-          minLength: 1
-          type: string
-        id:
-          description: Unique identifier generated by Agicap
-          format: uuid
-          type: string
-        instalments:
-          items:
-            $ref: '#/components/schemas/SupplierInvoiceInstalmentDtoV2'
-          type:
-          - array
-          - 'null'
-        invoiceNumber:
-          description: Document number in the source data
-          minLength: 1
-          type: string
-        issueDate:
-          description: Issue date in ISO 8601 format
-          format: date-time
-          type: string
-        label:
-          description: Label of the document
-          type:
-          - string
-          - 'null'
-        metadata:
-          additionalProperties:
-            type: string
-          description: Additional metadata as a JSON Object
-          type:
-          - object
-          - 'null'
-        paymentDate:
-          description: Payment in full date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        status:
-          description: 'Possible values : draft, due, paid, cancelled, deleted'
-          minLength: 1
-          type: string
-      required:
-      - amounts
-      - counterParty
-      - currency
-      - dueDate
-      - externalId
-      - id
-      - invoiceNumber
-      - issueDate
-      - status
-      title: UpdateSupplierInvoice
-      type: object
-    InstalmentAmountsDtoV2:
+    AmountsWithDueAmountDtoV2:
       additionalProperties: false
       properties:
         dueAmount:
-          description: Instalment due amount in the document currency. (amount must be positive)
+          description: Due amount in the document currency. (amount must be positive)
           format: double
           type: number
         taxesAmount:
-          description: Instalment taxes amount in the document currency. (amount must be positive)
+          description: Taxes amount in the document currency. (amount must be positive)
           format: double
           type: number
         totalAmount:
-          description: Instalment total amount in the document currency. (amount must be positive)
+          description: Total amount in the document currency. (amount must be positive)
           format: double
           type: number
       required:
       - dueAmount
       - taxesAmount
       - totalAmount
-      title: InstalmentAmounts
+      title: AmountsWithDueAmount
       type: object
     SupplierInvoiceDtoV2:
       additionalProperties: false
@@ -1936,6 +1851,91 @@ components:
       - id
       - status
       title: SupplierInvoice
+      type: object
+    UpdateSupplierInvoiceDtoV2:
+      additionalProperties: false
+      properties:
+        accounting:
+          $ref: '#/components/schemas/AccountingDtoV2'
+        amounts:
+          $ref: '#/components/schemas/AmountsWithDueAmountDtoV2'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDtoV2'
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        expectedPaymentDate:
+          description: Expected Payment date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        id:
+          description: Unique identifier generated by Agicap
+          format: uuid
+          type: string
+        instalments:
+          items:
+            $ref: '#/components/schemas/SupplierInvoiceInstalmentDtoV2'
+          type:
+          - array
+          - 'null'
+        invoiceNumber:
+          description: Document number in the source data
+          minLength: 1
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          type: string
+        label:
+          description: Label of the document
+          type:
+          - string
+          - 'null'
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          type:
+          - object
+          - 'null'
+        paymentDate:
+          description: Payment in full date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        status:
+          description: 'Possible values : draft, due, paid, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - counterParty
+      - currency
+      - dueDate
+      - externalId
+      - id
+      - invoiceNumber
+      - issueDate
+      - status
+      title: UpdateSupplierInvoice
       type: object
   securitySchemes:
     bearerAuth:
