@@ -131,123 +131,6 @@ paths:
       - Financial investments
 components:
   schemas:
-    InvestmentsResponse:
-      additionalProperties: false
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/InvestmentItemResponse'
-          type: array
-        offset:
-          $ref: '#/components/schemas/Offset'
-      title: InvestmentsList
-      type: object
-    HttpValidationProblemDetails:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/ProblemDetails'
-      - additionalProperties: {}
-        properties:
-          errors:
-            additionalProperties:
-              items:
-                type: string
-              type: array
-            type: object
-        type: object
-    ProblemDetails:
-      additionalProperties: false
-      properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-      type: object
-    InvestmentItemResponse:
-      additionalProperties: false
-      properties:
-        amount:
-          format: double
-          type: number
-        closingDate:
-          format: date
-          type:
-          - string
-          - 'null'
-        currency:
-          type: string
-        id:
-          format: uuid
-          type: string
-        maturityDate:
-          format: date
-          type: string
-        name:
-          type: string
-        status:
-          type: string
-      title: InvestmentsListItem
-      type: object
-    AccruedResponse:
-      additionalProperties: false
-      properties:
-        lastMonth:
-          format: double
-          type: number
-        lastYear:
-          format: double
-          type: number
-        thisMonth:
-          format: double
-          type: number
-        thisYear:
-          format: double
-          type: number
-      title: Accrued
-      type: object
-    InterestsResponse:
-      additionalProperties: false
-      properties:
-        accrued:
-          $ref: '#/components/schemas/AccruedResponse'
-        due:
-          format: double
-          type: number
-      title: Interests
-      type: object
-    Offset:
-      additionalProperties: false
-      properties:
-        current:
-          format: int32
-          type: integer
-        limit:
-          format: int32
-          type: integer
-        next:
-          format: int32
-          type: integer
-        previous:
-          format: int32
-          type: integer
-      type: object
     InvestmentDetailResponse:
       additionalProperties: false
       properties:
@@ -277,6 +160,123 @@ components:
           format: date
           type: string
       title: InvestmentDetails
+      type: object
+    Offset:
+      additionalProperties: false
+      properties:
+        current:
+          format: int32
+          type: integer
+        limit:
+          format: int32
+          type: integer
+        next:
+          format: int32
+          type: integer
+        previous:
+          format: int32
+          type: integer
+      type: object
+    InvestmentItemResponse:
+      additionalProperties: false
+      properties:
+        amount:
+          format: double
+          type: number
+        closingDate:
+          format: date
+          type:
+          - string
+          - 'null'
+        currency:
+          type: string
+        id:
+          format: uuid
+          type: string
+        maturityDate:
+          format: date
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+      title: InvestmentsListItem
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    InterestsResponse:
+      additionalProperties: false
+      properties:
+        accrued:
+          $ref: '#/components/schemas/AccruedResponse'
+        due:
+          format: double
+          type: number
+      title: Interests
+      type: object
+    HttpValidationProblemDetails:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - additionalProperties: {}
+        properties:
+          errors:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+        type: object
+    AccruedResponse:
+      additionalProperties: false
+      properties:
+        lastMonth:
+          format: double
+          type: number
+        lastYear:
+          format: double
+          type: number
+        thisMonth:
+          format: double
+          type: number
+        thisYear:
+          format: double
+          type: number
+      title: Accrued
+      type: object
+    InvestmentsResponse:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/InvestmentItemResponse'
+          type: array
+        offset:
+          $ref: '#/components/schemas/Offset'
+      title: InvestmentsList
       type: object
   securitySchemes:
     bearerAuth:

@@ -65,22 +65,6 @@ paths:
       - E-Reporting
 components:
   schemas:
-    PublicApiB2CTransactionDetailRequest:
-      additionalProperties: false
-      properties:
-        taxRate:
-          description: 'VAT tax rate as a percentage. Allowed values: 0.00, 0.90, 1.05, 1.75, 2.10, 5.50, 7.00, 8.50, 9.20, 9.60, 10.00, 13.00, 19.60, 20.00, 20.60.'
-          format: double
-          type: number
-        taxableAmount:
-          description: Taxable amount excluding VAT. Must be greater than or equal to 0 with a maximum of two decimal.
-          format: double
-          type: number
-      required:
-      - taxableAmount
-      - taxRate
-      title: Details of the B2C transaction
-      type: object
     CurrencyCode:
       additionalProperties: false
       enum:
@@ -290,6 +274,28 @@ components:
           - string
           - 'null'
       type: object
+    ReportedInvoiceCategory:
+      additionalProperties: false
+      enum:
+      - SaleOfGoods
+      - ProvisionOfService
+      type: string
+    PublicApiB2CTransactionDetailRequest:
+      additionalProperties: false
+      properties:
+        taxRate:
+          description: 'VAT tax rate as a percentage. Allowed values: 0.00, 0.90, 1.05, 1.75, 2.10, 5.50, 7.00, 8.50, 9.20, 9.60, 10.00, 13.00, 19.60, 20.00, 20.60.'
+          format: double
+          type: number
+        taxableAmount:
+          description: Taxable amount excluding VAT. Must be greater than or equal to 0 with a maximum of two decimal.
+          format: double
+          type: number
+      required:
+      - taxableAmount
+      - taxRate
+      title: Details of the B2C transaction
+      type: object
     PublicApiAddB2CTransactionRequest:
       additionalProperties: false
       properties:
@@ -322,12 +328,6 @@ components:
       - transactionDate
       - transactionDetails
       type: object
-    ReportedInvoiceCategory:
-      additionalProperties: false
-      enum:
-      - SaleOfGoods
-      - ProvisionOfService
-      type: string
   securitySchemes:
     bearerAuth:
       bearerFormat: OPAQUE

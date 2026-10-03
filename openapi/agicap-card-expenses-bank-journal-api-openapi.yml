@@ -116,6 +116,37 @@ paths:
       - Card expenses bank journal
 components:
   schemas:
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    AccountingTransactionAccountType:
+      additionalProperties: false
+      enum:
+      - SupplierAccount
+      - BankLedger
+      type: string
     AccountingTransactionDebit:
       additionalProperties: false
       properties:
@@ -143,30 +174,37 @@ components:
       - currency
       - thirdPartyAccount
       type: object
-    ProblemDetails:
+    AccountingTransactionLine:
       additionalProperties: false
       properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
+        credit:
+          allOf:
+          - $ref: '#/components/schemas/AccountingTransactionCredit'
+          description: amount applied to the credit column
+        debit:
+          allOf:
+          - $ref: '#/components/schemas/AccountingTransactionDebit'
+          description: amount applied to the debit column
+        paymentDate:
+          description: date of the payment
+          format: date-time
+          type: string
+        supplierOrMerchant:
+          description: name of the supplier
+          type: string
         title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
+          description: title manually entered
+          type: string
+        uniqueId:
+          description: GUID
+          type: string
+      required:
+      - credit
+      - debit
+      - paymentDate
+      - supplierOrMerchant
+      - title
+      - uniqueId
       type: object
     PagedResult_1_PreAccounting.Queries.BankJournal.AccountingTransactionLine:
       additionalProperties: false
@@ -209,12 +247,6 @@ components:
       - currency
       - thirdPartyAccount
       type: object
-    AccountingTransactionAccountType:
-      additionalProperties: false
-      enum:
-      - SupplierAccount
-      - BankLedger
-      type: string
     Pagination:
       additionalProperties: false
       properties:
@@ -239,38 +271,6 @@ components:
       - pagesCount
       - pageSize
       - totalItemsCount
-      type: object
-    AccountingTransactionLine:
-      additionalProperties: false
-      properties:
-        credit:
-          allOf:
-          - $ref: '#/components/schemas/AccountingTransactionCredit'
-          description: amount applied to the credit column
-        debit:
-          allOf:
-          - $ref: '#/components/schemas/AccountingTransactionDebit'
-          description: amount applied to the debit column
-        paymentDate:
-          description: date of the payment
-          format: date-time
-          type: string
-        supplierOrMerchant:
-          description: name of the supplier
-          type: string
-        title:
-          description: title manually entered
-          type: string
-        uniqueId:
-          description: GUID
-          type: string
-      required:
-      - credit
-      - debit
-      - paymentDate
-      - supplierOrMerchant
-      - title
-      - uniqueId
       type: object
   securitySchemes:
     Bearer:

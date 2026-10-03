@@ -107,43 +107,17 @@ paths:
       - Entities
 components:
   schemas:
-    OrganizationEntityPresentation:
-      additionalProperties: false
-      properties:
-        country:
-          type:
-          - string
-          - 'null'
-        id:
-          format: int32
-          type: integer
-        name:
-          type:
-          - string
-          - 'null'
-      type: object
-    OrganizationEntitiesPresentation:
+    OrganizationsPresentation:
       additionalProperties: false
       properties:
         items:
           items:
-            $ref: '#/components/schemas/OrganizationEntityPresentation'
+            $ref: '#/components/schemas/OrganizationPresentation'
           type:
           - array
           - 'null'
         pagination:
           $ref: '#/components/schemas/PaginationResponse'
-      type: object
-    OrganizationPresentation:
-      additionalProperties: false
-      properties:
-        id:
-          format: uuid
-          type: string
-        name:
-          type:
-          - string
-          - 'null'
       type: object
     ProblemDetails:
       additionalProperties: false
@@ -170,12 +144,12 @@ components:
           - string
           - 'null'
       type: object
-    OrganizationsPresentation:
+    OrganizationEntitiesPresentation:
       additionalProperties: false
       properties:
         items:
           items:
-            $ref: '#/components/schemas/OrganizationPresentation'
+            $ref: '#/components/schemas/OrganizationEntityPresentation'
           type:
           - array
           - 'null'
@@ -201,6 +175,32 @@ components:
         totalItemsCount:
           format: int32
           type: integer
+      type: object
+    OrganizationPresentation:
+      additionalProperties: false
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+    OrganizationEntityPresentation:
+      additionalProperties: false
+      properties:
+        country:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        name:
+          type:
+          - string
+          - 'null'
       type: object
   securitySchemes:
     bearerAuth:

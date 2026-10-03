@@ -632,6 +632,27 @@ paths:
       - Import and delete
 components:
   schemas:
+    DeleteThirdPartiesRequestPublicApiDto:
+      additionalProperties: false
+      properties:
+        thirdPartyCodes:
+          items:
+            type: string
+          type: array
+      required:
+      - thirdPartyCodes
+      type: object
+    ImportThirdPartiesRequest:
+      additionalProperties: false
+      description: Import third parties request.
+      properties:
+        thirdParties:
+          items:
+            $ref: '#/components/schemas/ThirdPartyDto'
+          type: array
+      required:
+      - thirdParties
+      type: object
     ProblemDetails:
       additionalProperties: false
       properties:
@@ -657,6 +678,16 @@ components:
           - string
           - 'null'
       type: object
+    DeleteAccountingAccountsRequestPublicApiDto:
+      additionalProperties: false
+      properties:
+        accountingAccountNumbers:
+          items:
+            type: string
+          type: array
+      required:
+      - accountingAccountNumbers
+      type: object
     ImportAccountingAccountsRequestDto:
       additionalProperties: false
       description: Import accounting accounts request.
@@ -667,17 +698,6 @@ components:
           type: array
       required:
       - accountingAccounts
-      type: object
-    ImportThirdPartiesRequest:
-      additionalProperties: false
-      description: Import third parties request.
-      properties:
-        thirdParties:
-          items:
-            $ref: '#/components/schemas/ThirdPartyDto'
-          type: array
-      required:
-      - thirdParties
       type: object
     ImportResponse:
       additionalProperties: false
@@ -706,6 +726,22 @@ components:
       - importDate
       - importId
       - importStatus
+      type: object
+    ImportSummaryDto:
+      additionalProperties: false
+      description: Summary of imported third parties when status is Done
+      properties:
+        importedCount:
+          description: Number of imported third parties (only available when status is Done)
+          format: int32
+          type: integer
+        notImportedCount:
+          description: Number of not imported third parties (only available when status is Done)
+          format: int32
+          type: integer
+      required:
+      - importedCount
+      - notImportedCount
       type: object
     AccountingAccountDto:
       additionalProperties: false
@@ -742,22 +778,6 @@ components:
       - accountingAccountName
       - accountingAccountNumber
       type: object
-    ImportSummaryDto:
-      additionalProperties: false
-      description: Summary of imported third parties when status is Done
-      properties:
-        importedCount:
-          description: Number of imported third parties (only available when status is Done)
-          format: int32
-          type: integer
-        notImportedCount:
-          description: Number of not imported third parties (only available when status is Done)
-          format: int32
-          type: integer
-      required:
-      - importedCount
-      - notImportedCount
-      type: object
     ThirdPartyDto:
       additionalProperties: false
       description: A third party information.
@@ -780,26 +800,6 @@ components:
       - accountingAccountNumber
       - thirdPartyCode
       - thirdPartyName
-      type: object
-    DeleteThirdPartiesRequestPublicApiDto:
-      additionalProperties: false
-      properties:
-        thirdPartyCodes:
-          items:
-            type: string
-          type: array
-      required:
-      - thirdPartyCodes
-      type: object
-    DeleteAccountingAccountsRequestPublicApiDto:
-      additionalProperties: false
-      properties:
-        accountingAccountNumbers:
-          items:
-            type: string
-          type: array
-      required:
-      - accountingAccountNumbers
       type: object
   securitySchemes:
     bearerAuth:

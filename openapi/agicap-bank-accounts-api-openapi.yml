@@ -80,30 +80,17 @@ paths:
       - Bank Accounts
 components:
   schemas:
-    ProblemDetails:
+    AccountSummaryPagedResult:
       additionalProperties: false
       properties:
-        detail:
+        Items:
+          items:
+            $ref: '#/components/schemas/AccountSummary'
           type:
-          - string
+          - array
           - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
+        Pagination:
+          $ref: '#/components/schemas/Pagination'
       type: object
     AccountSummary:
       additionalProperties: false
@@ -143,17 +130,30 @@ components:
           format: int32
           type: integer
       type: object
-    AccountSummaryPagedResult:
+    ProblemDetails:
       additionalProperties: false
       properties:
-        Items:
-          items:
-            $ref: '#/components/schemas/AccountSummary'
+        detail:
           type:
-          - array
+          - string
           - 'null'
-        Pagination:
-          $ref: '#/components/schemas/Pagination'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
       type: object
   securitySchemes:
     bearerAuth:

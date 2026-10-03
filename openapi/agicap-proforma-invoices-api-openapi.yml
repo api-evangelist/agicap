@@ -827,29 +827,6 @@ paths:
     - url: https://api.agicap.internal
 components:
   schemas:
-    AmountsWithRemainingAmountDto:
-      additionalProperties: false
-      properties:
-        remainingAmount:
-          description: Remaining amount in the document currency.
-          format: double
-          type:
-          - number
-          - 'null'
-        taxesAmount:
-          description: Taxes amount in the document currency
-          format: double
-          type:
-          - number
-          - 'null'
-        totalAmount:
-          description: Total amount in the document currency.
-          format: double
-          type: number
-      required:
-      - totalAmount
-      title: AmountsWithRemainingAmount
-      type: object
     CreatedDocumentDto:
       additionalProperties: false
       properties:
@@ -859,114 +836,6 @@ components:
           format: uuid
           type: string
       title: CreatedDocument
-      type: object
-    PaginationMetadataDto:
-      additionalProperties: false
-      properties:
-        pageIndex:
-          description: Current page index
-          format: int32
-          type: integer
-        pageItemsCount:
-          description: Number of items on the current page
-          format: int32
-          type: integer
-        pageSize:
-          description: Page size (items per page)
-          format: int32
-          type: integer
-        totalItemsCount:
-          description: Total number of items
-          format: int32
-          type: integer
-      title: PaginationMetadata
-      type: object
-    ProformaInvoiceDtoPageDto:
-      additionalProperties: false
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ProformaInvoiceDto'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadataDto'
-      title: Page
-      type: object
-    CreateProformaInvoiceDto:
-      additionalProperties: false
-      properties:
-        amounts:
-          $ref: '#/components/schemas/AmountsWithRemainingAmountDto'
-        counterParty:
-          $ref: '#/components/schemas/CounterPartyDto'
-        currency:
-          description: Currency code in ISO 4217 format
-          minLength: 1
-          type: string
-        dueDate:
-          description: Due date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        erpIdentificationFields:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-        externalId:
-          description: Unique identifier of the document in the source data
-          minLength: 1
-          type: string
-        issueDate:
-          description: Issue date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        label:
-          description: Label of the document
-          type:
-          - string
-          - 'null'
-        metadata:
-          additionalProperties:
-            type: string
-          description: Additional metadata as a JSON Object
-          type:
-          - object
-          - 'null'
-        proformaInvoiceNumber:
-          description: Document number in the source data
-          type:
-          - string
-          - 'null'
-        status:
-          description: 'Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted'
-          minLength: 1
-          type: string
-      required:
-      - amounts
-      - currency
-      - externalId
-      - status
-      title: CreateProformaInvoice
-      type: object
-    CounterPartyDto:
-      additionalProperties: false
-      properties:
-        id:
-          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
-          type:
-          - string
-          - 'null'
-        name:
-          description: Name of the linked Counterpart (Supplier / Client)
-          type:
-          - string
-          - 'null'
-      title: CounterParty
       type: object
     UpdateProformaInvoiceDto:
       additionalProperties: false
@@ -1034,6 +903,21 @@ components:
       - status
       title: UpdateProformaInvoice
       type: object
+    CounterPartyDto:
+      additionalProperties: false
+      properties:
+        id:
+          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the linked Counterpart (Supplier / Client)
+          type:
+          - string
+          - 'null'
+      title: CounterParty
+      type: object
     ProformaInvoiceDto:
       additionalProperties: false
       properties:
@@ -1100,6 +984,138 @@ components:
       - status
       title: ProformaInvoice
       type: object
+    PaginationMetadataDto:
+      additionalProperties: false
+      properties:
+        pageIndex:
+          description: Current page index
+          format: int32
+          type: integer
+        pageItemsCount:
+          description: Number of items on the current page
+          format: int32
+          type: integer
+        pageSize:
+          description: Page size (items per page)
+          format: int32
+          type: integer
+        totalItemsCount:
+          description: Total number of items
+          format: int32
+          type: integer
+      title: PaginationMetadata
+      type: object
+    ProformaInvoiceDtoPageDto:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ProformaInvoiceDto'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      title: Page
+      type: object
+    AmountsWithRemainingAmountDto:
+      additionalProperties: false
+      properties:
+        remainingAmount:
+          description: Remaining amount in the document currency.
+          format: double
+          type:
+          - number
+          - 'null'
+        taxesAmount:
+          description: Taxes amount in the document currency
+          format: double
+          type:
+          - number
+          - 'null'
+        totalAmount:
+          description: Total amount in the document currency.
+          format: double
+          type: number
+      required:
+      - totalAmount
+      title: AmountsWithRemainingAmount
+      type: object
+    CreateProformaInvoiceDto:
+      additionalProperties: false
+      properties:
+        amounts:
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDto'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDto'
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        label:
+          description: Label of the document
+          type:
+          - string
+          - 'null'
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          type:
+          - object
+          - 'null'
+        proformaInvoiceNumber:
+          description: Document number in the source data
+          type:
+          - string
+          - 'null'
+        status:
+          description: 'Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - currency
+      - externalId
+      - status
+      title: CreateProformaInvoice
+      type: object
+    CounterPartyDtoV2:
+      additionalProperties: false
+      properties:
+        id:
+          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
+          minLength: 1
+          type: string
+        name:
+          description: Name of the linked Counterpart (Supplier / Client)
+          minLength: 1
+          type: string
+      required:
+      - id
+      - name
+      title: CounterParty
+      type: object
     UpdateProformaInvoiceDtoV2:
       additionalProperties: false
       properties:
@@ -1165,43 +1181,6 @@ components:
       - status
       title: UpdateProformaInvoice
       type: object
-    CounterPartyDtoV2:
-      additionalProperties: false
-      properties:
-        id:
-          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
-          minLength: 1
-          type: string
-        name:
-          description: Name of the linked Counterpart (Supplier / Client)
-          minLength: 1
-          type: string
-      required:
-      - id
-      - name
-      title: CounterParty
-      type: object
-    AmountsWithRemainingAmountDtoV2:
-      additionalProperties: false
-      properties:
-        remainingAmount:
-          description: Remaining amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-        taxesAmount:
-          description: Taxes amount in the document currency (amount must be positive)
-          format: double
-          type: number
-        totalAmount:
-          description: Total amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-      required:
-      - remainingAmount
-      - taxesAmount
-      - totalAmount
-      title: AmountsWithRemainingAmount
-      type: object
     CreateProformaInvoiceDtoV2:
       additionalProperties: false
       properties:
@@ -1261,6 +1240,27 @@ components:
       - proformaInvoiceNumber
       - status
       title: CreateProformaInvoice
+      type: object
+    AmountsWithRemainingAmountDtoV2:
+      additionalProperties: false
+      properties:
+        remainingAmount:
+          description: Remaining amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+        taxesAmount:
+          description: Taxes amount in the document currency (amount must be positive)
+          format: double
+          type: number
+        totalAmount:
+          description: Total amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+      required:
+      - remainingAmount
+      - taxesAmount
+      - totalAmount
+      title: AmountsWithRemainingAmount
       type: object
   securitySchemes:
     bearerAuth:

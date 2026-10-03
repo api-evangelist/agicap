@@ -83,19 +83,47 @@ paths:
       - Interests statements
 components:
   schemas:
-    HttpValidationProblemDetails:
+    Offset:
       additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/ProblemDetails'
-      - additionalProperties: {}
-        properties:
-          errors:
-            additionalProperties:
-              items:
-                type: string
-              type: array
-            type: object
-        type: object
+      properties:
+        current:
+          format: int32
+          type: integer
+        limit:
+          format: int32
+          type: integer
+        next:
+          format: int32
+          type: integer
+        previous:
+          format: int32
+          type: integer
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
     DailyPositionResourcePublic:
       additionalProperties: false
       properties:
@@ -132,6 +160,19 @@ components:
           - 'null'
       title: DailyPosition
       type: object
+    HttpValidationProblemDetails:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - additionalProperties: {}
+        properties:
+          errors:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+        type: object
     TransactionResourcePublic:
       additionalProperties: false
       properties:
@@ -140,6 +181,17 @@ components:
           type: string
       title: Transaction
       type: object
+    DrawDownResourcePublic:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/TransactionResourcePublic'
+      - additionalProperties: false
+        properties:
+          amount:
+            format: double
+            type: number
+        type: object
+      title: DrawDown
     RepaymentResourcePublic:
       additionalProperties: false
       allOf:
@@ -157,42 +209,6 @@ components:
             type: number
         type: object
       title: Repayment
-    ProblemDetails:
-      additionalProperties: false
-      properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-      type: object
-    DrawDownResourcePublic:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/TransactionResourcePublic'
-      - additionalProperties: false
-        properties:
-          amount:
-            format: double
-            type: number
-        type: object
-      title: DrawDown
     InterestsStatementResourcePublic:
       additionalProperties: false
       properties:
@@ -203,22 +219,6 @@ components:
         offset:
           $ref: '#/components/schemas/Offset'
       title: InterestsStatement
-      type: object
-    Offset:
-      additionalProperties: false
-      properties:
-        current:
-          format: int32
-          type: integer
-        limit:
-          format: int32
-          type: integer
-        next:
-          format: int32
-          type: integer
-        previous:
-          format: int32
-          type: integer
       type: object
   securitySchemes:
     bearerAuth:

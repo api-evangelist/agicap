@@ -381,293 +381,26 @@ paths:
       - Invoice Flows
 components:
   schemas:
-    LineAllowance:
+    AcknowledgementResult:
       additionalProperties: false
       properties:
-        baseAmount:
-          format: double
-          type:
-          - number
-          - 'null'
-        multiplierFactor:
-          format: double
-          type:
-          - number
-          - 'null'
-        reason:
-          type:
-          - string
-          - 'null'
-        reasonCode:
-          type:
-          - string
-          - 'null'
-        taxExclusiveAmount:
-          format: double
-          type:
-          - number
-          - 'null'
-      type: object
-    BuyerAgentContact:
-      additionalProperties: false
-      properties:
-        email:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        telephone:
-          type:
-          - string
-          - 'null'
-      type: object
-    SellerContact:
-      additionalProperties: false
-      properties:
-        email:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        telephone:
-          type:
-          - string
-          - 'null'
-      type: object
-    DirectDebit:
-      additionalProperties: false
-      properties:
-        creditorIdentifier:
-          type:
-          - string
-          - 'null'
-        debitedAccountIdentifier:
-          type:
-          - string
-          - 'null'
-        mandateReference:
-          type:
-          - string
-          - 'null'
-      type: object
-    Payee:
-      additionalProperties: false
-      properties:
-        address:
-          $ref: '#/components/schemas/PayeeAddress'
-        contact:
-          $ref: '#/components/schemas/PayeeContact'
-        electronicAddress:
-          type:
-          - string
-          - 'null'
-        identifier:
+        details:
           items:
-            type: string
+            $ref: '#/components/schemas/AcknowledgementDetailResult'
           type:
           - array
           - 'null'
-        legalRegistrationId:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        roleCode:
-          type:
-          - string
-          - 'null'
-        vatId:
-          type:
-          - string
-          - 'null'
+        status:
+          $ref: '#/components/schemas/FlowAckStatus'
+      required:
+      - status
       type: object
-    DeliveryAddress:
+    Level:
       additionalProperties: false
-      properties:
-        addressLine1:
-          type:
-          - string
-          - 'null'
-        addressLine2:
-          type:
-          - string
-          - 'null'
-        addressLine3:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        countryCode:
-          type:
-          - string
-          - 'null'
-        postalCode:
-          type:
-          - string
-          - 'null'
-        region:
-          type:
-          - string
-          - 'null'
-      type: object
-    TaxRepresentativeAddress:
-      additionalProperties: false
-      properties:
-        addressLine1:
-          type:
-          - string
-          - 'null'
-        addressLine2:
-          type:
-          - string
-          - 'null'
-        addressLine3:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        countryCode:
-          type:
-          - string
-          - 'null'
-        countrySubdivision:
-          type:
-          - string
-          - 'null'
-        postalCode:
-          type:
-          - string
-          - 'null'
-      type: object
-    BuyerAgentAddress:
-      additionalProperties: false
-      properties:
-        addressLine1:
-          type:
-          - string
-          - 'null'
-        addressLine2:
-          type:
-          - string
-          - 'null'
-        addressLine3:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        countryCode:
-          type:
-          - string
-          - 'null'
-        postalCode:
-          type:
-          - string
-          - 'null'
-        region:
-          type:
-          - string
-          - 'null'
-      type: object
-    InvoicePayerContact:
-      additionalProperties: false
-      properties:
-        email:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        telephone:
-          type:
-          - string
-          - 'null'
-      type: object
-    Seller:
-      additionalProperties: false
-      properties:
-        address:
-          $ref: '#/components/schemas/SellerAddress'
-        businessName:
-          type:
-          - string
-          - 'null'
-        companyLegalForm:
-          type:
-          - string
-          - 'null'
-        contact:
-          $ref: '#/components/schemas/SellerContact'
-        electronicAddress:
-          type:
-          - string
-          - 'null'
-        identifier:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        legalRegistrationId:
-          type:
-          - string
-          - 'null'
-        registrationName:
-          type:
-          - string
-          - 'null'
-        vatId:
-          type:
-          - string
-          - 'null'
-      type: object
-    PivotAttachment:
-      additionalProperties: false
-      properties:
-        content:
-          type:
-          - string
-          - 'null'
-        contentType:
-          type:
-          - string
-          - 'null'
-        externalLocation:
-          type:
-          - string
-          - 'null'
-        fileName:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        supportingDocumentDescription:
-          type:
-          - string
-          - 'null'
-      type: object
+      enum:
+      - Error
+      - Warning
+      type: string
     PayeeContact:
       additionalProperties: false
       properties:
@@ -684,195 +417,12 @@ components:
           - string
           - 'null'
       type: object
-    Level:
+    FlowDocType:
       additionalProperties: false
       enum:
-      - Error
-      - Warning
+      - Original
+      - Converted
       type: string
-    Invoicee:
-      additionalProperties: false
-      properties:
-        address:
-          $ref: '#/components/schemas/InvoiceeAddress'
-        businessName:
-          type:
-          - string
-          - 'null'
-        contact:
-          $ref: '#/components/schemas/InvoiceeContact'
-        electronicAddress:
-          type:
-          - string
-          - 'null'
-        identifier:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        legalRegistrationId:
-          type:
-          - string
-          - 'null'
-        registrationName:
-          type:
-          - string
-          - 'null'
-        roleCode:
-          type:
-          - string
-          - 'null'
-        vatId:
-          type:
-          - string
-          - 'null'
-      type: object
-    ProcessingRule:
-      additionalProperties: false
-      enum:
-      - B2B
-      - B2BInt
-      - B2C
-      type: string
-    FlowSyntax:
-      additionalProperties: false
-      enum:
-      - CII
-      - UBL
-      - Factur-X
-      - CDAR
-      - FRR
-      - PEPPOL_BIS_3.0
-      - JsonInvoice
-      - JsonLifecycle
-      type: string
-    Allowance:
-      additionalProperties: false
-      properties:
-        baseAmount:
-          format: double
-          type:
-          - number
-          - 'null'
-        multiplierFactor:
-          format: double
-          type:
-          - number
-          - 'null'
-        reason:
-          type:
-          - string
-          - 'null'
-        reasonCode:
-          type:
-          - string
-          - 'null'
-        taxCategoryCode:
-          type:
-          - string
-          - 'null'
-        taxExclusiveAmount:
-          format: double
-          type:
-          - number
-          - 'null'
-        taxRate:
-          format: double
-          type:
-          - number
-          - 'null'
-      type: object
-    ExtInvoicePayer:
-      additionalProperties: false
-      properties:
-        address:
-          $ref: '#/components/schemas/InvoicePayerAddress'
-        businessName:
-          type:
-          - string
-          - 'null'
-        contact:
-          $ref: '#/components/schemas/InvoicePayerContact'
-        electronicAddress:
-          type:
-          - string
-          - 'null'
-        identifier:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        legalRegistrationId:
-          type:
-          - string
-          - 'null'
-        registrationName:
-          type:
-          - string
-          - 'null'
-        roleCode:
-          type:
-          - string
-          - 'null'
-        vatId:
-          type:
-          - string
-          - 'null'
-      type: object
-    SearchFlowContent:
-      additionalProperties: false
-      properties:
-        filter:
-          $ref: '#/components/schemas/SearchFlowFilters'
-        limit:
-          format: int32
-          type: integer
-        offset:
-          format: int32
-          type: integer
-        results:
-          items:
-            $ref: '#/components/schemas/FlowDto'
-          type:
-          - array
-          - 'null'
-        total:
-          format: int32
-          type: integer
-      type: object
-    TaxBreakdown:
-      additionalProperties: false
-      properties:
-        exemptionReason:
-          type:
-          - string
-          - 'null'
-        exemptionReasonCode:
-          type:
-          - string
-          - 'null'
-        taxAmount:
-          format: double
-          type:
-          - number
-          - 'null'
-        taxCategoryCode:
-          type:
-          - string
-          - 'null'
-        taxRate:
-          format: double
-          type:
-          - number
-          - 'null'
-        taxableAmount:
-          format: double
-          type:
-          - number
-          - 'null'
-      type: object
     FlowDto:
       additionalProperties: false
       properties:
@@ -910,76 +460,39 @@ components:
       - acknowledgement
       - flowId
       type: object
-    ProblemDetails:
+    TransferAccount:
       additionalProperties: false
       properties:
-        detail:
+        accountId:
           type:
           - string
           - 'null'
-        instance:
+        bankId:
           type:
           - string
           - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-      type: object
-    FullFlowInfo:
-      additionalProperties: false
-      properties:
-        flowId:
-          maxLength: 36
-          type:
-          - string
-          - 'null'
-        flowProfile:
-          $ref: '#/components/schemas/FlowProfile'
-        flowSyntax:
-          $ref: '#/components/schemas/FlowSyntax'
         name:
-          minLength: 1
-          type: string
-        sha256:
-          pattern: ^[a-f0-9]{64}$
           type:
           - string
           - 'null'
-        trackingId:
-          type:
-          - string
-          - 'null'
-      required:
-      - flowId
-      - flowSyntax
-      - name
-      - sha256
       type: object
-    SearchFlowParams:
+    InvoiceeContact:
       additionalProperties: false
       properties:
-        limit:
-          format: int32
-          type: integer
-        offset:
-          format: int32
-          type: integer
-        where:
-          $ref: '#/components/schemas/SearchFlowFilters'
-      required:
-      - where
+        email:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        telephone:
+          type:
+          - string
+          - 'null'
       type: object
-    LineCharge:
+    LineAllowance:
       additionalProperties: false
       properties:
         baseAmount:
@@ -1006,112 +519,39 @@ components:
           - number
           - 'null'
       type: object
-    InvoicingPeriod:
+    SearchFlowFilters:
       additionalProperties: false
       properties:
-        endDate:
-          type:
-          - string
-          - 'null'
-        startDate:
-          type:
-          - string
-          - 'null'
-      type: object
-    Buyer:
-      additionalProperties: false
-      properties:
-        address:
-          $ref: '#/components/schemas/BuyerAddress'
-        businessName:
-          type:
-          - string
-          - 'null'
-        contact:
-          $ref: '#/components/schemas/BuyerContact'
+        ackStatus:
+          $ref: '#/components/schemas/FlowAckStatus'
         electronicAddress:
+          description: Reception electronic address in Peppol format "scheme:identifier" (e.g. "0225:123456789").
+          pattern: ^[^:]+:[^:]+$
           type:
           - string
           - 'null'
-        identifier:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        legalRegistrationId:
+        flowDirection:
+          $ref: '#/components/schemas/FlowDirection'
+        flowId:
+          maxLength: 36
           type:
           - string
           - 'null'
-        registrationName:
+        flowMode:
+          $ref: '#/components/schemas/FlowMode'
+        flowType:
+          $ref: '#/components/schemas/FlowType'
+        trackingId:
           type:
           - string
           - 'null'
-        vatId:
+        updatedAfter:
+          format: date-time
           type:
           - string
           - 'null'
-      type: object
-    BuyerAddress:
-      additionalProperties: false
-      properties:
-        addressLine1:
-          type:
-          - string
-          - 'null'
-        addressLine2:
-          type:
-          - string
-          - 'null'
-        addressLine3:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        countryCode:
-          type:
-          - string
-          - 'null'
-        postalCode:
-          type:
-          - string
-          - 'null'
-        region:
-          type:
-          - string
-          - 'null'
-      type: object
-    InvoicePayerAddress:
-      additionalProperties: false
-      properties:
-        addressLine1:
-          type:
-          - string
-          - 'null'
-        addressLine2:
-          type:
-          - string
-          - 'null'
-        addressLine3:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        countryCode:
-          type:
-          - string
-          - 'null'
-        postalCode:
-          type:
-          - string
-          - 'null'
-        region:
+        updatedBefore:
+          format: date-time
           type:
           - string
           - 'null'
@@ -1154,7 +594,443 @@ components:
           - string
           - 'null'
       type: object
-    SellerAddress:
+    BuyerAgentAddress:
+      additionalProperties: false
+      properties:
+        addressLine1:
+          type:
+          - string
+          - 'null'
+        addressLine2:
+          type:
+          - string
+          - 'null'
+        addressLine3:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        postalCode:
+          type:
+          - string
+          - 'null'
+        region:
+          type:
+          - string
+          - 'null'
+      type: object
+    DeliveryAddress:
+      additionalProperties: false
+      properties:
+        addressLine1:
+          type:
+          - string
+          - 'null'
+        addressLine2:
+          type:
+          - string
+          - 'null'
+        addressLine3:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        postalCode:
+          type:
+          - string
+          - 'null'
+        region:
+          type:
+          - string
+          - 'null'
+      type: object
+    BuyerAgentContact:
+      additionalProperties: false
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        telephone:
+          type:
+          - string
+          - 'null'
+      type: object
+    BillingServiceContact:
+      additionalProperties: false
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        telephone:
+          type:
+          - string
+          - 'null'
+      type: object
+    BuyerContact:
+      additionalProperties: false
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        telephone:
+          type:
+          - string
+          - 'null'
+      type: object
+    AdditionalDocumentReference:
+      additionalProperties: false
+      properties:
+        internalCustomerNumber:
+          type:
+          - string
+          - 'null'
+      type: object
+    Charge:
+      additionalProperties: false
+      properties:
+        baseAmount:
+          format: double
+          type:
+          - number
+          - 'null'
+        multiplierFactor:
+          format: double
+          type:
+          - number
+          - 'null'
+        reason:
+          type:
+          - string
+          - 'null'
+        reasonCode:
+          type:
+          - string
+          - 'null'
+        taxCategoryCode:
+          type:
+          - string
+          - 'null'
+        taxExclusiveAmount:
+          format: double
+          type:
+          - number
+          - 'null'
+        taxRate:
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    SellerAgentContact:
+      additionalProperties: false
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        telephone:
+          type:
+          - string
+          - 'null'
+      type: object
+    Item:
+      additionalProperties: false
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/ItemAttribute'
+          type:
+          - array
+          - 'null'
+        basePriceQuantity:
+          format: double
+          type:
+          - number
+          - 'null'
+        basePriceQuantityUnit:
+          type:
+          - string
+          - 'null'
+        buyersItemIdentification:
+          type:
+          - string
+          - 'null'
+        commodityClassificationCode:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        grossPrice:
+          format: double
+          type:
+          - number
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        netAmount:
+          format: double
+          type:
+          - number
+          - 'null'
+        originCountryCode:
+          type:
+          - string
+          - 'null'
+        priceDiscount:
+          format: double
+          type:
+          - number
+          - 'null'
+        sellersItemIdentification:
+          type:
+          - string
+          - 'null'
+        standardItemIdentification:
+          type:
+          - string
+          - 'null'
+        taxCategoryCode:
+          type:
+          - string
+          - 'null'
+        taxRate:
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    FlowProfile:
+      additionalProperties: false
+      enum:
+      - Basic
+      - CIUS
+      - Extended-CTC-FR
+      type: string
+    FlowDirection:
+      additionalProperties: false
+      enum:
+      - In
+      - Out
+      type: string
+    TaxRepresentativeAddress:
+      additionalProperties: false
+      properties:
+        addressLine1:
+          type:
+          - string
+          - 'null'
+        addressLine2:
+          type:
+          - string
+          - 'null'
+        addressLine3:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        countrySubdivision:
+          type:
+          - string
+          - 'null'
+        postalCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    SellerContact:
+      additionalProperties: false
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        telephone:
+          type:
+          - string
+          - 'null'
+      type: object
+    Note:
+      additionalProperties: false
+      properties:
+        noteCode:
+          type:
+          - string
+          - 'null'
+        noteValue:
+          type:
+          - string
+          - 'null'
+      type: object
+    ExtInvoicePayer:
+      additionalProperties: false
+      properties:
+        address:
+          $ref: '#/components/schemas/InvoicePayerAddress'
+        businessName:
+          type:
+          - string
+          - 'null'
+        contact:
+          $ref: '#/components/schemas/InvoicePayerContact'
+        electronicAddress:
+          type:
+          - string
+          - 'null'
+        identifier:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        legalRegistrationId:
+          type:
+          - string
+          - 'null'
+        registrationName:
+          type:
+          - string
+          - 'null'
+        roleCode:
+          type:
+          - string
+          - 'null'
+        vatId:
+          type:
+          - string
+          - 'null'
+      type: object
+    FlowInfo:
+      additionalProperties: false
+      properties:
+        entityId:
+          format: int32
+          type: integer
+        flowProfile:
+          $ref: '#/components/schemas/FlowProfile'
+        flowSyntax:
+          $ref: '#/components/schemas/FlowSyntax'
+        name:
+          type:
+          - string
+          - 'null'
+        processingRule:
+          $ref: '#/components/schemas/ProcessingRule'
+        sha256:
+          pattern: ^[a-f0-9]{64}$
+          type:
+          - string
+          - 'null'
+        trackingId:
+          type:
+          - string
+          - 'null'
+      required:
+      - entityId
+      - flowSyntax
+      type: object
+    BuyerAddress:
+      additionalProperties: false
+      properties:
+        addressLine1:
+          type:
+          - string
+          - 'null'
+        addressLine2:
+          type:
+          - string
+          - 'null'
+        addressLine3:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        postalCode:
+          type:
+          - string
+          - 'null'
+        region:
+          type:
+          - string
+          - 'null'
+      type: object
+    Error:
+      additionalProperties: false
+      properties:
+        errorCode:
+          minLength: 1
+          type: string
+        errorMessage:
+          type:
+          - string
+          - 'null'
+      required:
+      - errorCode
+      type: object
+    FlowAckStatus:
+      additionalProperties: false
+      enum:
+      - Pending
+      - Ok
+      - Error
+      - Archived
+      type: string
+    InvoiceeAddress:
       additionalProperties: false
       properties:
         addressLine1:
@@ -1208,7 +1084,45 @@ components:
         transferAccount:
           $ref: '#/components/schemas/TransferAccount'
       type: object
-    PayeeAddress:
+    Seller:
+      additionalProperties: false
+      properties:
+        address:
+          $ref: '#/components/schemas/SellerAddress'
+        businessName:
+          type:
+          - string
+          - 'null'
+        companyLegalForm:
+          type:
+          - string
+          - 'null'
+        contact:
+          $ref: '#/components/schemas/SellerContact'
+        electronicAddress:
+          type:
+          - string
+          - 'null'
+        identifier:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        legalRegistrationId:
+          type:
+          - string
+          - 'null'
+        registrationName:
+          type:
+          - string
+          - 'null'
+        vatId:
+          type:
+          - string
+          - 'null'
+      type: object
+    InvoicePayerAddress:
       additionalProperties: false
       properties:
         addressLine1:
@@ -1240,185 +1154,12 @@ components:
           - string
           - 'null'
       type: object
-    AcknowledgementResult:
-      additionalProperties: false
-      properties:
-        details:
-          items:
-            $ref: '#/components/schemas/AcknowledgementDetailResult'
-          type:
-          - array
-          - 'null'
-        status:
-          $ref: '#/components/schemas/FlowAckStatus'
-      required:
-      - status
-      type: object
-    ItemAttribute:
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        value:
-          type:
-          - string
-          - 'null'
-      type: object
-    Note:
-      additionalProperties: false
-      properties:
-        noteCode:
-          type:
-          - string
-          - 'null'
-        noteValue:
-          type:
-          - string
-          - 'null'
-      type: object
-    ExtSellerAgent:
-      additionalProperties: false
-      properties:
-        address:
-          $ref: '#/components/schemas/SellerAgentAddress'
-        businessName:
-          type:
-          - string
-          - 'null'
-        contact:
-          $ref: '#/components/schemas/SellerAgentContact'
-        electronicAddress:
-          type:
-          - string
-          - 'null'
-        identifier:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        legalRegistrationId:
-          type:
-          - string
-          - 'null'
-        registrationName:
-          type:
-          - string
-          - 'null'
-        roleCode:
-          type:
-          - string
-          - 'null'
-        vatId:
-          type:
-          - string
-          - 'null'
-      type: object
-    SellerAgentAddress:
-      additionalProperties: false
-      properties:
-        addressLine1:
-          type:
-          - string
-          - 'null'
-        addressLine2:
-          type:
-          - string
-          - 'null'
-        addressLine3:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        countryCode:
-          type:
-          - string
-          - 'null'
-        postalCode:
-          type:
-          - string
-          - 'null'
-        region:
-          type:
-          - string
-          - 'null'
-      type: object
-    PrecedingInvoice:
-      additionalProperties: false
-      properties:
-        invoiceNumber:
-          type:
-          - string
-          - 'null'
-        issueDate:
-          type:
-          - string
-          - 'null'
-      type: object
-    ExtBuyerAgent:
-      additionalProperties: false
-      properties:
-        address:
-          $ref: '#/components/schemas/BuyerAgentAddress'
-        businessName:
-          type:
-          - string
-          - 'null'
-        contact:
-          $ref: '#/components/schemas/BuyerAgentContact'
-        electronicAddress:
-          type:
-          - string
-          - 'null'
-        identifier:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        legalRegistrationId:
-          type:
-          - string
-          - 'null'
-        registrationName:
-          type:
-          - string
-          - 'null'
-        roleCode:
-          type:
-          - string
-          - 'null'
-        vatId:
-          type:
-          - string
-          - 'null'
-      type: object
-    FlowProfile:
+    ValidationCountry:
       additionalProperties: false
       enum:
-      - Basic
-      - CIUS
-      - Extended-CTC-FR
+      - FR
+      - BE
       type: string
-    TaxRepresentative:
-      additionalProperties: false
-      properties:
-        address:
-          $ref: '#/components/schemas/TaxRepresentativeAddress'
-        name:
-          type:
-          - string
-          - 'null'
-        vatId:
-          type:
-          - string
-          - 'null'
-      type: object
     Line:
       additionalProperties: false
       properties:
@@ -1495,156 +1236,35 @@ components:
           - string
           - 'null'
       type: object
-    Item:
+    FullFlowInfo:
       additionalProperties: false
       properties:
-        attributes:
-          items:
-            $ref: '#/components/schemas/ItemAttribute'
-          type:
-          - array
-          - 'null'
-        basePriceQuantity:
-          format: double
-          type:
-          - number
-          - 'null'
-        basePriceQuantityUnit:
+        flowId:
+          maxLength: 36
           type:
           - string
           - 'null'
-        buyersItemIdentification:
-          type:
-          - string
-          - 'null'
-        commodityClassificationCode:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        grossPrice:
-          format: double
-          type:
-          - number
-          - 'null'
+        flowProfile:
+          $ref: '#/components/schemas/FlowProfile'
+        flowSyntax:
+          $ref: '#/components/schemas/FlowSyntax'
         name:
+          minLength: 1
+          type: string
+        sha256:
+          pattern: ^[a-f0-9]{64}$
           type:
           - string
           - 'null'
-        netAmount:
-          format: double
-          type:
-          - number
-          - 'null'
-        originCountryCode:
+        trackingId:
           type:
           - string
           - 'null'
-        priceDiscount:
-          format: double
-          type:
-          - number
-          - 'null'
-        sellersItemIdentification:
-          type:
-          - string
-          - 'null'
-        standardItemIdentification:
-          type:
-          - string
-          - 'null'
-        taxCategoryCode:
-          type:
-          - string
-          - 'null'
-        taxRate:
-          format: double
-          type:
-          - number
-          - 'null'
-      type: object
-    PaymentCard:
-      additionalProperties: false
-      properties:
-        accountIdentifier:
-          type:
-          - string
-          - 'null'
-        accountName:
-          type:
-          - string
-          - 'null'
-        networkId:
-          type:
-          - string
-          - 'null'
-      type: object
-    BuyerContact:
-      additionalProperties: false
-      properties:
-        email:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        telephone:
-          type:
-          - string
-          - 'null'
-      type: object
-    InvoiceeContact:
-      additionalProperties: false
-      properties:
-        email:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        telephone:
-          type:
-          - string
-          - 'null'
-      type: object
-    InvoiceeAddress:
-      additionalProperties: false
-      properties:
-        addressLine1:
-          type:
-          - string
-          - 'null'
-        addressLine2:
-          type:
-          - string
-          - 'null'
-        addressLine3:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        countryCode:
-          type:
-          - string
-          - 'null'
-        postalCode:
-          type:
-          - string
-          - 'null'
-        region:
-          type:
-          - string
-          - 'null'
+      required:
+      - flowId
+      - flowSyntax
+      - name
+      - sha256
       type: object
     PivotInvoice:
       additionalProperties: false
@@ -1800,20 +1420,74 @@ components:
         totals:
           $ref: '#/components/schemas/Totals'
       type: object
-    BillingServiceContact:
+    Buyer:
       additionalProperties: false
       properties:
-        email:
+        address:
+          $ref: '#/components/schemas/BuyerAddress'
+        businessName:
           type:
           - string
           - 'null'
-        name:
+        contact:
+          $ref: '#/components/schemas/BuyerContact'
+        electronicAddress:
           type:
           - string
           - 'null'
-        telephone:
+        identifier:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        legalRegistrationId:
           type:
           - string
+          - 'null'
+        registrationName:
+          type:
+          - string
+          - 'null'
+        vatId:
+          type:
+          - string
+          - 'null'
+      type: object
+    Allowance:
+      additionalProperties: false
+      properties:
+        baseAmount:
+          format: double
+          type:
+          - number
+          - 'null'
+        multiplierFactor:
+          format: double
+          type:
+          - number
+          - 'null'
+        reason:
+          type:
+          - string
+          - 'null'
+        reasonCode:
+          type:
+          - string
+          - 'null'
+        taxCategoryCode:
+          type:
+          - string
+          - 'null'
+        taxExclusiveAmount:
+          format: double
+          type:
+          - number
+          - 'null'
+        taxRate:
+          format: double
+          type:
+          - number
           - 'null'
       type: object
     FlowDocFormat:
@@ -1824,7 +1498,109 @@ components:
       - CII
       - CDAR
       type: string
-    BillingServiceAddress:
+    ExtSellerAgent:
+      additionalProperties: false
+      properties:
+        address:
+          $ref: '#/components/schemas/SellerAgentAddress'
+        businessName:
+          type:
+          - string
+          - 'null'
+        contact:
+          $ref: '#/components/schemas/SellerAgentContact'
+        electronicAddress:
+          type:
+          - string
+          - 'null'
+        identifier:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        legalRegistrationId:
+          type:
+          - string
+          - 'null'
+        registrationName:
+          type:
+          - string
+          - 'null'
+        roleCode:
+          type:
+          - string
+          - 'null'
+        vatId:
+          type:
+          - string
+          - 'null'
+      type: object
+    PivotAttachment:
+      additionalProperties: false
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+        contentType:
+          type:
+          - string
+          - 'null'
+        externalLocation:
+          type:
+          - string
+          - 'null'
+        fileName:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        supportingDocumentDescription:
+          type:
+          - string
+          - 'null'
+      type: object
+    FlowType:
+      additionalProperties: false
+      enum:
+      - CustomerInvoice
+      - SupplierInvoice
+      - CustomerInvoiceLC
+      - SupplierInvoiceLC
+      - TransactionReport
+      - PaymentReport
+      type: string
+    PrecedingInvoice:
+      additionalProperties: false
+      properties:
+        invoiceNumber:
+          type:
+          - string
+          - 'null'
+        issueDate:
+          type:
+          - string
+          - 'null'
+      type: object
+    SearchFlowParams:
+      additionalProperties: false
+      properties:
+        limit:
+          format: int32
+          type: integer
+        offset:
+          format: int32
+          type: integer
+        where:
+          $ref: '#/components/schemas/SearchFlowFilters'
+      required:
+      - where
+      type: object
+    SellerAddress:
       additionalProperties: false
       properties:
         addressLine1:
@@ -1856,12 +1632,293 @@ components:
           - string
           - 'null'
       type: object
-    FlowDirection:
+    InvoicePayerContact:
+      additionalProperties: false
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        telephone:
+          type:
+          - string
+          - 'null'
+      type: object
+    PayeeAddress:
+      additionalProperties: false
+      properties:
+        addressLine1:
+          type:
+          - string
+          - 'null'
+        addressLine2:
+          type:
+          - string
+          - 'null'
+        addressLine3:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        postalCode:
+          type:
+          - string
+          - 'null'
+        region:
+          type:
+          - string
+          - 'null'
+      type: object
+    InvoicingPeriod:
+      additionalProperties: false
+      properties:
+        endDate:
+          type:
+          - string
+          - 'null'
+        startDate:
+          type:
+          - string
+          - 'null'
+      type: object
+    ProcessingRule:
       additionalProperties: false
       enum:
-      - In
-      - Out
+      - B2B
+      - B2BInt
+      - B2C
       type: string
+    FlowSyntax:
+      additionalProperties: false
+      enum:
+      - CII
+      - UBL
+      - Factur-X
+      - CDAR
+      - FRR
+      - PEPPOL_BIS_3.0
+      - JsonInvoice
+      - JsonLifecycle
+      type: string
+    PaymentCard:
+      additionalProperties: false
+      properties:
+        accountIdentifier:
+          type:
+          - string
+          - 'null'
+        accountName:
+          type:
+          - string
+          - 'null'
+        networkId:
+          type:
+          - string
+          - 'null'
+      type: object
+    AcknowledgementDetailResult:
+      additionalProperties: false
+      properties:
+        businessTermCode:
+          type:
+          - string
+          - 'null'
+        businessTermLabelFr:
+          type:
+          - string
+          - 'null'
+        fixHintFr:
+          type:
+          - string
+          - 'null'
+        item:
+          type:
+          - string
+          - 'null'
+        level:
+          $ref: '#/components/schemas/Level'
+        reasonCode:
+          minLength: 1
+          type: string
+        reasonMessage:
+          minLength: 1
+          type: string
+        reasonMessageFr:
+          type:
+          - string
+          - 'null'
+        ruleCode:
+          type:
+          - string
+          - 'null'
+        sourcePath:
+          type:
+          - string
+          - 'null'
+      required:
+      - level
+      - reasonCode
+      - reasonMessage
+      type: object
+    Invoicee:
+      additionalProperties: false
+      properties:
+        address:
+          $ref: '#/components/schemas/InvoiceeAddress'
+        businessName:
+          type:
+          - string
+          - 'null'
+        contact:
+          $ref: '#/components/schemas/InvoiceeContact'
+        electronicAddress:
+          type:
+          - string
+          - 'null'
+        identifier:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        legalRegistrationId:
+          type:
+          - string
+          - 'null'
+        registrationName:
+          type:
+          - string
+          - 'null'
+        roleCode:
+          type:
+          - string
+          - 'null'
+        vatId:
+          type:
+          - string
+          - 'null'
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    ExtBuyerAgent:
+      additionalProperties: false
+      properties:
+        address:
+          $ref: '#/components/schemas/BuyerAgentAddress'
+        businessName:
+          type:
+          - string
+          - 'null'
+        contact:
+          $ref: '#/components/schemas/BuyerAgentContact'
+        electronicAddress:
+          type:
+          - string
+          - 'null'
+        identifier:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        legalRegistrationId:
+          type:
+          - string
+          - 'null'
+        registrationName:
+          type:
+          - string
+          - 'null'
+        roleCode:
+          type:
+          - string
+          - 'null'
+        vatId:
+          type:
+          - string
+          - 'null'
+      type: object
+    TaxBreakdown:
+      additionalProperties: false
+      properties:
+        exemptionReason:
+          type:
+          - string
+          - 'null'
+        exemptionReasonCode:
+          type:
+          - string
+          - 'null'
+        taxAmount:
+          format: double
+          type:
+          - number
+          - 'null'
+        taxCategoryCode:
+          type:
+          - string
+          - 'null'
+        taxRate:
+          format: double
+          type:
+          - number
+          - 'null'
+        taxableAmount:
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    DirectDebit:
+      additionalProperties: false
+      properties:
+        creditorIdentifier:
+          type:
+          - string
+          - 'null'
+        debitedAccountIdentifier:
+          type:
+          - string
+          - 'null'
+        mandateReference:
+          type:
+          - string
+          - 'null'
+      type: object
     Totals:
       additionalProperties: false
       properties:
@@ -1916,171 +1973,7 @@ components:
           - number
           - 'null'
       type: object
-    FlowAckStatus:
-      additionalProperties: false
-      enum:
-      - Pending
-      - Ok
-      - Error
-      - Archived
-      type: string
-    AdditionalDocumentReference:
-      additionalProperties: false
-      properties:
-        internalCustomerNumber:
-          type:
-          - string
-          - 'null'
-      type: object
-    SearchFlowFilters:
-      additionalProperties: false
-      properties:
-        ackStatus:
-          $ref: '#/components/schemas/FlowAckStatus'
-        electronicAddress:
-          description: Reception electronic address in Peppol format "scheme:identifier" (e.g. "0225:123456789").
-          pattern: ^[^:]+:[^:]+$
-          type:
-          - string
-          - 'null'
-        flowDirection:
-          $ref: '#/components/schemas/FlowDirection'
-        flowId:
-          maxLength: 36
-          type:
-          - string
-          - 'null'
-        flowMode:
-          $ref: '#/components/schemas/FlowMode'
-        flowType:
-          $ref: '#/components/schemas/FlowType'
-        trackingId:
-          type:
-          - string
-          - 'null'
-        updatedAfter:
-          format: date-time
-          type:
-          - string
-          - 'null'
-        updatedBefore:
-          format: date-time
-          type:
-          - string
-          - 'null'
-      type: object
-    FlowMode:
-      additionalProperties: false
-      enum:
-      - Production
-      - Sandbox
-      type: string
-    AcknowledgementDetailResult:
-      additionalProperties: false
-      properties:
-        businessTermCode:
-          type:
-          - string
-          - 'null'
-        businessTermLabelFr:
-          type:
-          - string
-          - 'null'
-        fixHintFr:
-          type:
-          - string
-          - 'null'
-        item:
-          type:
-          - string
-          - 'null'
-        level:
-          $ref: '#/components/schemas/Level'
-        reasonCode:
-          minLength: 1
-          type: string
-        reasonMessage:
-          minLength: 1
-          type: string
-        reasonMessageFr:
-          type:
-          - string
-          - 'null'
-        ruleCode:
-          type:
-          - string
-          - 'null'
-        sourcePath:
-          type:
-          - string
-          - 'null'
-      required:
-      - level
-      - reasonCode
-      - reasonMessage
-      type: object
-    Error:
-      additionalProperties: false
-      properties:
-        errorCode:
-          minLength: 1
-          type: string
-        errorMessage:
-          type:
-          - string
-          - 'null'
-      required:
-      - errorCode
-      type: object
-    SellerAgentContact:
-      additionalProperties: false
-      properties:
-        email:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        telephone:
-          type:
-          - string
-          - 'null'
-      type: object
-    FlowType:
-      additionalProperties: false
-      enum:
-      - CustomerInvoice
-      - SupplierInvoice
-      - CustomerInvoiceLC
-      - SupplierInvoiceLC
-      - TransactionReport
-      - PaymentReport
-      type: string
-    TransferAccount:
-      additionalProperties: false
-      properties:
-        accountId:
-          type:
-          - string
-          - 'null'
-        bankId:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-      type: object
-    ValidationCountry:
-      additionalProperties: false
-      enum:
-      - FR
-      - BE
-      type: string
-    Charge:
+    LineCharge:
       additionalProperties: false
       properties:
         baseAmount:
@@ -2101,55 +1994,162 @@ components:
           type:
           - string
           - 'null'
-        taxCategoryCode:
-          type:
-          - string
-          - 'null'
         taxExclusiveAmount:
           format: double
           type:
           - number
           - 'null'
-        taxRate:
-          format: double
-          type:
-          - number
-          - 'null'
       type: object
-    FlowDocType:
-      additionalProperties: false
-      enum:
-      - Original
-      - Converted
-      type: string
-    FlowInfo:
+    SellerAgentAddress:
       additionalProperties: false
       properties:
-        entityId:
+        addressLine1:
+          type:
+          - string
+          - 'null'
+        addressLine2:
+          type:
+          - string
+          - 'null'
+        addressLine3:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        postalCode:
+          type:
+          - string
+          - 'null'
+        region:
+          type:
+          - string
+          - 'null'
+      type: object
+    SearchFlowContent:
+      additionalProperties: false
+      properties:
+        filter:
+          $ref: '#/components/schemas/SearchFlowFilters'
+        limit:
           format: int32
           type: integer
-        flowProfile:
-          $ref: '#/components/schemas/FlowProfile'
-        flowSyntax:
-          $ref: '#/components/schemas/FlowSyntax'
+        offset:
+          format: int32
+          type: integer
+        results:
+          items:
+            $ref: '#/components/schemas/FlowDto'
+          type:
+          - array
+          - 'null'
+        total:
+          format: int32
+          type: integer
+      type: object
+    TaxRepresentative:
+      additionalProperties: false
+      properties:
+        address:
+          $ref: '#/components/schemas/TaxRepresentativeAddress'
         name:
           type:
           - string
           - 'null'
-        processingRule:
-          $ref: '#/components/schemas/ProcessingRule'
-        sha256:
-          pattern: ^[a-f0-9]{64}$
+        vatId:
           type:
           - string
           - 'null'
-        trackingId:
+      type: object
+    Payee:
+      additionalProperties: false
+      properties:
+        address:
+          $ref: '#/components/schemas/PayeeAddress'
+        contact:
+          $ref: '#/components/schemas/PayeeContact'
+        electronicAddress:
           type:
           - string
           - 'null'
-      required:
-      - entityId
-      - flowSyntax
+        identifier:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        legalRegistrationId:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        roleCode:
+          type:
+          - string
+          - 'null'
+        vatId:
+          type:
+          - string
+          - 'null'
+      type: object
+    FlowMode:
+      additionalProperties: false
+      enum:
+      - Production
+      - Sandbox
+      type: string
+    ItemAttribute:
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    BillingServiceAddress:
+      additionalProperties: false
+      properties:
+        addressLine1:
+          type:
+          - string
+          - 'null'
+        addressLine2:
+          type:
+          - string
+          - 'null'
+        addressLine3:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        postalCode:
+          type:
+          - string
+          - 'null'
+        region:
+          type:
+          - string
+          - 'null'
       type: object
   securitySchemes:
     bearerAuth:

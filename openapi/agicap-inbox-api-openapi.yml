@@ -81,87 +81,6 @@ paths:
       - Inbox
 components:
   schemas:
-    InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentResponse:
-      additionalProperties: false
-      description: An inbox document with a temporary download link to its attached file.
-      properties:
-        agicapDocumentId:
-          description: The Agicap document identifier, used to later change the document's status.
-          format: uuid
-          type: string
-        extension:
-          allOf:
-          - $ref: '#/components/schemas/InvoicesManagement.Shared.App.Ports.FileExtension'
-          description: The attached file extension (Pdf, Jpg, Png, ...); null when it could not be determined.
-        type:
-          allOf:
-          - $ref: '#/components/schemas/InvoicesManagement.Shared.App.PurchaseDocumentType'
-          description: The document type (Invoice, CreditNote).
-        url:
-          description: A temporary, time-limited URL to download the document's attached file.
-          type: string
-      required:
-      - agicapDocumentId
-      - type
-      - url
-      type: object
-    InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentsPaginationResponse:
-      additionalProperties: false
-      description: Pagination details for a page of inbox documents.
-      properties:
-        currentPageItemsCount:
-          description: The number of documents returned on this page.
-          format: int32
-          type: integer
-        currentPageNumber:
-          description: The zero-based index of this page.
-          format: int32
-          type: integer
-        pageSize:
-          description: The maximum number of documents per page.
-          format: int32
-          type: integer
-        pagesCount:
-          description: The total number of pages.
-          format: int32
-          type: integer
-        totalItemsCount:
-          description: The total number of exportable documents in the inbox.
-          format: int32
-          type: integer
-      required:
-      - currentPageItemsCount
-      - currentPageNumber
-      - pagesCount
-      - pageSize
-      - totalItemsCount
-      type: object
-    InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentsResponse:
-      additionalProperties: false
-      description: A page of inbox documents with temporary download links.
-      properties:
-        documents:
-          description: The exportable inbox documents on this page.
-          items:
-            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentResponse'
-          type: array
-        pagination:
-          allOf:
-          - $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentsPaginationResponse'
-          description: Pagination details for this page.
-      required:
-      - documents
-      - pagination
-      type: object
-    InvoicesManagement.Shared.App.Ports.FileExtension:
-      additionalProperties: false
-      enum:
-      - Jpg
-      - Pdf
-      - Png
-      - Xml
-      - Unknown
-      type: string
     Microsoft.AspNetCore.Mvc.ProblemDetails:
       additionalProperties: false
       properties:
@@ -199,6 +118,23 @@ components:
       required:
       - type
       type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentsResponse:
+      additionalProperties: false
+      description: A page of inbox documents with temporary download links.
+      properties:
+        documents:
+          description: The exportable inbox documents on this page.
+          items:
+            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentResponse'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentsPaginationResponse'
+          description: Pagination details for this page.
+      required:
+      - documents
+      - pagination
+      type: object
     InvoicesManagement.Shared.App.PurchaseDocumentType:
       additionalProperties: false
       enum:
@@ -206,6 +142,70 @@ components:
       - CreditNote
       - PurchaseOrder
       - Delivery
+      type: string
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentsPaginationResponse:
+      additionalProperties: false
+      description: Pagination details for a page of inbox documents.
+      properties:
+        currentPageItemsCount:
+          description: The number of documents returned on this page.
+          format: int32
+          type: integer
+        currentPageNumber:
+          description: The zero-based index of this page.
+          format: int32
+          type: integer
+        pageSize:
+          description: The maximum number of documents per page.
+          format: int32
+          type: integer
+        pagesCount:
+          description: The total number of pages.
+          format: int32
+          type: integer
+        totalItemsCount:
+          description: The total number of exportable documents in the inbox.
+          format: int32
+          type: integer
+      required:
+      - currentPageItemsCount
+      - currentPageNumber
+      - pagesCount
+      - pageSize
+      - totalItemsCount
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.InboxDocumentResponse:
+      additionalProperties: false
+      description: An inbox document with a temporary download link to its attached file.
+      properties:
+        agicapDocumentId:
+          description: The Agicap document identifier, used to later change the document's status.
+          format: uuid
+          type: string
+        extension:
+          allOf:
+          - $ref: '#/components/schemas/InvoicesManagement.Shared.App.Ports.FileExtension'
+          description: The attached file extension (Pdf, Jpg, Png, ...); null when it could not be determined.
+        type:
+          allOf:
+          - $ref: '#/components/schemas/InvoicesManagement.Shared.App.PurchaseDocumentType'
+          description: The document type (Invoice, CreditNote).
+        url:
+          description: A temporary, time-limited URL to download the document's attached file.
+          type: string
+      required:
+      - agicapDocumentId
+      - type
+      - url
+      type: object
+    InvoicesManagement.Shared.App.Ports.FileExtension:
+      additionalProperties: false
+      enum:
+      - Jpg
+      - Pdf
+      - Png
+      - Xml
+      - Unknown
       type: string
   securitySchemes:
     Bearer:

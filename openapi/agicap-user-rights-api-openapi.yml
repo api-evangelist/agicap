@@ -51,44 +51,19 @@ paths:
       x-operation-id-original: Assign users to clients by external id
 components:
   schemas:
-    ClientUserAssignment:
+    AssignmentFailure:
       properties:
-        agicapUserEmails:
-          description: Email addresses of the successfully assigned Agicap users.
-          example:
-          - john.doe@example.com
-          - jane.doe@example.com
-          items:
-            type: string
-          type: array
-        clientExternalId:
-          description: External identifier of the client.
-          example: client_1
+        agicapUserEmail:
+          description: Email address of the Agicap user that could not be assigned.
+          example: unknown@example.com
           type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/AssignUsersToClientsByExternalIdFailureReasonEnum'
+          description: Reason why the user could not be assigned to the client.
       required:
-      - clientExternalId
-      - agicapUserEmails
-      type: object
-    AssignUsersToClientsByExternalIdFailureReasonEnum:
-      description: Reason why the user could not be assigned to the client.
-      enum:
-      - USER_NOT_FOUND
-      - CLIENT_NOT_FOUND
-      type: string
-    FailedClientUserAssignment:
-      properties:
-        clientExternalId:
-          description: External identifier of the client.
-          example: client_1
-          type: string
-        failures:
-          description: Users that could not be assigned to this client.
-          items:
-            $ref: '#/components/schemas/AssignmentFailure'
-          type: array
-      required:
-      - clientExternalId
-      - failures
+      - agicapUserEmail
+      - reason
       type: object
     AssignUsersToClientsByExternalIdRequest:
       properties:
@@ -100,6 +75,12 @@ components:
       required:
       - assignments
       type: object
+    AssignUsersToClientsByExternalIdFailureReasonEnum:
+      description: Reason why the user could not be assigned to the client.
+      enum:
+      - USER_NOT_FOUND
+      - CLIENT_NOT_FOUND
+      type: string
     ClientUserRightAssignment:
       properties:
         agicapUserEmails:
@@ -118,6 +99,39 @@ components:
       - clientExternalId
       - agicapUserEmails
       type: object
+    ClientUserAssignment:
+      properties:
+        agicapUserEmails:
+          description: Email addresses of the successfully assigned Agicap users.
+          example:
+          - john.doe@example.com
+          - jane.doe@example.com
+          items:
+            type: string
+          type: array
+        clientExternalId:
+          description: External identifier of the client.
+          example: client_1
+          type: string
+      required:
+      - clientExternalId
+      - agicapUserEmails
+      type: object
+    FailedClientUserAssignment:
+      properties:
+        clientExternalId:
+          description: External identifier of the client.
+          example: client_1
+          type: string
+        failures:
+          description: Users that could not be assigned to this client.
+          items:
+            $ref: '#/components/schemas/AssignmentFailure'
+          type: array
+      required:
+      - clientExternalId
+      - failures
+      type: object
     AssignUsersToClientsByExternalIdResponse:
       properties:
         assigned:
@@ -133,20 +147,6 @@ components:
       required:
       - assigned
       - notAssigned
-      type: object
-    AssignmentFailure:
-      properties:
-        agicapUserEmail:
-          description: Email address of the Agicap user that could not be assigned.
-          example: unknown@example.com
-          type: string
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/AssignUsersToClientsByExternalIdFailureReasonEnum'
-          description: Reason why the user could not be assigned to the client.
-      required:
-      - agicapUserEmail
-      - reason
       type: object
   securitySchemes:
     bearer:
