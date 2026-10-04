@@ -162,6 +162,31 @@ paths:
       - Statements
 components:
   schemas:
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
     Pagination:
       additionalProperties: false
       properties:
@@ -180,6 +205,18 @@ components:
         TotalItemsCount:
           format: int32
           type: integer
+      type: object
+    StatementSummaryPagedResult:
+      additionalProperties: false
+      properties:
+        Items:
+          items:
+            $ref: '#/components/schemas/StatementSummary'
+          type:
+          - array
+          - 'null'
+        Pagination:
+          $ref: '#/components/schemas/Pagination'
       type: object
     StatementSummary:
       additionalProperties: false
@@ -217,43 +254,6 @@ components:
           description: '`False` by default. `True` if the bank statement has already been imported.'
           format: boolean
           type: boolean
-      type: object
-    StatementSummaryPagedResult:
-      additionalProperties: false
-      properties:
-        Items:
-          items:
-            $ref: '#/components/schemas/StatementSummary'
-          type:
-          - array
-          - 'null'
-        Pagination:
-          $ref: '#/components/schemas/Pagination'
-      type: object
-    ProblemDetails:
-      additionalProperties: false
-      properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
       type: object
   securitySchemes:
     bearerAuth:

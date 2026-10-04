@@ -876,6 +876,76 @@ paths:
     - url: https://api.agicap.internal
 components:
   schemas:
+    PurchaseOrderDtoPageDto:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PurchaseOrderDto'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      title: Page
+      type: object
+    PaginationMetadataDto:
+      additionalProperties: false
+      properties:
+        pageIndex:
+          description: Current page index
+          format: int32
+          type: integer
+        pageItemsCount:
+          description: Number of items on the current page
+          format: int32
+          type: integer
+        pageSize:
+          description: Page size (items per page)
+          format: int32
+          type: integer
+        totalItemsCount:
+          description: Total number of items
+          format: int32
+          type: integer
+      title: PaginationMetadata
+      type: object
+    CounterPartyDto:
+      additionalProperties: false
+      properties:
+        id:
+          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the linked Counterpart (Supplier / Client)
+          type:
+          - string
+          - 'null'
+      title: CounterParty
+      type: object
+    AmountsWithRemainingAmountDto:
+      additionalProperties: false
+      properties:
+        remainingAmount:
+          description: Remaining amount in the document currency.
+          format: double
+          type:
+          - number
+          - 'null'
+        taxesAmount:
+          description: Taxes amount in the document currency
+          format: double
+          type:
+          - number
+          - 'null'
+        totalAmount:
+          description: Total amount in the document currency.
+          format: double
+          type: number
+      required:
+      - totalAmount
+      title: AmountsWithRemainingAmount
+      type: object
     CreatedDocumentDto:
       additionalProperties: false
       properties:
@@ -951,53 +1021,6 @@ components:
       - currency
       - externalId
       - status
-      type: object
-    CounterPartyDto:
-      additionalProperties: false
-      properties:
-        id:
-          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
-          type:
-          - string
-          - 'null'
-        name:
-          description: Name of the linked Counterpart (Supplier / Client)
-          type:
-          - string
-          - 'null'
-      title: CounterParty
-      type: object
-    PaginationMetadataDto:
-      additionalProperties: false
-      properties:
-        pageIndex:
-          description: Current page index
-          format: int32
-          type: integer
-        pageItemsCount:
-          description: Number of items on the current page
-          format: int32
-          type: integer
-        pageSize:
-          description: Page size (items per page)
-          format: int32
-          type: integer
-        totalItemsCount:
-          description: Total number of items
-          format: int32
-          type: integer
-      title: PaginationMetadata
-      type: object
-    PurchaseOrderDtoPageDto:
-      additionalProperties: false
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/PurchaseOrderDto'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadataDto'
-      title: Page
       type: object
     PurchaseOrderDto:
       additionalProperties: false
@@ -1143,26 +1166,24 @@ components:
       - status
       title: UpdatePurchaseOrder
       type: object
-    AmountsWithRemainingAmountDto:
+    AmountsWithRemainingAmountDtoV2:
       additionalProperties: false
       properties:
         remainingAmount:
-          description: Remaining amount in the document currency.
+          description: Remaining amount in the document currency. (amount must be positive)
           format: double
-          type:
-          - number
-          - 'null'
+          type: number
         taxesAmount:
-          description: Taxes amount in the document currency
+          description: Taxes amount in the document currency (amount must be positive)
           format: double
-          type:
-          - number
-          - 'null'
+          type: number
         totalAmount:
-          description: Total amount in the document currency.
+          description: Total amount in the document currency. (amount must be positive)
           format: double
           type: number
       required:
+      - remainingAmount
+      - taxesAmount
       - totalAmount
       title: AmountsWithRemainingAmount
       type: object
@@ -1181,6 +1202,90 @@ components:
       - id
       - name
       title: CounterParty
+      type: object
+    PurchaseOrderDtoV2PageDto:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PurchaseOrderDtoV2'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      title: Page
+      type: object
+    CreatePurchaseOrderDtoV2:
+      additionalProperties: false
+      properties:
+        amounts:
+          $ref: '#/components/schemas/AmountsWithRemainingAmountDtoV2'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDtoV2'
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        deliveryDate:
+          description: Delivery date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          type: string
+        label:
+          description: Label of the document
+          type:
+          - string
+          - 'null'
+        lineItems:
+          description: Article line items of the purchase order. Optional.
+          items:
+            $ref: '#/components/schemas/PurchaseOrderLineItemDto'
+          type:
+          - array
+          - 'null'
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          type:
+          - object
+          - 'null'
+        purchaseOrderNumber:
+          description: Document number in the source data
+          minLength: 1
+          type: string
+        status:
+          description: 'Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - counterParty
+      - currency
+      - dueDate
+      - externalId
+      - issueDate
+      - purchaseOrderNumber
+      - status
+      title: CreatePurchaseOrder
       type: object
     UpdatePurchaseOrderDtoV2:
       additionalProperties: false
@@ -1260,38 +1365,6 @@ components:
       - status
       title: UpdatePurchaseOrder
       type: object
-    AmountsWithRemainingAmountDtoV2:
-      additionalProperties: false
-      properties:
-        remainingAmount:
-          description: Remaining amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-        taxesAmount:
-          description: Taxes amount in the document currency (amount must be positive)
-          format: double
-          type: number
-        totalAmount:
-          description: Total amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-      required:
-      - remainingAmount
-      - taxesAmount
-      - totalAmount
-      title: AmountsWithRemainingAmount
-      type: object
-    PurchaseOrderDtoV2PageDto:
-      additionalProperties: false
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/PurchaseOrderDtoV2'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadataDto'
-      title: Page
-      type: object
     PurchaseOrderDtoV2:
       additionalProperties: false
       properties:
@@ -1369,79 +1442,6 @@ components:
       - status
       title: PurchaseOrder
       type: object
-    CreatePurchaseOrderDtoV2:
-      additionalProperties: false
-      properties:
-        amounts:
-          $ref: '#/components/schemas/AmountsWithRemainingAmountDtoV2'
-        counterParty:
-          $ref: '#/components/schemas/CounterPartyDtoV2'
-        currency:
-          description: Currency code in ISO 4217 format
-          minLength: 1
-          type: string
-        deliveryDate:
-          description: Delivery date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        dueDate:
-          description: Due date in ISO 8601 format
-          format: date-time
-          type: string
-        erpIdentificationFields:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-        externalId:
-          description: Unique identifier of the document in the source data
-          minLength: 1
-          type: string
-        issueDate:
-          description: Issue date in ISO 8601 format
-          format: date-time
-          type: string
-        label:
-          description: Label of the document
-          type:
-          - string
-          - 'null'
-        lineItems:
-          description: Article line items of the purchase order. Optional.
-          items:
-            $ref: '#/components/schemas/PurchaseOrderLineItemDto'
-          type:
-          - array
-          - 'null'
-        metadata:
-          additionalProperties:
-            type: string
-          description: Additional metadata as a JSON Object
-          type:
-          - object
-          - 'null'
-        purchaseOrderNumber:
-          description: Document number in the source data
-          minLength: 1
-          type: string
-        status:
-          description: 'Possible values : draft, sent, accepted, refused, expired, partiallyinvoiced, invoiced, cancelled, deleted'
-          minLength: 1
-          type: string
-      required:
-      - amounts
-      - counterParty
-      - currency
-      - dueDate
-      - externalId
-      - issueDate
-      - purchaseOrderNumber
-      - status
-      title: CreatePurchaseOrder
-      type: object
     PurchaseOrderLineItemDto:
       additionalProperties: false
       properties:
@@ -1478,134 +1478,12 @@ components:
       - unitPriceExcludingTax
       title: PurchaseOrderLineItem
       type: object
-    InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderLinkedInvoiceResponse:
+    InvoicesManagement.Read.Export.PurchaseOrderStatusForExport:
       additionalProperties: false
-      description: Invoice linked to a purchase order.
-      properties:
-        associatedAmountExcludingTaxes:
-          description: The amount excluding taxes associated to this purchase order.
-          format: double
-          type: number
-        invoiceId:
-          description: The invoice identifier.
-          format: uuid
-          type: string
-        number:
-          description: The invoice number.
-          type:
-          - string
-          - 'null'
-      required:
-      - associatedAmountExcludingTaxes
-      - invoiceId
-      type: object
-    Microsoft.AspNetCore.Mvc.ProblemDetails:
-      additionalProperties: false
-      properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          enum:
-          - Generic_InternalServerError
-          - InvoicesZipDownloadError
-          - Read_Generic_Error
-          - Write_File_InvalidData
-          - Write_File_InvalidFormat
-          - Write_Invoice_Duplicate
-          - Write_Invoice_EmptyFile
-          - Write_Invoice_NotSupportedFileType
-          - Write_Invoice_TooLargeFile
-          - Write_Invoice_Uncompleted
-          - Write_Supplier_NotFound
-          type: string
-      required:
-      - type
-      type: object
-    InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderLineItemResponse:
-      additionalProperties: false
-      description: Purchase order line item details.
-      properties:
-        articleName:
-          description: The article name.
-          type:
-          - string
-          - 'null'
-        articleReference:
-          description: The article reference.
-          type:
-          - string
-          - 'null'
-        billedQuantity:
-          description: The billed quantity.
-          format: double
-          type: number
-        deliveredQuantity:
-          description: The delivered quantity.
-          format: double
-          type: number
-        erpId:
-          description: The line item ERP identifier.
-          type:
-          - string
-          - 'null'
-        lineItemId:
-          description: The line item identifier.
-          format: uuid
-          type: string
-        orderedQuantity:
-          description: The ordered quantity.
-          format: double
-          type:
-          - number
-          - 'null'
-        totalAmountExcludingTaxes:
-          description: The total amount excluding taxes.
-          format: double
-          type:
-          - number
-          - 'null'
-        unitAmountExcludingTaxes:
-          description: The unit amount excluding taxes.
-          format: double
-          type:
-          - number
-          - 'null'
-      required:
-      - billedQuantity
-      - deliveredQuantity
-      - lineItemId
-      type: object
-    InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderDeliveryResponse:
-      additionalProperties: false
-      description: Purchase order delivery details.
-      properties:
-        date:
-          description: The delivery date.
-          format: date
-          type: string
-        number:
-          description: The delivery number.
-          type:
-          - string
-          - 'null'
-      required:
-      - date
-      type: object
+      enum:
+      - Open
+      - Closed
+      type: string
     InvoicesManagement.Web.Controllers.PublicApi.Dto.PurchaseOrderQueryDto:
       additionalProperties: false
       properties:
@@ -1617,24 +1495,6 @@ components:
       required:
       - purchaseOrderIds
       type: object
-    InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrdersResponse:
-      additionalProperties: false
-      description: Purchase orders response.
-      properties:
-        purchaseOrders:
-          description: The list of purchase orders.
-          items:
-            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderResponse'
-          type: array
-      required:
-      - purchaseOrders
-      type: object
-    InvoicesManagement.Read.Export.PurchaseOrderStatusForExport:
-      additionalProperties: false
-      enum:
-      - Open
-      - Closed
-      type: string
     InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderResponse:
       additionalProperties: false
       description: Purchase order details.
@@ -1725,6 +1585,146 @@ components:
       - purchaseOrderId
       - status
       - title
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrdersResponse:
+      additionalProperties: false
+      description: Purchase orders response.
+      properties:
+        purchaseOrders:
+          description: The list of purchase orders.
+          items:
+            $ref: '#/components/schemas/InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderResponse'
+          type: array
+      required:
+      - purchaseOrders
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderLineItemResponse:
+      additionalProperties: false
+      description: Purchase order line item details.
+      properties:
+        articleName:
+          description: The article name.
+          type:
+          - string
+          - 'null'
+        articleReference:
+          description: The article reference.
+          type:
+          - string
+          - 'null'
+        billedQuantity:
+          description: The billed quantity.
+          format: double
+          type: number
+        deliveredQuantity:
+          description: The delivered quantity.
+          format: double
+          type: number
+        erpId:
+          description: The line item ERP identifier.
+          type:
+          - string
+          - 'null'
+        lineItemId:
+          description: The line item identifier.
+          format: uuid
+          type: string
+        orderedQuantity:
+          description: The ordered quantity.
+          format: double
+          type:
+          - number
+          - 'null'
+        totalAmountExcludingTaxes:
+          description: The total amount excluding taxes.
+          format: double
+          type:
+          - number
+          - 'null'
+        unitAmountExcludingTaxes:
+          description: The unit amount excluding taxes.
+          format: double
+          type:
+          - number
+          - 'null'
+      required:
+      - billedQuantity
+      - deliveredQuantity
+      - lineItemId
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderLinkedInvoiceResponse:
+      additionalProperties: false
+      description: Invoice linked to a purchase order.
+      properties:
+        associatedAmountExcludingTaxes:
+          description: The amount excluding taxes associated to this purchase order.
+          format: double
+          type: number
+        invoiceId:
+          description: The invoice identifier.
+          format: uuid
+          type: string
+        number:
+          description: The invoice number.
+          type:
+          - string
+          - 'null'
+      required:
+      - associatedAmountExcludingTaxes
+      - invoiceId
+      type: object
+    Microsoft.AspNetCore.Mvc.ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          enum:
+          - Generic_InternalServerError
+          - InvoicesZipDownloadError
+          - Read_Generic_Error
+          - Write_File_InvalidData
+          - Write_File_InvalidFormat
+          - Write_Invoice_Duplicate
+          - Write_Invoice_EmptyFile
+          - Write_Invoice_NotSupportedFileType
+          - Write_Invoice_TooLargeFile
+          - Write_Invoice_Uncompleted
+          - Write_Supplier_NotFound
+          type: string
+      required:
+      - type
+      type: object
+    InvoicesManagement.Web.Controllers.PublicApi.Responses.PurchaseOrderDeliveryResponse:
+      additionalProperties: false
+      description: Purchase order delivery details.
+      properties:
+        date:
+          description: The delivery date.
+          format: date
+          type: string
+        number:
+          description: The delivery number.
+          type:
+          - string
+          - 'null'
+      required:
+      - date
       type: object
   securitySchemes:
     bearerAuth:

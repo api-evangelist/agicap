@@ -116,37 +116,33 @@ paths:
       - Card expenses bank journal
 components:
   schemas:
-    ProblemDetails:
+    AccountingTransactionCredit:
       additionalProperties: false
       properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
+        accountNumber:
+          description: number of the account posted
+          type: string
+        accountType:
+          allOf:
+          - $ref: '#/components/schemas/AccountingTransactionAccountType'
+          description: type of bookkeeping account
+        amount:
+          description: amount of the transaction
+          format: double
+          type: number
+        currency:
+          description: currency of the transaction
+          type: string
+        thirdPartyAccount:
+          description: label for the account posted
+          type: string
+      required:
+      - accountNumber
+      - accountType
+      - amount
+      - currency
+      - thirdPartyAccount
       type: object
-    AccountingTransactionAccountType:
-      additionalProperties: false
-      enum:
-      - SupplierAccount
-      - BankLedger
-      type: string
     AccountingTransactionDebit:
       additionalProperties: false
       properties:
@@ -173,6 +169,31 @@ components:
       - amount
       - currency
       - thirdPartyAccount
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
       type: object
     AccountingTransactionLine:
       additionalProperties: false
@@ -206,47 +227,6 @@ components:
       - title
       - uniqueId
       type: object
-    PagedResult_1_PreAccounting.Queries.BankJournal.AccountingTransactionLine:
-      additionalProperties: false
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/AccountingTransactionLine'
-          type: array
-        pagination:
-          allOf:
-          - $ref: '#/components/schemas/Pagination'
-      required:
-      - items
-      - pagination
-      type: object
-    AccountingTransactionCredit:
-      additionalProperties: false
-      properties:
-        accountNumber:
-          description: number of the account posted
-          type: string
-        accountType:
-          allOf:
-          - $ref: '#/components/schemas/AccountingTransactionAccountType'
-          description: type of bookkeeping account
-        amount:
-          description: amount of the transaction
-          format: double
-          type: number
-        currency:
-          description: currency of the transaction
-          type: string
-        thirdPartyAccount:
-          description: label for the account posted
-          type: string
-      required:
-      - accountNumber
-      - accountType
-      - amount
-      - currency
-      - thirdPartyAccount
-      type: object
     Pagination:
       additionalProperties: false
       properties:
@@ -272,6 +252,26 @@ components:
       - pageSize
       - totalItemsCount
       type: object
+    PagedResult_1_PreAccounting.Queries.BankJournal.AccountingTransactionLine:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AccountingTransactionLine'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/Pagination'
+      required:
+      - items
+      - pagination
+      type: object
+    AccountingTransactionAccountType:
+      additionalProperties: false
+      enum:
+      - SupplierAccount
+      - BankLedger
+      type: string
   securitySchemes:
     Bearer:
       scheme: Bearer

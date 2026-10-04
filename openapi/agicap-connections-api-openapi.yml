@@ -653,18 +653,11 @@ paths:
     - url: https://api.agicap.internal
 components:
   schemas:
-    ConnectionSummary:
+    ConnectionToCreate:
       additionalProperties: false
       properties:
-        Id:
-          description: Connection identifier
-          format: uuid
-          type: string
         Name:
           description: Connection name
-          type: string
-        Type:
-          description: Type of the connection. Possible values are PUBLIC_API, SWIFT, EBICS, EDITRAN
           type: string
       type: object
     ProblemDetails:
@@ -692,23 +685,18 @@ components:
           - string
           - 'null'
       type: object
-    ConnectionSummaryPagedResult:
+    ConnectionSummary:
       additionalProperties: false
       properties:
-        Items:
-          items:
-            $ref: '#/components/schemas/ConnectionSummary'
-          type:
-          - array
-          - 'null'
-        Pagination:
-          $ref: '#/components/schemas/Pagination'
-      type: object
-    ConnectionToCreate:
-      additionalProperties: false
-      properties:
+        Id:
+          description: Connection identifier
+          format: uuid
+          type: string
         Name:
           description: Connection name
+          type: string
+        Type:
+          description: Type of the connection. Possible values are PUBLIC_API, SWIFT, EBICS, EDITRAN
           type: string
       type: object
     Pagination:
@@ -729,6 +717,18 @@ components:
         TotalItemsCount:
           format: int32
           type: integer
+      type: object
+    ConnectionSummaryPagedResult:
+      additionalProperties: false
+      properties:
+        Items:
+          items:
+            $ref: '#/components/schemas/ConnectionSummary'
+          type:
+          - array
+          - 'null'
+        Pagination:
+          $ref: '#/components/schemas/Pagination'
       type: object
     ConnectionDto:
       additionalProperties: false

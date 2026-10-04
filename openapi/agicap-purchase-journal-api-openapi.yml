@@ -861,139 +861,6 @@ paths:
       - Purchase journal
 components:
   schemas:
-    InvoiceLinkedPurchaseOrderLineDto:
-      additionalProperties: false
-      properties:
-        articleName:
-          description: article name (null when not set)
-          type:
-          - string
-          - 'null'
-        articleReference:
-          description: article reference (null when not set)
-          type:
-          - string
-          - 'null'
-        billedQuantity:
-          description: billed quantity
-          format: double
-          type: number
-        deliveredQuantity:
-          description: delivered quantity
-          format: double
-          type: number
-        linkedDeliveryNotesLines:
-          description: delivery note lines recorded against this purchase order line (empty when none)
-          items:
-            $ref: '#/components/schemas/InvoiceDeliveryNoteLineDto'
-          type: array
-        orderedQuantity:
-          description: ordered quantity (null when not set)
-          format: double
-          type:
-          - number
-          - 'null'
-        purchaseOrderErpExternalId:
-          description: ERP external identifier of the purchase order (null when not set)
-          type:
-          - string
-          - 'null'
-        purchaseOrderId:
-          description: identifier of the linked purchase order (rapprochement key with linkedPurchaseOrders[].purchaseOrderId)
-          format: uuid
-          type: string
-        purchaseOrderLineItemErpExternalId:
-          description: ERP external identifier of the purchase order line (null when not set)
-          type:
-          - string
-          - 'null'
-        purchaseOrderLineItemId:
-          description: identifier of the line item on the purchase order
-          format: uuid
-          type: string
-        totalAmountExcludingTaxes:
-          description: total amount excluding taxes (null when not set)
-          format: double
-          type:
-          - number
-          - 'null'
-        unitAmountExcludingTaxes:
-          description: unit amount excluding taxes (null when not set)
-          format: double
-          type:
-          - number
-          - 'null'
-      required:
-      - billedQuantity
-      - deliveredQuantity
-      - linkedDeliveryNotesLines
-      - purchaseOrderId
-      - purchaseOrderLineItemId
-      type: object
-    PurchaseOrderSupplierDto:
-      additionalProperties: false
-      properties:
-        id:
-          description: supplier identifier (null while invoices-management does not yet expose the ERP vendorId on purchase orders)
-          format: uuid
-          type:
-          - string
-          - 'null'
-        name:
-          description: supplier display name
-          type: string
-      required:
-      - name
-      type: object
-    AccountingLineAccountType:
-      additionalProperties: false
-      enum:
-      - SupplierAccount
-      - ExpenseAccount
-      - VatAccount
-      type: string
-    AccountingLinePaymentMethod:
-      additionalProperties: false
-      enum:
-      - Check
-      - CreditCard
-      - DebitCard
-      - DirectDebit
-      - WireTransfer
-      - Cash
-      - Paypal
-      - Giropay
-      - Girocard
-      - RIBA
-      - BillOfExchange
-      - Compensation
-      - Other
-      - None
-      type: string
-    InvoiceSupplierDto:
-      additionalProperties: false
-      properties:
-        id:
-          description: supplier identifier (null while invoices-management does not yet expose the ERP vendorId)
-          format: uuid
-          type:
-          - string
-          - 'null'
-        name:
-          description: supplier display name
-          type: string
-      required:
-      - name
-      type: object
-    Typology:
-      additionalProperties: false
-      enum:
-      - OwedInvoice
-      - CreditNote
-      - CardExpenseReceipt
-      - CardRefundReceipt
-      - ExpenseClaim
-      type: string
     PublicApiEntryErrorDto:
       additionalProperties: false
       properties:
@@ -1007,185 +874,6 @@ components:
           type: string
       required:
       - errorType
-      type: object
-    InvoiceDeliveryNoteLineDto:
-      additionalProperties: false
-      properties:
-        deliveryNoteLineItemErpExternalId:
-          description: ERP external identifier of the delivery note line (null when not set)
-          type:
-          - string
-          - 'null'
-        deliveryNoteNumber:
-          description: delivery note number (null when not set)
-          type:
-          - string
-          - 'null'
-      type: object
-    InvoiceLineItemDto:
-      additionalProperties: false
-      properties:
-        articleName:
-          description: article name (null when not set)
-          type:
-          - string
-          - 'null'
-        articleReference:
-          description: article reference (null when not set)
-          type:
-          - string
-          - 'null'
-        lineItemId:
-          description: identifier of the line item (matches accountingLines[].lineItemId)
-          format: uuid
-          type: string
-        linkedPurchaseOrderLine:
-          allOf:
-          - $ref: '#/components/schemas/InvoiceLinkedPurchaseOrderLineDto'
-          description: matched line item on the linked purchase order, null when no match
-        quantity:
-          description: quantity (null when not set)
-          format: double
-          type:
-          - number
-          - 'null'
-        totalAmountExcludingTaxes:
-          description: total amount excluding taxes (null when not set)
-          format: double
-          type:
-          - number
-          - 'null'
-        unitAmountExcludingTaxes:
-          description: unit amount excluding taxes (null when not set)
-          format: double
-          type:
-          - number
-          - 'null'
-      required:
-      - lineItemId
-      type: object
-    PurchaseJournalAccountingLinePresentation:
-      additionalProperties: false
-      properties:
-        accountNumber:
-          description: number of the account posted
-          type: string
-        accountType:
-          allOf:
-          - $ref: '#/components/schemas/AccountingLineAccountType'
-          description: type of bookkeeping account
-        accountingCurrency:
-          description: accounting currency
-          type: string
-        additionalAnalyticalCodes:
-          additionalProperties:
-            type: string
-          description: codes which are related to the cost bearer
-          type: object
-        analyticalCodes:
-          additionalProperties:
-            type: string
-          description: codes linked to the expense account
-          type: object
-        conversionRate:
-          description: conversion rate applied to the amounts
-          format: double
-          type: number
-        convertedCreditAmount:
-          description: amount applied to the converted credit column
-          format: double
-          type: number
-        convertedDebitAmount:
-          description: amount applied to the converted debit column
-          format: double
-          type: number
-        credit:
-          description: amount applied to the credit column
-          format: double
-          type: number
-        currency:
-          description: currency of the document provided
-          type: string
-        debit:
-          description: amount applied to the debit column
-          format: double
-          type: number
-        lineItemId:
-          description: identifier of the line item for invoice accounting purchase typology, null for line of type `SupplierAccount
-          format: uuid
-          type:
-          - string
-          - 'null'
-        taxKey:
-          description: Tax key of vat account if Account Type is `VatAccount else null.
-          type:
-          - string
-          - 'null'
-        thirdPartyAccount:
-          description: label for the supplier account
-          type:
-          - string
-          - 'null'
-        type:
-          description: “G” for General
-          type: string
-        vatAccountName:
-          description: name of the VAT account (or of the reverse charge for reverse-charge entries); null for line of type `SupplierAccount`
-          type:
-          - string
-          - 'null'
-      required:
-      - accountingCurrency
-      - accountNumber
-      - accountType
-      - additionalAnalyticalCodes
-      - analyticalCodes
-      - conversionRate
-      - convertedCreditAmount
-      - convertedDebitAmount
-      - credit
-      - currency
-      - debit
-      - type
-      type: object
-    LinkedDeliveryDto:
-      additionalProperties: false
-      properties:
-        date:
-          description: delivery date
-          format: date
-          type: string
-        number:
-          description: delivery number (null when not set)
-          type:
-          - string
-          - 'null'
-      required:
-      - date
-      type: object
-    PublicApiErrorReportDto:
-      additionalProperties: false
-      properties:
-        entriesNotImported:
-          items:
-            $ref: '#/components/schemas/PublicApiNotImportedEntryDto'
-          type: array
-      required:
-      - entriesNotImported
-      type: object
-    PublicApiNotImportedEntryDto:
-      additionalProperties: false
-      properties:
-        entryAgicapUniqueId:
-          format: uuid
-          type: string
-        errors:
-          items:
-            $ref: '#/components/schemas/PublicApiEntryErrorDto'
-          type: array
-      required:
-      - entryAgicapUniqueId
-      - errors
       type: object
     PublicApiPurchaseJournalPresentation:
       additionalProperties: false
@@ -1306,55 +994,114 @@ components:
       - items
       - pagination
       type: object
-    Pagination:
+    AccountingLineAccountType:
+      additionalProperties: false
+      enum:
+      - SupplierAccount
+      - ExpenseAccount
+      - VatAccount
+      type: string
+    LinkedDeliveryDto:
       additionalProperties: false
       properties:
-        currentPageItemsCount:
-          format: int32
-          type: integer
-        currentPageNumber:
-          format: int32
-          type: integer
-        pageSize:
-          format: int32
-          type: integer
-        pagesCount:
-          format: int32
-          type: integer
-        totalItemsCount:
-          format: int32
-          type: integer
-      required:
-      - currentPageItemsCount
-      - currentPageNumber
-      - pagesCount
-      - pageSize
-      - totalItemsCount
-      type: object
-    ProblemDetails:
-      additionalProperties: false
-      properties:
-        detail:
+        date:
+          description: delivery date
+          format: date
+          type: string
+        number:
+          description: delivery number (null when not set)
           type:
           - string
           - 'null'
-        instance:
+      required:
+      - date
+      type: object
+    PurchaseOrderSupplierDto:
+      additionalProperties: false
+      properties:
+        id:
+          description: supplier identifier (null while invoices-management does not yet expose the ERP vendorId on purchase orders)
+          format: uuid
+          type:
+          - string
+          - 'null'
+        name:
+          description: supplier display name
+          type: string
+      required:
+      - name
+      type: object
+    InvoiceInformationDto:
+      additionalProperties: false
+      properties:
+        costCenter:
+          description: cost center label (null when not set)
+          type:
+          - string
+          - 'null'
+        currency:
+          description: invoice currency (null when not set)
+          type:
+          - string
+          - 'null'
+        lineItems:
+          description: line items, filtered to those matching accountingLines[].lineItemId
+          items:
+            $ref: '#/components/schemas/InvoiceLineItemDto'
+          type: array
+        linkedPurchaseOrders:
+          description: linked purchase orders (empty when none)
+          items:
+            $ref: '#/components/schemas/InvoiceLinkedPurchaseOrderDto'
+          type: array
+        natures:
+          description: natures associated with the invoice
+          items:
+            type: string
+          type: array
+        originalAmountExcludingTaxes:
+          description: original total amount excluding taxes (null when not set)
+          format: double
+          type:
+          - number
+          - 'null'
+        originalAmountIncludingTaxes:
+          description: original total amount including taxes (null when not set)
+          format: double
+          type:
+          - number
+          - 'null'
+        reference:
+          description: invoice external reference
           type:
           - string
           - 'null'
         status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
+          description: invoice status, passthrough from invoices-management
+          type: string
+        supplier:
+          allOf:
+          - $ref: '#/components/schemas/InvoiceSupplierDto'
+          description: invoice supplier (null when missing)
+      required:
+      - lineItems
+      - linkedPurchaseOrders
+      - natures
+      - status
+      type: object
+    PublicApiNotImportedEntryDto:
+      additionalProperties: false
+      properties:
+        entryAgicapUniqueId:
+          format: uuid
+          type: string
+        errors:
+          items:
+            $ref: '#/components/schemas/PublicApiEntryErrorDto'
+          type: array
+      required:
+      - entryAgicapUniqueId
+      - errors
       type: object
     InvoiceLinkedPurchaseOrderDto:
       additionalProperties: false
@@ -1432,63 +1179,316 @@ components:
       - status
       - title
       type: object
-    InvoiceInformationDto:
+    PurchaseJournalAccountingLinePresentation:
       additionalProperties: false
       properties:
-        costCenter:
-          description: cost center label (null when not set)
-          type:
-          - string
-          - 'null'
-        currency:
-          description: invoice currency (null when not set)
-          type:
-          - string
-          - 'null'
-        lineItems:
-          description: line items, filtered to those matching accountingLines[].lineItemId
-          items:
-            $ref: '#/components/schemas/InvoiceLineItemDto'
-          type: array
-        linkedPurchaseOrders:
-          description: linked purchase orders (empty when none)
-          items:
-            $ref: '#/components/schemas/InvoiceLinkedPurchaseOrderDto'
-          type: array
-        natures:
-          description: natures associated with the invoice
-          items:
+        accountNumber:
+          description: number of the account posted
+          type: string
+        accountType:
+          allOf:
+          - $ref: '#/components/schemas/AccountingLineAccountType'
+          description: type of bookkeeping account
+        accountingCurrency:
+          description: accounting currency
+          type: string
+        additionalAnalyticalCodes:
+          additionalProperties:
             type: string
+          description: codes which are related to the cost bearer
+          type: object
+        analyticalCodes:
+          additionalProperties:
+            type: string
+          description: codes linked to the expense account
+          type: object
+        conversionRate:
+          description: conversion rate applied to the amounts
+          format: double
+          type: number
+        convertedCreditAmount:
+          description: amount applied to the converted credit column
+          format: double
+          type: number
+        convertedDebitAmount:
+          description: amount applied to the converted debit column
+          format: double
+          type: number
+        credit:
+          description: amount applied to the credit column
+          format: double
+          type: number
+        currency:
+          description: currency of the document provided
+          type: string
+        debit:
+          description: amount applied to the debit column
+          format: double
+          type: number
+        lineItemId:
+          description: identifier of the line item for invoice accounting purchase typology, null for line of type `SupplierAccount
+          format: uuid
+          type:
+          - string
+          - 'null'
+        taxKey:
+          description: Tax key of vat account if Account Type is `VatAccount else null.
+          type:
+          - string
+          - 'null'
+        thirdPartyAccount:
+          description: label for the supplier account
+          type:
+          - string
+          - 'null'
+        type:
+          description: “G” for General
+          type: string
+        vatAccountName:
+          description: name of the VAT account (or of the reverse charge for reverse-charge entries); null for line of type `SupplierAccount`
+          type:
+          - string
+          - 'null'
+      required:
+      - accountingCurrency
+      - accountNumber
+      - accountType
+      - additionalAnalyticalCodes
+      - analyticalCodes
+      - conversionRate
+      - convertedCreditAmount
+      - convertedDebitAmount
+      - credit
+      - currency
+      - debit
+      - type
+      type: object
+    Typology:
+      additionalProperties: false
+      enum:
+      - OwedInvoice
+      - CreditNote
+      - CardExpenseReceipt
+      - CardRefundReceipt
+      - ExpenseClaim
+      type: string
+    InvoiceLinkedPurchaseOrderLineDto:
+      additionalProperties: false
+      properties:
+        articleName:
+          description: article name (null when not set)
+          type:
+          - string
+          - 'null'
+        articleReference:
+          description: article reference (null when not set)
+          type:
+          - string
+          - 'null'
+        billedQuantity:
+          description: billed quantity
+          format: double
+          type: number
+        deliveredQuantity:
+          description: delivered quantity
+          format: double
+          type: number
+        linkedDeliveryNotesLines:
+          description: delivery note lines recorded against this purchase order line (empty when none)
+          items:
+            $ref: '#/components/schemas/InvoiceDeliveryNoteLineDto'
           type: array
-        originalAmountExcludingTaxes:
-          description: original total amount excluding taxes (null when not set)
+        orderedQuantity:
+          description: ordered quantity (null when not set)
           format: double
           type:
           - number
           - 'null'
-        originalAmountIncludingTaxes:
-          description: original total amount including taxes (null when not set)
+        purchaseOrderErpExternalId:
+          description: ERP external identifier of the purchase order (null when not set)
+          type:
+          - string
+          - 'null'
+        purchaseOrderId:
+          description: identifier of the linked purchase order (rapprochement key with linkedPurchaseOrders[].purchaseOrderId)
+          format: uuid
+          type: string
+        purchaseOrderLineItemErpExternalId:
+          description: ERP external identifier of the purchase order line (null when not set)
+          type:
+          - string
+          - 'null'
+        purchaseOrderLineItemId:
+          description: identifier of the line item on the purchase order
+          format: uuid
+          type: string
+        totalAmountExcludingTaxes:
+          description: total amount excluding taxes (null when not set)
           format: double
           type:
           - number
           - 'null'
-        reference:
-          description: invoice external reference
+        unitAmountExcludingTaxes:
+          description: unit amount excluding taxes (null when not set)
+          format: double
+          type:
+          - number
+          - 'null'
+      required:
+      - billedQuantity
+      - deliveredQuantity
+      - linkedDeliveryNotesLines
+      - purchaseOrderId
+      - purchaseOrderLineItemId
+      type: object
+    Pagination:
+      additionalProperties: false
+      properties:
+        currentPageItemsCount:
+          format: int32
+          type: integer
+        currentPageNumber:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pagesCount:
+          format: int32
+          type: integer
+        totalItemsCount:
+          format: int32
+          type: integer
+      required:
+      - currentPageItemsCount
+      - currentPageNumber
+      - pagesCount
+      - pageSize
+      - totalItemsCount
+      type: object
+    AccountingLinePaymentMethod:
+      additionalProperties: false
+      enum:
+      - Check
+      - CreditCard
+      - DebitCard
+      - DirectDebit
+      - WireTransfer
+      - Cash
+      - Paypal
+      - Giropay
+      - Girocard
+      - RIBA
+      - BillOfExchange
+      - Compensation
+      - Other
+      - None
+      type: string
+    PublicApiErrorReportDto:
+      additionalProperties: false
+      properties:
+        entriesNotImported:
+          items:
+            $ref: '#/components/schemas/PublicApiNotImportedEntryDto'
+          type: array
+      required:
+      - entriesNotImported
+      type: object
+    InvoiceSupplierDto:
+      additionalProperties: false
+      properties:
+        id:
+          description: supplier identifier (null while invoices-management does not yet expose the ERP vendorId)
+          format: uuid
+          type:
+          - string
+          - 'null'
+        name:
+          description: supplier display name
+          type: string
+      required:
+      - name
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
           type:
           - string
           - 'null'
         status:
-          description: invoice status, passthrough from invoices-management
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    InvoiceDeliveryNoteLineDto:
+      additionalProperties: false
+      properties:
+        deliveryNoteLineItemErpExternalId:
+          description: ERP external identifier of the delivery note line (null when not set)
+          type:
+          - string
+          - 'null'
+        deliveryNoteNumber:
+          description: delivery note number (null when not set)
+          type:
+          - string
+          - 'null'
+      type: object
+    InvoiceLineItemDto:
+      additionalProperties: false
+      properties:
+        articleName:
+          description: article name (null when not set)
+          type:
+          - string
+          - 'null'
+        articleReference:
+          description: article reference (null when not set)
+          type:
+          - string
+          - 'null'
+        lineItemId:
+          description: identifier of the line item (matches accountingLines[].lineItemId)
+          format: uuid
           type: string
-        supplier:
+        linkedPurchaseOrderLine:
           allOf:
-          - $ref: '#/components/schemas/InvoiceSupplierDto'
-          description: invoice supplier (null when missing)
+          - $ref: '#/components/schemas/InvoiceLinkedPurchaseOrderLineDto'
+          description: matched line item on the linked purchase order, null when no match
+        quantity:
+          description: quantity (null when not set)
+          format: double
+          type:
+          - number
+          - 'null'
+        totalAmountExcludingTaxes:
+          description: total amount excluding taxes (null when not set)
+          format: double
+          type:
+          - number
+          - 'null'
+        unitAmountExcludingTaxes:
+          description: unit amount excluding taxes (null when not set)
+          format: double
+          type:
+          - number
+          - 'null'
       required:
-      - lineItems
-      - linkedPurchaseOrders
-      - natures
-      - status
+      - lineItemId
       type: object
   securitySchemes:
     Bearer:

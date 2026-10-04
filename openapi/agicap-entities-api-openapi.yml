@@ -107,17 +107,25 @@ paths:
       - Entities
 components:
   schemas:
-    OrganizationsPresentation:
+    PaginationResponse:
       additionalProperties: false
       properties:
-        items:
-          items:
-            $ref: '#/components/schemas/OrganizationPresentation'
-          type:
-          - array
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
+        currentPageItemsCount:
+          format: int32
+          type: integer
+        currentPageNumber:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pagesCount:
+          format: int32
+          readOnly: true
+          type: integer
+        totalItemsCount:
+          format: int32
+          type: integer
       type: object
     ProblemDetails:
       additionalProperties: false
@@ -156,37 +164,6 @@ components:
         pagination:
           $ref: '#/components/schemas/PaginationResponse'
       type: object
-    PaginationResponse:
-      additionalProperties: false
-      properties:
-        currentPageItemsCount:
-          format: int32
-          type: integer
-        currentPageNumber:
-          format: int32
-          type: integer
-        pageSize:
-          format: int32
-          type: integer
-        pagesCount:
-          format: int32
-          readOnly: true
-          type: integer
-        totalItemsCount:
-          format: int32
-          type: integer
-      type: object
-    OrganizationPresentation:
-      additionalProperties: false
-      properties:
-        id:
-          format: uuid
-          type: string
-        name:
-          type:
-          - string
-          - 'null'
-      type: object
     OrganizationEntityPresentation:
       additionalProperties: false
       properties:
@@ -197,6 +174,29 @@ components:
         id:
           format: int32
           type: integer
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+    OrganizationsPresentation:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/OrganizationPresentation'
+          type:
+          - array
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+      type: object
+    OrganizationPresentation:
+      additionalProperties: false
+      properties:
+        id:
+          format: uuid
+          type: string
         name:
           type:
           - string

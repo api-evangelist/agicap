@@ -83,21 +83,24 @@ paths:
       - Interests statements
 components:
   schemas:
-    Offset:
+    InterestsStatementResourcePublic:
       additionalProperties: false
       properties:
-        current:
-          format: int32
-          type: integer
-        limit:
-          format: int32
-          type: integer
-        next:
-          format: int32
-          type: integer
-        previous:
-          format: int32
-          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/DailyPositionResourcePublic'
+          type: array
+        offset:
+          $ref: '#/components/schemas/Offset'
+      title: InterestsStatement
+      type: object
+    TransactionResourcePublic:
+      additionalProperties: false
+      properties:
+        date:
+          format: date
+          type: string
+      title: Transaction
       type: object
     ProblemDetails:
       additionalProperties: false
@@ -124,6 +127,63 @@ components:
           - string
           - 'null'
       type: object
+    Offset:
+      additionalProperties: false
+      properties:
+        current:
+          format: int32
+          type: integer
+        limit:
+          format: int32
+          type: integer
+        next:
+          format: int32
+          type: integer
+        previous:
+          format: int32
+          type: integer
+      type: object
+    HttpValidationProblemDetails:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - additionalProperties: {}
+        properties:
+          errors:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+        type: object
+    DrawDownResourcePublic:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/TransactionResourcePublic'
+      - additionalProperties: false
+        properties:
+          amount:
+            format: double
+            type: number
+        type: object
+      title: DrawDown
+    RepaymentResourcePublic:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/TransactionResourcePublic'
+      - additionalProperties: false
+        properties:
+          capital:
+            format: double
+            type: number
+          interests:
+            format: double
+            type: number
+          total:
+            format: double
+            type: number
+        type: object
+      title: Repayment
     DailyPositionResourcePublic:
       additionalProperties: false
       properties:
@@ -159,66 +219,6 @@ components:
           - array
           - 'null'
       title: DailyPosition
-      type: object
-    HttpValidationProblemDetails:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/ProblemDetails'
-      - additionalProperties: {}
-        properties:
-          errors:
-            additionalProperties:
-              items:
-                type: string
-              type: array
-            type: object
-        type: object
-    TransactionResourcePublic:
-      additionalProperties: false
-      properties:
-        date:
-          format: date
-          type: string
-      title: Transaction
-      type: object
-    DrawDownResourcePublic:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/TransactionResourcePublic'
-      - additionalProperties: false
-        properties:
-          amount:
-            format: double
-            type: number
-        type: object
-      title: DrawDown
-    RepaymentResourcePublic:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/TransactionResourcePublic'
-      - additionalProperties: false
-        properties:
-          capital:
-            format: double
-            type: number
-          interests:
-            format: double
-            type: number
-          total:
-            format: double
-            type: number
-        type: object
-      title: Repayment
-    InterestsStatementResourcePublic:
-      additionalProperties: false
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/DailyPositionResourcePublic'
-          type: array
-        offset:
-          $ref: '#/components/schemas/Offset'
-      title: InterestsStatement
       type: object
   securitySchemes:
     bearerAuth:

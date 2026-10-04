@@ -182,63 +182,38 @@ paths:
       x-operation-id-original: Update client credit limits
 components:
   schemas:
-    GetClientCreditLimitsResponse:
+    DeleteClientCreditLimitsRequest:
       properties:
-        items:
+        clientExternalIds:
+          description: 'List of client external IDs to delete credit limits for. Max 1000 items per request. Each ID: max 1000 characters, value is trimmed.'
+          example:
+          - client-001
+          - client-002
           items:
-            $ref: '#/components/schemas/ClientCreditLimitItem'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadataDto'
-      required:
-      - items
-      - pagination
-      type: object
-    CreateClientCreditLimitsResponse:
-      properties:
-        created:
-          description: Successfully created credit limits
-          items:
-            $ref: '#/components/schemas/CreditLimitCreated'
-          type: array
-        notCreated:
-          description: Credit limits that failed to be created
-          items:
-            $ref: '#/components/schemas/CreditLimitNotCreated'
+            type: string
           type: array
       required:
-      - created
-      - notCreated
+      - clientExternalIds
       type: object
-    CreditLimitToCreate:
+    CreditLimit:
       properties:
-        clientExternalId:
-          description: Identifier from the ERP or external system. Max 1000 characters. Value is trimmed.
-          example: CLIENT-123
-          maxLength: 1000
-          type: string
         currency:
           allOf:
           - $ref: '#/components/schemas/Currency'
           description: Currency of the credit limit
+        limit:
+          description: Credit limit amount
+          example: 10000
+          type: number
         limitCents:
-          description: Credit limit amount in cents. Must be >= 0.
+          deprecated: true
+          description: Credit limit amount in cents
           example: 1000000
-          minimum: 0
           type: number
       required:
-      - clientExternalId
       - limitCents
+      - limit
       - currency
-      type: object
-    CreditLimitUpdated:
-      properties:
-        clientExternalId:
-          description: Identifier from the ERP or external system
-          example: CLIENT-123
-          type: string
-      required:
-      - clientExternalId
       type: object
     DeleteClientCreditLimitsFailureEnum:
       description: Reason for failure to delete client credit limit
@@ -246,20 +221,6 @@ components:
       - CLIENT_NOT_FOUND
       - CREDIT_LIMIT_NOT_FOUND
       type: string
-    CreditLimitNotUpdated:
-      properties:
-        clientExternalId:
-          description: Identifier from the ERP or external system
-          example: CLIENT-123
-          type: string
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/UpdateClientCreditLimitFailureEnum'
-          description: Reason why the credit limit could not be updated
-      required:
-      - clientExternalId
-      - reason
-      type: object
     Currency:
       description: Currency of the credit limit
       enum:
@@ -470,24 +431,140 @@ components:
       - clientExternalId
       - reason
       type: object
+    CreditLimitCreated:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: CLIENT-123
+          type: string
+      required:
+      - clientExternalId
+      type: object
+    CreateClientCreditLimitsResponse:
+      properties:
+        created:
+          description: Successfully created credit limits
+          items:
+            $ref: '#/components/schemas/CreditLimitCreated'
+          type: array
+        notCreated:
+          description: Credit limits that failed to be created
+          items:
+            $ref: '#/components/schemas/CreditLimitNotCreated'
+          type: array
+      required:
+      - created
+      - notCreated
+      type: object
+    GetClientCreditLimitsResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ClientCreditLimitItem'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      required:
+      - items
+      - pagination
+      type: object
+    CreditLimitUpdated:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: CLIENT-123
+          type: string
+      required:
+      - clientExternalId
+      type: object
+    CreditLimitNotCreated:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: CLIENT-123
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/CreateClientCreditLimitFailureEnum'
+          description: Reason why the credit limit could not be created
+      required:
+      - clientExternalId
+      - reason
+      type: object
+    CreditLimitNotUpdated:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: CLIENT-123
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/UpdateClientCreditLimitFailureEnum'
+          description: Reason why the credit limit could not be updated
+      required:
+      - clientExternalId
+      - reason
+      type: object
+    PaginationMetadataDto:
+      properties:
+        after:
+          type:
+          - string
+          - 'null'
+        before:
+          type:
+          - string
+          - 'null'
+      required:
+      - before
+      - after
+      type: object
+    DeletedClientCreditLimit:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: client-001
+          type: string
+      required:
+      - clientExternalId
+      type: object
+    UpdateClientCreditLimitsRequest:
+      properties:
+        creditLimits:
+          description: List of credit limits to update. Max 1000 items per request.
+          items:
+            $ref: '#/components/schemas/CreditLimitToUpdate'
+          type: array
+      required:
+      - creditLimits
+      type: object
     UpdateClientCreditLimitFailureEnum:
       description: Reason why the credit limit could not be updated
       enum:
       - CLIENT_NOT_FOUND
       - CREDIT_LIMIT_NOT_FOUND
       type: string
-    DeleteClientCreditLimitsRequest:
+    CreateClientCreditLimitFailureEnum:
+      description: Reason why the credit limit could not be created
+      enum:
+      - CLIENT_NOT_FOUND
+      - CREDIT_LIMIT_ALREADY_EXISTS
+      type: string
+    DeleteClientCreditLimitsResponse:
       properties:
-        clientExternalIds:
-          description: 'List of client external IDs to delete credit limits for. Max 1000 items per request. Each ID: max 1000 characters, value is trimmed.'
-          example:
-          - client-001
-          - client-002
+        deleted:
+          description: List of successfully deleted client credit limits
           items:
-            type: string
+            $ref: '#/components/schemas/DeletedClientCreditLimit'
+          type: array
+        notDeleted:
+          description: List of client credit limits that could not be deleted with reasons
+          items:
+            $ref: '#/components/schemas/NotDeletedClientCreditLimit'
           type: array
       required:
-      - clientExternalIds
+      - deleted
+      - notDeleted
       type: object
     UpdateClientCreditLimitsResponse:
       properties:
@@ -504,6 +581,37 @@ components:
       required:
       - updated
       - notUpdated
+      type: object
+    CreditLimitToCreate:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system. Max 1000 characters. Value is trimmed.
+          example: CLIENT-123
+          maxLength: 1000
+          type: string
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+          description: Currency of the credit limit
+        limitCents:
+          description: Credit limit amount in cents. Must be >= 0.
+          example: 1000000
+          minimum: 0
+          type: number
+      required:
+      - clientExternalId
+      - limitCents
+      - currency
+      type: object
+    CreateClientCreditLimitsRequest:
+      properties:
+        creditLimits:
+          description: List of credit limits to add. Max 1000 items per request.
+          items:
+            $ref: '#/components/schemas/CreditLimitToCreate'
+          type: array
+      required:
+      - creditLimits
       type: object
     CreditLimitToUpdate:
       properties:
@@ -526,15 +634,6 @@ components:
       - limitCents
       - currency
       type: object
-    DeletedClientCreditLimit:
-      properties:
-        clientExternalId:
-          description: Identifier from the ERP or external system
-          example: client-001
-          type: string
-      required:
-      - clientExternalId
-      type: object
     ClientCreditLimitItem:
       properties:
         clientExternalId:
@@ -555,105 +654,6 @@ components:
       - clientId
       - clientExternalId
       - creditLimit
-      type: object
-    CreditLimitCreated:
-      properties:
-        clientExternalId:
-          description: Identifier from the ERP or external system
-          example: CLIENT-123
-          type: string
-      required:
-      - clientExternalId
-      type: object
-    PaginationMetadataDto:
-      properties:
-        after:
-          type:
-          - string
-          - 'null'
-        before:
-          type:
-          - string
-          - 'null'
-      required:
-      - before
-      - after
-      type: object
-    DeleteClientCreditLimitsResponse:
-      properties:
-        deleted:
-          description: List of successfully deleted client credit limits
-          items:
-            $ref: '#/components/schemas/DeletedClientCreditLimit'
-          type: array
-        notDeleted:
-          description: List of client credit limits that could not be deleted with reasons
-          items:
-            $ref: '#/components/schemas/NotDeletedClientCreditLimit'
-          type: array
-      required:
-      - deleted
-      - notDeleted
-      type: object
-    UpdateClientCreditLimitsRequest:
-      properties:
-        creditLimits:
-          description: List of credit limits to update. Max 1000 items per request.
-          items:
-            $ref: '#/components/schemas/CreditLimitToUpdate'
-          type: array
-      required:
-      - creditLimits
-      type: object
-    CreateClientCreditLimitsRequest:
-      properties:
-        creditLimits:
-          description: List of credit limits to add. Max 1000 items per request.
-          items:
-            $ref: '#/components/schemas/CreditLimitToCreate'
-          type: array
-      required:
-      - creditLimits
-      type: object
-    CreateClientCreditLimitFailureEnum:
-      description: Reason why the credit limit could not be created
-      enum:
-      - CLIENT_NOT_FOUND
-      - CREDIT_LIMIT_ALREADY_EXISTS
-      type: string
-    CreditLimitNotCreated:
-      properties:
-        clientExternalId:
-          description: Identifier from the ERP or external system
-          example: CLIENT-123
-          type: string
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/CreateClientCreditLimitFailureEnum'
-          description: Reason why the credit limit could not be created
-      required:
-      - clientExternalId
-      - reason
-      type: object
-    CreditLimit:
-      properties:
-        currency:
-          allOf:
-          - $ref: '#/components/schemas/Currency'
-          description: Currency of the credit limit
-        limit:
-          description: Credit limit amount
-          example: 10000
-          type: number
-        limitCents:
-          deprecated: true
-          description: Credit limit amount in cents
-          example: 1000000
-          type: number
-      required:
-      - limitCents
-      - limit
-      - currency
       type: object
   securitySchemes:
     bearer:

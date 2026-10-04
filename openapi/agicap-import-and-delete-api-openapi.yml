@@ -632,62 +632,6 @@ paths:
       - Import and delete
 components:
   schemas:
-    DeleteThirdPartiesRequestPublicApiDto:
-      additionalProperties: false
-      properties:
-        thirdPartyCodes:
-          items:
-            type: string
-          type: array
-      required:
-      - thirdPartyCodes
-      type: object
-    ImportThirdPartiesRequest:
-      additionalProperties: false
-      description: Import third parties request.
-      properties:
-        thirdParties:
-          items:
-            $ref: '#/components/schemas/ThirdPartyDto'
-          type: array
-      required:
-      - thirdParties
-      type: object
-    ProblemDetails:
-      additionalProperties: false
-      properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-      type: object
-    DeleteAccountingAccountsRequestPublicApiDto:
-      additionalProperties: false
-      properties:
-        accountingAccountNumbers:
-          items:
-            type: string
-          type: array
-      required:
-      - accountingAccountNumbers
-      type: object
     ImportAccountingAccountsRequestDto:
       additionalProperties: false
       description: Import accounting accounts request.
@@ -727,21 +671,41 @@ components:
       - importId
       - importStatus
       type: object
-    ImportSummaryDto:
+    ProblemDetails:
       additionalProperties: false
-      description: Summary of imported third parties when status is Done
       properties:
-        importedCount:
-          description: Number of imported third parties (only available when status is Done)
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
           format: int32
-          type: integer
-        notImportedCount:
-          description: Number of not imported third parties (only available when status is Done)
-          format: int32
-          type: integer
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    ImportThirdPartiesRequest:
+      additionalProperties: false
+      description: Import third parties request.
+      properties:
+        thirdParties:
+          items:
+            $ref: '#/components/schemas/ThirdPartyDto'
+          type: array
       required:
-      - importedCount
-      - notImportedCount
+      - thirdParties
       type: object
     AccountingAccountDto:
       additionalProperties: false
@@ -778,6 +742,32 @@ components:
       - accountingAccountName
       - accountingAccountNumber
       type: object
+    DeleteAccountingAccountsRequestPublicApiDto:
+      additionalProperties: false
+      properties:
+        accountingAccountNumbers:
+          items:
+            type: string
+          type: array
+      required:
+      - accountingAccountNumbers
+      type: object
+    ImportSummaryDto:
+      additionalProperties: false
+      description: Summary of imported third parties when status is Done
+      properties:
+        importedCount:
+          description: Number of imported third parties (only available when status is Done)
+          format: int32
+          type: integer
+        notImportedCount:
+          description: Number of not imported third parties (only available when status is Done)
+          format: int32
+          type: integer
+      required:
+      - importedCount
+      - notImportedCount
+      type: object
     ThirdPartyDto:
       additionalProperties: false
       description: A third party information.
@@ -800,6 +790,16 @@ components:
       - accountingAccountNumber
       - thirdPartyCode
       - thirdPartyName
+      type: object
+    DeleteThirdPartiesRequestPublicApiDto:
+      additionalProperties: false
+      properties:
+        thirdPartyCodes:
+          items:
+            type: string
+          type: array
+      required:
+      - thirdPartyCodes
       type: object
   securitySchemes:
     bearerAuth:

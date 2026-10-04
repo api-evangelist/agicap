@@ -212,189 +212,9 @@ paths:
       - Suppliers
 components:
   schemas:
-    SupplierSyncErrorsResponse:
+    LegalAddressDto:
       additionalProperties: false
-      description: Cursor-paginated row-by-row errors of a previous supplier synchronization.
-      properties:
-        cursor:
-          $ref: '#/components/schemas/CursorDto'
-        items:
-          description: Errors of the current page, one entry per failed row.
-          items:
-            $ref: '#/components/schemas/SupplierSyncErrorItem'
-          type:
-          - array
-          - 'null'
-        status:
-          description: Overall progress status of the synchronization.
-          example: CompletedWithErrors
-          type:
-          - string
-          - 'null'
-        syncId:
-          description: Identifier of the synchronization the errors belong to.
-          example: 1660e6c3-54fd-402f-be8e-7748efd94791
-          format: uuid
-          type: string
-        totalCount:
-          description: Total number of errors across all pages.
-          example: 3
-          format: int32
-          type: integer
-      type: object
-    ContactDto:
-      additionalProperties: false
-      description: A contact attached to a supplier.
-      properties:
-        email:
-          description: Email address of the contact.
-          type:
-          - string
-          - 'null'
-        name:
-          description: Full name of the contact.
-          type:
-          - string
-          - 'null'
-        phone:
-          description: Phone number of the contact.
-          type:
-          - string
-          - 'null'
-        role:
-          description: Role of the contact within the supplier organization.
-          type:
-          - string
-          - 'null'
-      type: object
-    SyncSuppliersResponse:
-      additionalProperties: false
-      description: Result of a supplier synchronization batch.
-      properties:
-        syncId:
-          description: Identifier of the synchronization, used to fetch its row-by-row errors.
-          example: 1660e6c3-54fd-402f-be8e-7748efd94791
-          format: uuid
-          type: string
-      type: object
-    ProblemDetails:
-      additionalProperties: false
-      properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-      type: object
-    ListSuppliersResponse:
-      additionalProperties: false
-      description: A cursor-paginated page of suppliers.
-      properties:
-        items:
-          description: Suppliers of the current page.
-          items:
-            $ref: '#/components/schemas/SupplierResponse'
-          type:
-          - array
-          - 'null'
-        nextCursor:
-          description: Opaque cursor to pass back to fetch the next page, or null when the last page is reached.
-          type:
-          - string
-          - 'null'
-      type: object
-    SyncSuppliersRequest:
-      additionalProperties: false
-      description: Payload of a supplier synchronization batch.
-      properties:
-        suppliers:
-          description: Suppliers to create, update or delete in this batch (up to 1000 items).
-          items:
-            $ref: '#/components/schemas/SupplierSyncItem'
-          type:
-          - array
-          - 'null'
-      required:
-      - suppliers
-      type: object
-    CursorDto:
-      additionalProperties: false
-      description: Opaque-token pagination cursor.
-      properties:
-        after:
-          description: Opaque token to pass as the `after` query parameter to fetch the next page.
-          type:
-          - string
-          - 'null'
-        isLastPage:
-          description: Whether the current page is the last one.
-          example: false
-          type: boolean
-        size:
-          description: Number of errors per page.
-          example: 50
-          format: int32
-          type: integer
-      type: object
-    ContactResponse:
-      additionalProperties: false
-      description: A contact attached to a supplier, as returned by the suppliers endpoints.
-      properties:
-        email:
-          description: Email address of the contact.
-          type:
-          - string
-          - 'null'
-        name:
-          description: Full name of the contact.
-          type:
-          - string
-          - 'null'
-        phone:
-          description: Phone number of the contact.
-          type:
-          - string
-          - 'null'
-        role:
-          description: Role of the contact within the supplier organization.
-          type:
-          - string
-          - 'null'
-      type: object
-    SupplierSyncErrorItem:
-      additionalProperties: false
-      properties:
-        erpId:
-          type:
-          - string
-          - 'null'
-        reason:
-          type:
-          - string
-          - 'null'
-        rowNumber:
-          format: int32
-          type: integer
-      type: object
-    LegalAddressResponse:
-      additionalProperties: false
-      description: Legal address of a supplier, as returned by the suppliers endpoints.
+      description: Legal address of a supplier.
       properties:
         city:
           description: City of the address.
@@ -429,72 +249,128 @@ components:
       required:
       - country
       type: object
-    SupplierSyncItem:
+    SyncSuppliersRequest:
       additionalProperties: false
-      description: A single supplier to create, update or delete within a synchronization batch.
+      description: Payload of a supplier synchronization batch.
       properties:
-        contacts:
-          description: Contacts of the supplier.
+        suppliers:
+          description: Suppliers to create, update or delete in this batch (up to 1000 items).
           items:
-            $ref: '#/components/schemas/ContactDto'
+            $ref: '#/components/schemas/SupplierSyncItem'
           type:
           - array
           - 'null'
-        erpId:
-          description: Identifier of the supplier in the client's ERP. Used to match the supplier on subsequent syncs.
-          type:
-          - string
-          - 'null'
-        language:
-          description: Preferred language of the supplier (ISO 639-1 code).
-          type:
-          - string
-          - 'null'
-        legalAddress:
-          $ref: '#/components/schemas/LegalAddressDto'
-        legalCompanyId:
-          description: Legal company identifier of the supplier (e.g. SIREN / VAT-free registration number).
-          type:
-          - string
-          - 'null'
-        legalName:
-          description: Legal name of the supplier, when it differs from the display name.
+      required:
+      - suppliers
+      type: object
+    ContactDto:
+      additionalProperties: false
+      description: A contact attached to a supplier.
+      properties:
+        email:
+          description: Email address of the contact.
           type:
           - string
           - 'null'
         name:
-          description: Display name of the supplier.
+          description: Full name of the contact.
           type:
           - string
           - 'null'
-        primaryContact:
-          $ref: '#/components/schemas/ContactDto'
-        status:
-          description: Lifecycle status of the supplier as pushed by the ERP.
+        phone:
+          description: Phone number of the contact.
           type:
           - string
           - 'null'
-        tags:
-          description: Free-form tags associated with the supplier.
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        thirdPartyCode:
-          description: Third-party accounting code of the supplier.
-          type:
-          - string
-          - 'null'
-        vatCode:
-          description: VAT code of the supplier.
+        role:
+          description: Role of the contact within the supplier organization.
           type:
           - string
           - 'null'
       type: object
-    LegalAddressDto:
+    ContactResponse:
       additionalProperties: false
-      description: Legal address of a supplier.
+      description: A contact attached to a supplier, as returned by the suppliers endpoints.
+      properties:
+        email:
+          description: Email address of the contact.
+          type:
+          - string
+          - 'null'
+        name:
+          description: Full name of the contact.
+          type:
+          - string
+          - 'null'
+        phone:
+          description: Phone number of the contact.
+          type:
+          - string
+          - 'null'
+        role:
+          description: Role of the contact within the supplier organization.
+          type:
+          - string
+          - 'null'
+      type: object
+    ProblemDetails:
+      additionalProperties: false
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    SupplierSyncErrorsResponse:
+      additionalProperties: false
+      description: Cursor-paginated row-by-row errors of a previous supplier synchronization.
+      properties:
+        cursor:
+          $ref: '#/components/schemas/CursorDto'
+        items:
+          description: Errors of the current page, one entry per failed row.
+          items:
+            $ref: '#/components/schemas/SupplierSyncErrorItem'
+          type:
+          - array
+          - 'null'
+        status:
+          description: Overall progress status of the synchronization.
+          example: CompletedWithErrors
+          type:
+          - string
+          - 'null'
+        syncId:
+          description: Identifier of the synchronization the errors belong to.
+          example: 1660e6c3-54fd-402f-be8e-7748efd94791
+          format: uuid
+          type: string
+        totalCount:
+          description: Total number of errors across all pages.
+          example: 3
+          format: int32
+          type: integer
+      type: object
+    LegalAddressResponse:
+      additionalProperties: false
+      description: Legal address of a supplier, as returned by the suppliers endpoints.
       properties:
         city:
           description: City of the address.
@@ -600,6 +476,130 @@ components:
         updatedAt:
           description: Date and time at which the supplier was last updated in Agicap.
           format: date-time
+          type:
+          - string
+          - 'null'
+        vatCode:
+          description: VAT code of the supplier.
+          type:
+          - string
+          - 'null'
+      type: object
+    CursorDto:
+      additionalProperties: false
+      description: Opaque-token pagination cursor.
+      properties:
+        after:
+          description: Opaque token to pass as the `after` query parameter to fetch the next page.
+          type:
+          - string
+          - 'null'
+        isLastPage:
+          description: Whether the current page is the last one.
+          example: false
+          type: boolean
+        size:
+          description: Number of errors per page.
+          example: 50
+          format: int32
+          type: integer
+      type: object
+    ListSuppliersResponse:
+      additionalProperties: false
+      description: A cursor-paginated page of suppliers.
+      properties:
+        items:
+          description: Suppliers of the current page.
+          items:
+            $ref: '#/components/schemas/SupplierResponse'
+          type:
+          - array
+          - 'null'
+        nextCursor:
+          description: Opaque cursor to pass back to fetch the next page, or null when the last page is reached.
+          type:
+          - string
+          - 'null'
+      type: object
+    SupplierSyncErrorItem:
+      additionalProperties: false
+      properties:
+        erpId:
+          type:
+          - string
+          - 'null'
+        reason:
+          type:
+          - string
+          - 'null'
+        rowNumber:
+          format: int32
+          type: integer
+      type: object
+    SyncSuppliersResponse:
+      additionalProperties: false
+      description: Result of a supplier synchronization batch.
+      properties:
+        syncId:
+          description: Identifier of the synchronization, used to fetch its row-by-row errors.
+          example: 1660e6c3-54fd-402f-be8e-7748efd94791
+          format: uuid
+          type: string
+      type: object
+    SupplierSyncItem:
+      additionalProperties: false
+      description: A single supplier to create, update or delete within a synchronization batch.
+      properties:
+        contacts:
+          description: Contacts of the supplier.
+          items:
+            $ref: '#/components/schemas/ContactDto'
+          type:
+          - array
+          - 'null'
+        erpId:
+          description: Identifier of the supplier in the client's ERP. Used to match the supplier on subsequent syncs.
+          type:
+          - string
+          - 'null'
+        language:
+          description: Preferred language of the supplier (ISO 639-1 code).
+          type:
+          - string
+          - 'null'
+        legalAddress:
+          $ref: '#/components/schemas/LegalAddressDto'
+        legalCompanyId:
+          description: Legal company identifier of the supplier (e.g. SIREN / VAT-free registration number).
+          type:
+          - string
+          - 'null'
+        legalName:
+          description: Legal name of the supplier, when it differs from the display name.
+          type:
+          - string
+          - 'null'
+        name:
+          description: Display name of the supplier.
+          type:
+          - string
+          - 'null'
+        primaryContact:
+          $ref: '#/components/schemas/ContactDto'
+        status:
+          description: Lifecycle status of the supplier as pushed by the ERP.
+          type:
+          - string
+          - 'null'
+        tags:
+          description: Free-form tags associated with the supplier.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        thirdPartyCode:
+          description: Third-party accounting code of the supplier.
           type:
           - string
           - 'null'

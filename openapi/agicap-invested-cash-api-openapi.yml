@@ -55,19 +55,6 @@ paths:
       - Invested cash
 components:
   schemas:
-    HttpValidationProblemDetails:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/ProblemDetails'
-      - additionalProperties: {}
-        properties:
-          errors:
-            additionalProperties:
-              items:
-                type: string
-              type: array
-            type: object
-        type: object
     InvestedCashResponse:
       additionalProperties: false
       properties:
@@ -75,15 +62,6 @@ components:
           format: double
           type: number
       title: InvestedCash
-      type: object
-    InvestedCashByCurrencyResponse:
-      additionalProperties: false
-      properties:
-        items:
-          additionalProperties:
-            $ref: '#/components/schemas/InvestedCashResponse'
-          type: object
-      title: InvestedCashByCurrency
       type: object
     ProblemDetails:
       additionalProperties: false
@@ -109,6 +87,28 @@ components:
           type:
           - string
           - 'null'
+      type: object
+    HttpValidationProblemDetails:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - additionalProperties: {}
+        properties:
+          errors:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+        type: object
+    InvestedCashByCurrencyResponse:
+      additionalProperties: false
+      properties:
+        items:
+          additionalProperties:
+            $ref: '#/components/schemas/InvestedCashResponse'
+          type: object
+      title: InvestedCashByCurrency
       type: object
   securitySchemes:
     bearerAuth:
