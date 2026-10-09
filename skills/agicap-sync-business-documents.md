@@ -2,7 +2,7 @@
 name: Synchronize business documents into Agicap
 description: Push client and supplier invoices into Agicap so they appear as expected transactions and receivables.
 api: openapi/agicap-business-documents-v2-openapi.json
-operations: [Organizations_ListEntities, Connection_CreateConnection, ClientInvoice_CreateClientInvoices, SupplierInvoice_CreateSupplierInvoicesV2, ClientInvoice_GetClientInvoicesV2]
+operations: [Organizations_ListEntities, postPublicBusinessDocumentsV2EntitiesByEntityidConnections, postPublicBusinessDocumentsV2EntitiesByEntityidConnectionsByConnectionidClientInvoices, SupplierInvoice_CreateSupplierInvoicesV2, ClientInvoice_GetClientInvoicesV2]
 ---
 
 # Synchronize business documents into Agicap

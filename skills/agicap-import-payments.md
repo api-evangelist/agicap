@@ -2,7 +2,7 @@
 name: Manage beneficiaries and import payment files
 description: Register payment beneficiaries and import payment/remittance files for execution in Agicap.
 api: openapi/agicap-payments-v2-openapi.json
-operations: [2_Beneficiaries_Add, 1_Beneficiaries_Get_All, 6_Beneficiaries_Sync_Start, 7_Beneficiaries_Sync_Report, PaymentsFile_Import_Post, PaymentsFile_SecuredImport_Post]
+operations: [2_Beneficiaries_Add, 1_Beneficiaries_Get_All, 6_Beneficiaries_Sync_Start, 7_Beneficiaries_Sync_Report, postPublicPaymentsV2EntitiesByEntityIdRemittancesImport, postPublicPaymentsV2EntitiesByEntityIdRemittancesSecuredImport]
 ---
 
 # Manage beneficiaries and import payment files
