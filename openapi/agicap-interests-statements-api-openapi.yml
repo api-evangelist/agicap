@@ -94,14 +94,34 @@ components:
           $ref: '#/components/schemas/Offset'
       title: InterestsStatement
       type: object
-    TransactionResourcePublic:
+    DrawDownResourcePublic:
       additionalProperties: false
-      properties:
-        date:
-          format: date
-          type: string
-      title: Transaction
-      type: object
+      allOf:
+      - $ref: '#/components/schemas/TransactionResourcePublic'
+      - additionalProperties: false
+        properties:
+          amount:
+            format: double
+            type: number
+        type: object
+      title: DrawDown
+    RepaymentResourcePublic:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/TransactionResourcePublic'
+      - additionalProperties: false
+        properties:
+          capital:
+            format: double
+            type: number
+          interests:
+            format: double
+            type: number
+          total:
+            format: double
+            type: number
+        type: object
+      title: Repayment
     ProblemDetails:
       additionalProperties: false
       properties:
@@ -143,6 +163,14 @@ components:
           format: int32
           type: integer
       type: object
+    TransactionResourcePublic:
+      additionalProperties: false
+      properties:
+        date:
+          format: date
+          type: string
+      title: Transaction
+      type: object
     HttpValidationProblemDetails:
       additionalProperties: false
       allOf:
@@ -156,34 +184,6 @@ components:
               type: array
             type: object
         type: object
-    DrawDownResourcePublic:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/TransactionResourcePublic'
-      - additionalProperties: false
-        properties:
-          amount:
-            format: double
-            type: number
-        type: object
-      title: DrawDown
-    RepaymentResourcePublic:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/TransactionResourcePublic'
-      - additionalProperties: false
-        properties:
-          capital:
-            format: double
-            type: number
-          interests:
-            format: double
-            type: number
-          total:
-            format: double
-            type: number
-        type: object
-      title: Repayment
     DailyPositionResourcePublic:
       additionalProperties: false
       properties:

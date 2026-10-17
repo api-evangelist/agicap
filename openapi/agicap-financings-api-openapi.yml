@@ -154,6 +154,25 @@ components:
           $ref: '#/components/schemas/Offset'
       title: FinancingList
       type: object
+    StakeholderDto:
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+      title: Stakeholder
+      type: object
+    AmountDto:
+      additionalProperties: false
+      properties:
+        currency:
+          type: string
+        value:
+          format: double
+          type: number
+      title: Amount
+      type: object
     FinancingListItemResourcePublic:
       additionalProperties: false
       properties:
@@ -174,41 +193,6 @@ components:
           format: date
           type: string
       title: FinancingListItem
-      type: object
-    ProblemDetails:
-      additionalProperties: false
-      properties:
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        status:
-          format: int32
-          type:
-          - integer
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-      type: object
-    AmountDto:
-      additionalProperties: false
-      properties:
-        currency:
-          type: string
-        value:
-          format: double
-          type: number
-      title: Amount
       type: object
     Offset:
       additionalProperties: false
@@ -239,14 +223,30 @@ components:
               type: array
             type: object
         type: object
-    StakeholderDto:
+    ProblemDetails:
       additionalProperties: false
       properties:
-        name:
-          type: string
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
         type:
-          type: string
-      title: Stakeholder
+          type:
+          - string
+          - 'null'
       type: object
   securitySchemes:
     bearerAuth:

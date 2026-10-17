@@ -1091,81 +1091,26 @@ paths:
     - url: https://api.agicap.internal
 components:
   schemas:
-    InstalmentAccountingAmountDto:
+    PaginationMetadataDto:
       additionalProperties: false
       properties:
-        amount:
-          description: Accounting amount in the accounting currency.
-          format: double
-          type:
-          - number
-          - 'null'
-        currency:
-          description: Accounting currency of the instalment
-          type:
-          - string
-          - 'null'
-      title: AccountingAmount
-      type: object
-    AmountsWithDueAmountDto:
-      additionalProperties: false
-      properties:
-        dueAmount:
-          description: Due amount in the document currency.
-          format: double
-          type:
-          - number
-          - 'null'
-        taxesAmount:
-          description: Taxes amount in the document currency
-          format: double
-          type:
-          - number
-          - 'null'
-        totalAmount:
-          description: Total amount in the document currency.
-          format: double
-          type: number
-      required:
-      - totalAmount
-      title: AmountsWithDueAmount
-      type: object
-    ClientInvoiceDtoPageDto:
-      additionalProperties: false
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ClientInvoiceDto'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadataDto'
-      title: Page
-      type: object
-    AccountingDto:
-      additionalProperties: false
-      properties:
-        accountCode:
-          description: Represents the account Code of the Third Party Account the invoice is linked to.
-          type:
-          - string
-          - 'null'
-        accountNumber:
-          description: Represents the account number of the invoice. It is used to classify financial activities and balances within the General Ledger.
-          type:
-          - string
-          - 'null'
-        amount:
-          description: Represents the total amount of the invoice in the accounting currency.
-          format: double
-          type:
-          - number
-          - 'null'
-        currency:
-          description: Represents the currency used in the accounting process (which can be different from the invoice currency).
-          type:
-          - string
-          - 'null'
-      title: InvoiceAccounting
+        pageIndex:
+          description: Current page index
+          format: int32
+          type: integer
+        pageItemsCount:
+          description: Number of items on the current page
+          format: int32
+          type: integer
+        pageSize:
+          description: Page size (items per page)
+          format: int32
+          type: integer
+        totalItemsCount:
+          description: Total number of items
+          format: int32
+          type: integer
+      title: PaginationMetadata
       type: object
     UpdateClientInvoiceDto:
       additionalProperties: false
@@ -1258,36 +1203,60 @@ components:
       - status
       title: UpdateClientInvoice
       type: object
-    PaginationMetadataDto:
+    InstalmentAccountingAmountDto:
       additionalProperties: false
       properties:
-        pageIndex:
-          description: Current page index
-          format: int32
-          type: integer
-        pageItemsCount:
-          description: Number of items on the current page
-          format: int32
-          type: integer
-        pageSize:
-          description: Page size (items per page)
-          format: int32
-          type: integer
-        totalItemsCount:
-          description: Total number of items
-          format: int32
-          type: integer
-      title: PaginationMetadata
+        amount:
+          description: Accounting amount in the accounting currency.
+          format: double
+          type:
+          - number
+          - 'null'
+        currency:
+          description: Accounting currency of the instalment
+          type:
+          - string
+          - 'null'
+      title: AccountingAmount
       type: object
-    ClientInvoiceInstalmentDto:
+    AmountsWithDueAmountDto:
       additionalProperties: false
       properties:
-        accountingAmount:
-          $ref: '#/components/schemas/InstalmentAccountingAmountDto'
+        dueAmount:
+          description: Due amount in the document currency.
+          format: double
+          type:
+          - number
+          - 'null'
+        taxesAmount:
+          description: Taxes amount in the document currency
+          format: double
+          type:
+          - number
+          - 'null'
+        totalAmount:
+          description: Total amount in the document currency.
+          format: double
+          type: number
+      required:
+      - totalAmount
+      title: AmountsWithDueAmount
+      type: object
+    CreateClientInvoiceDto:
+      additionalProperties: false
+      properties:
+        accounting:
+          $ref: '#/components/schemas/AccountingDto'
         amounts:
-          $ref: '#/components/schemas/InstalmentAmountsDto'
+          $ref: '#/components/schemas/AmountsWithDueAmountDto'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDto'
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
         dueDate:
-          description: Instalment due date in ISO 8601 format
+          description: Due date in ISO 8601 format
           format: date-time
           type:
           - string
@@ -1298,47 +1267,110 @@ components:
           type:
           - object
           - 'null'
+        expectedPaymentDate:
+          description: Expected Payment date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
         externalId:
-          description: Unique identifier of the instalment in the source data
+          description: Unique identifier of the document in the source data
           minLength: 1
           type: string
+        financingSolution:
+          description: Financing solution information
+          type:
+          - string
+          - 'null'
+        instalments:
+          items:
+            $ref: '#/components/schemas/ClientInvoiceInstalmentDto'
+          type:
+          - array
+          - 'null'
+        invoiceNumber:
+          description: Document number in the source data
+          type:
+          - string
+          - 'null'
         issueDate:
-          description: Instalment issue date in ISO 8601 format
+          description: Issue date in ISO 8601 format
           format: date-time
           type:
           - string
           - 'null'
         label:
-          description: Instalment label
+          description: Label of the document
           type:
           - string
           - 'null'
         metadata:
           additionalProperties:
             type: string
+          description: Additional metadata as a JSON Object
           type:
           - object
           - 'null'
         paymentDate:
-          description: Payment date of the instalment
+          description: Payment in full date in ISO 8601 format
           format: date-time
           type:
           - string
           - 'null'
-        paymentMethod:
-          description: Payment method used for the instalment
-          type:
-          - string
-          - 'null'
         status:
-          description: 'Possible values : draft, due, partiallyPaid, paid, cancelled, paymentInProgress'
+          description: 'Possible values : draft, due, paid, cancelled, deleted'
           minLength: 1
           type: string
       required:
       - amounts
+      - currency
       - externalId
       - status
-      title: ClientInvoiceInstalment
+      title: CreateClientInvoice
+      type: object
+    ClientInvoiceDtoPageDto:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ClientInvoiceDto'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      title: Page
+      type: object
+    InstalmentAmountsDto:
+      additionalProperties: false
+      properties:
+        dueAmount:
+          description: Instalment due amount in the document currency.
+          format: double
+          type:
+          - number
+          - 'null'
+        taxesAmount:
+          description: Instalment taxes amount in the document currency
+          format: double
+          type:
+          - number
+          - 'null'
+        totalAmount:
+          description: Instalment total amount in the document currency.
+          format: double
+          type: number
+      required:
+      - totalAmount
+      title: InstalmentAmounts
+      type: object
+    CreatedDocumentDto:
+      additionalProperties: false
+      properties:
+        externalId:
+          type: string
+        id:
+          format: uuid
+          type: string
+      title: CreatedDocument
       type: object
     ClientInvoiceDto:
       additionalProperties: false
@@ -1449,153 +1481,39 @@ components:
           - 'null'
       title: CounterParty
       type: object
-    InstalmentAmountsDto:
+    AccountingDto:
       additionalProperties: false
       properties:
-        dueAmount:
-          description: Instalment due amount in the document currency.
+        accountCode:
+          description: Represents the account Code of the Third Party Account the invoice is linked to.
+          type:
+          - string
+          - 'null'
+        accountNumber:
+          description: Represents the account number of the invoice. It is used to classify financial activities and balances within the General Ledger.
+          type:
+          - string
+          - 'null'
+        amount:
+          description: Represents the total amount of the invoice in the accounting currency.
           format: double
           type:
           - number
           - 'null'
-        taxesAmount:
-          description: Instalment taxes amount in the document currency
-          format: double
-          type:
-          - number
-          - 'null'
-        totalAmount:
-          description: Instalment total amount in the document currency.
-          format: double
-          type: number
-      required:
-      - totalAmount
-      title: InstalmentAmounts
-      type: object
-    CreatedDocumentDto:
-      additionalProperties: false
-      properties:
-        externalId:
-          type: string
-        id:
-          format: uuid
-          type: string
-      title: CreatedDocument
-      type: object
-    CreateClientInvoiceDto:
-      additionalProperties: false
-      properties:
-        accounting:
-          $ref: '#/components/schemas/AccountingDto'
-        amounts:
-          $ref: '#/components/schemas/AmountsWithDueAmountDto'
-        counterParty:
-          $ref: '#/components/schemas/CounterPartyDto'
         currency:
-          description: Currency code in ISO 4217 format
-          minLength: 1
-          type: string
-        dueDate:
-          description: Due date in ISO 8601 format
-          format: date-time
+          description: Represents the currency used in the accounting process (which can be different from the invoice currency).
           type:
           - string
           - 'null'
-        erpIdentificationFields:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-        expectedPaymentDate:
-          description: Expected Payment date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        externalId:
-          description: Unique identifier of the document in the source data
-          minLength: 1
-          type: string
-        financingSolution:
-          description: Financing solution information
-          type:
-          - string
-          - 'null'
-        instalments:
-          items:
-            $ref: '#/components/schemas/ClientInvoiceInstalmentDto'
-          type:
-          - array
-          - 'null'
-        invoiceNumber:
-          description: Document number in the source data
-          type:
-          - string
-          - 'null'
-        issueDate:
-          description: Issue date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        label:
-          description: Label of the document
-          type:
-          - string
-          - 'null'
-        metadata:
-          additionalProperties:
-            type: string
-          description: Additional metadata as a JSON Object
-          type:
-          - object
-          - 'null'
-        paymentDate:
-          description: Payment in full date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        status:
-          description: 'Possible values : draft, due, paid, cancelled, deleted'
-          minLength: 1
-          type: string
-      required:
-      - amounts
-      - currency
-      - externalId
-      - status
-      title: CreateClientInvoice
+      title: InvoiceAccounting
       type: object
-    InstalmentAmountsDtoV2:
-      additionalProperties: false
-      properties:
-        dueAmount:
-          description: Instalment due amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-        taxesAmount:
-          description: Instalment taxes amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-        totalAmount:
-          description: Instalment total amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-      required:
-      - dueAmount
-      - taxesAmount
-      - totalAmount
-      title: InstalmentAmounts
-      type: object
-    ClientInvoiceInstalmentDtoV2:
+    ClientInvoiceInstalmentDto:
       additionalProperties: false
       properties:
         accountingAmount:
           $ref: '#/components/schemas/InstalmentAccountingAmountDto'
         amounts:
-          $ref: '#/components/schemas/InstalmentAmountsDtoV2'
+          $ref: '#/components/schemas/InstalmentAmountsDto'
         dueDate:
           description: Instalment due date in ISO 8601 format
           format: date-time
@@ -1612,8 +1530,9 @@ components:
           description: Unique identifier of the instalment in the source data
           minLength: 1
           type: string
-        financingSolution:
-          description: Financing solution name
+        issueDate:
+          description: Instalment issue date in ISO 8601 format
+          format: date-time
           type:
           - string
           - 'null'
@@ -1648,218 +1567,6 @@ components:
       - externalId
       - status
       title: ClientInvoiceInstalment
-      type: object
-    CounterPartyDtoV2:
-      additionalProperties: false
-      properties:
-        id:
-          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
-          minLength: 1
-          type: string
-        name:
-          description: Name of the linked Counterpart (Supplier / Client)
-          minLength: 1
-          type: string
-      required:
-      - id
-      - name
-      title: CounterParty
-      type: object
-    AmountsWithDueAmountDtoV2:
-      additionalProperties: false
-      properties:
-        dueAmount:
-          description: Due amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-        taxesAmount:
-          description: Taxes amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-        totalAmount:
-          description: Total amount in the document currency. (amount must be positive)
-          format: double
-          type: number
-      required:
-      - dueAmount
-      - taxesAmount
-      - totalAmount
-      title: AmountsWithDueAmount
-      type: object
-    UpdateClientInvoiceDtoV2:
-      additionalProperties: false
-      properties:
-        accounting:
-          $ref: '#/components/schemas/AccountingDtoV2'
-        amounts:
-          $ref: '#/components/schemas/AmountsWithDueAmountDtoV2'
-        counterParty:
-          $ref: '#/components/schemas/CounterPartyDtoV2'
-        currency:
-          description: Currency code in ISO 4217 format
-          minLength: 1
-          type: string
-        dueDate:
-          description: Due date in ISO 8601 format
-          format: date-time
-          type: string
-        erpIdentificationFields:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-        expectedPaymentDate:
-          description: Expected Payment date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        externalId:
-          description: Unique identifier of the document in the source data
-          minLength: 1
-          type: string
-        financingSolution:
-          description: Financing solution information
-          type:
-          - string
-          - 'null'
-        id:
-          description: Unique identifier generated by Agicap
-          format: uuid
-          type: string
-        instalments:
-          items:
-            $ref: '#/components/schemas/ClientInvoiceInstalmentDtoV2'
-          type:
-          - array
-          - 'null'
-        invoiceNumber:
-          description: Document number in the source data
-          minLength: 1
-          type: string
-        issueDate:
-          description: Issue date in ISO 8601 format
-          format: date-time
-          type: string
-        label:
-          description: Label of the document
-          type:
-          - string
-          - 'null'
-        metadata:
-          additionalProperties:
-            type: string
-          description: Additional metadata as a JSON Object
-          type:
-          - object
-          - 'null'
-        paymentDate:
-          description: Payment in full date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        status:
-          description: 'Possible values : draft, due, paid, cancelled, deleted'
-          minLength: 1
-          type: string
-      required:
-      - amounts
-      - counterParty
-      - currency
-      - dueDate
-      - externalId
-      - id
-      - invoiceNumber
-      - issueDate
-      - status
-      title: UpdateClientInvoice
-      type: object
-    CreateClientInvoiceDtoV2:
-      additionalProperties: false
-      properties:
-        accounting:
-          $ref: '#/components/schemas/AccountingDtoV2'
-        amounts:
-          $ref: '#/components/schemas/AmountsWithDueAmountDtoV2'
-        counterParty:
-          $ref: '#/components/schemas/CounterPartyDtoV2'
-        currency:
-          description: Currency code in ISO 4217 format
-          minLength: 1
-          type: string
-        dueDate:
-          description: Due date in ISO 8601 format
-          format: date-time
-          type: string
-        erpIdentificationFields:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-        expectedPaymentDate:
-          description: Expected Payment date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        externalId:
-          description: Unique identifier of the document in the source data
-          minLength: 1
-          type: string
-        financingSolution:
-          description: Financing solution information
-          type:
-          - string
-          - 'null'
-        instalments:
-          items:
-            $ref: '#/components/schemas/ClientInvoiceInstalmentDtoV2'
-          type:
-          - array
-          - 'null'
-        invoiceNumber:
-          description: Document number in the source data
-          minLength: 1
-          type: string
-        issueDate:
-          description: Issue date in ISO 8601 format
-          format: date-time
-          type: string
-        label:
-          description: Label of the document
-          type:
-          - string
-          - 'null'
-        metadata:
-          additionalProperties:
-            type: string
-          description: Additional metadata as a JSON Object
-          type:
-          - object
-          - 'null'
-        paymentDate:
-          description: Payment in full date in ISO 8601 format
-          format: date-time
-          type:
-          - string
-          - 'null'
-        status:
-          description: 'Possible values : draft, due, paid, cancelled, deleted'
-          minLength: 1
-          type: string
-      required:
-      - amounts
-      - counterParty
-      - currency
-      - dueDate
-      - externalId
-      - invoiceNumber
-      - issueDate
-      - status
-      title: CreateClientInvoice
       type: object
     ClientInvoiceDtoV2PageDto:
       additionalProperties: false
@@ -1991,6 +1698,299 @@ components:
           - string
           - 'null'
       title: InvoiceAccounting
+      type: object
+    ClientInvoiceInstalmentDtoV2:
+      additionalProperties: false
+      properties:
+        accountingAmount:
+          $ref: '#/components/schemas/InstalmentAccountingAmountDto'
+        amounts:
+          $ref: '#/components/schemas/InstalmentAmountsDtoV2'
+        dueDate:
+          description: Instalment due date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        externalId:
+          description: Unique identifier of the instalment in the source data
+          minLength: 1
+          type: string
+        financingSolution:
+          description: Financing solution name
+          type:
+          - string
+          - 'null'
+        label:
+          description: Instalment label
+          type:
+          - string
+          - 'null'
+        metadata:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        paymentDate:
+          description: Payment date of the instalment
+          format: date-time
+          type:
+          - string
+          - 'null'
+        paymentMethod:
+          description: Payment method used for the instalment
+          type:
+          - string
+          - 'null'
+        status:
+          description: 'Possible values : draft, due, partiallyPaid, paid, cancelled, paymentInProgress'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - externalId
+      - status
+      title: ClientInvoiceInstalment
+      type: object
+    CreateClientInvoiceDtoV2:
+      additionalProperties: false
+      properties:
+        accounting:
+          $ref: '#/components/schemas/AccountingDtoV2'
+        amounts:
+          $ref: '#/components/schemas/AmountsWithDueAmountDtoV2'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDtoV2'
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        expectedPaymentDate:
+          description: Expected Payment date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        financingSolution:
+          description: Financing solution information
+          type:
+          - string
+          - 'null'
+        instalments:
+          items:
+            $ref: '#/components/schemas/ClientInvoiceInstalmentDtoV2'
+          type:
+          - array
+          - 'null'
+        invoiceNumber:
+          description: Document number in the source data
+          minLength: 1
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          type: string
+        label:
+          description: Label of the document
+          type:
+          - string
+          - 'null'
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          type:
+          - object
+          - 'null'
+        paymentDate:
+          description: Payment in full date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        status:
+          description: 'Possible values : draft, due, paid, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - counterParty
+      - currency
+      - dueDate
+      - externalId
+      - invoiceNumber
+      - issueDate
+      - status
+      title: CreateClientInvoice
+      type: object
+    AmountsWithDueAmountDtoV2:
+      additionalProperties: false
+      properties:
+        dueAmount:
+          description: Due amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+        taxesAmount:
+          description: Taxes amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+        totalAmount:
+          description: Total amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+      required:
+      - dueAmount
+      - taxesAmount
+      - totalAmount
+      title: AmountsWithDueAmount
+      type: object
+    InstalmentAmountsDtoV2:
+      additionalProperties: false
+      properties:
+        dueAmount:
+          description: Instalment due amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+        taxesAmount:
+          description: Instalment taxes amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+        totalAmount:
+          description: Instalment total amount in the document currency. (amount must be positive)
+          format: double
+          type: number
+      required:
+      - dueAmount
+      - taxesAmount
+      - totalAmount
+      title: InstalmentAmounts
+      type: object
+    CounterPartyDtoV2:
+      additionalProperties: false
+      properties:
+        id:
+          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
+          minLength: 1
+          type: string
+        name:
+          description: Name of the linked Counterpart (Supplier / Client)
+          minLength: 1
+          type: string
+      required:
+      - id
+      - name
+      title: CounterParty
+      type: object
+    UpdateClientInvoiceDtoV2:
+      additionalProperties: false
+      properties:
+        accounting:
+          $ref: '#/components/schemas/AccountingDtoV2'
+        amounts:
+          $ref: '#/components/schemas/AmountsWithDueAmountDtoV2'
+        counterParty:
+          $ref: '#/components/schemas/CounterPartyDtoV2'
+        currency:
+          description: Currency code in ISO 4217 format
+          minLength: 1
+          type: string
+        dueDate:
+          description: Due date in ISO 8601 format
+          format: date-time
+          type: string
+        erpIdentificationFields:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        expectedPaymentDate:
+          description: Expected Payment date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        externalId:
+          description: Unique identifier of the document in the source data
+          minLength: 1
+          type: string
+        financingSolution:
+          description: Financing solution information
+          type:
+          - string
+          - 'null'
+        id:
+          description: Unique identifier generated by Agicap
+          format: uuid
+          type: string
+        instalments:
+          items:
+            $ref: '#/components/schemas/ClientInvoiceInstalmentDtoV2'
+          type:
+          - array
+          - 'null'
+        invoiceNumber:
+          description: Document number in the source data
+          minLength: 1
+          type: string
+        issueDate:
+          description: Issue date in ISO 8601 format
+          format: date-time
+          type: string
+        label:
+          description: Label of the document
+          type:
+          - string
+          - 'null'
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional metadata as a JSON Object
+          type:
+          - object
+          - 'null'
+        paymentDate:
+          description: Payment in full date in ISO 8601 format
+          format: date-time
+          type:
+          - string
+          - 'null'
+        status:
+          description: 'Possible values : draft, due, paid, cancelled, deleted'
+          minLength: 1
+          type: string
+      required:
+      - amounts
+      - counterParty
+      - currency
+      - dueDate
+      - externalId
+      - id
+      - invoiceNumber
+      - issueDate
+      - status
+      title: UpdateClientInvoice
       type: object
   securitySchemes:
     bearerAuth:

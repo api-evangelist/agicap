@@ -917,31 +917,26 @@ paths:
     - url: https://api.agicap.internal
 components:
   schemas:
-    AccountingDto:
+    PaginationMetadataDto:
       additionalProperties: false
       properties:
-        accountCode:
-          description: Represents the account Code of the Third Party Account the invoice is linked to.
-          type:
-          - string
-          - 'null'
-        accountNumber:
-          description: Represents the account number of the invoice. It is used to classify financial activities and balances within the General Ledger.
-          type:
-          - string
-          - 'null'
-        amount:
-          description: Represents the total amount of the invoice in the accounting currency.
-          format: double
-          type:
-          - number
-          - 'null'
-        currency:
-          description: Represents the currency used in the accounting process (which can be different from the invoice currency).
-          type:
-          - string
-          - 'null'
-      title: InvoiceAccounting
+        pageIndex:
+          description: Current page index
+          format: int32
+          type: integer
+        pageItemsCount:
+          description: Number of items on the current page
+          format: int32
+          type: integer
+        pageSize:
+          description: Page size (items per page)
+          format: int32
+          type: integer
+        totalItemsCount:
+          description: Total number of items
+          format: int32
+          type: integer
+      title: PaginationMetadata
       type: object
     UpdateSupplierCreditNoteDto:
       additionalProperties: false
@@ -1018,37 +1013,38 @@ components:
       - status
       title: UpdateSupplierCreditNote
       type: object
-    SupplierCreditNoteDtoPageDto:
+    AmountsWithRemainingAmountDto:
       additionalProperties: false
       properties:
-        items:
-          items:
-            $ref: '#/components/schemas/SupplierCreditNoteDto'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadataDto'
-      title: Page
+        remainingAmount:
+          description: Remaining amount in the document currency.
+          format: double
+          type:
+          - number
+          - 'null'
+        taxesAmount:
+          description: Taxes amount in the document currency
+          format: double
+          type:
+          - number
+          - 'null'
+        totalAmount:
+          description: Total amount in the document currency.
+          format: double
+          type: number
+      required:
+      - totalAmount
+      title: AmountsWithRemainingAmount
       type: object
-    PaginationMetadataDto:
+    CreatedDocumentDto:
       additionalProperties: false
       properties:
-        pageIndex:
-          description: Current page index
-          format: int32
-          type: integer
-        pageItemsCount:
-          description: Number of items on the current page
-          format: int32
-          type: integer
-        pageSize:
-          description: Page size (items per page)
-          format: int32
-          type: integer
-        totalItemsCount:
-          description: Total number of items
-          format: int32
-          type: integer
-      title: PaginationMetadata
+        externalId:
+          type: string
+        id:
+          format: uuid
+          type: string
+      title: CreatedDocument
       type: object
     SupplierCreditNoteDto:
       additionalProperties: false
@@ -1143,38 +1139,42 @@ components:
           - 'null'
       title: CounterParty
       type: object
-    AmountsWithRemainingAmountDto:
+    SupplierCreditNoteDtoPageDto:
       additionalProperties: false
       properties:
-        remainingAmount:
-          description: Remaining amount in the document currency.
-          format: double
-          type:
-          - number
-          - 'null'
-        taxesAmount:
-          description: Taxes amount in the document currency
-          format: double
-          type:
-          - number
-          - 'null'
-        totalAmount:
-          description: Total amount in the document currency.
-          format: double
-          type: number
-      required:
-      - totalAmount
-      title: AmountsWithRemainingAmount
+        items:
+          items:
+            $ref: '#/components/schemas/SupplierCreditNoteDto'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDto'
+      title: Page
       type: object
-    CreatedDocumentDto:
+    AccountingDto:
       additionalProperties: false
       properties:
-        externalId:
-          type: string
-        id:
-          format: uuid
-          type: string
-      title: CreatedDocument
+        accountCode:
+          description: Represents the account Code of the Third Party Account the invoice is linked to.
+          type:
+          - string
+          - 'null'
+        accountNumber:
+          description: Represents the account number of the invoice. It is used to classify financial activities and balances within the General Ledger.
+          type:
+          - string
+          - 'null'
+        amount:
+          description: Represents the total amount of the invoice in the accounting currency.
+          format: double
+          type:
+          - number
+          - 'null'
+        currency:
+          description: Represents the currency used in the accounting process (which can be different from the invoice currency).
+          type:
+          - string
+          - 'null'
+      title: InvoiceAccounting
       type: object
     CreateSupplierCreditNoteDto:
       additionalProperties: false
@@ -1266,22 +1266,6 @@ components:
       - taxesAmount
       - totalAmount
       title: AmountsWithRemainingAmount
-      type: object
-    CounterPartyDtoV2:
-      additionalProperties: false
-      properties:
-        id:
-          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
-          minLength: 1
-          type: string
-        name:
-          description: Name of the linked Counterpart (Supplier / Client)
-          minLength: 1
-          type: string
-      required:
-      - id
-      - name
-      title: CounterParty
       type: object
     UpdateSupplierCreditNoteDtoV2:
       additionalProperties: false
@@ -1427,6 +1411,22 @@ components:
       - issueDate
       - status
       title: CreateSupplierCreditNote
+      type: object
+    CounterPartyDtoV2:
+      additionalProperties: false
+      properties:
+        id:
+          description: Unique identifier of the linked Counterpart (Supplier / Client) in the source data
+          minLength: 1
+          type: string
+        name:
+          description: Name of the linked Counterpart (Supplier / Client)
+          minLength: 1
+          type: string
+      required:
+      - id
+      - name
+      title: CounterParty
       type: object
   securitySchemes:
     bearerAuth:

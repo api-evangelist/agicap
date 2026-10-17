@@ -107,6 +107,29 @@ paths:
       - Entities
 components:
   schemas:
+    OrganizationEntitiesPresentation:
+      additionalProperties: false
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/OrganizationEntityPresentation'
+          type:
+          - array
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+      type: object
+    OrganizationPresentation:
+      additionalProperties: false
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
     PaginationResponse:
       additionalProperties: false
       properties:
@@ -126,6 +149,21 @@ components:
         totalItemsCount:
           format: int32
           type: integer
+      type: object
+    OrganizationEntityPresentation:
+      additionalProperties: false
+      properties:
+        country:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        name:
+          type:
+          - string
+          - 'null'
       type: object
     ProblemDetails:
       additionalProperties: false
@@ -152,33 +190,6 @@ components:
           - string
           - 'null'
       type: object
-    OrganizationEntitiesPresentation:
-      additionalProperties: false
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/OrganizationEntityPresentation'
-          type:
-          - array
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-      type: object
-    OrganizationEntityPresentation:
-      additionalProperties: false
-      properties:
-        country:
-          type:
-          - string
-          - 'null'
-        id:
-          format: int32
-          type: integer
-        name:
-          type:
-          - string
-          - 'null'
-      type: object
     OrganizationsPresentation:
       additionalProperties: false
       properties:
@@ -190,17 +201,6 @@ components:
           - 'null'
         pagination:
           $ref: '#/components/schemas/PaginationResponse'
-      type: object
-    OrganizationPresentation:
-      additionalProperties: false
-      properties:
-        id:
-          format: uuid
-          type: string
-        name:
-          type:
-          - string
-          - 'null'
       type: object
   securitySchemes:
     bearerAuth:

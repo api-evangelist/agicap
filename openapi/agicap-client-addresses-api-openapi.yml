@@ -182,27 +182,164 @@ paths:
       x-operation-id-original: Update client addresses
 components:
   schemas:
+    DeleteClientAddressesFailureReasonEnum:
+      description: Reason why the address could not be deleted
+      enum:
+      - ADDRESS_NOT_FOUND
+      - CLIENT_NOT_FOUND
+      type: string
+    NotUpdatedClientAddress:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/UpdateClientAddressesFailureReasonEnum'
+          description: Reason why the address could not be updated
+      required:
+      - clientExternalId
+      - reason
+      type: object
     UpdateClientAddressesFailureReasonEnum:
       description: Reason why the address could not be updated
       enum:
       - CLIENT_NOT_FOUND
       - ADDRESS_NOT_FOUND
       type: string
-    AddressCreationFailureEnum:
-      description: Reason why the address could not be created
-      enum:
-      - CLIENT_NOT_FOUND
-      - CLIENT_ADDRESS_ALREADY_EXISTS
-      type: string
-    UpdateClientAddressesRequest:
+    ClientAddressToCreate:
       properties:
-        clientAddresses:
-          description: List of client addresses to update
-          items:
-            $ref: '#/components/schemas/ClientAddressToUpdate'
-          type: array
+        city:
+          description: City name
+          example: Paris
+          maxLength: 250
+          type: string
+        clientExternalId:
+          description: Identifier from the ERP or external system. Max 1000 characters. Value is trimmed.
+          example: client_1
+          maxLength: 1000
+          type: string
+        country:
+          allOf:
+          - $ref: '#/components/schemas/CountryEnum'
+          description: Country code (ISO 3166-1)
+        line1:
+          description: Primary address line (street name and number)
+          example: 5 Rodeo Street
+          maxLength: 250
+          type: string
+        line2:
+          description: Secondary address line (apartment, suite, building, etc.)
+          example: 4th floor
+          maxLength: 250
+          type: string
+        name:
+          description: Name of the address (e.g., "Main Office", "Billing Address")
+          example: Main Office
+          maxLength: 38
+          type: string
+        postalCode:
+          description: Postal or ZIP code. Validated against country-specific postal code format.
+          example: '75100'
+          maxLength: 38
+          type: string
       required:
-      - clientAddresses
+      - clientExternalId
+      - name
+      - line1
+      - postalCode
+      - city
+      - country
+      type: object
+    Address:
+      properties:
+        city:
+          description: City name
+          example: Paris
+          type: string
+        country:
+          allOf:
+          - $ref: '#/components/schemas/CountryEnum'
+          description: Country code (ISO 3166-1)
+        line1:
+          description: Primary address line (street name and number)
+          example: 5 Rodeo Street
+          type: string
+        line2:
+          description: Secondary address line (apartment, suite, building, etc.)
+          example: 4th floor
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the address (e.g., "Main Office", "Billing Address")
+          example: Main Office
+          type: string
+        postalCode:
+          description: Postal or ZIP code
+          example: '75100'
+          type: string
+      required:
+      - name
+      - line1
+      - line2
+      - postalCode
+      - city
+      - country
+      type: object
+    DeletedAddresses:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+      required:
+      - clientExternalId
+      type: object
+    ClientAddressToUpdate:
+      properties:
+        city:
+          description: City name
+          example: Paris
+          maxLength: 250
+          type: string
+        clientExternalId:
+          description: Identifier from the ERP or external system. Max 1000 characters. Value is trimmed.
+          example: client_1
+          maxLength: 1000
+          type: string
+        country:
+          allOf:
+          - $ref: '#/components/schemas/CountryEnum'
+          description: Country code (ISO 3166-1)
+        line1:
+          description: Primary address line (street name and number)
+          example: 5 Rodeo Street
+          maxLength: 250
+          type: string
+        line2:
+          description: Secondary address line (apartment, suite, building, etc.)
+          example: 4th floor
+          maxLength: 250
+          type: string
+        name:
+          description: Name of the address (e.g., "Main Office", "Billing Address")
+          example: Main Office
+          maxLength: 38
+          type: string
+        postalCode:
+          description: Postal or ZIP code. Validated against country-specific postal code format.
+          example: '75100'
+          maxLength: 38
+          type: string
+      required:
+      - clientExternalId
+      - name
+      - line1
+      - postalCode
+      - city
+      - country
       type: object
     GetClientAddressesResponse:
       properties:
@@ -215,6 +352,121 @@ components:
       required:
       - items
       - pagination
+      type: object
+    AddClientAddressesRequest:
+      properties:
+        clientAddresses:
+          description: List of client addresses to create
+          items:
+            $ref: '#/components/schemas/ClientAddressToCreate'
+          type: array
+      required:
+      - clientAddresses
+      type: object
+    AddClientAddressesResponse:
+      properties:
+        created:
+          description: Successfully created client addresses
+          items:
+            $ref: '#/components/schemas/CreatedClientAddress'
+          type: array
+        notCreated:
+          description: Client addresses that failed to be created
+          items:
+            $ref: '#/components/schemas/NotCreatedClientAddress'
+          type: array
+      required:
+      - created
+      - notCreated
+      type: object
+    DeleteClientAddressesRequest:
+      properties:
+        clientExternalIds:
+          description: 'List of client external IDs whose addresses should be deleted. Each ID: max 1000 characters, value is trimmed.'
+          example:
+          - client_1
+          - client_2
+          items:
+            type: string
+          type: array
+      required:
+      - clientExternalIds
+      type: object
+    AddressCreationFailureEnum:
+      description: Reason why the address could not be created
+      enum:
+      - CLIENT_NOT_FOUND
+      - CLIENT_ADDRESS_ALREADY_EXISTS
+      type: string
+    PaginationMetadataDto:
+      properties:
+        after:
+          type:
+          - string
+          - 'null'
+        before:
+          type:
+          - string
+          - 'null'
+      required:
+      - before
+      - after
+      type: object
+    CreatedClientAddress:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+      required:
+      - clientExternalId
+      type: object
+    GetClientClientAddress:
+      properties:
+        address:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: Address details
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type:
+          - string
+          - 'null'
+        clientId:
+          description: Internal identifier of the client
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          type: string
+      required:
+      - clientId
+      - clientExternalId
+      - address
+      type: object
+    DeleteClientAddressesResponse:
+      properties:
+        deleted:
+          description: Successfully deleted client addresses
+          items:
+            $ref: '#/components/schemas/DeletedAddresses'
+          type: array
+        notDeleted:
+          description: Client addresses that failed to be deleted
+          items:
+            $ref: '#/components/schemas/NotDeletedAddresses'
+          type: array
+      required:
+      - deleted
+      - notDeleted
+      type: object
+    UpdateClientAddressesRequest:
+      properties:
+        clientAddresses:
+          description: List of client addresses to update
+          items:
+            $ref: '#/components/schemas/ClientAddressToUpdate'
+          type: array
+      required:
+      - clientAddresses
       type: object
     NotCreatedClientAddress:
       properties:
@@ -230,12 +482,20 @@ components:
       - clientExternalId
       - reason
       type: object
-    DeleteClientAddressesFailureReasonEnum:
-      description: Reason why the address could not be deleted
-      enum:
-      - ADDRESS_NOT_FOUND
-      - CLIENT_NOT_FOUND
-      type: string
+    NotDeletedAddresses:
+      properties:
+        clientExternalId:
+          description: Identifier from the ERP or external system
+          example: client_1
+          type: string
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/DeleteClientAddressesFailureReasonEnum'
+          description: Reason why the address could not be deleted
+      required:
+      - clientExternalId
+      - reason
+      type: object
     CountryEnum:
       description: Country code (ISO 3166-1)
       enum:
@@ -305,223 +565,6 @@ components:
       - USA
       - VNM
       type: string
-    CreatedClientAddress:
-      properties:
-        clientExternalId:
-          description: Identifier from the ERP or external system
-          example: client_1
-          type: string
-      required:
-      - clientExternalId
-      type: object
-    DeleteClientAddressesResponse:
-      properties:
-        deleted:
-          description: Successfully deleted client addresses
-          items:
-            $ref: '#/components/schemas/DeletedAddresses'
-          type: array
-        notDeleted:
-          description: Client addresses that failed to be deleted
-          items:
-            $ref: '#/components/schemas/NotDeletedAddresses'
-          type: array
-      required:
-      - deleted
-      - notDeleted
-      type: object
-    ClientAddressToUpdate:
-      properties:
-        city:
-          description: City name
-          example: Paris
-          maxLength: 250
-          type: string
-        clientExternalId:
-          description: Identifier from the ERP or external system. Max 1000 characters. Value is trimmed.
-          example: client_1
-          maxLength: 1000
-          type: string
-        country:
-          allOf:
-          - $ref: '#/components/schemas/CountryEnum'
-          description: Country code (ISO 3166-1)
-        line1:
-          description: Primary address line (street name and number)
-          example: 5 Rodeo Street
-          maxLength: 250
-          type: string
-        line2:
-          description: Secondary address line (apartment, suite, building, etc.)
-          example: 4th floor
-          maxLength: 250
-          type: string
-        name:
-          description: Name of the address (e.g., "Main Office", "Billing Address")
-          example: Main Office
-          maxLength: 38
-          type: string
-        postalCode:
-          description: Postal or ZIP code. Validated against country-specific postal code format.
-          example: '75100'
-          maxLength: 38
-          type: string
-      required:
-      - clientExternalId
-      - name
-      - line1
-      - postalCode
-      - city
-      - country
-      type: object
-    PaginationMetadataDto:
-      properties:
-        after:
-          type:
-          - string
-          - 'null'
-        before:
-          type:
-          - string
-          - 'null'
-      required:
-      - before
-      - after
-      type: object
-    AddClientAddressesRequest:
-      properties:
-        clientAddresses:
-          description: List of client addresses to create
-          items:
-            $ref: '#/components/schemas/ClientAddressToCreate'
-          type: array
-      required:
-      - clientAddresses
-      type: object
-    NotUpdatedClientAddress:
-      properties:
-        clientExternalId:
-          description: Identifier from the ERP or external system
-          example: client_1
-          type: string
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/UpdateClientAddressesFailureReasonEnum'
-          description: Reason why the address could not be updated
-      required:
-      - clientExternalId
-      - reason
-      type: object
-    AddClientAddressesResponse:
-      properties:
-        created:
-          description: Successfully created client addresses
-          items:
-            $ref: '#/components/schemas/CreatedClientAddress'
-          type: array
-        notCreated:
-          description: Client addresses that failed to be created
-          items:
-            $ref: '#/components/schemas/NotCreatedClientAddress'
-          type: array
-      required:
-      - created
-      - notCreated
-      type: object
-    Address:
-      properties:
-        city:
-          description: City name
-          example: Paris
-          type: string
-        country:
-          allOf:
-          - $ref: '#/components/schemas/CountryEnum'
-          description: Country code (ISO 3166-1)
-        line1:
-          description: Primary address line (street name and number)
-          example: 5 Rodeo Street
-          type: string
-        line2:
-          description: Secondary address line (apartment, suite, building, etc.)
-          example: 4th floor
-          type:
-          - string
-          - 'null'
-        name:
-          description: Name of the address (e.g., "Main Office", "Billing Address")
-          example: Main Office
-          type: string
-        postalCode:
-          description: Postal or ZIP code
-          example: '75100'
-          type: string
-      required:
-      - name
-      - line1
-      - line2
-      - postalCode
-      - city
-      - country
-      type: object
-    NotDeletedAddresses:
-      properties:
-        clientExternalId:
-          description: Identifier from the ERP or external system
-          example: client_1
-          type: string
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/DeleteClientAddressesFailureReasonEnum'
-          description: Reason why the address could not be deleted
-      required:
-      - clientExternalId
-      - reason
-      type: object
-    ClientAddressToCreate:
-      properties:
-        city:
-          description: City name
-          example: Paris
-          maxLength: 250
-          type: string
-        clientExternalId:
-          description: Identifier from the ERP or external system. Max 1000 characters. Value is trimmed.
-          example: client_1
-          maxLength: 1000
-          type: string
-        country:
-          allOf:
-          - $ref: '#/components/schemas/CountryEnum'
-          description: Country code (ISO 3166-1)
-        line1:
-          description: Primary address line (street name and number)
-          example: 5 Rodeo Street
-          maxLength: 250
-          type: string
-        line2:
-          description: Secondary address line (apartment, suite, building, etc.)
-          example: 4th floor
-          maxLength: 250
-          type: string
-        name:
-          description: Name of the address (e.g., "Main Office", "Billing Address")
-          example: Main Office
-          maxLength: 38
-          type: string
-        postalCode:
-          description: Postal or ZIP code. Validated against country-specific postal code format.
-          example: '75100'
-          maxLength: 38
-          type: string
-      required:
-      - clientExternalId
-      - name
-      - line1
-      - postalCode
-      - city
-      - country
-      type: object
     UpdateClientAddressesResponse:
       properties:
         notUpdated:
@@ -537,49 +580,6 @@ components:
       required:
       - updated
       - notUpdated
-      type: object
-    GetClientClientAddress:
-      properties:
-        address:
-          allOf:
-          - $ref: '#/components/schemas/Address'
-          description: Address details
-        clientExternalId:
-          description: Identifier from the ERP or external system
-          example: client_1
-          type:
-          - string
-          - 'null'
-        clientId:
-          description: Internal identifier of the client
-          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
-          type: string
-      required:
-      - clientId
-      - clientExternalId
-      - address
-      type: object
-    DeleteClientAddressesRequest:
-      properties:
-        clientExternalIds:
-          description: 'List of client external IDs whose addresses should be deleted. Each ID: max 1000 characters, value is trimmed.'
-          example:
-          - client_1
-          - client_2
-          items:
-            type: string
-          type: array
-      required:
-      - clientExternalIds
-      type: object
-    DeletedAddresses:
-      properties:
-        clientExternalId:
-          description: Identifier from the ERP or external system
-          example: client_1
-          type: string
-      required:
-      - clientExternalId
       type: object
   securitySchemes:
     bearer:

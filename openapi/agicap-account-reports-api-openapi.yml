@@ -157,6 +157,58 @@ paths:
       - Account Reports
 components:
   schemas:
+    AccountReportSummary:
+      additionalProperties: false
+      properties:
+        AccountNumber:
+          description: Account number of the report
+          type:
+          - string
+          - 'null'
+        ConnectionId:
+          description: Connection identifier
+          format: uuid
+          type: string
+        CreatedAt:
+          description: Creation date (UTC) of the file
+          format: date-time
+          type: string
+        FileId:
+          description: File identifier
+          format: uuid
+          type: string
+        Filename:
+          description: File name
+          type: string
+        Format:
+          description: Bank file format
+          type:
+          - string
+          - 'null'
+        Id:
+          description: Account report identifier
+          format: uuid
+          type: string
+      type: object
+    Pagination:
+      additionalProperties: false
+      properties:
+        CurrentPageItemsCount:
+          format: int32
+          type: integer
+        CurrentPageNumber:
+          format: int32
+          type: integer
+        PageSize:
+          format: int32
+          type: integer
+        PagesCount:
+          format: int32
+          type: integer
+        TotalItemsCount:
+          format: int32
+          type: integer
+      type: object
     ProblemDetails:
       additionalProperties: false
       properties:
@@ -193,58 +245,6 @@ components:
           - 'null'
         Pagination:
           $ref: '#/components/schemas/Pagination'
-      type: object
-    Pagination:
-      additionalProperties: false
-      properties:
-        CurrentPageItemsCount:
-          format: int32
-          type: integer
-        CurrentPageNumber:
-          format: int32
-          type: integer
-        PageSize:
-          format: int32
-          type: integer
-        PagesCount:
-          format: int32
-          type: integer
-        TotalItemsCount:
-          format: int32
-          type: integer
-      type: object
-    AccountReportSummary:
-      additionalProperties: false
-      properties:
-        AccountNumber:
-          description: Account number of the report
-          type:
-          - string
-          - 'null'
-        ConnectionId:
-          description: Connection identifier
-          format: uuid
-          type: string
-        CreatedAt:
-          description: Creation date (UTC) of the file
-          format: date-time
-          type: string
-        FileId:
-          description: File identifier
-          format: uuid
-          type: string
-        Filename:
-          description: File name
-          type: string
-        Format:
-          description: Bank file format
-          type:
-          - string
-          - 'null'
-        Id:
-          description: Account report identifier
-          format: uuid
-          type: string
       type: object
   securitySchemes:
     bearerAuth:

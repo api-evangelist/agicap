@@ -653,6 +653,51 @@ paths:
     - url: https://api.agicap.internal
 components:
   schemas:
+    ConnectionSummary:
+      additionalProperties: false
+      properties:
+        Id:
+          description: Connection identifier
+          format: uuid
+          type: string
+        Name:
+          description: Connection name
+          type: string
+        Type:
+          description: Type of the connection. Possible values are PUBLIC_API, SWIFT, EBICS, EDITRAN
+          type: string
+      type: object
+    ConnectionSummaryPagedResult:
+      additionalProperties: false
+      properties:
+        Items:
+          items:
+            $ref: '#/components/schemas/ConnectionSummary'
+          type:
+          - array
+          - 'null'
+        Pagination:
+          $ref: '#/components/schemas/Pagination'
+      type: object
+    Pagination:
+      additionalProperties: false
+      properties:
+        CurrentPageItemsCount:
+          format: int32
+          type: integer
+        CurrentPageNumber:
+          format: int32
+          type: integer
+        PageSize:
+          format: int32
+          type: integer
+        PagesCount:
+          format: int32
+          type: integer
+        TotalItemsCount:
+          format: int32
+          type: integer
+      type: object
     ConnectionToCreate:
       additionalProperties: false
       properties:
@@ -685,50 +730,29 @@ components:
           - string
           - 'null'
       type: object
-    ConnectionSummary:
+    CreateConnectionDto:
       additionalProperties: false
       properties:
-        Id:
-          description: Connection identifier
-          format: uuid
-          type: string
-        Name:
-          description: Connection name
-          type: string
-        Type:
-          description: Type of the connection. Possible values are PUBLIC_API, SWIFT, EBICS, EDITRAN
-          type: string
-      type: object
-    Pagination:
-      additionalProperties: false
-      properties:
-        CurrentPageItemsCount:
-          format: int32
-          type: integer
-        CurrentPageNumber:
-          format: int32
-          type: integer
-        PageSize:
-          format: int32
-          type: integer
-        PagesCount:
-          format: int32
-          type: integer
-        TotalItemsCount:
-          format: int32
-          type: integer
-      type: object
-    ConnectionSummaryPagedResult:
-      additionalProperties: false
-      properties:
-        Items:
-          items:
-            $ref: '#/components/schemas/ConnectionSummary'
+        integrationName:
+          description: Name of the data source
           type:
-          - array
+          - string
           - 'null'
-        Pagination:
-          $ref: '#/components/schemas/Pagination'
+        name:
+          description: Name of the connection
+          type:
+          - string
+          - 'null'
+        source:
+          description: 'Enables the identification of the team responsible for developing the connector. This field helps track which party developed the integration, providing transparency for troubleshooting, support, and future updates.
+
+            - If you are an external integrator, put the "External integrator - `{name_of_your_company}`"
+
+            - If you are the user’s in-house development team, put “Internal  team”'
+          type:
+          - string
+          - 'null'
+      title: CreateConnection
       type: object
     ConnectionDto:
       additionalProperties: false
@@ -758,30 +782,6 @@ components:
           - string
           - 'null'
       title: Connection
-      type: object
-    CreateConnectionDto:
-      additionalProperties: false
-      properties:
-        integrationName:
-          description: Name of the data source
-          type:
-          - string
-          - 'null'
-        name:
-          description: Name of the connection
-          type:
-          - string
-          - 'null'
-        source:
-          description: 'Enables the identification of the team responsible for developing the connector. This field helps track which party developed the integration, providing transparency for troubleshooting, support, and future updates.
-
-            - If you are an external integrator, put the "External integrator - `{name_of_your_company}`"
-
-            - If you are the user’s in-house development team, put “Internal  team”'
-          type:
-          - string
-          - 'null'
-      title: CreateConnection
       type: object
   securitySchemes:
     bearerAuth:

@@ -55,6 +55,36 @@ paths:
       - Accrued interests
 components:
   schemas:
+    HttpValidationProblemDetails:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - additionalProperties: {}
+        properties:
+          errors:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+        type: object
+    AccruedInterestsResponse:
+      additionalProperties: false
+      properties:
+        lastMonthAmount:
+          format: double
+          type: number
+        lastYearAmount:
+          format: double
+          type: number
+        thisMonthAmount:
+          format: double
+          type: number
+        thisYearAmount:
+          format: double
+          type: number
+      title: AccruedInterests
+      type: object
     ProblemDetails:
       additionalProperties: false
       properties:
@@ -80,19 +110,6 @@ components:
           - string
           - 'null'
       type: object
-    HttpValidationProblemDetails:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/ProblemDetails'
-      - additionalProperties: {}
-        properties:
-          errors:
-            additionalProperties:
-              items:
-                type: string
-              type: array
-            type: object
-        type: object
     AccruedInterestsByCurrencyResponse:
       additionalProperties: false
       properties:
@@ -101,23 +118,6 @@ components:
             $ref: '#/components/schemas/AccruedInterestsResponse'
           type: object
       title: AccruedInterestsByCurrency
-      type: object
-    AccruedInterestsResponse:
-      additionalProperties: false
-      properties:
-        lastMonthAmount:
-          format: double
-          type: number
-        lastYearAmount:
-          format: double
-          type: number
-        thisMonthAmount:
-          format: double
-          type: number
-        thisYearAmount:
-          format: double
-          type: number
-      title: AccruedInterests
       type: object
   securitySchemes:
     bearerAuth:

@@ -310,6 +310,18 @@ components:
           format: int32
           type: integer
       type: object
+    BankFileSummaryPagedResult:
+      additionalProperties: false
+      properties:
+        Items:
+          items:
+            $ref: '#/components/schemas/BankFileSummary'
+          type:
+          - array
+          - 'null'
+        Pagination:
+          $ref: '#/components/schemas/Pagination'
+      type: object
     BankFileSummary:
       additionalProperties: false
       properties:
@@ -334,18 +346,6 @@ components:
         Type:
           description: Bank file type. Possible value are STATEMENT, ACCOUNT_REPORT, OTHER, UNKNOWN
           type: string
-      type: object
-    BankFileSummaryPagedResult:
-      additionalProperties: false
-      properties:
-        Items:
-          items:
-            $ref: '#/components/schemas/BankFileSummary'
-          type:
-          - array
-          - 'null'
-        Pagination:
-          $ref: '#/components/schemas/Pagination'
       type: object
   securitySchemes:
     bearerAuth:

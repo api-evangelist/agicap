@@ -83,6 +83,43 @@ components:
       - clientExternalId
       - agicapUserEmails
       type: object
+    AssignUsersToClientsByExternalIdResponse:
+      properties:
+        assigned:
+          description: Successfully assigned user-to-client groups.
+          items:
+            $ref: '#/components/schemas/ClientUserAssignment'
+          type: array
+        notAssigned:
+          description: User-to-client groups that could not be assigned.
+          items:
+            $ref: '#/components/schemas/FailedClientUserAssignment'
+          type: array
+      required:
+      - assigned
+      - notAssigned
+      type: object
+    FailedClientUserAssignment:
+      properties:
+        clientExternalId:
+          description: External identifier of the client.
+          example: client_1
+          type: string
+        failures:
+          description: Users that could not be assigned to this client.
+          items:
+            $ref: '#/components/schemas/AssignmentFailure'
+          type: array
+      required:
+      - clientExternalId
+      - failures
+      type: object
+    AssignUsersToClientsByExternalIdFailureReasonEnum:
+      description: Reason why the user could not be assigned to the client.
+      enum:
+      - USER_NOT_FOUND
+      - CLIENT_NOT_FOUND
+      type: string
     AssignUsersToClientsByExternalIdRequest:
       properties:
         assignments:
@@ -93,12 +130,6 @@ components:
       required:
       - assignments
       type: object
-    AssignUsersToClientsByExternalIdFailureReasonEnum:
-      description: Reason why the user could not be assigned to the client.
-      enum:
-      - USER_NOT_FOUND
-      - CLIENT_NOT_FOUND
-      type: string
     ClientUserAssignment:
       properties:
         agicapUserEmails:
@@ -116,37 +147,6 @@ components:
       required:
       - clientExternalId
       - agicapUserEmails
-      type: object
-    FailedClientUserAssignment:
-      properties:
-        clientExternalId:
-          description: External identifier of the client.
-          example: client_1
-          type: string
-        failures:
-          description: Users that could not be assigned to this client.
-          items:
-            $ref: '#/components/schemas/AssignmentFailure'
-          type: array
-      required:
-      - clientExternalId
-      - failures
-      type: object
-    AssignUsersToClientsByExternalIdResponse:
-      properties:
-        assigned:
-          description: Successfully assigned user-to-client groups.
-          items:
-            $ref: '#/components/schemas/ClientUserAssignment'
-          type: array
-        notAssigned:
-          description: User-to-client groups that could not be assigned.
-          items:
-            $ref: '#/components/schemas/FailedClientUserAssignment'
-          type: array
-      required:
-      - assigned
-      - notAssigned
       type: object
   securitySchemes:
     bearer:
